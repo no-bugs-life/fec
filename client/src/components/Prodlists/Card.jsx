@@ -17,7 +17,7 @@ const Card = () => {
     <div className='card'>
       <img
         className='card-image'
-        src={'https://imgprd19.hobbylobby.com/2/fe/7f/2fe7f9b08fb17ea5bffd92cf575dee4a8d898668/1400Wx1400H-634485-0320.jpg'}
+        src={'https://webvision.med.utah.edu/wp-content/uploads/2012/06/50-percent-gray.jpg'}
       />
       <div className='card-container'>
         <p>Category Shirt</p>

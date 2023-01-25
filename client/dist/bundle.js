@@ -65,7 +65,7 @@ var Card = function Card() {
     className: "card",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
       className: "card-image",
-      src: 'https://imgprd19.hobbylobby.com/2/fe/7f/2fe7f9b08fb17ea5bffd92cf575dee4a8d898668/1400Wx1400H-634485-0320.jpg'
+      src: 'https://webvision.med.utah.edu/wp-content/uploads/2012/06/50-percent-gray.jpg'
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "card-container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
@@ -9389,7 +9389,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image{\n  width:200px\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX;AACF;;AAEA;EACE;AACF","sourcesContent":[".card{\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image{\n  width:200px\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX;AACF;;AAEA;EACE,WAAW;EACX,YAAY;AACd","sourcesContent":[".card{\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
