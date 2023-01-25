@@ -1,0 +1,19 @@
+{
+  "name": "fec",
+  "version": "1.0.0",
+  "description": "Front End Capstone: Project Atelier",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/no-bugs-life/fec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/no-bugs-life/fec/issues"
+  },
+  "homepage": "https://github.com/no-bugs-life/fec#readme"
+}
