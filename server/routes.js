@@ -1,19 +1,18 @@
-const controller = require('./controllers');
+const ctrl = require('./controllers');
 const router = require('express').Router();
 
-
 //Products
-router.get('/products');
-router.get('/product/:product_id');
-router.get('/products/:product_id/styles');
-router.get('/products/:product_id/related');
+router.get('/products', ctrl.readAll);
+router.get('/product/:product_id', ctrl.readByID);
+router.get('/products/:product_id/styles', ctrl.readAllStyles);
+router.get('/products/:product_id/related', ctrl.readRelatedProducts);
 
 //Review
-router.get('/reviews');
-router.get('/reviews/meta');
-router.post('/reviews');
-router.put('/reviews/:review_id/helpful');
-router.put('/reviews/:review_id/report');
+router.get('/reviews', ctrl.getAll);
+router.get('/reviews/meta', ctrl.getReviewMeta);
+router.post('/reviews', ctrl.postReview);
+router.put('/reviews/:review_id/helpful', ctrl.putReviewHelpful);
+router.put('/reviews/:review_id/report', ctrl.putReviewReport);
 
 //Question & Answers
 router.get('/qa/questions');
@@ -25,11 +24,12 @@ router.put('/qa/questions/:question_id/report');
 router.put('/qa/answers/:answer_id/helpful');
 router.put('/qa/answers/:answer_id/report');
 
-//Cart
-router.get('/cart');
-router.post('/cart');
 
-//Interactions
-router.post('/interactions')
+// //Cart
+// router.get('/cart');
+// router.post('/cart');
 
-module.exports = router
+// //Interactions
+// router.post('/interactions')
+
+module.exports = router;
