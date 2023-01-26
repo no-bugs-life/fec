@@ -4,6 +4,6 @@ import { render, createRoot } from "react-dom";
 
 
 render(
-  <h1>hello</h1>,
+  <App/>,
   document.getElementById("root")
 );
