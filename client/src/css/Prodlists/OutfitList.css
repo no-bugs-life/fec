@@ -1,0 +1,15 @@
+.outfit-list{
+  border: 1px solid red;
+  text-align: center;
+}
+
+.outfit-list-container{
+  border: 1px solid rgb(111, 55, 55);
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.outfit-list-card-container{
+  display: inline-flex;
+  flex-direction: row
+}
