@@ -7,3 +7,8 @@
   width:200px;
   height:200px;
 }
+
+.card-container{
+  margin-left: 10px;
+  text-align: left;
+}

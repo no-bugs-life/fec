@@ -1,6 +1,8 @@
 import React,{useState} from 'react';
 import '../../css/Prodlists/RelatedList.css';
 
+import Card from './Card.jsx';
+
 // product will be obj from api
 // add saved property
 
@@ -13,8 +15,20 @@ const RelatedList = () => {
   //const [item, setItem] = useState({product})
 
   return (
-    <div className='related-list'>
-
+    <div>
+      <p>RELATED PRODUCTS</p>
+      <div className='related-list'>
+        <div className='related-list-container'>
+          <button >{'<'}</button>
+          <div className='related-list-card-container'>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+          </div>
+          <button>{'>'}</button>
+        </div>
+      </div>
     </div>
   )
 }
