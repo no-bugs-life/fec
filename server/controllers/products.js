@@ -1,6 +1,6 @@
 const products = require("../models/products.js");
 
-const controller = {
+module.exports = {
 
     readAll : (req, res)=> {
         products.listProducts(req.body);
