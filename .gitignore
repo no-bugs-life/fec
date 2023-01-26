@@ -3,3 +3,8 @@ node_modules/
 
 # dotenv environment variable files
 .env
+
+*.map
+*bundle.js
+*bundle.js.map
+
