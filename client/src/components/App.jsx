@@ -29,10 +29,10 @@ const App = ()=> {
 
   return(
     <div className="product-main">
-      <Description product ={product}/>
+      {/* <Description product ={product}/>
       <Images />
       <AddDescription />
-      <Share />
+      <Share /> */}
       <Stars />
     </div>
   )
