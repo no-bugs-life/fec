@@ -1,0 +1,14 @@
+.product-img{
+  border: 1px solid red;
+  width: 30rem;
+  height: 30rem;
+}
+.product-img .main-img .primary {
+  width: 20%;
+  height: 20%;
+  display: flex;
+}
+.secondary-img .secondary{
+  width: 10%;
+  height: 10%;
+}
