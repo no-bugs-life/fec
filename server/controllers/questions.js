@@ -1,12 +1,14 @@
+
 const {questions} = require('../models');
 
 module.exports = {
 
   getQuestions: (req, res) => {
-    console.log(req.body)
+
     questions.listQuestions(req.body)
-    .then((response) => {
-      res.status(200).send(response.data);
+    .then((result) => {
+      res.status(200).send(result.data);
+
     }).catch((error) => {
       res.status(404).send(error);
     })
@@ -31,7 +33,7 @@ module.exports = {
   },
 
   removeQuestions: (req, res) => {
-    questions.reportQuestion(req)
+    questions.reportQuestion(req.params.question_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -40,16 +42,19 @@ module.exports = {
   },
 
   getAnswers: (req, res) => {
+
     questions.listAnswers(req.params.question_id, req.body)
-    .then((response) => {
-      res.status(200).send(response.data);
+    .then((result) => {
+      res.status(200).send(result.data);
+
+
     }).catch((error) => {
       res.status(404).send(error);
     })
   },
 
   postAnswers: (req, res) => {
-    questions.addAnswer(req.body)
+    questions.addAnswer(req.params.question_id, req.body)
     .then(() => {
       res.status(201).send();
     }).catch((error) => {
@@ -58,7 +63,7 @@ module.exports = {
   },
 
   putAnswers: (req, res) => {
-    questions.markAnswerAsHelpful(req)
+    questions.markAnswerAsHelpful(req.params.answer_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -67,7 +72,7 @@ module.exports = {
   },
 
   removeAnswers: (req, res) => {
-    questions.reportAnswer(req)
+    questions.reportAnswer(req.params.answer_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
