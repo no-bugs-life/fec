@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 
 const LoadMoreQuestions = () => {
-  return (
+  // return (
 
-  )
+  // );
 };
+
+export default LoadMoreQuestions;

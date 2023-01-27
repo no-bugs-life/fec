@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 
 const AddAnswer = () => {
-  return (
+  // return (
 
-  )
+  // );
 };
+
+export default AddAnswer;

@@ -10,5 +10,7 @@ const QuestionMounted = () => {
     <small><button id='load'>Load More Answers</button></small>
     <AddQuestion/>
     <button id='more'>More Answered Questions</button>
-  )
+  );
 };
+
+export default QuestionMounted;

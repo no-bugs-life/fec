@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 
 const AddQuestion = () => {
-  return (
+  // return (
 
-  )
+  // );
 };
+
+export default AddQuestion;

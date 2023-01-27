@@ -1,4 +1,8 @@
 const axios = require('axios');
+require("dotenv").config();
+
+axios.defaults.headers.common['Authorization'] = process.env.GITHUB_KEY
+axios.defaults.baseURL = process.env.API_SERVER
 
 module.exports = {
   getReviews: (options) => {

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
-const Search = ({questions}) => {
-  const [search, setSearch] = useState('');
+const Search = ({questions, search, setSearch}) => {
 
   return (
     <div>
@@ -19,5 +18,7 @@ const Search = ({questions}) => {
         )
         )}
         </div>
-  )
+  );
 };
+
+export default Search;
