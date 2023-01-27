@@ -1,3 +1,4 @@
+
 const axios = require('axios');
 require("dotenv").config();
 axios.defaults.headers.common['Authorization'] =  process.env.GITHUB_KEY
@@ -7,8 +8,10 @@ const products = {
     listProducts : (options) => {
         return axios.get('/products', options)
     },
+
     productInformation : (product_id) => {
         return axios.get(`/products/${product_id}`)
+
     },
     productStyles : (product_id) => {
         return axios.get(`/products/${product_id}/styles`)

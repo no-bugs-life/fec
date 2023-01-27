@@ -1,11 +1,14 @@
+
 const {questions} = require('../models');
 
 module.exports = {
 
   getQuestions: (req, res) => {
+
     questions.listQuestions(req.body)
     .then((result) => {
       res.status(200).send(result.data);
+
     }).catch((error) => {
       res.status(404).send(error);
     })
@@ -39,9 +42,12 @@ module.exports = {
   },
 
   getAnswers: (req, res) => {
+
     questions.listAnswers(req.params.question_id, req.body)
     .then((result) => {
       res.status(200).send(result.data);
+
+
     }).catch((error) => {
       res.status(404).send(error);
     })
@@ -66,7 +72,7 @@ module.exports = {
   },
 
   removeAnswers: (req, res) => {
-    models.reportAnswer(req)
+    questions.reportAnswer(req)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
