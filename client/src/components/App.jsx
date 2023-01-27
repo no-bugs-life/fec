@@ -10,6 +10,7 @@ import AddDescription from "./AddDescription.jsx";
 import RelatedList from '../components/Prodlists/RelatedList.jsx';
 import OutfitList from '../components/Prodlists/OutfitList.jsx'
 import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
+import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
 
 import Share from "./Share.jsx";
@@ -35,8 +36,10 @@ const App = ()=> {
       <Share />
       <Stars />
     </div>
+    // <div className="questions">
+    //   <QuestionComponent />
+    // </div>
   )
-
 }
 
 export default App;
