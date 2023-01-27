@@ -1,26 +1,26 @@
-const models = require('../models');
+const {reviews} = require('../models');
 
 module.exports = {
   getAll: (req, res) => {
-    models.reviews.getReviews(req.body)
-      .then(() => {
-        res.status(200).send();
+    reviews.getReviews(req.body)
+      .then((result) => {
+        res.status(200).send(result.data);
       })
       .catch((err) => {
         console.log('Error getting reviews: ', err);
       });
   },
   getOneMeta: (req, res) => {
-    models.reviews.getReviewMeta(req.body)
-      .then(() => {
-        res.status(200).send();
+    reviews.getReviewMeta(req.body)
+      .then((result) => {
+        res.status(200).send(result.data);
       })
       .catch((err) => {
         console.log('Error getting review metadata: ', err);
       });
   },
   postReview: (req, res) => {
-    models.reviews.addReview(req.body)
+    reviews.addReview(req.body)
       .then(() => {
         res.status(201).send();
       })
@@ -29,7 +29,7 @@ module.exports = {
       });
   },
   putReviewHelpful: (req, res) => {
-    models.reviews.markReviewHelpful(req.params.review_id)
+    reviews.markReviewHelpful(req.params.review_id)
       .then(() => {
         res.status(204).send();
       })
@@ -38,7 +38,7 @@ module.exports = {
       })
   },
   putReviewReport: (req, res) => {
-    models.reviews.reportReview(req.params.review_id)
+    reviews.reportReview(req.params.review_id)
       .then(() => {
         res.status(204).send();
       })
