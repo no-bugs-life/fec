@@ -9,7 +9,7 @@ import AddDescription from "./AddDescription.jsx";
 
 import RelatedList from '../components/Prodlists/RelatedList.jsx';
 import OutfitList from '../components/Prodlists/OutfitList.jsx'
-import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
+import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
 
 
 import Share from "./Share.jsx";
