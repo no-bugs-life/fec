@@ -3,7 +3,7 @@ import '../css/App.css'
 
 import RelatedList from '../components/Prodlists/RelatedList.jsx';
 import OutfitList from '../components/Prodlists/OutfitList.jsx'
-import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
+import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
 const App = () => {
 
@@ -11,7 +11,7 @@ const App = () => {
     <div className='app'>
       <RelatedList />
       <OutfitList />
-      <QuestionComponent/>
+      <QuestionMounted />
     </div>
   );
 };
