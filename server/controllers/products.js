@@ -1,4 +1,4 @@
-const products = require("../models/products.js");
+const {products} = require("../models");
 
 module.exports = {
 
@@ -35,5 +35,4 @@ module.exports = {
     }
 
 }
-
 

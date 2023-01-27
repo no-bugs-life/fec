@@ -1,4 +1,6 @@
+
 import React, {useState, useEffect} from "react";
+import Stars from './Stars/Stars.jsx'
 import "../css/styles.css";
 import Description from "./Description.jsx";
 import Images from "./Images.jsx";
@@ -24,7 +26,9 @@ const App = ()=> {
       <Images />
       <AddDescription />
       <Share />
+      <Stars />
     </div>
   )
+
 }
 export default App;

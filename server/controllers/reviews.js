@@ -1,8 +1,10 @@
-const models = require('../models/reviews.js');
+
+const {reviews} = require('../models');
 
 module.exports = {
   getAll: (req, res) => {
-    models.getReviews(req.body)
+    reviews.getReviews(req.body)
+
       .then((result) => {
         res.status(200).send(result.data);
       })
@@ -11,7 +13,9 @@ module.exports = {
       });
   },
   getOneMeta: (req, res) => {
-    models.reviews.getReviewMeta(req.body)
+
+    reviews.getReviewMeta(req.body)
+
       .then((result) => {
         res.status(200).send(result.data);
       })
@@ -20,7 +24,7 @@ module.exports = {
       });
   },
   postReview: (req, res) => {
-    models.reviews.addReview(req.body)
+    reviews.addReview(req.body)
       .then(() => {
         res.status(201).send();
       })
@@ -29,7 +33,7 @@ module.exports = {
       });
   },
   putReviewHelpful: (req, res) => {
-    models.reviews.markReviewHelpful(req.params.review_id)
+    reviews.markReviewHelpful(req.params.review_id)
       .then(() => {
         res.status(204).send();
       })
@@ -38,7 +42,7 @@ module.exports = {
       })
   },
   putReviewReport: (req, res) => {
-    models.reviews.reportReview(req.params.review_id)
+    reviews.reportReview(req.params.review_id)
       .then(() => {
         res.status(204).send();
       })
