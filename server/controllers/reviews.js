@@ -1,10 +1,10 @@
-const models = require('../models');
+const models = require('../models/reviews.js');
 
 module.exports = {
   getAll: (req, res) => {
-    models.reviews.getReviews(req.body)
-      .then(() => {
-        res.status(200).send();
+    models.getReviews(req.body)
+      .then((result) => {
+        res.status(200).send(result.data);
       })
       .catch((err) => {
         console.log('Error getting reviews: ', err);
@@ -12,8 +12,8 @@ module.exports = {
   },
   getOneMeta: (req, res) => {
     models.reviews.getReviewMeta(req.body)
-      .then(() => {
-        res.status(200).send();
+      .then((result) => {
+        res.status(200).send(result.data);
       })
       .catch((err) => {
         console.log('Error getting review metadata: ', err);

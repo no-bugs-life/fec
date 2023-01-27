@@ -4,13 +4,23 @@ import Description from "./Description.jsx";
 import Images from "./Images.jsx";
 import AddDescription from "./AddDescription.jsx";
 import Share from "./Share.jsx";
+import axios from "axios";
 const App = ()=> {
-
-
+  const [em, setEm] = useState([]);
+  const [product, setProduct] = useState({});
+  useEffect(()=> {
+    axios.get('http://localhost:3000/api/products')
+    .then(res => {
+      console.log(res.data)
+      setEm(res.data)
+      setProduct(res.data[0]);
+    })
+    .catch(err => console.log(err))
+  }, [])
 
   return(
     <div className="product-main">
-      <Description />
+      <Description product ={product}/>
       <Images />
       <AddDescription />
       <Share />

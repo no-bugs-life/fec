@@ -1,5 +1,8 @@
 //Questions and Answers API
-const axios = require('axios')
+const axios = require('axios');
+require("dotenv").config();
+axios.defaults.headers.common['Authorization'] =  process.env.GITHUB_KEY
+axios.defaults.baseURL = process.env.API_SERVER
 
 module.exports = {
 
@@ -9,7 +12,7 @@ module.exports = {
    * @returns
    */
   listQuestions: (options) => {
-    return axios.get('/qa/questions', options)
+    return axios.get(`/qa/questions?product_id=${options.product_id}`)
   },
     /**
    *
@@ -38,7 +41,7 @@ module.exports = {
       body: body,
       name: name,
       email: email,
-      photos: photos:
+      photos: photos
     })
   },
   markQuestionAsHelpful: (question_id) => {

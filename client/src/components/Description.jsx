@@ -1,10 +1,10 @@
 import React from "react";
-const Description = () => {
+const Description = ({product}) => {
 
   return (
     <>
-    <h2>This is the product Title</h2>
-    <p>This is the Price</p>
+    <h2>{product.name}</h2>
+    <p>{product.default_price}</p>
     <div>
       //style component
     </div>

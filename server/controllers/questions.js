@@ -1,11 +1,11 @@
-const models = require('../models');
+const models = require('../models/questions.js');
 
 module.exports = {
 
   getQuestions: (req, res) => {
     models.listQuestions(req.body)
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send(response.data);
     }).catch((error) => {
       res.status(404).send(error);
     })
@@ -39,9 +39,9 @@ module.exports = {
   },
 
   getAnswers: (req, res) => {
-    models.listAnswers(req)
+    models.listAnswers(req.params.question_id, req.body)
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send(response.data);
     }).catch((error) => {
       res.status(404).send(error);
     })
