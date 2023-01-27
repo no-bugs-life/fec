@@ -4,6 +4,7 @@ node_modules/
 # dotenv environment variable files
 .env
 
-# bundle files
+*.map
 *bundle.js
 *bundle.js.map
+
