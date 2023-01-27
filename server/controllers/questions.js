@@ -1,18 +1,19 @@
-const models = require('../models');
+const {questions} = require('../models');
 
 module.exports = {
 
   getQuestions: (req, res) => {
-    models.listQuestions(req.body)
+    console.log(req.body)
+    questions.listQuestions(req.body)
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send(response.data);
     }).catch((error) => {
       res.status(404).send(error);
     })
   },
 
   postQuestions: (req, res) => {
-    models.addQuestions(req)
+    questions.addQuestion(req.body)
     .then(() => {
       res.status(201).send();
     }).catch((error) => {
@@ -21,7 +22,7 @@ module.exports = {
   },
 
   putQuestions: (req, res) => {
-    models.markQuestionAsHelpful(req)
+    questions.markQuestionAsHelpful(req.params.question_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -30,7 +31,7 @@ module.exports = {
   },
 
   removeQuestions: (req, res) => {
-    models.reportQuestion(req)
+    questions.reportQuestion(req)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -39,16 +40,16 @@ module.exports = {
   },
 
   getAnswers: (req, res) => {
-    models.listAnswers(req)
+    questions.listAnswers(req.params.question_id, req.body)
     .then((response) => {
-      res.status(200).send(response);
+      res.status(200).send(response.data);
     }).catch((error) => {
       res.status(404).send(error);
     })
   },
 
   postAnswers: (req, res) => {
-    models.addAnswer(req)
+    questions.addAnswer(req.body)
     .then(() => {
       res.status(201).send();
     }).catch((error) => {
@@ -57,7 +58,7 @@ module.exports = {
   },
 
   putAnswers: (req, res) => {
-    models.markAnswerAsHelpful(req)
+    questions.markAnswerAsHelpful(req)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -66,7 +67,7 @@ module.exports = {
   },
 
   removeAnswers: (req, res) => {
-    models.reportAnswer(req)
+    questions.reportAnswer(req)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
