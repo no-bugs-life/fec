@@ -15,7 +15,7 @@ module.exports = {
   },
 
   postQuestions: (req, res) => {
-    questions.addQuestion(req)
+    questions.addQuestion(req.body)
     .then(() => {
       res.status(201).send();
     }).catch((error) => {
@@ -24,7 +24,7 @@ module.exports = {
   },
 
   putQuestions: (req, res) => {
-    questions.markQuestionAsHelpful(req)
+    questions.markQuestionAsHelpful(req.params.question_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -33,7 +33,7 @@ module.exports = {
   },
 
   removeQuestions: (req, res) => {
-    questions.reportQuestion(req)
+    questions.reportQuestion(req.params.question_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -54,7 +54,7 @@ module.exports = {
   },
 
   postAnswers: (req, res) => {
-    questions.addAnswer(req)
+    questions.addAnswer(req.params.question_id, req.body)
     .then(() => {
       res.status(201).send();
     }).catch((error) => {
@@ -63,7 +63,7 @@ module.exports = {
   },
 
   putAnswers: (req, res) => {
-    questions.markAnswerAsHelpful(req)
+    questions.markAnswerAsHelpful(req.params.answer_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
@@ -72,7 +72,7 @@ module.exports = {
   },
 
   removeAnswers: (req, res) => {
-    questions.reportAnswer(req)
+    questions.reportAnswer(req.params.answer_id)
     .then(() => {
       res.status(200).send();
     }).catch((error) => {
