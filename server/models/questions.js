@@ -13,7 +13,7 @@ module.exports = {
    * @returns
    */
   listQuestions: (options) => {
-    return axios.get(`/qa/questions?product_id=${options.product_id}`)
+    return axios.get('/qa/questions',{ params: options});
   },
     /**
    *
@@ -21,7 +21,7 @@ module.exports = {
    * @returns
    */
   listAnswers: (question_id, options) => {
-    return axios.get(`/qa/questions/${question_id}/answers`, options)
+    return axios.get(`/qa/questions/${question_id}/answers`, {options})
   },
   /**
    *
@@ -37,7 +37,7 @@ module.exports = {
    * @param {Object} answer
    * @returns
    */
-  addAnswer: (answer, question_id) => {
+  addAnswer: (question_id,answer) => {
     return axios.post(`/qa/questions/${question_id}/answers`, answer)
   },
 
