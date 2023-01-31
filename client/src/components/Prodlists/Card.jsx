@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/Card.css';
 //import rating stars
 
@@ -9,20 +9,39 @@ import '../../css/Prodlists/Card.css';
 //action will be obj with 2 properties
 //  imageref and function for action, add and delete
 //{product, action}
-const Card = () => {
+import axios from 'axios';
 
-  //const [item, setItem] = useState({product})
+const Card = ({relatedProductId}) => {
+
+  const [product, setProduct] = useState({});
+  const [picture, setPicture] = useState('');
+
+  useEffect(
+    () => {
+      Promise.all(
+        [
+          axios.get(`api/products/${relatedProductId}`),
+          axios.get(`api/products/${relatedProductId}/styles`)
+        ]
+      )
+      .then((results) => {
+        setProduct(results[0].data);
+        setPicture(results[1].data.results[0].photos[0].thumbnail_url)
+      })
+    },
+    [relatedProductId]
+  )
 
   return (
     <div className='card'>
       <img
         className='card-image'
-        src={'https://webvision.med.utah.edu/wp-content/uploads/2012/06/50-percent-gray.jpg'}
+        src={picture}
       />
       <div className='card-container'>
-        <p>Category Shirt</p>
-        <p>Shirt for People</p>
-        <p>100.00</p>
+        <p>{product.category}</p>
+        <p>{product.name}</p>
+        <p>{product.default_price}</p>
         <p>⭐⭐⭐⭐⭐</p>
       </div>
     </div>

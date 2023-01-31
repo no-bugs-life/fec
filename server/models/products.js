@@ -6,7 +6,8 @@ axios.defaults.baseURL = process.env.API_SERVER
 
 module.exports = {
     listProducts : (options) => {
-        return axios.get('/products', options)
+        console.log(options)
+        return axios.get('/products', {params: options})
     },
     productInformation : (product_id) => {
         return axios.get(`/products/${product_id}`)
