@@ -1,14 +1,14 @@
 import React from 'react';
 
-const ProgressBar = () => {
-  //className={progressStyle}
-  //className={progressFillStyle}
+const ProgressBar = ({rateData, totalRates}) => {
+
   return(
-    <div >
-      <div >
-        <span>{'Count'}</span>
-      </div>
+    <>
+    <div className='progressStyle' >
+      <div className='progressFillStyle' style={{width: `${rateData * 100 / totalRates}%`}} />
     </div>
+    <p>{rateData}</p>
+    </>
   );
 }
 
