@@ -119,7 +119,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var Card = function Card(_ref) {
-  var relatedProductId = _ref.relatedProductId;
+  var relatedProductId = _ref.relatedProductId,
+    buttonType = _ref.buttonType,
+    buttonAction = _ref.buttonAction;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState2 = _slicedToArray(_useState, 2),
     product = _useState2[0],
@@ -128,17 +130,36 @@ var Card = function Card(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     picture = _useState4[0],
     setPicture = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(buttonType === 'heart'),
+    _useState6 = _slicedToArray(_useState5, 2),
+    buttonToggle = _useState6[0],
+    setButtonToggle = _useState6[1];
+  var starOn = '★';
+  var starOff = '✰';
+  var heartOn = '❤';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(relatedProductId)), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(relatedProductId, "/styles"))]).then(function (results) {
       setProduct(results[0].data);
       setPicture(results[1].data.results[0].photos[0].thumbnail_url);
     });
   }, [relatedProductId]);
+  //✰★
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "card",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-      className: "card-image",
-      src: picture
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "card-image-container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        className: "card-image",
+        src: picture
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+        type: "button",
+        className: buttonToggle ? "card-image-button ".concat(buttonType, "-on") : "card-image-button ".concat(buttonType, "-off"),
+        value: buttonType === 'star' ? buttonToggle ? starOn : starOff : heartOn,
+        onClick: function onClick() {
+          setButtonToggle(!buttonToggle);
+          buttonAction();
+        }
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "card-container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
@@ -318,7 +339,9 @@ var RelatedList = function RelatedList(_ref) {
           className: "related-list-card-container",
           children: productIds.view.map(function (relatedProductId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              relatedProductId: relatedProductId
+              relatedProductId: relatedProductId,
+              buttonType: "star",
+              buttonAction: function buttonAction() {}
             }, 'id_' + relatedProductId);
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
@@ -9735,7 +9758,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-container{\n  margin-left: 10px;\n  text-align: left;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,iBAAiB;EACjB,gBAAgB;AAClB","sourcesContent":[".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-container{\n  margin-left: 10px;\n  text-align: left;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n\n\n.card-container{\n  margin-left: 10px;\n  text-align: left;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE;AACF;;;;AAIA;EACE,iBAAiB;EACjB,gBAAgB;AAClB","sourcesContent":[".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n\n\n.card-container{\n  margin-left: 10px;\n  text-align: left;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

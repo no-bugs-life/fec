@@ -11,10 +11,14 @@ import '../../css/Prodlists/Card.css';
 //{product, action}
 import axios from 'axios';
 
-const Card = ({relatedProductId}) => {
+const Card = ({relatedProductId, buttonType, buttonAction}) => {
 
   const [product, setProduct] = useState({});
   const [picture, setPicture] = useState('');
+  const [buttonToggle, setButtonToggle] = useState(buttonType === 'heart');
+  const starOn = '★';
+  const starOff = '✰';
+  const heartOn = '❤';
 
   useEffect(
     () => {
@@ -31,13 +35,37 @@ const Card = ({relatedProductId}) => {
     },
     [relatedProductId]
   )
-
+//✰★
   return (
     <div className='card'>
-      <img
-        className='card-image'
-        src={picture}
-      />
+      <div className='card-image-container'>
+        <img
+          className='card-image'
+          src={picture}
+        />
+        <input
+          type='button'
+          className={
+            buttonToggle ?
+              `card-image-button ${buttonType}-on`
+              :
+              `card-image-button ${buttonType}-off`
+          }
+          value={
+            buttonType === 'star' ?
+              (buttonToggle ? starOn:starOff)
+              :
+              heartOn
+          }
+          onClick={
+            ()=>{
+              setButtonToggle(!buttonToggle);
+              buttonAction()
+            }
+          }
+        />
+      </div>
+
       <div className='card-container'>
         <p>{product.category}</p>
         <p>{product.name}</p>

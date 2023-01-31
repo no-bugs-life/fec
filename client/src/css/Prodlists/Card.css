@@ -5,10 +5,46 @@
   border: 1px solid blue
 }
 
+.card-image-container{
+  position: relative;
+}
+
 .card-image{
   width:200px;
   height:200px;
 }
+
+.card-image-button{
+  position: absolute;
+  top: 0%;
+  left: 83%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+
+  background-color: transparent;
+  border: 0px;
+  padding: 0px 10px 0px 0px;
+
+  cursor: pointer;
+}
+
+.card-image-button.star-on{
+  color: rgb(216, 166, 0)
+}
+
+.card-image-button.star-off{
+  color: rgb(214, 182, 102)
+}
+
+.card-image-button.heart-on{
+  color: rgb(175, 0, 0)
+}
+.card-image-button.heart-on:hover{
+  color: rgb(113, 101, 101)
+}
+
+
 
 .card-container{
   margin-left: 10px;

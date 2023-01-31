@@ -69,7 +69,12 @@ const RelatedList = ({product}) => {
             {
               productIds.view.map((relatedProductId) => {
                 return (
-                  <Card relatedProductId={relatedProductId} key={'id_' + relatedProductId}/>
+                  <Card
+                    key={'id_' + relatedProductId}
+                    relatedProductId={relatedProductId}
+                    buttonType = 'star'
+                    buttonAction = {() => {}}
+                  />
                 )
               })
             }
