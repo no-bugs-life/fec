@@ -71,6 +71,7 @@ const RelatedList = ({product}) => {
                 return (
                   <Card
                     key={'id_' + relatedProductId}
+                    currentProductId={product.id}
                     relatedProductId={relatedProductId}
                     buttonType = 'star'
                     buttonAction = {() => {}}

@@ -97,8 +97,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_Prodlists_Card_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/Card.css */ "./client/src/css/Prodlists/Card.css");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ComparisonModal.jsx */ "./client/src/components/Prodlists/ComparisonModal.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -108,6 +109,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 //import rating stars
+
+
 
 // product will be obj from api
 // add saved property
@@ -121,7 +124,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Card = function Card(_ref) {
   var relatedProductId = _ref.relatedProductId,
     buttonType = _ref.buttonType,
-    buttonAction = _ref.buttonAction;
+    buttonAction = _ref.buttonAction,
+    currentProductId = _ref.currentProductId;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState2 = _slicedToArray(_useState, 2),
     product = _useState2[0],
@@ -134,24 +138,32 @@ var Card = function Card(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     buttonToggle = _useState6[0],
     setButtonToggle = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState8 = _slicedToArray(_useState7, 2),
+    modalToggle = _useState8[0],
+    setModalToggle = _useState8[1];
   var starOn = '★';
   var starOff = '✰';
   var heartOn = '❤';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(relatedProductId)), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(relatedProductId, "/styles"))]).then(function (results) {
+    Promise.all([axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("api/products/".concat(relatedProductId)), axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("api/products/".concat(relatedProductId, "/styles"))]).then(function (results) {
       setProduct(results[0].data);
       setPicture(results[1].data.results[0].photos[0].thumbnail_url);
     });
   }, [relatedProductId]);
   //✰★
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "card",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    children: [modalToggle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      toggleShow: setModalToggle,
+      compareProductId: relatedProductId,
+      currentProductId: currentProductId
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "card-image-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
         className: "card-image",
         src: picture
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
         type: "button",
         className: buttonToggle ? "card-image-button ".concat(buttonType, "-on") : "card-image-button ".concat(buttonType, "-off"),
         value: buttonType === 'star' ? buttonToggle ? starOn : starOff : heartOn,
@@ -160,15 +172,21 @@ var Card = function Card(_ref) {
           buttonAction();
         }
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       className: "card-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        className: "card-button-compare",
+        onClick: function onClick() {
+          setModalToggle(true);
+        },
+        children: "\uD83E\uDD37"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: product.category
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: product.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: product.default_price
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
         children: "\u2B50\u2B50\u2B50\u2B50\u2B50"
       })]
     })]
@@ -188,6 +206,135 @@ var Card = function Card(_ref) {
     Star rating
       average based on review points
  */
+
+/***/ }),
+
+/***/ "./client/src/components/Prodlists/ComparisonModal.jsx":
+/*!*************************************************************!*\
+  !*** ./client/src/components/Prodlists/ComparisonModal.jsx ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_Prodlists_ComparisonModal_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/ComparisonModal.css */ "./client/src/css/Prodlists/ComparisonModal.css");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+//{currentId, comparisonId}
+
+
+var ComparisonModal = function ComparisonModal(_ref) {
+  var toggleShow = _ref.toggleShow,
+    compareProductId = _ref.compareProductId,
+    currentProductId = _ref.currentProductId;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState2 = _slicedToArray(_useState, 2),
+    currentProduct = _useState2[0],
+    setCurrentProduct = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState4 = _slicedToArray(_useState3, 2),
+    comparisonProduct = _useState4[0],
+    setComparisonProduct = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
+    _useState6 = _slicedToArray(_useState5, 2),
+    featureComparisons = _useState6[0],
+    setFeatureComparisons = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    //axios calls with product ids promise.all[current,compare]
+    Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/products/".concat(currentProductId)), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/products/".concat(compareProductId))]).then(function (results) {
+      console.log(results[0].data);
+      console.log(results[1].data);
+      setCurrentProduct(results[0].data);
+      setComparisonProduct(results[1].data);
+      var comparisonObj = {};
+      results[0].data.features.forEach(function (characteristic) {
+        comparisonObj[characteristic.feature] = {
+          currentValue: characteristic.value,
+          comparisonValue: ''
+        };
+      });
+      results[1].data.features.forEach(function (characteristic) {
+        if (comparisonObj[characteristic.feature]) {
+          comparisonObj[characteristic.feature].comparisonValue = characteristic.value;
+        } else {
+          comparisonObj[characteristic.feature] = {
+            currentValue: '',
+            comparisonValue: characteristic.value
+          };
+        }
+      });
+      console.log('comparisonObj', comparisonObj);
+      setFeatureComparisons(comparisonObj);
+    });
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    className: "comparison-modal",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "comparison-modal-content",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "comparison-modal-header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "comparison-modal-title",
+          children: "Comparing"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          className: "comparison-modal-exit",
+          onClick: function onClick() {
+            toggleShow(false);
+          },
+          children: "\u274C"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        className: "comparison-modal-body",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+          className: "comparison-table",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
+            className: "comparison-table-header",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                className: "comparison-table-header-current",
+                children: currentProduct.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", {
+                className: "comparison-table-header-compare",
+                children: comparisonProduct.name
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
+            className: "comparison-table-body",
+            children: Object.keys(featureComparisons).map(function (feature) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "comparison-table-header-current",
+                  children: featureComparisons[feature].currentValue
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "comparison-table-header-feature",
+                  children: feature
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                  className: "comparison-table-header-compare",
+                  children: featureComparisons[feature].comparisonValue
+                })]
+              }, 'featureComparison_' + feature);
+            })
+          })]
+        })
+      })]
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ComparisonModal);
 
 /***/ }),
 
@@ -339,6 +486,7 @@ var RelatedList = function RelatedList(_ref) {
           className: "related-list-card-container",
           children: productIds.view.map(function (relatedProductId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              currentProductId: product.id,
               relatedProductId: relatedProductId,
               buttonType: "star",
               buttonAction: function buttonAction() {}
@@ -9758,7 +9906,34 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n\n\n.card-container{\n  margin-left: 10px;\n  text-align: left;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE;AACF;;;;AAIA;EACE,iBAAiB;EACjB,gBAAgB;AAClB","sourcesContent":[".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n\n\n.card-container{\n  margin-left: 10px;\n  text-align: left;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n.card-button-compare{\n  position: absolute;\n  background-color: rgb(75, 75, 75);\n  top: -20px;\n  right:-10px;\n  border: none;\n  padding: 5px 8px 5px 10px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  margin-left: 0;\n  cursor: pointer;\n  border-radius: 0px 0px 0px 10px;\n}\n\n.card-button-compare:hover{\n  background-color: #434343;\n}\n\n\n.card-container{\n  position: relative;\n  margin: 5px 0px 5px 5px;\n  text-align: left;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE;AACF;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,UAAU;EACV,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,+BAA+B;AACjC;;AAEA;EACE,yBAAyB;AAC3B;;;AAGA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB","sourcesContent":[".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n.card-button-compare{\n  position: absolute;\n  background-color: rgb(75, 75, 75);\n  top: -20px;\n  right:-10px;\n  border: none;\n  padding: 5px 8px 5px 10px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  margin-left: 0;\n  cursor: pointer;\n  border-radius: 0px 0px 0px 10px;\n}\n\n.card-button-compare:hover{\n  background-color: #434343;\n}\n\n\n.card-container{\n  position: relative;\n  margin: 5px 0px 5px 5px;\n  text-align: left;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Prodlists/ComparisonModal.css":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/src/css/Prodlists/ComparisonModal.css ***!
+  \********************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".comparison-modal{\n  position: fixed;\n  left:0;\n  top: 0;\n  right:0;\n  bottom:0;\n  background-color: rgb(0, 0, 0, 0.5);\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/ComparisonModal.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,MAAM;EACN,MAAM;EACN,OAAO;EACP,QAAQ;EACR,mCAAmC;;EAEnC,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,QAAQ;AACV;;AAEA;EACE,kBAAkB;EAClB,KAAK;EACL;AACF","sourcesContent":[".comparison-modal{\n  position: fixed;\n  left:0;\n  top: 0;\n  right:0;\n  bottom:0;\n  background-color: rgb(0, 0, 0, 0.5);\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9870,6 +10045,61 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_Card_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_Card_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_Card_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./client/src/css/Prodlists/ComparisonModal.css":
+/*!******************************************************!*\
+  !*** ./client/src/css/Prodlists/ComparisonModal.css ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ComparisonModal_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!./ComparisonModal.css */ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Prodlists/ComparisonModal.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ComparisonModal_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ComparisonModal_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_ComparisonModal_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_ComparisonModal_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),

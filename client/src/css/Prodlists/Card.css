@@ -44,9 +44,28 @@
   color: rgb(113, 101, 101)
 }
 
+.card-button-compare{
+  position: absolute;
+  background-color: rgb(75, 75, 75);
+  top: -20px;
+  right:-10px;
+  border: none;
+  padding: 5px 8px 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 0;
+  cursor: pointer;
+  border-radius: 0px 0px 0px 10px;
+}
+
+.card-button-compare:hover{
+  background-color: #434343;
+}
 
 
 .card-container{
-  margin-left: 10px;
+  position: relative;
+  margin: 5px 0px 5px 5px;
   text-align: left;
 }

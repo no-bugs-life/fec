@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/Card.css';
 //import rating stars
 
+import ComparisonModal from './ComparisonModal.jsx';
 
 // product will be obj from api
 // add saved property
@@ -11,11 +12,12 @@ import '../../css/Prodlists/Card.css';
 //{product, action}
 import axios from 'axios';
 
-const Card = ({relatedProductId, buttonType, buttonAction}) => {
+const Card = ({relatedProductId, buttonType, buttonAction, currentProductId}) => {
 
   const [product, setProduct] = useState({});
   const [picture, setPicture] = useState('');
   const [buttonToggle, setButtonToggle] = useState(buttonType === 'heart');
+  const [modalToggle, setModalToggle] = useState(false);
   const starOn = '★';
   const starOff = '✰';
   const heartOn = '❤';
@@ -38,6 +40,16 @@ const Card = ({relatedProductId, buttonType, buttonAction}) => {
 //✰★
   return (
     <div className='card'>
+      {
+        modalToggle ?
+          <ComparisonModal
+            toggleShow={setModalToggle}
+            compareProductId={relatedProductId}
+            currentProductId={currentProductId}
+          />
+          :
+          null
+      }
       <div className='card-image-container'>
         <img
           className='card-image'
@@ -64,9 +76,20 @@ const Card = ({relatedProductId, buttonType, buttonAction}) => {
             }
           }
         />
-      </div>
 
+      </div>
       <div className='card-container'>
+        <button
+          className='card-button-compare'
+          onClick= {
+            () => {
+              setModalToggle(true);
+            }
+          }
+        >
+          🤷
+        </button>
+
         <p>{product.category}</p>
         <p>{product.name}</p>
         <p>{product.default_price}</p>
