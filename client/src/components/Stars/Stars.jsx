@@ -1,10 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Star from './Star.jsx'
 
-const Stars = () => {
+const Stars = ({rating, tag}) => {
+
+  let starArr = [];
+  let starTotal = rating * 100;
+
+  if (starTotal % 25 < 13) {
+    starTotal = starTotal - (starTotal % 25);
+  } else {
+    starTotal = starTotal + (25 - starTotal % 25);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    if (starTotal >= 100) {
+      starArr[i] = '100%';
+      starTotal -= 100;
+    } else {
+      starArr[i] = starTotal + '%';
+      starTotal = 0;
+    }
+  }
 
   return (
-    <Star />
+    <div>
+      {starArr.map((starVal, idx) =>
+        <Star starFill={starVal} key={idx} idx={tag + '1' + idx} />
+      )}
+    </div>
   );
 }
 

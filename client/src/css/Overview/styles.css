@@ -1,0 +1,33 @@
+
+html {
+  box-sizing: border-box;
+}
+body{
+  margin:0;
+  padding:0;
+  
+  
+}
+.product-main{
+  width: 100%;
+  padding: 25px;
+}
+.description {
+  border: 1px solid red;
+  display: flex;
+  width: 95%;
+  height: 80%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+.product-img{
+  width: 55%;
+  
+  padding: 50px;
+  
+}
+.primary-img{
+  width: 100%;
+  color: red;
+  padding: 50px;
+}
