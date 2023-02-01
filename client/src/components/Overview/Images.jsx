@@ -1,24 +1,17 @@
 import axios from "axios";
 import React,{useState} from "react";
-const Images = ({productId})=>{
-  const [info, addInfo] = useState({});
-  axios.get(`http://localhost:3000/api/products/${productId}/styles`)
-  .then((result) => {
-    console.log(result.data);
-    addInfo(result.data)
-  })
-  .catch(err => console.log(err))
-
+const Images = ({photos})=>{
   return (
     <div className="product-img">
       <div className ="main-img">
-      <img  src="" className = "primary"></img>
+      <img  src= {photos[0].url} ></img>
       </div>
       <div className="secondary-img">
-      <img  src="" className="secondary"></img>
-      <img  src="" className="secondary"></img>
-      <img  src="" className="secondary"></img>
-      <img  src="" className="secondary"></img>
+      <img  src={photos[1].thumbnail_url} className="secondary"></img>
+      <img  src={photos[2].thumbnail_url} className="secondary"></img>
+      <img  src={photos[3].thumbnail_url} className="secondary"></img>
+      <img  src={photos[4].thumbnail_url} className="secondary"></img>
+      <img  src={photos[5].thumbnail_url} className="secondary"></img>
       </div>
     </div>
   )
