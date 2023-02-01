@@ -4,9 +4,9 @@ const {questions} = require('../models');
 module.exports = {
 
   getQuestions: (req, res) => {
-
-    questions.listQuestions(req.body)
+    questions.listQuestions(req.query)
     .then((result) => {
+      console.log(result);
       res.status(200).send(result.data);
 
     }).catch((error) => {

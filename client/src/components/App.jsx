@@ -29,16 +29,18 @@ const App = ()=> {
   }, [])
 
   return(
+    <div>
     <div className="product-main">
-      <Description product ={product}/>
+      {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
       <Images />
       <AddDescription />
       <Share />
       <Stars />
     </div>
-    // <div className="questions">
-    //   <QuestionComponent />
-    // </div>
+    <div className="questions">
+      <QuestionMounted product={product} setProduct={setProduct}/>
+    </div>
+    </div>
   )
 }
 

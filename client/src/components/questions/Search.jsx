@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
-const Search = ({questions, search, setSearch}) => {
+const Search = () => {
+  const [search, setSearch] = useState('');
 
   return (
     <div>
