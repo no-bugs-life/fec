@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Stars from '../Stars/Stars.jsx';
 import axios from 'axios';
 import '../../css/Reviews/styles.css'
@@ -10,7 +10,7 @@ const ReviewTile = ({review}) => {
 
   const addHelpful = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`)
+    axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`);
   }
 
   return(

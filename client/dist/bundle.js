@@ -882,10 +882,13 @@ var ReviewList = function ReviewList(_ref) {
     reviews = _useState2[0],
     setReviews = _useState2[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    callData();
+  }, []);
+  var callData = function callData() {
     if (product_id) {
       axios__WEBPACK_IMPORTED_MODULE_5__["default"].get('http://localhost:3000/api/reviews/', {
         params: {
-          "product_id": 40344
+          "product_id": 40345
         }
       }).then(function (res) {
         console.log(res.data.results);
@@ -894,9 +897,31 @@ var ReviewList = function ReviewList(_ref) {
         console.log(err);
       });
     }
-  }, []);
+  };
+  var handleSortChange = function handleSortChange(option) {
+    console.log(option);
+    if (option === 'Helpful') {
+      var newReviews = reviews.slice();
+      newReviews.sort(function (a, b) {
+        return b.helpfulness - a.helpfulness;
+      });
+      console.log(newReviews);
+      setReviews(newReviews);
+    } else if (option === 'Newest') {
+      var _newReviews = reviews.slice();
+      _newReviews.sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+      });
+      console.log(_newReviews);
+      setReviews(_newReviews);
+    } else {
+      callData();
+    }
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {}), Object.keys(reviews).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      handleSortChange: handleSortChange
+    }), Object.keys(reviews).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         review: reviews[0]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1004,22 +1029,22 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var SortOption = function SortOption() {
+var SortOption = function SortOption(_ref) {
+  var handleSortChange = _ref.handleSortChange;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Relevant'),
     _useState2 = _slicedToArray(_useState, 2),
     option = _useState2[0],
     setOption = _useState2[1];
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
+    setOption(e.target.value);
+    handleSortChange(e.target.value);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
-    onSubmit: handleSubmit,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
       children: ['Sort by: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
         value: option,
-        onChange: function onChange(e) {
-          return setOption(e.target.value);
-        },
+        onChange: handleSubmit,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
           value: "Helpful",
           children: "Helpful"

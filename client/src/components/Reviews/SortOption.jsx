@@ -1,17 +1,20 @@
 import React, {useState} from 'react';
 
-const SortOption = () => {
+const SortOption = ({handleSortChange}) => {
+
   let [option, setOption] = useState('Relevant')
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setOption(e.target.value);
+    handleSortChange(e.target.value);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label>
         {'Sort by: '}
-        <select value={option} onChange={(e) => setOption(e.target.value)}>
+        <select value={option} onChange={handleSubmit}>
           <option value='Helpful'>Helpful</option>
           <option value='Newest'>Newest</option>
           <option value='Relevant'>Relevant</option>
