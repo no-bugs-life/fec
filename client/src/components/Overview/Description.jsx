@@ -31,7 +31,7 @@ const Description = ({product}) => {
   }   
   const onSizeClick = (e)=> {
     
-    console.log(Object.keys(currentInventory)[e.target.id])
+    // console.log(Object.keys(currentInventory)[e.target.id])
     // console.log(currentInventory)
     setCurrentSize(Object.keys(currentInventory)[e.target.id])
     Array.from(e.currentTarget.parentElement.children).forEach(child => child.removeAttribute("id"));
@@ -48,8 +48,8 @@ const Description = ({product}) => {
       setCurrentName(results[1].data.results[0].name)
       setCurrentInventory(results[1].data.results[0].skus)
       setCurrentSize(Object.keys(results[1].data.results[0].skus)[0])
-      console.log(results[0].data)
-      console.log(results[1].data.results)
+      // console.log(results[0].data)
+      // console.log(results[1].data.results)
       
     })
     .catch(err => {console.log(err)})

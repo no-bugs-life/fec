@@ -1,6 +1,6 @@
 import React from "react";
 const Quantity = ({currentSize, currentInventory}) => {
-    console.log(currentInventory[currentSize])
+    // console.log(currentInventory[currentSize])
     let newArray = [];
     for (let i=0; i< currentInventory[currentSize].quantity; i++) {
         newArray.push(i)
