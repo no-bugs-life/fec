@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import SortOption from './SortOption.jsx';
 import ReviewTile from './ReviewTile.jsx';
-import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx'
+import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx';
+import WriteReviewModal from './WriteReviewModal.jsx';
 
-const ReviewList = ({product_id}) => {
+const ReviewList = ({product_id, productName}) => {
 
   const [reviews, setReviews] = useState([]);
+  const [writeReview, setWriteReview] = useState(false);
 
   useEffect(() => {
     callData();
@@ -16,7 +18,7 @@ const ReviewList = ({product_id}) => {
     if (product_id) {
       axios.get('http://localhost:3000/api/reviews/', {params: {"product_id": 40345}})
         .then((res) => {
-          console.log(res.data.results)
+          console.log(res.data);
           setReviews(res.data.results);
         })
         .catch((err) => {
@@ -50,6 +52,10 @@ const ReviewList = ({product_id}) => {
       : null
       }
       <RatingBreakdownSection product_id={product_id}/>
+      <button onClick={() => setWriteReview(true)}>Write Review</button>
+      {writeReview
+      ? <WriteReviewModal show={writeReview} productName={productName}/>
+      : null}
     </>
   );
 }

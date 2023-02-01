@@ -3,8 +3,6 @@ import CharacteristicBar from './CharacteristicBar.jsx';
 
 const ProductBreakdown = ({productData}) => {
 
-  console.log(productData);
-
   return(
     <div>
       <h3>Product Breakdown</h3>
