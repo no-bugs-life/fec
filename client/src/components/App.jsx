@@ -8,6 +8,8 @@ import ReviewList from './Reviews/ReviewList.jsx'
 
 import {RelatedList, OutfitList, ComparisonModal} from './Prodlists'
 
+import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
+import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
 
 import axios from "axios";
@@ -36,6 +38,11 @@ const App = ()=> {
       {/* Review & Ratings */}
       <ReviewList product_id={40344}/>
 
+      {/* Questions */}
+      <div className="questions">
+        <QuestionMounted product={product} setProduct={setProduct}/>
+      </div>
+
       {/* Related Items & Comparison */}
       <RelatedList
         product={product}
@@ -45,8 +52,9 @@ const App = ()=> {
       />
 
     </div>
-  )
 
+
+  )
 }
 
 export default App;
