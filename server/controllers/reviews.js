@@ -1,8 +1,9 @@
-const models = require('../models/reviews.js');
+const models = require('../models');
 
 module.exports = {
   getAll: (req, res) => {
-    models.getReviews(req.body)
+    // console.log(req.query)
+    models.reviews.getReviews(req.query)
       .then((result) => {
         res.status(200).send(result.data);
       })
@@ -11,7 +12,7 @@ module.exports = {
       });
   },
   getOneMeta: (req, res) => {
-    models.reviews.getReviewMeta(req.body)
+    models.reviews.getReviewMeta(req.query)
       .then((result) => {
         res.status(200).send(result.data);
       })

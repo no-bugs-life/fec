@@ -3,19 +3,21 @@ const products = require("../models/products.js");
 module.exports = {
 
     readAll : (req, res)=> {
-        products.listProducts(req.body)
+        console.log(req.query)
+        products.listProducts(req.query)
         .then((result)=> {
             res.status(200).send(result.data);
         })
         .catch(err => console.log(err));
     },
     readByID : (req, res) => {
-        const id = req.params.product_id;
+        console.log('params',req.params.product_id)
+        const id = req.params.product_id
         products.productInformation(id)
         .then((result)=> {
             res.status(200).send(result.data);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log('err'));
     },
     readAllStyles : (req, res) => {
         const id = req.params.product_id;
@@ -34,6 +36,4 @@ module.exports = {
         .catch(err => console.log(err));
     }
 
-}
-
-
+};

@@ -1,6 +1,12 @@
 .card{
+  margin-left: 10px;
+  margin-right: 10px;
   width:200px;
   border: 1px solid blue
+}
+
+.card-image-container{
+  position: relative;
 }
 
 .card-image{
@@ -8,7 +14,58 @@
   height:200px;
 }
 
+.card-image-button{
+  position: absolute;
+  top: 0%;
+  left: 83%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+
+  background-color: transparent;
+  border: 0px;
+  padding: 0px 10px 0px 0px;
+
+  cursor: pointer;
+}
+
+.card-image-button.star-on{
+  color: rgb(216, 166, 0)
+}
+
+.card-image-button.star-off{
+  color: rgb(214, 182, 102)
+}
+
+.card-image-button.heart-on{
+  color: rgb(175, 0, 0)
+}
+.card-image-button.heart-on:hover{
+  color: rgb(113, 101, 101)
+}
+
+.card-button-compare{
+  position: absolute;
+  background-color: rgb(75, 75, 75);
+  top: -20px;
+  right:-10px;
+  border: none;
+  padding: 5px 8px 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: 0;
+  cursor: pointer;
+  border-radius: 0px 0px 0px 10px;
+}
+
+.card-button-compare:hover{
+  background-color: #434343;
+}
+
+
 .card-container{
-  margin-left: 10px;
+  position: relative;
+  margin: 5px 0px 5px 5px;
   text-align: left;
 }
