@@ -2,32 +2,146 @@
 html {
   box-sizing: border-box;
 }
-body{
+*{
   margin:0;
   padding:0;
   
   
 }
 .product-main{
-  width: 100%;
-  padding: 25px;
+  width: 100vw;
+  
 }
 .description {
   border: 1px solid red;
-  display: flex;
+  display: grid;
   width: 95%;
   height: 80%;
   margin: 0 auto;
-  justify-content: space-between;
+  grid-template-columns:  1fr 1fr 1fr 1fr;
+  grid-template-areas:  "head head head head"
+                        "img img desc desc"
+                        "img img desc desc"
+                        "img img desc desc"
+                        "addDesc addDesc share share"
+                        "addDesc addDesc . .";
+  
+
+}
+.category{
+  grid-area: head;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.img{
+  grid-area: img;
+  padding-top: 0.4rem;
+}
+.item-description{
+  grid-area: desc;
+  z-index: 1;
+  padding: 0;
+}
+.item-description h2{
+  margin: 0;
+}
+.add-description{
+  grid-area: addDesc;
+}
+.share-bar{
+  grid-area: share;
 }
 .product-img{
-  width: 55%;
-  
-  padding: 50px;
+  padding-left: 1.5rem;
+  overflow: hidden;
   
 }
-.primary-img{
+
+.main-img{
+  
+}
+.main-img img {
+  width: 70%;
+  border-radius: 10px;
+  
+}
+.secondary-img {
+  
+  display: flex;
+  column-gap: 10px;
+}
+.secondary-img img {
+  width: 25%;
+  border-radius: 10px;
+  
+}
+.style-selector{
+  display: flex;
+  padding: 0;
+  list-style: none;
+  width: 50%;
+  height: 50%;
+  column-gap: 5px;
+  
+}
+.style{
+  
+}
+.style img{
   width: 100%;
-  color: red;
-  padding: 50px;
+  height: 60%;
+  border-radius: 50%;
+  border: 1px solid gray;
+  opacity: 80%;
+}
+
+.size{
+  padding: 0;
+  
+}
+.size-list{
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+} 
+.size-ind{
+  /* border: 1px solid black;
+  font-size: 0.8rem;
+  width: 10%;
+  height: 20%;
+  text-align: center; */
+  
+  width: fit-content;
+  border-radius: 10%;
+
+
+}
+.size-btn {
+ 
+  width: 2.2rem;
+  height: 1.5rem;
+  font-size: 0.8rem;
+  text-align: center;
+  border-radius: 10%;
+  border: 1px solid gray;
+  opacity: 80%;
+}
+#toggle-on{
+  opacity: 100%;
+  border: 1px solid black;
+}
+/* .toggle-on{
+  opacity: 100%;
+  border: 1px solid black;
+} */
+.strike{
+  text-decoration: line-through;
+}
+.size-drop{
+  width: 2.2rem;
+  margin-left: 1rem;
+  
 }

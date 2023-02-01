@@ -1,15 +1,15 @@
 
 import React, {useState, useEffect} from "react";
-import "../css/styles.css";
+import "../css/Overview/styles.css";
+
+import Description from "./Overview/Description.jsx";
+
+import ReviewList from './Reviews/ReviewList.jsx'
 
 import {RelatedList, OutfitList, ComparisonModal} from './Prodlists'
 
-import Description from "./Description.jsx";
-import Images from "./Images.jsx";
-import AddDescription from "./AddDescription.jsx";
 
-import ReviewList from './Reviews/ReviewList.jsx'
-import Share from "./Share.jsx";
+
 import axios from "axios";
 
 const App = ()=> {
@@ -30,6 +30,9 @@ const App = ()=> {
 
   return(
     <div className="product-main">
+      {/* Overview */}
+      {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
+
       {/* Review & Ratings */}
       <ReviewList product_id={40344}/>
 
@@ -40,6 +43,7 @@ const App = ()=> {
       <OutfitList
         product={product}
       />
+
     </div>
   )
 
