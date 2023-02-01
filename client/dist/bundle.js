@@ -611,10 +611,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProgressBar = function ProgressBar(_ref) {
   var rateData = _ref.rateData,
-    totalRates = _ref.totalRates;
+    totalRates = _ref.totalRates,
+    setFilter = _ref.setFilter;
+  var handleClick = function handleClick(e) {
+    e.preventDefault();
+    console.log(e);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "progressStyle",
+      onClick: handleClick,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         className: "progressFillStyle",
         style: {
@@ -669,7 +675,8 @@ var RatingBreakdown = function RatingBreakdown(_ref) {
       rateCount += parseInt(Object.values(summaryData)[i]);
     }
     setTotalRates(rateCount);
-  });
+  }, []);
+  var handleFilter = function handleFilter() {};
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: Object.keys(summaryData) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
@@ -677,29 +684,34 @@ var RatingBreakdown = function RatingBreakdown(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["5 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['5'],
-          totalRates: totalRates
+          totalRates: totalRates,
+          setFilter: handleFilter
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["4 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['4'],
-          totalRates: totalRates
+          totalRates: totalRates,
+          setFilter: handleFilter
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["3 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['3'],
-          totalRates: totalRates
+          totalRates: totalRates,
+          setFilter: handleFilter
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["2 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['2'],
-          totalRates: totalRates
+          totalRates: totalRates,
+          setFilter: handleFilter
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["1 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['1'],
-          totalRates: totalRates
+          totalRates: totalRates,
+          setFilter: handleFilter
         })]
-      }), parseInt(recommendData["true"]) / (parseInt(recommendData["false"]) + parseInt(recommendData["true"])) * 100 + '% Recommended']
+      }), (parseInt(recommendData["true"]) / (parseInt(recommendData["false"]) + parseInt(recommendData["true"])) * 100).toFixed(2) + '% Recommended']
     }) : null
   });
 };
@@ -834,7 +846,7 @@ var RatingSummary = function RatingSummary(_ref) {
         rating: rateAvg,
         tag: 'ratingSummary'
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-        children: [" ", rateAvg, " out of 5 stars based on ", rateCountTotal, " reviews"]
+        children: [" ", rateAvg.toFixed(1), " out of 5 stars based on ", rateCountTotal, " reviews"]
       })]
     }) : null]
   });
@@ -899,20 +911,17 @@ var ReviewList = function ReviewList(_ref) {
     }
   };
   var handleSortChange = function handleSortChange(option) {
-    console.log(option);
     if (option === 'Helpful') {
       var newReviews = reviews.slice();
       newReviews.sort(function (a, b) {
         return b.helpfulness - a.helpfulness;
       });
-      console.log(newReviews);
       setReviews(newReviews);
     } else if (option === 'Newest') {
       var _newReviews = reviews.slice();
       _newReviews.sort(function (a, b) {
         return new Date(b.date) - new Date(a.date);
       });
-      console.log(_newReviews);
       setReviews(_newReviews);
     } else {
       callData();
@@ -989,8 +998,6 @@ var ReviewTile = function ReviewTile(_ref) {
         alt: "image not available"
       }, idx);
     }), review.response ? review.response : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-      children: "optional response from seller?"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       children: "Was this review helpful?"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
       onClick: addHelpful,

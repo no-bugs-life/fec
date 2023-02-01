@@ -30,7 +30,6 @@ const ReviewTile = ({review}) => {
       {review.response
       ? review.response
       : null}
-      <p>optional response from seller?</p>
       <p>Was this review helpful?</p>
       <button onClick={addHelpful}>Yes</button>
       <button>No</button>

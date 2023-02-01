@@ -26,16 +26,13 @@ const ReviewList = ({product_id}) => {
   }
 
   const handleSortChange = (option) => {
-    console.log(option)
     if (option === 'Helpful') {
       let newReviews = reviews.slice();
-      newReviews.sort((a, b) => b.helpfulness - a.helpfulness)
-      console.log(newReviews);
+      newReviews.sort((a, b) => b.helpfulness - a.helpfulness);
       setReviews(newReviews);
     } else if (option === 'Newest') {
       let newReviews = reviews.slice();
       newReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
-      console.log(newReviews);
       setReviews(newReviews);
     } else {
       callData();
