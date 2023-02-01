@@ -1,18 +1,30 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/OutfitList.css';
 
 import Card from './Card.jsx';
+import AddOutfitCard from './AddOutfitCard.jsx'
+//  product will be obj from api
+//  add saved property
 
-// product will be obj from api
-// add saved property
-
-//action will be obj with 2 properties
+//  action will be obj with 2 properties
 //  imageref and function for action, add and delete
-//{product, action}
+//  {product, action}
 
-const OutfitList = () => {
+const OutfitList = ({product}) => {
+  const [productIds, setProductsIds] = useState({
+    outfits: localStorage.getItem('userOutfits') === null ? [] : localStorage.getItem('userOutfits'),
+    view: []
+  });
+  const [page, setPage] = useState(0);
 
-  //const [item, setItem] = useState({product})
+  const [modalToggle, setModalToggle] = useState(false);
+  const [modalPosition, setModalPosition] = useState({x:0 , y:0});
+  const [compareProductId, setCompareProductId] = useState(null)
+  useEffect(
+    () => {
+    },
+    []
+  )
 
   return (
     <div>
@@ -21,10 +33,30 @@ const OutfitList = () => {
         <div className='outfit-list-container'>
           <button >{'<'}</button>
           <div className='outfit-list-card-container'>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {
+              productIds.outfits.includes(product.id) ?
+                null
+                :
+                <AddOutfitCard
+                  setProductsIds={setProductsIds}
+                  currentProductId={product.id}
+                />
+            }
+            {
+              productIds.outfits.map((cachedProductId) => {
+                return(
+                  <Card
+                    relatedProductId={cachedProductId}
+                    buttonType='heart'
+                    buttonAction={() => {}}
+                    currentProductId={product.id}
+                    setModalPosition={setModalPosition}
+                    setModalToggle={setModalToggle}
+                    setCompareProductId={setCompareProductId}
+                  />
+                )
+              })
+            }
           </div>
           <button>{'>'}</button>
         </div>

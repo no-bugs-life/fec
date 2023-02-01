@@ -5,7 +5,7 @@ import '../../css/Prodlists/Card.css';
 import axios from 'axios';
 
 const Card = ({
-  relatedProductId,
+  productId,
   buttonType,
   buttonAction,
   currentProductId,
@@ -26,8 +26,8 @@ const Card = ({
     () => {
       Promise.all(
         [
-          axios.get(`api/products/${relatedProductId}`),
-          axios.get(`api/products/${relatedProductId}/styles`)
+          axios.get(`api/products/${productId}`),
+          axios.get(`api/products/${productId}/styles`)
         ]
       )
       .then((results) => {
@@ -35,7 +35,7 @@ const Card = ({
         setPicture(results[1].data.results[0].photos[0].thumbnail_url)
       })
     },
-    [relatedProductId]
+    [productId]
   )
 
   return (
@@ -77,7 +77,7 @@ const Card = ({
                 x: e.clientX,
                 y: e.clientY
               })
-              setCompareProductId(relatedProductId)
+              setCompareProductId(productId)
               setModalToggle(true);
             }
           }

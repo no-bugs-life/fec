@@ -88,7 +88,7 @@ const RelatedList = ({product}) => {
                   <Card
                     key={'id_' + relatedProductId}
                     currentProductId = {product.id}
-                    relatedProductId = {relatedProductId}
+                    productId = {relatedProductId}
                     buttonType = 'star'
                     buttonAction = {() => {}}
                     setModalPosition = {setModalPosition}

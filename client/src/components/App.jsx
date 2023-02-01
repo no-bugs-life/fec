@@ -27,10 +27,9 @@ const App = ()=> {
       <RelatedList
         product={product}
       />
-      {/* <OutfitList
-        productsCached={localStorage.getItem('userOutfit')}
-        currentProductId={product.id}
-      /> */}
+      <OutfitList
+        product={product}
+      />
     </div>
   )
 
