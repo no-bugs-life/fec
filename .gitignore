@@ -6,4 +6,4 @@ node_modules/
 
 dist/
 
-*App.jsx
+*bundle.js
