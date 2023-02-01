@@ -1,45 +1,78 @@
 import React from 'react';
 import CharacteristicBar from './CharacteristicBar.jsx';
 
-const ProductBreakdown = () => {
+const ProductBreakdown = ({productData}) => {
+
+  console.log(productData);
+
   return(
     <div>
       <h3>Product Breakdown</h3>
-      <label>
-        Size:
-        <CharacteristicBar />
-        {'Too Small      Perfect      Too Big'}
-      </label>
-      <br/>
-      <label>
-        Width:
-        <CharacteristicBar />
-        {'Too Narrow      Perfect      Too Wide'}
-      </label>
-      <br/>
-      <label>
-        Comfort:
-        <CharacteristicBar />
-        {'Uncomfortable                Very Comforable'}
-      </label>
-      <br/>
-      <label>
-        Quality:
-        <CharacteristicBar />
-        {'Low Quality                 High Quality'}
-      </label>
-      <br/>
-      <label>
-        Length:
-        <CharacteristicBar />
-        {'Too Short      Perfect      Too Long'}
-      </label>
-      <br/>
-      <label>
-        Fit:
-        <CharacteristicBar />
-        {'Too Tight      Perfect      Too Baggy'}
-      </label>
+      {productData.Size
+      ? <>
+          <label>
+            Size:
+            <CharacteristicBar characteristicData={productData.Size} />
+            {'Too Small      Perfect      Too Big'}
+          </label>
+          <br/>
+        </>
+      : null
+      }
+      {productData.Width
+      ? <>
+          <label>
+            Width:
+            <CharacteristicBar characteristicData={productData.Width} />
+            {'Too Narrow      Perfect      Too Wide'}
+          </label>
+          <br/>
+        </>
+      : null
+      }
+      {productData.Comfort
+      ? <>
+          <label>
+            Comfort:
+            <CharacteristicBar characteristicData={productData.Comfort} />
+            {'Uncomfortable                Very Comforable'}
+          </label>
+          <br/>
+        </>
+      : null
+      }
+      {productData.Quality
+      ? <>
+          <label>
+            Quality:
+            <CharacteristicBar characteristicData={productData.Quality} />
+            {'Low Quality                 High Quality'}
+          </label>
+          <br/>
+        </>
+      : null
+      }
+      {productData.Length
+      ? <>
+          <label>
+            Length:
+            <CharacteristicBar characteristicData={productData.Length} />
+            {'Too Short      Perfect      Too Long'}
+          </label>
+          <br/>
+        </>
+      : null
+      }
+      {productData.Fit
+      ? <>
+          <label>
+            Fit:
+            <CharacteristicBar characteristicData={productData.Fit} />
+            {'Too Tight      Perfect      Too Baggy'}
+          </label>
+        </>
+      : null
+      }
     </div>
   );
 }

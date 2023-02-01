@@ -4,6 +4,7 @@ import ProgressBar from './ProgressBar.jsx'
 const RatingBreakdown = ({summaryData, recommendData}) => {
 
   let [totalRates, setTotalRates] = useState(0);
+
   useEffect(() => {
     let rateCount = 0;
     for (let i = 0; i < 5; i++) {

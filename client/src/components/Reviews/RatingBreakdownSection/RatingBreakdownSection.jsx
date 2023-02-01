@@ -13,7 +13,7 @@ const RatingBreakdownSection = ({product_id}) => {
     if (product_id) {
       axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": 40344}})
         .then((res) => {
-          console.log(res.data)
+          //console.log(res.data)
           setRatingData(res.data)
         })
         .catch((err) => {

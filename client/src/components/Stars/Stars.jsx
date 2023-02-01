@@ -25,7 +25,7 @@ const Stars = ({rating, tag}) => {
   return (
     <div>
       {starArr.map((starVal, idx) =>
-        <Star starFill={starVal} key={idx} idx={tag + idx} />
+        <Star starFill={starVal} key={idx} idx={tag + '1' + idx} />
       )}
     </div>
   );

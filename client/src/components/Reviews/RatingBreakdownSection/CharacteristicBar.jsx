@@ -1,9 +1,9 @@
 import React from 'react';
 
-const CharacteristicBar = () => {
+const CharacteristicBar = ({characteristicData}) => {
   return(
     <div className='characteristicStyle'>
-      <div className='characteristicFillStyle'>
+      <div className='characteristicFillStyle' style={{width: `${characteristicData.value * 100 / 5}%`}}>
       </div>
     </div>
   );
