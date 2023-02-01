@@ -2,8 +2,13 @@ import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/ComparisonModal.css';
 
 import axios from 'axios';
-//{currentId, comparisonId}
-const ComparisonModal = ({toggleShow, compareProductId, currentProductId}) => {
+
+const ComparisonModal = ({
+  setModalToggle,
+  compareProductId,
+  currentProductId,
+  modalPosition
+}) => {
 
   const [currentProduct, setCurrentProduct] = useState({});
   const [comparisonProduct, setComparisonProduct] = useState({});
@@ -12,7 +17,6 @@ const ComparisonModal = ({toggleShow, compareProductId, currentProductId}) => {
 
   useEffect(
     () => {
-      //axios calls with product ids promise.all[current,compare]
       Promise.all(
         [
           axios.get(`/api/products/${currentProductId}`),
@@ -20,8 +24,6 @@ const ComparisonModal = ({toggleShow, compareProductId, currentProductId}) => {
         ]
       )
         .then((results) => {
-          console.log(results[0].data);
-          console.log(results[1].data);
           setCurrentProduct(results[0].data)
           setComparisonProduct(results[1].data)
           let comparisonObj = {};
@@ -43,7 +45,6 @@ const ComparisonModal = ({toggleShow, compareProductId, currentProductId}) => {
               }
             }
           })
-          console.log('comparisonObj', comparisonObj)
           setFeatureComparisons(comparisonObj)
         })
     },
@@ -51,7 +52,15 @@ const ComparisonModal = ({toggleShow, compareProductId, currentProductId}) => {
   )
 
   return (
-    <div className='comparison-modal'>
+    <div
+      className='comparison-modal'
+      style={{ left: modalPosition.x - 10, top: modalPosition.y - 10}}
+      onMouseLeave={
+        ()=>{
+          setModalToggle(false)
+        }
+      }
+    >
       <div className='comparison-modal-content'>
 
         <div className='comparison-modal-header'>
@@ -62,7 +71,7 @@ const ComparisonModal = ({toggleShow, compareProductId, currentProductId}) => {
             className='comparison-modal-exit'
             onClick={
               ()=>{
-                toggleShow(false)
+                setModalToggle(false)
               }
             }
           >

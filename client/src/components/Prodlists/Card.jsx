@@ -2,22 +2,22 @@ import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/Card.css';
 //import rating stars
 
-import ComparisonModal from './ComparisonModal.jsx';
-
-// product will be obj from api
-// add saved property
-
-//action will be obj with 2 properties
-//  imageref and function for action, add and delete
-//{product, action}
 import axios from 'axios';
 
-const Card = ({relatedProductId, buttonType, buttonAction, currentProductId}) => {
+const Card = ({
+  relatedProductId,
+  buttonType,
+  buttonAction,
+  currentProductId,
+  setModalPosition,
+  setModalToggle,
+  setCompareProductId
+}) => {
 
   const [product, setProduct] = useState({});
   const [picture, setPicture] = useState('');
   const [buttonToggle, setButtonToggle] = useState(buttonType === 'heart');
-  const [modalToggle, setModalToggle] = useState(false);
+
   const starOn = '★';
   const starOff = '✰';
   const heartOn = '❤';
@@ -37,19 +37,9 @@ const Card = ({relatedProductId, buttonType, buttonAction, currentProductId}) =>
     },
     [relatedProductId]
   )
-//✰★
+
   return (
     <div className='card'>
-      {
-        modalToggle ?
-          <ComparisonModal
-            toggleShow={setModalToggle}
-            compareProductId={relatedProductId}
-            currentProductId={currentProductId}
-          />
-          :
-          null
-      }
       <div className='card-image-container'>
         <img
           className='card-image'
@@ -82,7 +72,12 @@ const Card = ({relatedProductId, buttonType, buttonAction, currentProductId}) =>
         <button
           className='card-button-compare'
           onClick= {
-            () => {
+            (e) => {
+              setModalPosition({
+                x: e.clientX,
+                y: e.clientY
+              })
+              setCompareProductId(relatedProductId)
               setModalToggle(true);
             }
           }
@@ -100,16 +95,3 @@ const Card = ({relatedProductId, buttonType, buttonAction, currentProductId}) =>
 }
 
 export default Card;
-
-/*
-  Specs
-    Category
-    Name
-    Price
-      default style pricing
-      if sale,
-        strikethrough regular pricing
-        red sale pricing
-    Star rating
-      average based on review points
- */

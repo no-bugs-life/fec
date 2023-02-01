@@ -2,6 +2,7 @@ import React,{useState,useEffect,Children} from 'react';
 import '../../css/Prodlists/RelatedList.css';
 import axios from 'axios';
 
+import ComparisonModal from './ComparisonModal.jsx';
 import Card from './Card.jsx';
 
 // product will be obj from api
@@ -11,15 +12,16 @@ import Card from './Card.jsx';
 //  imageref and function for action, add and delete
 //  {product, action}
 
-//[40345,40346,40347,40348,40349,40350,40351]
 const RelatedList = ({product}) => {
 
   const [productIds, setProductsIds] = useState({
     related: [],
     view: []
   });
-  const [page, setPage] = useState(0)
-  //const [view, setView ] = useState([40345,40346,40347,40348]);
+  const [page, setPage] = useState(0);
+  const [modalToggle, setModalToggle] = useState(false);
+  const [modalPosition, setModalPosition] = useState({x:0 , y:0});
+  const [compareProductId, setCompareProductId] = useState(null)
 
   useEffect(
     () => {
@@ -52,6 +54,20 @@ const RelatedList = ({product}) => {
     <div>
       <p>RELATED PRODUCTS</p>
       <div className='related-list'>
+
+        {
+          modalToggle ?
+            <ComparisonModal
+              setModalToggle={setModalToggle}
+              modalPosition={modalPosition}
+              compareProductId={compareProductId}
+              currentProductId={product.id}
+            />
+            :
+            null
+        }
+
+
         <div className='related-list-container'>
           <button
             onClick={
@@ -71,10 +87,13 @@ const RelatedList = ({product}) => {
                 return (
                   <Card
                     key={'id_' + relatedProductId}
-                    currentProductId={product.id}
-                    relatedProductId={relatedProductId}
+                    currentProductId = {product.id}
+                    relatedProductId = {relatedProductId}
                     buttonType = 'star'
                     buttonAction = {() => {}}
+                    setModalPosition = {setModalPosition}
+                    setModalToggle = {setModalToggle}
+                    setCompareProductId = {setCompareProductId}
                   />
                 )
               })

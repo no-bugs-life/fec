@@ -14,11 +14,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_Prodlists_RelatedList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Prodlists/RelatedList.jsx */ "./client/src/components/Prodlists/RelatedList.jsx");
-/* harmony import */ var _components_Prodlists_OutfitList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Prodlists/OutfitList.jsx */ "./client/src/components/Prodlists/OutfitList.jsx");
-/* harmony import */ var _components_Questions_QuestionComponent_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Questions/QuestionComponent.jsx */ "./client/src/components/Questions/QuestionComponent.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Prodlists__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Prodlists */ "./client/src/components/Prodlists/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -26,33 +24,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-// import Stars from './Stars/Stars.jsx'
-// import "../css/styles.css";
 
-// import Description from "./Description.jsx";
-// import Images from "./Images.jsx";
-// import AddDescription from "./AddDescription.jsx";
-
-
-
-
-
-// import Share from "./Share.jsx";
 
 
 var App = function App() {
-  // const [em, setEm] = useState([]);
-  // const [product, setProduct] = useState({});
-  // useEffect(()=> {
-  //   axios.get('http://localhost:3000/api/products')
-  //   .then(res => {
-  //     console.log(res.data)
-  //     setEm(res.data)
-  //     setProduct(res.data[0]);
-  //   })
-  //   .catch(err => console.log(err))
-  // }, [])
-
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState2 = _slicedToArray(_useState, 2),
     product = _useState2[0],
@@ -62,7 +37,7 @@ var App = function App() {
     products = _useState4[0],
     setProducts = _useState4[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    axios__WEBPACK_IMPORTED_MODULE_5__["default"].get('/api/products', {
+    axios__WEBPACK_IMPORTED_MODULE_3__["default"].get('/api/products', {
       params: {
         count: 30
       }
@@ -72,9 +47,9 @@ var App = function App() {
       return console.log(err);
     });
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "product-main",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_Prodlists_RelatedList_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Prodlists__WEBPACK_IMPORTED_MODULE_1__.RelatedList, {
       product: product
     })
   });
@@ -97,9 +72,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_Prodlists_Card_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/Card.css */ "./client/src/css/Prodlists/Card.css");
-/* harmony import */ var _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ComparisonModal.jsx */ "./client/src/components/Prodlists/ComparisonModal.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -112,20 +86,15 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-// product will be obj from api
-// add saved property
-
-//action will be obj with 2 properties
-//  imageref and function for action, add and delete
-//{product, action}
-
-
 
 var Card = function Card(_ref) {
   var relatedProductId = _ref.relatedProductId,
     buttonType = _ref.buttonType,
     buttonAction = _ref.buttonAction,
-    currentProductId = _ref.currentProductId;
+    currentProductId = _ref.currentProductId,
+    setModalPosition = _ref.setModalPosition,
+    setModalToggle = _ref.setModalToggle,
+    setCompareProductId = _ref.setCompareProductId;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState2 = _slicedToArray(_useState, 2),
     product = _useState2[0],
@@ -138,32 +107,23 @@ var Card = function Card(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     buttonToggle = _useState6[0],
     setButtonToggle = _useState6[1];
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-    _useState8 = _slicedToArray(_useState7, 2),
-    modalToggle = _useState8[0],
-    setModalToggle = _useState8[1];
   var starOn = '★';
   var starOff = '✰';
   var heartOn = '❤';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    Promise.all([axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("api/products/".concat(relatedProductId)), axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("api/products/".concat(relatedProductId, "/styles"))]).then(function (results) {
+    Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(relatedProductId)), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(relatedProductId, "/styles"))]).then(function (results) {
       setProduct(results[0].data);
       setPicture(results[1].data.results[0].photos[0].thumbnail_url);
     });
   }, [relatedProductId]);
-  //✰★
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "card",
-    children: [modalToggle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      toggleShow: setModalToggle,
-      compareProductId: relatedProductId,
-      currentProductId: currentProductId
-    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "card-image-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
         className: "card-image",
         src: picture
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
         type: "button",
         className: buttonToggle ? "card-image-button ".concat(buttonType, "-on") : "card-image-button ".concat(buttonType, "-off"),
         value: buttonType === 'star' ? buttonToggle ? starOn : starOff : heartOn,
@@ -172,40 +132,32 @@ var Card = function Card(_ref) {
           buttonAction();
         }
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "card-container",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
         className: "card-button-compare",
-        onClick: function onClick() {
+        onClick: function onClick(e) {
+          setModalPosition({
+            x: e.clientX,
+            y: e.clientY
+          });
+          setCompareProductId(relatedProductId);
           setModalToggle(true);
         },
         children: "\uD83E\uDD37"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
         children: product.category
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
         children: product.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
         children: product.default_price
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
         children: "\u2B50\u2B50\u2B50\u2B50\u2B50"
       })]
     })]
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Card);
-
-/*
-  Specs
-    Category
-    Name
-    Price
-      default style pricing
-      if sale,
-        strikethrough regular pricing
-        red sale pricing
-    Star rating
-      average based on review points
- */
 
 /***/ }),
 
@@ -234,13 +186,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-//{currentId, comparisonId}
 
 
 var ComparisonModal = function ComparisonModal(_ref) {
-  var toggleShow = _ref.toggleShow,
+  var setModalToggle = _ref.setModalToggle,
     compareProductId = _ref.compareProductId,
-    currentProductId = _ref.currentProductId;
+    currentProductId = _ref.currentProductId,
+    modalPosition = _ref.modalPosition;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState2 = _slicedToArray(_useState, 2),
     currentProduct = _useState2[0],
@@ -254,10 +206,7 @@ var ComparisonModal = function ComparisonModal(_ref) {
     featureComparisons = _useState6[0],
     setFeatureComparisons = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    //axios calls with product ids promise.all[current,compare]
     Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/products/".concat(currentProductId)), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("/api/products/".concat(compareProductId))]).then(function (results) {
-      console.log(results[0].data);
-      console.log(results[1].data);
       setCurrentProduct(results[0].data);
       setComparisonProduct(results[1].data);
       var comparisonObj = {};
@@ -277,12 +226,18 @@ var ComparisonModal = function ComparisonModal(_ref) {
           };
         }
       });
-      console.log('comparisonObj', comparisonObj);
       setFeatureComparisons(comparisonObj);
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "comparison-modal",
+    style: {
+      left: modalPosition.x - 10,
+      top: modalPosition.y - 10
+    },
+    onMouseLeave: function onMouseLeave() {
+      setModalToggle(false);
+    },
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "comparison-modal-content",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -293,7 +248,7 @@ var ComparisonModal = function ComparisonModal(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
           className: "comparison-modal-exit",
           onClick: function onClick() {
-            toggleShow(false);
+            setModalToggle(false);
           },
           children: "\u274C"
         })]
@@ -406,9 +361,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_Prodlists_RelatedList_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/RelatedList.css */ "./client/src/css/Prodlists/RelatedList.css");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var _Card_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Card.jsx */ "./client/src/components/Prodlists/Card.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ComparisonModal.jsx */ "./client/src/components/Prodlists/ComparisonModal.jsx");
+/* harmony import */ var _Card_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Card.jsx */ "./client/src/components/Prodlists/Card.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -424,14 +380,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 // product will be obj from api
 // add saved property
 
 //  action will be obj with 2 properties
 //  imageref and function for action, add and delete
 //  {product, action}
-
-//[40345,40346,40347,40348,40349,40350,40351]
 
 
 var RelatedList = function RelatedList(_ref) {
@@ -447,11 +402,24 @@ var RelatedList = function RelatedList(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     page = _useState4[0],
     setPage = _useState4[1];
-  //const [view, setView ] = useState([40345,40346,40347,40348]);
-
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    modalToggle = _useState6[0],
+    setModalToggle = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      x: 0,
+      y: 0
+    }),
+    _useState8 = _slicedToArray(_useState7, 2),
+    modalPosition = _useState8[0],
+    setModalPosition = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    compareProductId = _useState10[0],
+    setCompareProductId = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (Object.keys(product).length) {
-      axios__WEBPACK_IMPORTED_MODULE_4__["default"].get("api/products/".concat(product.id, "/related")).then(function (result) {
+      axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("api/products/".concat(product.id, "/related")).then(function (result) {
         setProductsIds({
           related: _toConsumableArray(result.data),
           view: _toConsumableArray(result.data).splice(page * 4, page * 4 + 4)
@@ -469,37 +437,45 @@ var RelatedList = function RelatedList(_ref) {
       view: _toConsumableArray(productIds.related).splice(pageTo * 4, pageTo * 4 + 4)
     });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       children: "RELATED PRODUCTS"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "related-list",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      children: [modalToggle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        setModalToggle: setModalToggle,
+        modalPosition: modalPosition,
+        compareProductId: compareProductId,
+        currentProductId: product.id
+      }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "related-list-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           onClick: function onClick() {
             updateView(page - 1);
           },
           disabled: page === 0,
           children: '<'
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "related-list-card-container",
           children: productIds.view.map(function (relatedProductId) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
               currentProductId: product.id,
               relatedProductId: relatedProductId,
               buttonType: "star",
-              buttonAction: function buttonAction() {}
+              buttonAction: function buttonAction() {},
+              setModalPosition: setModalPosition,
+              setModalToggle: setModalToggle,
+              setCompareProductId: setCompareProductId
             }, 'id_' + relatedProductId);
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           onClick: function onClick() {
             updateView(page + 1);
           },
           disabled: page === Math.ceil(productIds.related.length / 4) - 1,
           children: '>'
         })]
-      })
+      })]
     })]
   });
 };
@@ -507,114 +483,29 @@ var RelatedList = function RelatedList(_ref) {
 
 /***/ }),
 
-/***/ "./client/src/components/Questions/AddAnswer.jsx":
-/*!*******************************************************!*\
-  !*** ./client/src/components/Questions/AddAnswer.jsx ***!
-  \*******************************************************/
+/***/ "./client/src/components/Prodlists/index.js":
+/*!**************************************************!*\
+  !*** ./client/src/components/Prodlists/index.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "Card": () => (/* reexport safe */ _Card_jsx__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "ComparisonModal": () => (/* reexport safe */ _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_1__["default"]),
+/* harmony export */   "OutfitList": () => (/* reexport safe */ _OutfitList_jsx__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   "RelatedList": () => (/* reexport safe */ _RelatedList_jsx__WEBPACK_IMPORTED_MODULE_2__["default"])
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-var AddAnswer = function AddAnswer() {
-  // return (
-
-  // );
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddAnswer);
-
-/***/ }),
-
-/***/ "./client/src/components/Questions/LoadMoreQuestions.jsx":
-/*!***************************************************************!*\
-  !*** ./client/src/components/Questions/LoadMoreQuestions.jsx ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-var LoadMoreQuestions = function LoadMoreQuestions() {
-  // return (
-
-  // );
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LoadMoreQuestions);
-
-/***/ }),
-
-/***/ "./client/src/components/Questions/QuestionComponent.jsx":
-/*!***************************************************************!*\
-  !*** ./client/src/components/Questions/QuestionComponent.jsx ***!
-  \***************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _AddAnswer_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddAnswer.jsx */ "./client/src/components/Questions/AddAnswer.jsx");
-/* harmony import */ var _LoadMoreQuestions_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoadMoreQuestions.jsx */ "./client/src/components/Questions/LoadMoreQuestions.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var _Card_jsx__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Card.jsx */ "./client/src/components/Prodlists/Card.jsx");
+/* harmony import */ var _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ComparisonModal.jsx */ "./client/src/components/Prodlists/ComparisonModal.jsx");
+/* harmony import */ var _RelatedList_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RelatedList.jsx */ "./client/src/components/Prodlists/RelatedList.jsx");
+/* harmony import */ var _OutfitList_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./OutfitList.jsx */ "./client/src/components/Prodlists/OutfitList.jsx");
 
 
 
 
 
-var QuestionComponent = function QuestionComponent() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    search = _useState2[0],
-    setSearch = _useState2[1];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    className: "question",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h1", {
-      children: ["Q: ", question.results.question_body]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
-      children: ["by ", question.results.asker_name, ", ", question.results.question_date, " | Helpful? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Button, {
-        id: "helpful",
-        children: "Yes"
-      }), " | ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Button, {
-        id: "report",
-        children: "Report"
-      }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_AddAnswer_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        children: " "
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
-      children: "A: "
-    }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-      children: question.results.answers.id.body
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("small", {
-      children: ["by ", question.results.answers.id.answerers_name, ", ", question.results.answers.id.date, " | Helpful? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Button, {
-        id: "helpful",
-        children: "Yes"
-      }), " | ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Button, {
-        id: "report",
-        children: "Report"
-      })]
-    })]
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (QuestionComponent);
 
 /***/ }),
 
@@ -9933,7 +9824,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".comparison-modal{\n  position: fixed;\n  left:0;\n  top: 0;\n  right:0;\n  bottom:0;\n  background-color: rgb(0, 0, 0, 0.5);\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/ComparisonModal.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,MAAM;EACN,MAAM;EACN,OAAO;EACP,QAAQ;EACR,mCAAmC;;EAEnC,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,QAAQ;AACV;;AAEA;EACE,kBAAkB;EAClB,KAAK;EACL;AACF","sourcesContent":[".comparison-modal{\n  position: fixed;\n  left:0;\n  top: 0;\n  right:0;\n  bottom:0;\n  background-color: rgb(0, 0, 0, 0.5);\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".comparison-modal{\n  position: fixed;\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid chartreuse;\n  z-index: 1;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/ComparisonModal.css"],"names":[],"mappings":"AAAA;EACE,eAAe;;EAEf,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,4BAA4B;EAC5B,UAAU;AACZ;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,QAAQ;AACV;;AAEA;EACE,kBAAkB;EAClB,KAAK;EACL;AACF","sourcesContent":[".comparison-modal{\n  position: fixed;\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid chartreuse;\n  z-index: 1;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
