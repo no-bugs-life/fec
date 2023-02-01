@@ -13,7 +13,8 @@ module.exports = {
    * @returns
    */
   listQuestions: (options) => {
-    return axios.get('/qa/questions',{ params: options});
+    console.log(options);
+    return axios.get('/qa/questions', {params: options});
   },
     /**
    *
