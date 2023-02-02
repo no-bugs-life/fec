@@ -19,14 +19,12 @@ const RatingSummary = ({summaryData}) => {
     // }
   }, [rateAvg])
 
-
-
   return(
     <div>
       <h3>Rating Summary</h3>
       {rateAvg > 0
       ? <>
-          <Stars rating={rateAvg} tag={'ratingSummary'}/>
+          <Stars rating={rateAvg} tag={'ratingSummary'} size={'50px'} />
           <p> {rateAvg.toFixed(1)} out of 5 stars based on {rateCountTotal} reviews</p>
         </>
       : null}

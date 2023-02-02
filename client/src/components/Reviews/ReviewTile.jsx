@@ -15,13 +15,13 @@ const ReviewTile = ({review}) => {
 
   return(
     <div className='reviewTile'>
-      <Stars rating={review.rating} tag={review.review_id}/>
+      <Stars rating={review.rating} tag={review.review_id} size={'50px'}/>
       <p>{review.date}</p>
       <p>{review.reviewer_name}</p>
       <p>{review.summary}</p>
       <p>{review.body}</p>
       {review.recommend
-      ? 'I recommend this product' //Add checkmark here!!!
+      ? 'I recommend this product ✓'
       : null}
       <br/>
       {review.photos.map((photo, idx) =>

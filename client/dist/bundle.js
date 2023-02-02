@@ -81,6 +81,7 @@ var App = function App() {
         count: 30
       }
     }).then(function (res) {
+      console.log(res.data[0]);
       setProduct(res.data[0]);
     })["catch"](function (err) {
       return console.log(err);
@@ -1705,14 +1706,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RatingSummary_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RatingSummary.jsx */ "./client/src/components/Reviews/RatingBreakdownSection/RatingSummary.jsx");
 /* harmony import */ var _RatingBreakdown_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingBreakdown.jsx */ "./client/src/components/Reviews/RatingBreakdownSection/RatingBreakdown.jsx");
 /* harmony import */ var _ProductBreakdown_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ProductBreakdown.jsx */ "./client/src/components/Reviews/RatingBreakdownSection/ProductBreakdown.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -1723,25 +1717,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var RatingBreakdownSection = function RatingBreakdownSection(_ref) {
-  var product_id = _ref.product_id;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
-    _useState2 = _slicedToArray(_useState, 2),
-    ratingData = _useState2[0],
-    setRatingData = _useState2[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (product_id) {
-      axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/meta', {
-        params: {
-          "product_id": 40344
-        }
-      }).then(function (res) {
-        //console.log(res.data)
-        setRatingData(res.data);
-      })["catch"](function (err) {
-        console.log(err);
-      });
-    }
-  }, []);
+  var product_id = _ref.product_id,
+    ratingData = _ref.ratingData;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: Object.keys(ratingData).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_RatingSummary_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -1813,7 +1790,8 @@ var RatingSummary = function RatingSummary(_ref) {
     }), rateAvg > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
         rating: rateAvg,
-        tag: 'ratingSummary'
+        tag: 'ratingSummary',
+        size: '50px'
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
         children: [" ", rateAvg.toFixed(1), " out of 5 stars based on ", rateCountTotal, " reviews"]
       })]
@@ -1865,22 +1843,41 @@ var ReviewList = function ReviewList(_ref) {
     _useState2 = _slicedToArray(_useState, 2),
     reviews = _useState2[0],
     setReviews = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState4 = _slicedToArray(_useState3, 2),
-    writeReview = _useState4[0],
-    setWriteReview = _useState4[1];
+    ratingData = _useState4[0],
+    setRatingData = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState6 = _slicedToArray(_useState5, 2),
+    writeReview = _useState6[0],
+    setWriteReview = _useState6[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    callData();
+    callReviewData();
+    callProductData();
   }, []);
-  var callData = function callData() {
+  var callReviewData = function callReviewData() {
     if (product_id) {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/', {
         params: {
           "product_id": 40345
         }
       }).then(function (res) {
-        console.log(res.data);
+        //console.log(res.data);
         setReviews(res.data.results);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  };
+  var callProductData = function callProductData() {
+    if (product_id) {
+      axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/meta', {
+        params: {
+          "product_id": 40344
+        }
+      }).then(function (res) {
+        //console.log(res.data)
+        setRatingData(res.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -1913,7 +1910,7 @@ var ReviewList = function ReviewList(_ref) {
         review: reviews[1]
       })]
     }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      product_id: product_id
+      ratingData: ratingData
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       onClick: function onClick() {
         return setWriteReview(true);
@@ -1921,7 +1918,8 @@ var ReviewList = function ReviewList(_ref) {
       children: "Write Review"
     }), writeReview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
       show: writeReview,
-      productName: productName
+      productName: productName,
+      characteristics: ratingData.characteristics
     }) : null]
   });
 };
@@ -1966,7 +1964,8 @@ var ReviewTile = function ReviewTile(_ref) {
     className: "reviewTile",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       rating: review.rating,
-      tag: review.review_id
+      tag: review.review_id,
+      size: '50px'
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       children: review.date
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
@@ -1975,8 +1974,7 @@ var ReviewTile = function ReviewTile(_ref) {
       children: review.summary
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       children: review.body
-    }), review.recommend ? 'I recommend this product' //Add checkmark here!!!
-    : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), review.photos.map(function (photo, idx) {
+    }), review.recommend ? 'I recommend this product ✓' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), review.photos.map(function (photo, idx) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
         src: photo.url,
         alt: "image not available"
@@ -2073,9 +2071,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var WriteReviewModal = function WriteReviewModal(_ref) {
   var show = _ref.show,
-    productName = _ref.productName;
+    productName = _ref.productName,
+    characteristics = _ref.characteristics;
+  console.log(characteristics);
+  var postReview = function postReview() {};
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "modal",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -2085,13 +2087,161 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
         children: ["About the ", productName]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+        onSubmit: postReview,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ["Overall Rating", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
             rating: 0,
-            tag: 'writeReview'
+            tag: 'writeReview',
+            size: '50px'
           })]
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: ['Do you recommend this product? ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "recommendation",
+            value: "Yes"
+          }), "Yes", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "radio",
+            name: "recommendation",
+            value: "No"
+          }), "No"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+            children: "Characteristics"
+          }), characteristics.Size ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: [" ", 'Size: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 1
+            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 2
+            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 3
+            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 4
+            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 5
+            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+          }) : null, characteristics.Width ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: [" ", 'Width: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 1
+            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 2
+            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 3
+            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 4
+            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 5
+            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+          }) : null, characteristics.Comfort ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: [" ", 'Comfort: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 1
+            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 2
+            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 3
+            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 4
+            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 5
+            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+          }) : null, characteristics.Quality ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: [" ", 'Quality: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 1
+            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 2
+            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 3
+            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 4
+            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 5
+            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+          }) : null, characteristics.Length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: [" ", 'Length: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 1
+            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 2
+            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 3
+            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 4
+            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 5
+            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+          }) : null, characteristics.Fit ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: [" ", 'Fit: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 1
+            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 2
+            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 3
+            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 4
+            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+              type: "radio",
+              name: "characteristics",
+              value: 5
+            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+          }) : null]
+        })]
       })
     })]
   });
@@ -2119,10 +2269,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var Star = function Star(_ref) {
   var starFill = _ref.starFill,
-    idx = _ref.idx;
+    idx = _ref.idx,
+    size = _ref.size;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
-    height: "50px",
-    width: "50px",
+    height: size,
+    width: size,
     viewBox: "-5 0 60 53.867",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("linearGradient", {
       id: "myGradient" + idx,
@@ -2167,7 +2318,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var Stars = function Stars(_ref) {
   var rating = _ref.rating,
-    tag = _ref.tag;
+    tag = _ref.tag,
+    size = _ref.size;
   var starArr = [];
   var starTotal = rating * 100;
   if (starTotal % 25 < 13) {
@@ -2188,7 +2340,8 @@ var Stars = function Stars(_ref) {
     children: starArr.map(function (starVal, idx) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Star_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
         starFill: starVal,
-        idx: tag + '1' + idx
+        idx: tag + ' StarIndex: ' + idx,
+        size: size
       }, idx);
     })
   });

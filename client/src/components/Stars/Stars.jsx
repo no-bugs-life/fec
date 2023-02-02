@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Star from './Star.jsx'
 
-const Stars = ({rating, tag}) => {
+const Stars = ({rating, tag, size}) => {
 
   let starArr = [];
   let starTotal = rating * 100;
@@ -25,7 +25,7 @@ const Stars = ({rating, tag}) => {
   return (
     <div>
       {starArr.map((starVal, idx) =>
-        <Star starFill={starVal} key={idx} idx={tag + '1' + idx} />
+        <Star starFill={starVal} key={idx} idx={tag + ' StarIndex: ' + idx} size={size}/>
       )}
     </div>
   );

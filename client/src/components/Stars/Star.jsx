@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 
-const Star = ({starFill, idx}) => {
+const Star = ({starFill, idx, size}) => {
   return (
-    <svg height="50px" width="50px" viewBox="-5 0 60 53.867" >
+    <svg height={size} width={size} viewBox="-5 0 60 53.867" >
       <linearGradient id={"myGradient" + idx} >
         <stop offset={starFill} stopColor="black" />
         <stop offset={starFill} stopColor="white" />

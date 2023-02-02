@@ -8,22 +8,37 @@ import WriteReviewModal from './WriteReviewModal.jsx';
 const ReviewList = ({product_id, productName}) => {
 
   const [reviews, setReviews] = useState([]);
+  const [ratingData, setRatingData] = useState({});
   const [writeReview, setWriteReview] = useState(false);
 
   useEffect(() => {
-    callData();
+    callReviewData();
+    callProductData();
   }, []);
 
-  const callData = () => {
+  const callReviewData = () => {
     if (product_id) {
       axios.get('http://localhost:3000/api/reviews/', {params: {"product_id": 40345}})
-        .then((res) => {
-          console.log(res.data);
-          setReviews(res.data.results);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
+      .then((res) => {
+        //console.log(res.data);
+        setReviews(res.data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  }
+
+  const callProductData = () => {
+    if (product_id) {
+      axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": 40344}})
+      .then((res) => {
+        //console.log(res.data)
+        setRatingData(res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      })
     }
   }
 
@@ -51,10 +66,10 @@ const ReviewList = ({product_id, productName}) => {
         </>
       : null
       }
-      <RatingBreakdownSection product_id={product_id}/>
+      <RatingBreakdownSection ratingData={ratingData}/>
       <button onClick={() => setWriteReview(true)}>Write Review</button>
       {writeReview
-      ? <WriteReviewModal show={writeReview} productName={productName}/>
+      ? <WriteReviewModal show={writeReview} productName={productName} characteristics={ratingData.characteristics}/>
       : null}
     </>
   );
