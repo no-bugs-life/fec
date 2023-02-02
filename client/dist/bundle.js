@@ -24,6 +24,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+// import "../css/Overview/styles.css";
+
+// import Description from "./Overview/Description.jsx";
+
+// import ReviewList from './Reviews/ReviewList.jsx'
+
+
+
+// import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
+// import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
 
 
@@ -76,11 +86,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_Prodlists_AddOutfitCard_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/AddOutfitCard.css */ "./client/src/css/Prodlists/AddOutfitCard.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
-var AddOutfitCard = function AddOutfitCard() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {});
+
+var AddOutfitCard = function AddOutfitCard(_ref) {
+  var productIds = _ref.productIds,
+    setProductsIds = _ref.setProductsIds,
+    currentProductId = _ref.currentProductId;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      className: "add-outfit-card",
+      onClick: function onClick() {
+        console.log('adding outfit');
+        var storage = JSON.parse(localStorage.getItem('user')).outfits;
+        console.log('storage', storage);
+        if (storage.indexOf(currentProductId) === -1) {
+          storage.unshift(currentProductId);
+          localStorage.setItem('user', JSON.stringify({
+            'outfits': storage
+          }));
+          setProductsIds(_objectSpread(_objectSpread({}, productIds), {}, {
+            outfits: storage
+          }));
+        }
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "add-outfit-card-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "add-outfit-card-text",
+          children: "Add to Outfit"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          className: "add-outfit-card-symbol",
+          children: "+"
+        })]
+      })
+    })
+  });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddOutfitCard);
 
@@ -143,7 +191,7 @@ var Card = function Card(_ref) {
       setProduct(results[0].data);
       setPicture(results[1].data.results[0].photos[0].thumbnail_url);
     });
-  }, [productId]);
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "card",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -337,13 +385,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_Prodlists_OutfitList_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/OutfitList.css */ "./client/src/css/Prodlists/OutfitList.css");
 /* harmony import */ var _Card_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Card.jsx */ "./client/src/components/Prodlists/Card.jsx");
 /* harmony import */ var _AddOutfitCard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddOutfitCard.jsx */ "./client/src/components/Prodlists/AddOutfitCard.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ComparisonModal.jsx */ "./client/src/components/Prodlists/ComparisonModal.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -359,7 +419,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var OutfitList = function OutfitList(_ref) {
   var product = _ref.product;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-      outfits: localStorage.getItem('userOutfits') === null ? [] : localStorage.getItem('userOutfits'),
+      outfits: [],
       view: []
     }),
     _useState2 = _slicedToArray(_useState, 2),
@@ -384,33 +444,76 @@ var OutfitList = function OutfitList(_ref) {
     _useState10 = _slicedToArray(_useState9, 2),
     compareProductId = _useState10[0],
     setCompareProductId = _useState10[1];
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-      children: "My Outfit"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+  var updateView = function updateView(pageTo) {
+    if (pageTo <= 0) {
+      pageTo = 0;
+    }
+    setPage(pageTo);
+    setProductsIds({
+      related: _toConsumableArray(productIds.related),
+      view: _toConsumableArray(productIds.related).splice(pageTo * 4, pageTo * 4 + 4)
+    });
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (localStorage.getItem('user') === null) {
+      localStorage.setItem('user', '{"outfits":[]}');
+    }
+    setProductsIds(_objectSpread(_objectSpread({}, productIds), {}, {
+      outfits: JSON.parse(localStorage.getItem('user')).outfits
+    }));
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+      children: "Your Outfit"
+    }), modalToggle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      setModalToggle: setModalToggle,
+      modalPosition: modalPosition,
+      compareProductId: compareProductId,
+      currentProductId: product.id
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "outfit-list",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
         className: "outfit-list-container",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          onClick: function onClick() {
+            updateView(page - 1);
+          },
+          disabled: page === 0,
           children: '<'
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "outfit-list-card-container",
-          children: [productIds.outfits.includes(product.id) ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_AddOutfitCard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          children: [productIds.outfits.includes(product.id) ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddOutfitCard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            productIds: productIds,
             setProductsIds: setProductsIds,
             currentProductId: product.id
           }), productIds.outfits.map(function (cachedProductId) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              relatedProductId: cachedProductId,
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
               buttonType: "heart",
-              buttonAction: function buttonAction() {},
+              buttonAction: function buttonAction() {
+                var storage = JSON.parse(localStorage.getItem('user')).outfits;
+                var index = storage.indexOf(cachedProductId);
+                if (index > -1) {
+                  storage.splice(index, 1);
+                }
+                setProductsIds(_objectSpread(_objectSpread({}, productIds), {}, {
+                  outfits: storage
+                }));
+                localStorage.setItem('user', JSON.stringify({
+                  outfits: storage
+                }));
+              },
+              productId: cachedProductId,
               currentProductId: product.id,
               setModalPosition: setModalPosition,
               setModalToggle: setModalToggle,
               setCompareProductId: setCompareProductId
-            });
+            }, 'id_out_' + cachedProductId);
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+          onClick: function onClick() {
+            updateView(page + 1);
+          },
+          disabled: page === Math.ceil(productIds.outfits.length / 4) - 1,
           children: '>'
         })]
       })
@@ -513,7 +616,7 @@ var RelatedList = function RelatedList(_ref) {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-      children: "RELATED PRODUCTS"
+      children: "Related Products"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
       className: "related-list",
       children: [modalToggle ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -540,7 +643,7 @@ var RelatedList = function RelatedList(_ref) {
               setModalPosition: setModalPosition,
               setModalToggle: setModalToggle,
               setCompareProductId: setCompareProductId
-            }, 'id_' + relatedProductId);
+            }, 'id_rel_' + relatedProductId);
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
           onClick: function onClick() {
@@ -9871,7 +9974,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".add-outfit-card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  height:359px;\n  border: 1px solid blue;\n  text-align: center;\n  cursor: pointer;\n}\n\n.add-outfit-card-container{\n  position: relative;\n  top:30%;\n  margin: 0;\n  text-align: center;\n}\n\n.add-outfit-card-text{\n  font-size: 12px;\n  color: grey\n}\n\n.add-outfit-card-symbol{\n  font-size: 40px;\n  font-weight: bold;\n  color: grey\n}\n\n.add-outfit-card:hover{\n  animation: pulse 1.5s linear infinite\n}\n\n@keyframes pulse {\n  0% {\n    box-shadow: 0 0 2px 0 rgba(44, 52, 204, 0.4);\n  }\n  20% {\n      box-shadow: 0 0 10px 10px rgba(42, 83, 158, 0);\n  }\n  100% {\n      box-shadow: 0 0 2px 0 rgba(44, 71, 204, 0);\n  }\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/AddOutfitCard.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX,YAAY;EACZ,sBAAsB;EACtB,kBAAkB;EAClB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;AACpB;;AAEA;EACE,eAAe;EACf;AACF;;AAEA;EACE,eAAe;EACf,iBAAiB;EACjB;AACF;;AAEA;EACE;AACF;;AAEA;EACE;IACE,4CAA4C;EAC9C;EACA;MACI,8CAA8C;EAClD;EACA;MACI,0CAA0C;EAC9C;AACF","sourcesContent":[".add-outfit-card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  height:359px;\n  border: 1px solid blue;\n  text-align: center;\n  cursor: pointer;\n}\n\n.add-outfit-card-container{\n  position: relative;\n  top:30%;\n  margin: 0;\n  text-align: center;\n}\n\n.add-outfit-card-text{\n  font-size: 12px;\n  color: grey\n}\n\n.add-outfit-card-symbol{\n  font-size: 40px;\n  font-weight: bold;\n  color: grey\n}\n\n.add-outfit-card:hover{\n  animation: pulse 1.5s linear infinite\n}\n\n@keyframes pulse {\n  0% {\n    box-shadow: 0 0 2px 0 rgba(44, 52, 204, 0.4);\n  }\n  20% {\n      box-shadow: 0 0 10px 10px rgba(42, 83, 158, 0);\n  }\n  100% {\n      box-shadow: 0 0 2px 0 rgba(44, 71, 204, 0);\n  }\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9898,7 +10001,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n.card-button-compare{\n  position: absolute;\n  background-color: rgb(75, 75, 75);\n  top: -20px;\n  right:-10px;\n  border: none;\n  padding: 5px 8px 5px 10px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  margin-left: 0;\n  cursor: pointer;\n  border-radius: 0px 0px 0px 10px;\n}\n\n.card-button-compare:hover{\n  background-color: #434343;\n}\n\n\n.card-container{\n  position: relative;\n  margin: 5px 0px 5px 5px;\n  text-align: left;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE;AACF;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,UAAU;EACV,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,+BAA+B;AACjC;;AAEA;EACE,yBAAyB;AAC3B;;;AAGA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB","sourcesContent":[".card{\n  margin-left: 10px;\n  margin-right: 10px;\n  width:200px;\n  border: 1px solid blue\n}\n\n.card-image-container{\n  position: relative;\n}\n\n.card-image{\n  width:200px;\n  height:200px;\n}\n\n.card-image-button{\n  position: absolute;\n  top: 0%;\n  left: 83%;\n  text-align: center;\n  font-size: 30px;\n  font-weight: bold;\n\n  background-color: transparent;\n  border: 0px;\n  padding: 0px 10px 0px 0px;\n\n  cursor: pointer;\n}\n\n.card-image-button.star-on{\n  color: rgb(216, 166, 0)\n}\n\n.card-image-button.star-off{\n  color: rgb(214, 182, 102)\n}\n\n.card-image-button.heart-on{\n  color: rgb(175, 0, 0)\n}\n.card-image-button.heart-on:hover{\n  color: rgb(113, 101, 101)\n}\n\n.card-button-compare{\n  position: absolute;\n  background-color: rgb(75, 75, 75);\n  top: -20px;\n  right:-10px;\n  border: none;\n  padding: 5px 8px 5px 10px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  margin-left: 0;\n  cursor: pointer;\n  border-radius: 0px 0px 0px 10px;\n}\n\n.card-button-compare:hover{\n  background-color: #434343;\n}\n\n\n.card-container{\n  position: relative;\n  margin: 5px 0px 5px 5px;\n  text-align: left;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  width:200px;\r\n  border: 1px solid blue\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.star-on{\r\n  color: rgb(216, 166, 0)\r\n}\r\n\r\n.card-image-button.star-off{\r\n  color: rgb(214, 182, 102)\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.heart-on:hover{\r\n  color: rgb(113, 101, 101)\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE;AACF;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,UAAU;EACV,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,+BAA+B;AACjC;;AAEA;EACE,yBAAyB;AAC3B;;;AAGA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB","sourcesContent":[".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  width:200px;\r\n  border: 1px solid blue\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.star-on{\r\n  color: rgb(216, 166, 0)\r\n}\r\n\r\n.card-image-button.star-off{\r\n  color: rgb(214, 182, 102)\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.heart-on:hover{\r\n  color: rgb(113, 101, 101)\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9925,7 +10028,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".comparison-modal{\n  position: fixed;\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid chartreuse;\n  z-index: 1;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/ComparisonModal.css"],"names":[],"mappings":"AAAA;EACE,eAAe;;EAEf,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,4BAA4B;EAC5B,UAAU;AACZ;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,QAAQ;AACV;;AAEA;EACE,kBAAkB;EAClB,KAAK;EACL;AACF","sourcesContent":[".comparison-modal{\n  position: fixed;\n\n  display:flex;\n  align-items: center;\n  justify-content: center;\n  border: 1px solid chartreuse;\n  z-index: 1;\n}\n\n.comparison-modal-content{\n  width: 500px;\n  background-color: white;\n}\n\n.comparison-modal-header{\n  padding:10px;\n  position: relative;\n}\n\n.comparison-modal-title{\n  margin:0;\n}\n\n.comparison-modal-exit{\n  position: absolute;\n  top:0;\n  right:0\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".comparison-modal{\r\n  position: fixed;\r\n\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  border: 1px solid chartreuse;\r\n  z-index: 1;\r\n}\r\n\r\n.comparison-modal-content{\r\n  width: 500px;\r\n  background-color: white;\r\n}\r\n\r\n.comparison-modal-header{\r\n  padding:10px;\r\n  position: relative;\r\n}\r\n\r\n.comparison-modal-title{\r\n  margin:0;\r\n}\r\n\r\n.comparison-modal-exit{\r\n  position: absolute;\r\n  top:0;\r\n  right:0\r\n}\r\n", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/ComparisonModal.css"],"names":[],"mappings":"AAAA;EACE,eAAe;;EAEf,YAAY;EACZ,mBAAmB;EACnB,uBAAuB;EACvB,4BAA4B;EAC5B,UAAU;AACZ;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,kBAAkB;AACpB;;AAEA;EACE,QAAQ;AACV;;AAEA;EACE,kBAAkB;EAClB,KAAK;EACL;AACF","sourcesContent":[".comparison-modal{\r\n  position: fixed;\r\n\r\n  display:flex;\r\n  align-items: center;\r\n  justify-content: center;\r\n  border: 1px solid chartreuse;\r\n  z-index: 1;\r\n}\r\n\r\n.comparison-modal-content{\r\n  width: 500px;\r\n  background-color: white;\r\n}\r\n\r\n.comparison-modal-header{\r\n  padding:10px;\r\n  position: relative;\r\n}\r\n\r\n.comparison-modal-title{\r\n  margin:0;\r\n}\r\n\r\n.comparison-modal-exit{\r\n  position: absolute;\r\n  top:0;\r\n  right:0\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9979,7 +10082,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.related-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n}\n\n.related-list-container button{\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n.related-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/RelatedList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;AACrB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB;AACF","sourcesContent":[".related-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.related-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n}\n\n.related-list-container button{\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n.related-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/RelatedList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;AACrB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB;AACF","sourcesContent":[".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

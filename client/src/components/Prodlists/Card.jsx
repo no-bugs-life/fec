@@ -35,7 +35,7 @@ const Card = ({
         setPicture(results[1].data.results[0].photos[0].thumbnail_url)
       })
     },
-    [productId]
+    []
   )
 
   return (

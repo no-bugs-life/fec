@@ -52,7 +52,7 @@ const RelatedList = ({product}) => {
 
   return (
     <div>
-      <p>RELATED PRODUCTS</p>
+      <p>Related Products</p>
       <div className='related-list'>
 
         {
@@ -86,11 +86,15 @@ const RelatedList = ({product}) => {
               productIds.view.map((relatedProductId) => {
                 return (
                   <Card
-                    key={'id_' + relatedProductId}
+                    key={'id_rel_' + relatedProductId}
                     currentProductId = {product.id}
                     productId = {relatedProductId}
                     buttonType = 'star'
-                    buttonAction = {() => {}}
+                    buttonAction = {
+                      () => {
+
+                      }
+                    }
                     setModalPosition = {setModalPosition}
                     setModalToggle = {setModalToggle}
                     setCompareProductId = {setCompareProductId}
