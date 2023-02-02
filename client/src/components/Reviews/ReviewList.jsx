@@ -18,7 +18,7 @@ const ReviewList = ({product_id, productName}) => {
 
   const callReviewData = () => {
     if (product_id) {
-      axios.get('http://localhost:3000/api/reviews/', {params: {"product_id": 40345}})
+      axios.get('http://localhost:3000/api/reviews/', {params: {"product_id": 40348}})
       .then((res) => {
         //console.log(res.data);
         setReviews(res.data.results);
@@ -31,10 +31,10 @@ const ReviewList = ({product_id, productName}) => {
 
   const callProductData = () => {
     if (product_id) {
-      axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": 40344}})
+      axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": 40348}})
       .then((res) => {
         //console.log(res.data)
-        setRatingData(res.data)
+        setRatingData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -52,7 +52,7 @@ const ReviewList = ({product_id, productName}) => {
       newReviews.sort((a, b) => new Date(b.date) - new Date(a.date));
       setReviews(newReviews);
     } else {
-      callData();
+      callReviewData();
     }
   }
 
@@ -67,7 +67,7 @@ const ReviewList = ({product_id, productName}) => {
       : null
       }
       <RatingBreakdownSection ratingData={ratingData}/>
-      <button onClick={() => setWriteReview(true)}>Write Review</button>
+      <button onClick={() => setWriteReview(true)} >Write Review</button>
       {writeReview
       ? <WriteReviewModal show={writeReview} productName={productName} characteristics={ratingData.characteristics}/>
       : null}

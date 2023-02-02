@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Stars from '../Stars/Stars.jsx';
 import axios from 'axios';
 import '../../css/Reviews/styles.css'
-import Check from '../../assets/check-solid.svg'
 
 const ReviewTile = ({review}) => {
 

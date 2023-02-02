@@ -1,34 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./client/src/assets/check-solid.svg":
-/*!*******************************************!*\
-  !*** ./client/src/assets/check-solid.svg ***!
-  \*******************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _path;
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-var SvgCheckSolid = function SvgCheckSolid(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("svg", _extends({
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 512 512"
-  }, props), _path || (_path = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("path", {
-    d: "M470.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L192 338.7l233.4-233.3c12.5-12.5 32.8-12.5 45.3 0z"
-  })));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SvgCheckSolid);
-
-/***/ }),
-
 /***/ "./client/src/components/App.jsx":
 /*!***************************************!*\
   !*** ./client/src/components/App.jsx ***!
@@ -81,7 +53,7 @@ var App = function App() {
         count: 30
       }
     }).then(function (res) {
-      console.log(res.data[0]);
+      //console.log(res.data[0])
       setProduct(res.data[0]);
     })["catch"](function (err) {
       return console.log(err);
@@ -94,12 +66,6 @@ var App = function App() {
     }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Reviews_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
       product_id: 40344,
       productName: product.name
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      className: "questions",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Questions_QuestionMounted_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        product: product,
-        setProduct: setProduct
-      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Prodlists__WEBPACK_IMPORTED_MODULE_4__.RelatedList, {
       product: product
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Prodlists__WEBPACK_IMPORTED_MODULE_4__.OutfitList, {
@@ -1859,7 +1825,7 @@ var ReviewList = function ReviewList(_ref) {
     if (product_id) {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/', {
         params: {
-          "product_id": 40345
+          "product_id": 40348
         }
       }).then(function (res) {
         //console.log(res.data);
@@ -1873,7 +1839,7 @@ var ReviewList = function ReviewList(_ref) {
     if (product_id) {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/meta', {
         params: {
-          "product_id": 40344
+          "product_id": 40348
         }
       }).then(function (res) {
         //console.log(res.data)
@@ -1897,7 +1863,7 @@ var ReviewList = function ReviewList(_ref) {
       });
       setReviews(_newReviews);
     } else {
-      callData();
+      callReviewData();
     }
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
@@ -1941,11 +1907,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Stars/Stars.jsx */ "./client/src/components/Stars/Stars.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _css_Reviews_styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/Reviews/styles.css */ "./client/src/css/Reviews/styles.css");
-/* harmony import */ var _assets_check_solid_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../assets/check-solid.svg */ "./client/src/assets/check-solid.svg");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -1958,35 +1922,35 @@ var ReviewTile = function ReviewTile(_ref) {
 
   var addHelpful = function addHelpful(e) {
     e.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_5__["default"].put("http://localhost:3000/api/reviews/".concat(review.review_id, "/helpful"));
+    axios__WEBPACK_IMPORTED_MODULE_4__["default"].put("http://localhost:3000/api/reviews/".concat(review.review_id, "/helpful"));
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "reviewTile",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       rating: review.rating,
       tag: review.review_id,
       size: '50px'
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: review.date
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: review.reviewer_name
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: review.summary
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: review.body
-    }), review.recommend ? 'I recommend this product ✓' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), review.photos.map(function (photo, idx) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+    }), review.recommend ? 'I recommend this product ✓' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), review.photos.map(function (photo, idx) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
         src: photo.url,
         alt: "image not available"
       }, idx);
-    }), review.response ? review.response : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), review.response ? review.response : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: "Was this review helpful?"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
       onClick: addHelpful,
       children: "Yes"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
       children: "No"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: review.helpfulness
     })]
   });
@@ -2084,9 +2048,63 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
     characteristics = _ref.characteristics;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
     _useState2 = _slicedToArray(_useState, 2),
-    recommend = _useState2[0],
-    setRecommend = _useState2[1];
+    rating = _useState2[0],
+    setRating = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    recommend = _useState4[0],
+    setRecommend = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    size = _useState6[0],
+    setSize = _useState6[1];
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState8 = _slicedToArray(_useState7, 2),
+    width = _useState8[0],
+    setWidth = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState10 = _slicedToArray(_useState9, 2),
+    comfort = _useState10[0],
+    setComfort = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState12 = _slicedToArray(_useState11, 2),
+    quality = _useState12[0],
+    setQuality = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    length = _useState14[0],
+    setLength = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    fit = _useState16[0],
+    setFit = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState18 = _slicedToArray(_useState17, 2),
+    summary = _useState18[0],
+    setSummary = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState20 = _slicedToArray(_useState19, 2),
+    body = _useState20[0],
+    setBody = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState22 = _slicedToArray(_useState21, 2),
+    photos = _useState22[0],
+    setPhotos = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState24 = _slicedToArray(_useState23, 2),
+    nickName = _useState24[0],
+    setNickName = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState26 = _slicedToArray(_useState25, 2),
+    email = _useState26[0],
+    setEmail = _useState26[1];
   var postReview = function postReview() {};
+  var addPhoto = function addPhoto(e) {
+    e.preventDefault();
+    var photosCopy = photos.slice();
+    photosCopy.push(e.target.value);
+    setPhotos(photosCopy);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "modal",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
@@ -2127,140 +2145,233 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
             children: [" ", 'Size: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "size",
-              value: 1
+              value: 1,
+              onChange: function onChange(e) {
+                return setSize(e.target.value);
+              }
             }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "size",
-              value: 2
+              value: 2,
+              onChange: function onChange(e) {
+                return setSize(e.target.value);
+              }
             }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "size",
-              value: 3
+              value: 3,
+              onChange: function onChange(e) {
+                return setSize(e.target.value);
+              }
             }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "size",
-              value: 4
+              value: 4,
+              onChange: function onChange(e) {
+                return setSize(e.target.value);
+              }
             }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "size",
-              value: 5
+              value: 5,
+              onChange: function onChange(e) {
+                return setSize(e.target.value);
+              }
             }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
           }) : null, characteristics.Width ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: [" ", 'Width: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "width",
-              value: 1
+              value: 1,
+              onChange: function onChange(e) {
+                return setWidth(e.target.value);
+              }
             }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "width",
-              value: 2
+              value: 2,
+              onChange: function onChange(e) {
+                return setWidth(e.target.value);
+              }
             }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "width",
-              value: 3
+              value: 3,
+              onChange: function onChange(e) {
+                return setWidth(e.target.value);
+              }
             }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "width",
-              value: 4
+              value: 4,
+              onChange: function onChange(e) {
+                return setWidth(e.target.value);
+              }
             }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "width",
-              value: 5
+              value: 5,
+              onChange: function onChange(e) {
+                return setWidth(e.target.value);
+              }
             }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
           }) : null, characteristics.Comfort ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: [" ", 'Comfort: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "comfort",
-              value: 1
+              value: 1,
+              onChange: function onChange(e) {
+                return setComfort(e.target.value);
+              }
             }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "comfort",
-              value: 2
+              value: 2,
+              onChange: function onChange(e) {
+                return setComfort(e.target.value);
+              }
             }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "comfort",
-              value: 3
+              value: 3,
+              onChange: function onChange(e) {
+                return setComfort(e.target.value);
+              }
             }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "comfort",
-              value: 4
+              value: 4,
+              onChange: function onChange(e) {
+                return setComfort(e.target.value);
+              }
             }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "comfort",
-              value: 5
+              value: 5,
+              onChange: function onChange(e) {
+                return setComfort(e.target.value);
+              }
             }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
           }) : null, characteristics.Quality ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: [" ", 'Quality: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "quality",
-              value: 1
+              value: 1,
+              onChange: function onChange(e) {
+                return setQuality(e.target.value);
+              }
             }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "quality",
-              value: 2
+              value: 2,
+              onChange: function onChange(e) {
+                return setQuality(e.target.value);
+              }
             }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "quality",
-              value: 3
+              value: 3,
+              onChange: function onChange(e) {
+                return setQuality(e.target.value);
+              }
             }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "quality",
-              value: 4
+              value: 4,
+              onChange: function onChange(e) {
+                return setQuality(e.target.value);
+              }
             }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "quality",
-              value: 5
+              value: 5,
+              onChange: function onChange(e) {
+                return setQuality(e.target.value);
+              }
             }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
           }) : null, characteristics.Length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: [" ", 'Length: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "length",
-              value: 1
+              value: 1,
+              onChange: function onChange(e) {
+                return setLength(e.target.value);
+              }
             }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "length",
-              value: 2
+              value: 2,
+              onChange: function onChange(e) {
+                return setLength(e.target.value);
+              }
             }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "length",
-              value: 3
+              value: 3,
+              onChange: function onChange(e) {
+                return setLength(e.target.value);
+              }
             }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "length",
-              value: 4
+              value: 4,
+              onChange: function onChange(e) {
+                return setLength(e.target.value);
+              }
             }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "length",
-              value: 5
+              value: 5,
+              onChange: function onChange(e) {
+                return setLength(e.target.value);
+              }
             }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
           }) : null, characteristics.Fit ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
             children: [" ", 'Fit: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "fit",
-              value: 1
+              value: 1,
+              onChange: function onChange(e) {
+                return setFit(e.target.value);
+              }
             }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "fit",
-              value: 2
+              value: 2,
+              onChange: function onChange(e) {
+                return setFit(e.target.value);
+              }
             }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "fit",
-              value: 3
+              value: 3,
+              onChange: function onChange(e) {
+                return setFit(e.target.value);
+              }
             }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "fit",
-              value: 4
+              value: 4,
+              onChange: function onChange(e) {
+                return setFit(e.target.value);
+              }
             }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
               type: "radio",
               name: "fit",
-              value: 5
+              value: 5,
+              onChange: function onChange(e) {
+                return setFit(e.target.value);
+              }
             }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
           }) : null]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Review Summary ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "text",
             maxLength: 60,
-            placeholder: "Example: Best purchase ever!"
+            placeholder: "Example: Best purchase ever!",
+            onChange: function onChange(e) {
+              return setSummary(e.target.value);
+            }
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Review Body ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -2268,21 +2379,37 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
             minLength: 50,
             maxLength: 1000,
             placeholder: "Why did you like the product or not?",
-            required: true
+            required: true,
+            onChange: function onChange(e) {
+              return setBody(e.target.value);
+            }
           }), 'Character count portion goes here']
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), 'ADD PHOTOS SECTION HERE', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+          children: ['Add Photos ', photos.length <= 5 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+            type: "file",
+            accept: ".png, .jpg, .jpeg",
+            multiple: true,
+            onChange: addPhoto
+          }) : null]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Nickname ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "text",
             maxLength: 60,
             placeholder: "Example: jackson11!",
-            required: true
+            required: true,
+            onChange: function onChange(e) {
+              return setNickName(e.target.value);
+            }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), 'For privacy reasons, do not use your full name or email address']
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Email ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "email",
             maxLength: 60,
             placeholder: "Example: jackson11@email.com",
-            required: true
+            required: true,
+            onChange: function onChange(e) {
+              return setEmail(e.target.value);
+            }
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), 'For authentication reasons, you will not be emailed']
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
           type: "submit",
