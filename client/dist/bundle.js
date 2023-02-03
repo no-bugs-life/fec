@@ -53,7 +53,7 @@ var App = function App() {
         count: 30
       }
     }).then(function (res) {
-      setProduct(res.data[0]);
+      setProduct(res.data[4]);
     })["catch"](function (err) {
       return console.log(err);
     });
@@ -86,36 +86,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _css_Prodlists_AddOutfitCard_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Prodlists/AddOutfitCard.css */ "./client/src/css/Prodlists/AddOutfitCard.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 
 
 
 
 var AddOutfitCard = function AddOutfitCard(_ref) {
-  var productIds = _ref.productIds,
-    setProductsIds = _ref.setProductsIds,
-    currentProductId = _ref.currentProductId;
+  var handleClick = _ref.handleClick;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
       className: "add-outfit-card",
       onClick: function onClick() {
-        console.log('adding outfit');
-        var storage = JSON.parse(localStorage.getItem('user')).outfits;
-        console.log('storage', storage);
-        if (storage.indexOf(currentProductId) === -1) {
-          storage.unshift(currentProductId);
-          localStorage.setItem('user', JSON.stringify({
-            'outfits': storage
-          }));
-          setProductsIds(_objectSpread(_objectSpread({}, productIds), {}, {
-            outfits: storage
-          }));
-        }
+        handleClick();
       },
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "add-outfit-card-container",
@@ -158,7 +139,7 @@ function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefine
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-//import rating stars
+//import rating hearts
 
 
 
@@ -179,18 +160,24 @@ var Card = function Card(_ref) {
     _useState4 = _slicedToArray(_useState3, 2),
     picture = _useState4[0],
     setPicture = _useState4[1];
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(buttonType === 'heart'),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(buttonType === 'remove' || JSON.parse(localStorage.getItem('user')).outfits.indexOf(productId) > -1),
     _useState6 = _slicedToArray(_useState5, 2),
     buttonToggle = _useState6[0],
     setButtonToggle = _useState6[1];
-  var starOn = '★';
-  var starOff = '✰';
-  var heartOn = '❤';
+  var heart = '❤';
+  var remove = '✖';
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     Promise.all([axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(productId)), axios__WEBPACK_IMPORTED_MODULE_3__["default"].get("api/products/".concat(productId, "/styles"))]).then(function (results) {
       setProduct(results[0].data);
       setPicture(results[1].data.results[0].photos[0].thumbnail_url);
     });
+    var toggleButtonOff = function toggleButtonOff() {
+      setButtonToggle(false);
+    };
+    window.addEventListener("toggle_".concat(productId, "_off"), toggleButtonOff);
+    return function () {
+      window.removeEventListener("toggle_".concat(productId, "_off"), toggleButtonOff);
+    };
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "card",
@@ -202,7 +189,7 @@ var Card = function Card(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
         type: "button",
         className: buttonToggle ? "card-image-button ".concat(buttonType, "-on") : "card-image-button ".concat(buttonType, "-off"),
-        value: buttonType === 'star' ? buttonToggle ? starOn : starOff : heartOn,
+        value: buttonType === 'heart' ? heart : remove,
         onClick: function onClick() {
           setButtonToggle(!buttonToggle);
           buttonAction();
@@ -387,12 +374,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddOutfitCard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddOutfitCard.jsx */ "./client/src/components/Prodlists/AddOutfitCard.jsx");
 /* harmony import */ var _ComparisonModal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ComparisonModal.jsx */ "./client/src/components/Prodlists/ComparisonModal.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
@@ -408,12 +389,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-//  product will be obj from api
-//  add saved property
-
-//  action will be obj with 2 properties
-//  imageref and function for action, add and delete
-//  {product, action}
 
 
 var OutfitList = function OutfitList(_ref) {
@@ -450,17 +425,25 @@ var OutfitList = function OutfitList(_ref) {
     }
     setPage(pageTo);
     setProductsIds({
-      related: _toConsumableArray(productIds.related),
-      view: _toConsumableArray(productIds.related).splice(pageTo * 4, pageTo * 4 + 4)
+      outfits: _toConsumableArray(productIds.outfits),
+      view: _toConsumableArray(productIds.outfits).splice(pageTo * 4, pageTo * 4 + 4)
     });
   };
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (localStorage.getItem('user') === null) {
       localStorage.setItem('user', '{"outfits":[]}');
     }
-    setProductsIds(_objectSpread(_objectSpread({}, productIds), {}, {
-      outfits: JSON.parse(localStorage.getItem('user')).outfits
-    }));
+    var updateProductIds = function updateProductIds() {
+      setProductsIds({
+        outfits: JSON.parse(localStorage.getItem('user')).outfits,
+        view: JSON.parse(localStorage.getItem('user')).outfits.splice(page * 4, page * 4 + 4)
+      });
+    };
+    updateProductIds();
+    window.addEventListener('storage', updateProductIds);
+    return function () {
+      window.removeEventListener('storage', updateProductIds);
+    };
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
@@ -482,25 +465,33 @@ var OutfitList = function OutfitList(_ref) {
           children: '<'
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
           className: "outfit-list-card-container",
-          children: [productIds.outfits.includes(product.id) ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddOutfitCard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-            productIds: productIds,
-            setProductsIds: setProductsIds,
-            currentProductId: product.id
-          }), productIds.outfits.map(function (cachedProductId) {
+          children: [productIds.outfits.indexOf(product.id) > -1 ? null : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AddOutfitCard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+            handleClick: function handleClick() {
+              var storage = JSON.parse(localStorage.getItem('user')).outfits;
+              if (storage.indexOf(product.id) === -1) {
+                storage.unshift(product.id);
+                console.log('adding to outfit');
+                localStorage.setItem('user', JSON.stringify({
+                  'outfits': storage
+                }));
+                window.dispatchEvent(new Event('storage'));
+              }
+            }
+          }), productIds.view.map(function (cachedProductId) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-              buttonType: "heart",
+              buttonType: "remove",
               buttonAction: function buttonAction() {
                 var storage = JSON.parse(localStorage.getItem('user')).outfits;
                 var index = storage.indexOf(cachedProductId);
+                console.log(storage, index);
                 if (index > -1) {
                   storage.splice(index, 1);
                 }
-                setProductsIds(_objectSpread(_objectSpread({}, productIds), {}, {
-                  outfits: storage
-                }));
                 localStorage.setItem('user', JSON.stringify({
                   outfits: storage
                 }));
+                window.dispatchEvent(new Event('storage'));
+                window.dispatchEvent(new Event("toggle_".concat(cachedProductId, "_off")));
               },
               productId: cachedProductId,
               currentProductId: product.id,
@@ -513,7 +504,7 @@ var OutfitList = function OutfitList(_ref) {
           onClick: function onClick() {
             updateView(page + 1);
           },
-          disabled: page === Math.ceil(productIds.outfits.length / 4) - 1,
+          disabled: page >= Math.ceil(productIds.outfits.length / 4) - 1,
           children: '>'
         })]
       })
@@ -597,9 +588,10 @@ var RelatedList = function RelatedList(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (Object.keys(product).length) {
       axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("api/products/".concat(product.id, "/related")).then(function (result) {
+        console.log(result.data);
         setProductsIds({
-          related: _toConsumableArray(result.data),
-          view: _toConsumableArray(result.data).splice(page * 4, page * 4 + 4)
+          related: _toConsumableArray(new Set(result.data)),
+          view: _toConsumableArray(new Set(result.data)).splice(page * 4, page * 4 + 4)
         });
       });
     }
@@ -627,6 +619,7 @@ var RelatedList = function RelatedList(_ref) {
       }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "related-list-container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          className: "related-list-container-lscroll",
           onClick: function onClick() {
             updateView(page - 1);
           },
@@ -638,14 +631,27 @@ var RelatedList = function RelatedList(_ref) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Card_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
               currentProductId: product.id,
               productId: relatedProductId,
-              buttonType: "star",
-              buttonAction: function buttonAction() {},
+              buttonType: "heart",
+              buttonAction: function buttonAction() {
+                var storage = JSON.parse(localStorage.getItem('user')).outfits;
+                var index = storage.indexOf(relatedProductId);
+                if (index > -1) {
+                  storage.splice(index, 1);
+                } else {
+                  storage.unshift(relatedProductId);
+                }
+                localStorage.setItem('user', JSON.stringify({
+                  'outfits': storage
+                }));
+                window.dispatchEvent(new Event('storage'));
+              },
               setModalPosition: setModalPosition,
               setModalToggle: setModalToggle,
               setCompareProductId: setCompareProductId
             }, 'id_rel_' + relatedProductId);
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          className: "related-list-container-rscroll",
           onClick: function onClick() {
             updateView(page + 1);
           },
@@ -10001,7 +10007,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  width:200px;\r\n  border: 1px solid blue\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.star-on{\r\n  color: rgb(216, 166, 0)\r\n}\r\n\r\n.card-image-button.star-off{\r\n  color: rgb(214, 182, 102)\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.heart-on:hover{\r\n  color: rgb(113, 101, 101)\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX;AACF;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE;AACF;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,UAAU;EACV,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,+BAA+B;AACjC;;AAEA;EACE,yBAAyB;AAC3B;;;AAGA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB","sourcesContent":[".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  width:200px;\r\n  border: 1px solid blue\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.star-on{\r\n  color: rgb(216, 166, 0)\r\n}\r\n\r\n.card-image-button.star-off{\r\n  color: rgb(214, 182, 102)\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.heart-on:hover{\r\n  color: rgb(113, 101, 101)\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  min-width:200px;\r\n  min-height: 361px;\r\n  border: 1px solid blue;\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(255, 0, 0)\r\n}\r\n\r\n.card-image-button.heart-off{\r\n  color: rgb(104, 84, 74)\r\n}\r\n\r\n.card-image-button.heart-off:hover{\r\n  color: rgb(236, 101, 175)\r\n}\r\n\r\n.card-image-button.remove-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.remove-on:hover{\r\n  color: rgb(253, 0, 0);\r\n  font-size: 31px;\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,eAAe;EACf,iBAAiB;EACjB,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE,qBAAqB;EACrB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,UAAU;EACV,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,+BAA+B;AACjC;;AAEA;EACE,yBAAyB;AAC3B;;;AAGA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB","sourcesContent":[".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  min-width:200px;\r\n  min-height: 361px;\r\n  border: 1px solid blue;\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(255, 0, 0)\r\n}\r\n\r\n.card-image-button.heart-off{\r\n  color: rgb(104, 84, 74)\r\n}\r\n\r\n.card-image-button.heart-off:hover{\r\n  color: rgb(236, 101, 175)\r\n}\r\n\r\n.card-image-button.remove-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.remove-on:hover{\r\n  color: rgb(253, 0, 0);\r\n  font-size: 31px;\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10055,7 +10061,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n}\n\n.outfit-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/OutfitList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;AACrB;;AAEA;EACE,oBAAoB;EACpB;AACF","sourcesContent":[".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n}\n\n.outfit-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n  width: 1000px;\n  height: 361px\n}\n\n.outfit-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/OutfitList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;EACnB,aAAa;EACb;AACF;;AAEA;EACE,oBAAoB;EACpB;AACF","sourcesContent":[".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n  width: 1000px;\n  height: 361px\n}\n\n.outfit-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10082,7 +10088,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/RelatedList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;AACrB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB;AACF","sourcesContent":[".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  min-width: 1000px;\r\n  height: 361px;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}\r\n\r\n.related-list-container-lscroll{\r\n\r\n}\r\n\r\n.related-list-container-rscroll{\r\n\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/RelatedList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;;AAEpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;EACnB,iBAAiB;EACjB,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB;AACF;;AAEA;;AAEA;;AAEA;;AAEA","sourcesContent":[".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  min-width: 1000px;\r\n  height: 361px;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}\r\n\r\n.related-list-container-lscroll{\r\n\r\n}\r\n\r\n.related-list-container-rscroll{\r\n\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

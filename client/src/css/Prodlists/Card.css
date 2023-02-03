@@ -1,8 +1,9 @@
 .card{
   margin-left: 10px;
   margin-right: 10px;
-  width:200px;
-  border: 1px solid blue
+  min-width:200px;
+  min-height: 361px;
+  border: 1px solid blue;
 }
 
 .card-image-container{
@@ -29,19 +30,24 @@
   cursor: pointer;
 }
 
-.card-image-button.star-on{
-  color: rgb(216, 166, 0)
-}
-
-.card-image-button.star-off{
-  color: rgb(214, 182, 102)
-}
-
 .card-image-button.heart-on{
+  color: rgb(255, 0, 0)
+}
+
+.card-image-button.heart-off{
+  color: rgb(104, 84, 74)
+}
+
+.card-image-button.heart-off:hover{
+  color: rgb(236, 101, 175)
+}
+
+.card-image-button.remove-on{
   color: rgb(175, 0, 0)
 }
-.card-image-button.heart-on:hover{
-  color: rgb(113, 101, 101)
+.card-image-button.remove-on:hover{
+  color: rgb(253, 0, 0);
+  font-size: 31px;
 }
 
 .card-button-compare{

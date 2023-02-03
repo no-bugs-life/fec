@@ -2,9 +2,7 @@ import React,{useState} from 'react';
 
 import '../../css/Prodlists/AddOutfitCard.css';
 
-const AddOutfitCard = ({productIds, setProductsIds, currentProductId}) => {
-
-
+const AddOutfitCard = ({handleClick}) => {
 
   return(
     <div>
@@ -12,19 +10,7 @@ const AddOutfitCard = ({productIds, setProductsIds, currentProductId}) => {
         className='add-outfit-card'
         onClick={
           () => {
-            console.log('adding outfit')
-            let storage = JSON.parse(localStorage.getItem('user')).outfits
-            console.log('storage',storage)
-
-            if(storage.indexOf(currentProductId) === -1){
-              storage.unshift(currentProductId)
-              localStorage.setItem('user', JSON.stringify({'outfits': storage}));
-              setProductsIds({
-                ...productIds,
-                outfits: storage
-              })
-            }
-
+            handleClick()
           }
         }
       >

@@ -22,7 +22,7 @@ const App = ()=> {
     () => {
       axios.get('/api/products',{params:{count:30}})
         .then(res => {
-          setProduct(res.data[0]);
+          setProduct(res.data[4]);
         })
         .catch(err => console.log(err))
     },

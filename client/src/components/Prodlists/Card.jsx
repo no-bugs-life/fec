@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/Card.css';
-//import rating stars
+//import rating hearts
 
 import axios from 'axios';
 
@@ -16,11 +16,13 @@ const Card = ({
 
   const [product, setProduct] = useState({});
   const [picture, setPicture] = useState('');
-  const [buttonToggle, setButtonToggle] = useState(buttonType === 'heart');
+  const [buttonToggle, setButtonToggle] = useState(
+    (buttonType === 'remove') ||
+    (JSON.parse(localStorage.getItem('user')).outfits.indexOf(productId) > -1)
+  );
 
-  const starOn = '★';
-  const starOff = '✰';
-  const heartOn = '❤';
+  const heart = '❤';
+  const remove = '✖';
 
   useEffect(
     () => {
@@ -34,6 +36,16 @@ const Card = ({
         setProduct(results[0].data);
         setPicture(results[1].data.results[0].photos[0].thumbnail_url)
       })
+
+      const toggleButtonOff = () => {
+        setButtonToggle(false)
+      }
+
+      window.addEventListener(`toggle_${productId}_off`, toggleButtonOff)
+
+      return () => {
+        window.removeEventListener(`toggle_${productId}_off`, toggleButtonOff)
+      }
     },
     []
   )
@@ -54,10 +66,10 @@ const Card = ({
               `card-image-button ${buttonType}-off`
           }
           value={
-            buttonType === 'star' ?
-              (buttonToggle ? starOn:starOff)
+            buttonType === 'heart' ?
+              heart
               :
-              heartOn
+              remove
           }
           onClick={
             ()=>{

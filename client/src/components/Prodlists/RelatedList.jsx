@@ -28,9 +28,10 @@ const RelatedList = ({product}) => {
       if(Object.keys(product).length){
         axios.get(`api/products/${product.id}/related`)
         .then((result) => {
+          console.log(result.data)
           setProductsIds({
-            related: [...result.data],
-            view: [...result.data].splice(page*4, page*4 + 4)
+            related: [...new Set(result.data)],
+            view: [...new Set(result.data)].splice(page*4, page*4 + 4)
           });
         })
       }
@@ -70,6 +71,7 @@ const RelatedList = ({product}) => {
 
         <div className='related-list-container'>
           <button
+            className='related-list-container-lscroll'
             onClick={
               ()=>{
                 updateView(page - 1)
@@ -89,9 +91,19 @@ const RelatedList = ({product}) => {
                     key={'id_rel_' + relatedProductId}
                     currentProductId = {product.id}
                     productId = {relatedProductId}
-                    buttonType = 'star'
+                    buttonType = 'heart'
                     buttonAction = {
                       () => {
+                        let storage = JSON.parse(localStorage.getItem('user')).outfits
+                        let index = storage.indexOf(relatedProductId)
+                        if(index > -1){
+                          storage.splice(index, 1)
+                        }else{
+                          storage.unshift(relatedProductId)
+                        }
+
+                        localStorage.setItem('user', JSON.stringify({'outfits': storage}));
+                        window.dispatchEvent(new Event('storage'))
 
                       }
                     }
@@ -104,6 +116,7 @@ const RelatedList = ({product}) => {
             }
           </div>
           <button
+            className='related-list-container-rscroll'
             onClick={
               ()=>{
                 updateView(page + 1)

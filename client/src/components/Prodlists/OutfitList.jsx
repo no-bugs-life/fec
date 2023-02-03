@@ -4,12 +4,6 @@ import '../../css/Prodlists/OutfitList.css';
 import Card from './Card.jsx';
 import AddOutfitCard from './AddOutfitCard.jsx'
 import ComparisonModal from './ComparisonModal.jsx';
-//  product will be obj from api
-//  add saved property
-
-//  action will be obj with 2 properties
-//  imageref and function for action, add and delete
-//  {product, action}
 
 const OutfitList = ({product}) => {
   const [productIds, setProductsIds] = useState({
@@ -28,8 +22,8 @@ const OutfitList = ({product}) => {
     }
     setPage(pageTo);
     setProductsIds({
-      related: [...productIds.related],
-      view: [...productIds.related].splice(pageTo*4, pageTo*4 + 4)
+      outfits: [...productIds.outfits],
+      view: [...productIds.outfits].splice(pageTo*4, pageTo*4 + 4)
     })
   }
 
@@ -38,10 +32,22 @@ const OutfitList = ({product}) => {
       if(localStorage.getItem('user') === null){
         localStorage.setItem('user', '{"outfits":[]}')
       }
-      setProductsIds({
-        ...productIds,
-        outfits: JSON.parse(localStorage.getItem('user')).outfits
-      })
+
+      const updateProductIds = () => {
+        setProductsIds({
+          outfits: JSON.parse(localStorage.getItem('user')).outfits,
+          view: JSON.parse(localStorage.getItem('user')).outfits.splice(page*4, page*4 + 4)
+        })
+      }
+
+      updateProductIds();
+
+      window.addEventListener('storage', updateProductIds)
+
+      return () => {
+        window.removeEventListener('storage', updateProductIds)
+      }
+
     },
     []
   )
@@ -76,34 +82,42 @@ const OutfitList = ({product}) => {
           </button>
           <div className='outfit-list-card-container'>
             {
-              productIds.outfits.includes(product.id) ?
+              productIds.outfits.indexOf(product.id) > -1 ?
                 null
                 :
                 <AddOutfitCard
-                  productIds={productIds}
-                  setProductsIds={setProductsIds}
-                  currentProductId={product.id}
+                  handleClick={
+                    ()=>{
+                      let storage = JSON.parse(localStorage.getItem('user')).outfits
+                      if(storage.indexOf(product.id) === -1){
+                        storage.unshift(product.id)
+                        console.log('adding to outfit')
+                        localStorage.setItem('user', JSON.stringify({'outfits': storage}));
+                        window.dispatchEvent(new Event('storage'))
+                      }
+                    }
+                  }
                 />
             }
             {
-              productIds.outfits.map((cachedProductId) => {
+              productIds.view.map((cachedProductId) => {
                 return(
                   <Card
                     key={'id_out_' + cachedProductId}
-                    buttonType='heart'
+                    buttonType='remove'
                     buttonAction={
                       () => {
                         let storage = JSON.parse(localStorage.getItem('user')).outfits
                         let index = storage.indexOf(cachedProductId)
+                        console.log(storage,index)
 
                         if(index > -1){
                           storage.splice(index, 1)
                         }
-                        setProductsIds({
-                          ...productIds,
-                          outfits: storage
-                        })
+
                         localStorage.setItem('user', JSON.stringify({outfits:storage}))
+                        window.dispatchEvent(new Event('storage'))
+                        window.dispatchEvent(new Event(`toggle_${cachedProductId}_off`))
                       }
                     }
                     productId={cachedProductId}
@@ -122,7 +136,7 @@ const OutfitList = ({product}) => {
                 updateView(page + 1)
               }
             }
-            disabled={page === Math.ceil(productIds.outfits.length/4)-1}
+            disabled={page >= Math.ceil(productIds.outfits.length/4)-1}
           >
             {'>'}
           </button>
