@@ -21,8 +21,8 @@ const App = ()=> {
     () => {
       axios.get('/api/products',{params:{count:30}})
         .then(res => {
-          //console.log(res.data[0])
-          setProduct(res.data[4]);
+          console.log(res.data)
+          setProduct(res.data[0]);
         })
         .catch(err => console.log(err))
     },

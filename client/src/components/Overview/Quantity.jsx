@@ -8,7 +8,7 @@ const Quantity = ({currentSize, currentInventory}) => {
     
     return(
         <>        
-        <label htmlFor="size">Size</label>
+        <label htmlFor="size">Qty</label>
         <select id="size" name="size" className="size-drop">
             {newArray.map((el, index) => {
                 return (<>
