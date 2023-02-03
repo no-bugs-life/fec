@@ -17,14 +17,17 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
   const [nickName, setNickName] = useState('');
   const [email, setEmail] = useState('');
 
-  const postReview = () => {
-
+  const postReview = (e) => {
+    e.preventDefault();
+    let postObj = {};
   }
 
   const addPhoto = (e) => {
     e.preventDefault();
     let photosCopy = photos.slice()
+    console.log(e.target.value);
     photosCopy.push(e.target.value);
+    console.log(photosCopy);
     setPhotos(photosCopy);
   }
 
@@ -37,17 +40,17 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
       <div>
         <form onSubmit={postReview}>
           <label>
-            Overall Rating
+            Overall Rating*
             <Stars rating={0} tag={'writeReview'} size={'50px'}/>
           </label>
           <label>
-            {'Do you recommend this product? '}
+            {'Do you recommend this product?* '}
             <input type='radio' name='recommendation' value='Yes' onChange={() => setRecommend('Yes')}/>{'Yes '}
             <input type='radio' name='recommendation' value='No' onChange={() => setRecommend('No')}/>{'No'}
           </label>
           <br/>
           <label>
-            <h5>Characteristics</h5>
+            <h5>Characteristics*</h5>
             {characteristics.Size
             ? <> {'Size: '}
               <input type='radio' name='size' value={1} onChange={(e) => setSize(e.target.value)}/>1
@@ -115,7 +118,7 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
           </label>
           <br/>
           <label>
-            {'Review Body '}
+            {'Review Body* '}
             <input type='text' minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
             {'Character count portion goes here'}
           </label>
@@ -123,19 +126,23 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
           <label>
             {'Add Photos '}
             {photos.length <= 5
-            ? <input type='file' accept='.png, .jpg, .jpeg' multiple onChange={addPhoto}/>
+            ? <input type='file' accept='.png, .jpg, .jpeg' multiple onChange={addPhoto} />
             : null}
           </label>
           <br/>
+          {photos.map((photo, idx) =>
+            <img src={photo} alt={'Photo Unavailable'} key={idx}/>
+          )}
+          <br/>
           <label>
-            {'Nickname '}
+            {'Nickname* '}
             <input type='text' maxLength={60} placeholder='Example: jackson11!' required onChange={(e) => setNickName(e.target.value)}/>
             <br/>
             {'For privacy reasons, do not use your full name or email address'}
           </label>
           <br/>
           <label>
-            {'Email '}
+            {'Email* '}
             <input type='email' maxLength={60} placeholder='Example: jackson11@email.com' required onChange={(e) => setEmail(e.target.value)}/>
             <br/>
             {'For authentication reasons, you will not be emailed'}

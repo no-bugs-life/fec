@@ -17,14 +17,21 @@ const ReviewTile = ({review}) => {
       <Stars rating={review.rating} tag={review.review_id} size={'50px'}/>
       <p>{review.date}</p>
       <p>{review.reviewer_name}</p>
-      <p>{review.summary}</p>
-      <p>{review.body}</p>
+      <b>{review.summary}</b>
+      <p>{review.body.length <= 250
+          ? review.body
+          : <>
+              {review.body.substring(0, 250)}
+              <button>Show More</button>
+            </>
+        }
+      </p>
       {review.recommend
       ? 'I recommend this product ✓'
       : null}
       <br/>
       {review.photos.map((photo, idx) =>
-        <img src={photo.url} alt='image not available' key={idx}/>
+        <img src={photo.url} alt='image not available' key={idx} height={150} width={150}/>
       )}
       {review.response
       ? review.response
