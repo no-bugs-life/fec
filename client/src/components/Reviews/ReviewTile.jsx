@@ -5,11 +5,16 @@ import '../../css/Reviews/styles.css'
 
 const ReviewTile = ({review}) => {
 
-  // console.log(review);
+  const [showBody, setShowBody] = useState(true);
+  const [showHelpful, setShowHelpful] = useState(true);
+  const [helpfulness, setHelpfulness] = useState(review.helpfulness)
 
   const addHelpful = (e) => {
     e.preventDefault();
     axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`);
+    let newHelp = helpfulness + 1;
+    setHelpfulness(newHelp)
+    setShowHelpful(false);
   }
 
   return(
@@ -21,8 +26,13 @@ const ReviewTile = ({review}) => {
       <p>{review.body.length <= 250
           ? review.body
           : <>
-              {review.body.substring(0, 250)}
-              <button>Show More</button>
+              {showBody
+              ? <>
+                {review.body.substring(0, 250)}
+                <button onClick={() => setShowBody(false)} >Show More</button>
+              </>
+              : review.body
+              }
             </>
         }
       </p>
@@ -37,9 +47,13 @@ const ReviewTile = ({review}) => {
       ? review.response
       : null}
       <p>Was this review helpful?</p>
-      <button onClick={addHelpful}>Yes</button>
-      <button>No</button>
-      <p>{review.helpfulness}</p>
+      {showHelpful
+      ? <>
+        <button onClick={addHelpful}>Yes</button>
+        <button onClick={() => setShowHelpful(false)}>No</button>
+      </>
+      : null}
+      <p>{helpfulness}</p>
     </div>
   );
 }

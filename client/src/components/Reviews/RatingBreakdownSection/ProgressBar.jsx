@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProgressBar = ({rateData, totalRates, setFilter}) => {
+const ProgressBar = ({rateData, totalRates, setFilter, rateIdx}) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(e);
+    setFilter(rateIdx);
   }
 
   return(

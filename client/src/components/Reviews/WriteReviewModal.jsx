@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import Stars from '../Stars/Stars.jsx'
+import axios from 'axios';
 
-const WriteReviewModal = ({show, productName, characteristics}) => {
+const WriteReviewModal = ({show, productName, characteristics, product_id}) => {
 
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(null);
   const [size, setSize] = useState(null);
   const [width, setWidth] = useState(null);
@@ -19,16 +20,56 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
 
   const postReview = (e) => {
     e.preventDefault();
-    let postObj = {};
+    let postObj = {
+      "product_id": product_id,
+      "rating": rating,
+      "recommend": recommend,
+      "summary": summary,
+      "body": body,
+      "photos": photos,
+      "name": nickName,
+      "email": email
+    };
+
   }
 
-  const addPhoto = (e) => {
+  const receivePhoto = (e) => {
     e.preventDefault();
-    let photosCopy = photos.slice()
-    console.log(e.target.value);
-    photosCopy.push(e.target.value);
-    console.log(photosCopy);
-    setPhotos(photosCopy);
+    const selectedFile = document.getElementById('photosInput').files[0];
+    getBase64(selectedFile);
+    // photosCopy.push(e.target.value);
+    // console.log(photosCopy);
+    //setPhotos(photosCopy);
+  }
+
+  const getBase64 = (file) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      //console.log(reader.result);
+      sendToApi(reader.result.replace('data:', '')
+      .replace(/^.+,/, ''));
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
+
+  const sendToApi = (base64Img) => {
+    let form = new FormData();
+    form.append("image", base64Img);
+    axios.post('https://api.imgbb.com/1/upload?key=dd9bb00ace03cceb9b4d7d8f33bb5c8c', form)
+    .then((res) => {
+      let photosCopy = photos.slice();
+      console.log(res);
+      photosCopy.push(res.data.data.url);
+      setPhotos(photosCopy);
+    })
+    .catch((err) => console.log(err))
+  }
+
+  const setNewRating = (index) => {
+    setRating(index);
   }
 
   return (
@@ -41,12 +82,19 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
         <form onSubmit={postReview}>
           <label>
             Overall Rating*
-            <Stars rating={0} tag={'writeReview'} size={'50px'}/>
+            <Stars rating={rating} tag={'writeReview'} size={'50px'} setNewRating={setNewRating}/>
+            {rating === 1 ? 'Poor'
+            : rating === 2 ? 'Fair'
+            : rating === 3 ? 'Average'
+            : rating === 4 ? 'Good'
+            : rating === 5 ? 'Great'
+            : null}
           </label>
+          <br/>
           <label>
             {'Do you recommend this product?* '}
-            <input type='radio' name='recommendation' value='Yes' onChange={() => setRecommend('Yes')}/>{'Yes '}
-            <input type='radio' name='recommendation' value='No' onChange={() => setRecommend('No')}/>{'No'}
+            <input type='radio' name='recommendation' value='Yes' onChange={() => setRecommend(true)}/>{'Yes '}
+            <input type='radio' name='recommendation' value='No' onChange={() => setRecommend(false)}/>{'No'}
           </label>
           <br/>
           <label>
@@ -119,19 +167,21 @@ const WriteReviewModal = ({show, productName, characteristics}) => {
           <br/>
           <label>
             {'Review Body* '}
-            <input type='text' minLength={50} maxLength={1000} placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
-            {'Character count portion goes here'}
+            <input type='text' minLength={50} maxLength={1000} id='reviewBody' placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
+            {body.length <= 50
+            ? <p>Minimum required characters left: {50 - body.length}</p>
+            : null}
           </label>
           <br/>
           <label>
             {'Add Photos '}
             {photos.length <= 5
-            ? <input type='file' accept='.png, .jpg, .jpeg' multiple onChange={addPhoto} />
+            ? <input type='file' id='photosInput' accept='.png, .jpg' multiple onChange={receivePhoto} />
             : null}
           </label>
           <br/>
           {photos.map((photo, idx) =>
-            <img src={photo} alt={'Photo Unavailable'} key={idx}/>
+            <img src={photo} alt={'Photo Unavailable'}  height={100} width={100} key={idx}/>
           )}
           <br/>
           <label>

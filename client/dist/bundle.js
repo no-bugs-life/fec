@@ -1554,10 +1554,11 @@ __webpack_require__.r(__webpack_exports__);
 var ProgressBar = function ProgressBar(_ref) {
   var rateData = _ref.rateData,
     totalRates = _ref.totalRates,
-    setFilter = _ref.setFilter;
+    setFilter = _ref.setFilter,
+    rateIdx = _ref.rateIdx;
   var handleClick = function handleClick(e) {
     e.preventDefault();
-    console.log(e);
+    setFilter(rateIdx);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -1618,7 +1619,9 @@ var RatingBreakdown = function RatingBreakdown(_ref) {
     }
     setTotalRates(rateCount);
   }, []);
-  var handleFilter = function handleFilter() {};
+  var handleFilter = function handleFilter(index) {
+    console.log(index);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: Object.keys(summaryData) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
@@ -1627,31 +1630,36 @@ var RatingBreakdown = function RatingBreakdown(_ref) {
         children: ["5 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['5'],
           totalRates: totalRates,
-          setFilter: handleFilter
+          setFilter: handleFilter,
+          rateIdx: 5
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["4 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['4'],
           totalRates: totalRates,
-          setFilter: handleFilter
+          setFilter: handleFilter,
+          rateIdx: 4
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["3 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['3'],
           totalRates: totalRates,
-          setFilter: handleFilter
+          setFilter: handleFilter,
+          rateIdx: 3
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["2 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['2'],
           totalRates: totalRates,
-          setFilter: handleFilter
+          setFilter: handleFilter,
+          rateIdx: 2
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["1 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['1'],
           totalRates: totalRates,
-          setFilter: handleFilter
+          setFilter: handleFilter,
+          rateIdx: 1
         })]
       }), (parseInt(recommendData["true"]) / (parseInt(recommendData["false"]) + parseInt(recommendData["true"])) * 100).toFixed(2) + '% Recommended']
     }) : null
@@ -1900,7 +1908,8 @@ var ReviewList = function ReviewList(_ref) {
     }), writeReview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
       show: writeReview,
       productName: productName,
-      characteristics: ratingData.characteristics
+      characteristics: ratingData.characteristics,
+      product_id: product_id
     }) : null]
   });
 };
@@ -1925,6 +1934,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _css_Reviews_styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/Reviews/styles.css */ "./client/src/css/Reviews/styles.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -1934,11 +1949,24 @@ __webpack_require__.r(__webpack_exports__);
 
 var ReviewTile = function ReviewTile(_ref) {
   var review = _ref.review;
-  // console.log(review);
-
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState2 = _slicedToArray(_useState, 2),
+    showBody = _useState2[0],
+    setShowBody = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
+    _useState4 = _slicedToArray(_useState3, 2),
+    showHelpful = _useState4[0],
+    setShowHelpful = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(review.helpfulness),
+    _useState6 = _slicedToArray(_useState5, 2),
+    helpfulness = _useState6[0],
+    setHelpfulness = _useState6[1];
   var addHelpful = function addHelpful(e) {
     e.preventDefault();
     axios__WEBPACK_IMPORTED_MODULE_4__["default"].put("http://localhost:3000/api/reviews/".concat(review.review_id, "/helpful"));
+    var newHelp = helpfulness + 1;
+    setHelpfulness(newHelp);
+    setShowHelpful(false);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "reviewTile",
@@ -1953,10 +1981,15 @@ var ReviewTile = function ReviewTile(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("b", {
       children: review.summary
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-      children: review.body.length <= 250 ? review.body : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-        children: [review.body.substring(0, 250), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-          children: "Show More"
-        })]
+      children: review.body.length <= 250 ? review.body : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+        children: showBody ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+          children: [review.body.substring(0, 250), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+            onClick: function onClick() {
+              return setShowBody(false);
+            },
+            children: "Show More"
+          })]
+        }) : review.body
       })
     }), review.recommend ? 'I recommend this product ✓' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), review.photos.map(function (photo, idx) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
@@ -1967,13 +2000,18 @@ var ReviewTile = function ReviewTile(_ref) {
       }, idx);
     }), review.response ? review.response : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: "Was this review helpful?"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-      onClick: addHelpful,
-      children: "Yes"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-      children: "No"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
-      children: review.helpfulness
+    }), showHelpful ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: addHelpful,
+        children: "Yes"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+        onClick: function onClick() {
+          return setShowHelpful(false);
+        },
+        children: "No"
+      })]
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
+      children: helpfulness
     })]
   });
 };
@@ -2052,6 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Stars/Stars.jsx */ "./client/src/components/Stars/Stars.jsx");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2064,11 +2103,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var WriteReviewModal = function WriteReviewModal(_ref) {
   var show = _ref.show,
     productName = _ref.productName,
-    characteristics = _ref.characteristics;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
+    characteristics = _ref.characteristics,
+    product_id = _ref.product_id;
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState2 = _slicedToArray(_useState, 2),
     rating = _useState2[0],
     setRating = _useState2[1];
@@ -2122,15 +2163,51 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
     setEmail = _useState26[1];
   var postReview = function postReview(e) {
     e.preventDefault();
-    var postObj = {};
+    var postObj = {
+      "product_id": product_id,
+      "rating": rating,
+      "recommend": recommend,
+      "summary": summary,
+      "body": body,
+      "photos": photos,
+      "name": nickName,
+      "email": email
+    };
   };
-  var addPhoto = function addPhoto(e) {
+  var receivePhoto = function receivePhoto(e) {
     e.preventDefault();
-    var photosCopy = photos.slice();
-    console.log(e.target.value);
-    photosCopy.push(e.target.value);
-    console.log(photosCopy);
-    setPhotos(photosCopy);
+    var selectedFile = document.getElementById('photosInput').files[0];
+    getBase64(selectedFile);
+    // photosCopy.push(e.target.value);
+    // console.log(photosCopy);
+    //setPhotos(photosCopy);
+  };
+
+  var getBase64 = function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      //console.log(reader.result);
+      sendToApi(reader.result.replace('data:', '').replace(/^.+,/, ''));
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  };
+  var sendToApi = function sendToApi(base64Img) {
+    var form = new FormData();
+    form.append("image", base64Img);
+    axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('https://api.imgbb.com/1/upload?key=dd9bb00ace03cceb9b4d7d8f33bb5c8c', form).then(function (res) {
+      var photosCopy = photos.slice();
+      console.log(res);
+      photosCopy.push(res.data.data.url);
+      setPhotos(photosCopy);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  };
+  var setNewRating = function setNewRating(index) {
+    setRating(index);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
     className: "modal",
@@ -2145,24 +2222,25 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
         onSubmit: postReview,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ["Overall Rating*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            rating: 0,
+            rating: rating,
             tag: 'writeReview',
-            size: '50px'
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+            size: '50px',
+            setNewRating: setNewRating
+          }), rating === 1 ? 'Poor' : rating === 2 ? 'Fair' : rating === 3 ? 'Average' : rating === 4 ? 'Good' : rating === 5 ? 'Great' : null]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Do you recommend this product?* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "radio",
             name: "recommendation",
             value: "Yes",
             onChange: function onChange() {
-              return setRecommend('Yes');
+              return setRecommend(true);
             }
           }), 'Yes ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "radio",
             name: "recommendation",
             value: "No",
             onChange: function onChange() {
-              return setRecommend('No');
+              return setRecommend(false);
             }
           }), 'No']
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
@@ -2405,23 +2483,29 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
             type: "text",
             minLength: 50,
             maxLength: 1000,
+            id: "reviewBody",
             placeholder: "Why did you like the product or not?",
             required: true,
             onChange: function onChange(e) {
               return setBody(e.target.value);
             }
-          }), 'Character count portion goes here']
+          }), body.length <= 50 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+            children: ["Minimum required characters left: ", 50 - body.length]
+          }) : null]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Add Photos ', photos.length <= 5 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
             type: "file",
-            accept: ".png, .jpg, .jpeg",
+            id: "photosInput",
+            accept: ".png, .jpg",
             multiple: true,
-            onChange: addPhoto
+            onChange: receivePhoto
           }) : null]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), photos.map(function (photo, idx) {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
             src: photo,
-            alt: 'Photo Unavailable'
+            alt: 'Photo Unavailable',
+            height: 100,
+            width: 100
           }, idx);
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
           children: ['Nickname* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
@@ -2475,11 +2559,17 @@ __webpack_require__.r(__webpack_exports__);
 var Star = function Star(_ref) {
   var starFill = _ref.starFill,
     idx = _ref.idx,
-    size = _ref.size;
+    size = _ref.size,
+    sendRating = _ref.sendRating;
+  var sendIndex = function sendIndex(e) {
+    e.preventDefault();
+    sendRating(idx[idx.length - 1]);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
     height: size,
     width: size,
     viewBox: "-5 0 60 53.867",
+    onClick: sendIndex,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("linearGradient", {
       id: "myGradient" + idx,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("stop", {
@@ -2521,10 +2611,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var Stars = function Stars(_ref) {
   var rating = _ref.rating,
     tag = _ref.tag,
-    size = _ref.size;
+    size = _ref.size,
+    setNewRating = _ref.setNewRating;
   var starArr = [];
   var starTotal = rating * 100;
   if (starTotal % 25 < 13) {
@@ -2541,12 +2633,16 @@ var Stars = function Stars(_ref) {
       starTotal = 0;
     }
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+  var sendRating = function sendRating(index) {
+    setNewRating ? setNewRating(parseInt(index) + 1) : null;
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: starArr.map(function (starVal, idx) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Star_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
         starFill: starVal,
         idx: tag + ' StarIndex: ' + idx,
-        size: size
+        size: size,
+        sendRating: sendRating
       }, idx);
     })
   });

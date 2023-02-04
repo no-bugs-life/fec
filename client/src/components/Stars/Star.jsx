@@ -1,8 +1,14 @@
 import React, {useState} from 'react';
 
-const Star = ({starFill, idx, size}) => {
+const Star = ({starFill, idx, size, sendRating}) => {
+
+  const sendIndex = (e) => {
+    e.preventDefault();
+    sendRating(idx[idx.length - 1])
+  }
+
   return (
-    <svg height={size} width={size} viewBox="-5 0 60 53.867" >
+    <svg height={size} width={size} viewBox="-5 0 60 53.867" onClick={sendIndex}>
       <linearGradient id={"myGradient" + idx} >
         <stop offset={starFill} stopColor="black" />
         <stop offset={starFill} stopColor="white" />
