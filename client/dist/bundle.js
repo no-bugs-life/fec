@@ -25,7 +25,6 @@ function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefine
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 // import "../css/Overview/styles.css";
-
 // import Description from "./Overview/Description.jsx";
 
 // import ReviewList from './Reviews/ReviewList.jsx'
@@ -59,7 +58,7 @@ var App = function App() {
     });
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "product-main",
+    className: "product-main app",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Prodlists__WEBPACK_IMPORTED_MODULE_1__.RelatedList, {
       product: product
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Prodlists__WEBPACK_IMPORTED_MODULE_1__.OutfitList, {
@@ -151,7 +150,8 @@ var Card = function Card(_ref) {
     currentProductId = _ref.currentProductId,
     setModalPosition = _ref.setModalPosition,
     setModalToggle = _ref.setModalToggle,
-    setCompareProductId = _ref.setCompareProductId;
+    setCompareProductId = _ref.setCompareProductId,
+    cardAnimation = _ref.cardAnimation;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({}),
     _useState2 = _slicedToArray(_useState, 2),
     product = _useState2[0],
@@ -180,7 +180,7 @@ var Card = function Card(_ref) {
     };
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "card",
+    className: "card ".concat(cardAnimation),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "card-image-container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
@@ -196,7 +196,7 @@ var Card = function Card(_ref) {
         }
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "card-container",
+      className: "card-info-container",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
         className: "card-button-compare",
         onClick: function onClick(e) {
@@ -208,14 +208,17 @@ var Card = function Card(_ref) {
           setModalToggle(true);
         },
         children: "\uD83E\uDD37"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: product.category
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: product.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: product.default_price
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-        children: "\u2B50\u2B50\u2B50\u2B50\u2B50"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        className: "card-description",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: product.category
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: product.name
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: product.default_price
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+          children: "\u2B50\u2B50\u2B50\u2B50\u2B50"
+        })]
       })]
     })]
   });
@@ -585,6 +588,10 @@ var RelatedList = function RelatedList(_ref) {
     _useState10 = _slicedToArray(_useState9, 2),
     compareProductId = _useState10[0],
     setCompareProductId = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('fadeInFromLeft'),
+    _useState12 = _slicedToArray(_useState11, 2),
+    cardAnimation = _useState12[0],
+    setCardAnimation = _useState12[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     if (Object.keys(product).length) {
       axios__WEBPACK_IMPORTED_MODULE_5__["default"].get("api/products/".concat(product.id, "/related")).then(function (result) {
@@ -619,12 +626,15 @@ var RelatedList = function RelatedList(_ref) {
       }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "related-list-container",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-          className: "related-list-container-lscroll",
+          className: "related-list-container-scroll",
           onClick: function onClick() {
+            setCardAnimation('fadeInFromLeft');
             updateView(page - 1);
           },
           disabled: page === 0,
-          children: '<'
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+            "class": "arrow left"
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "related-list-card-container",
           children: productIds.view.map(function (relatedProductId) {
@@ -647,16 +657,20 @@ var RelatedList = function RelatedList(_ref) {
               },
               setModalPosition: setModalPosition,
               setModalToggle: setModalToggle,
-              setCompareProductId: setCompareProductId
+              setCompareProductId: setCompareProductId,
+              cardAnimation: cardAnimation
             }, 'id_rel_' + relatedProductId);
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-          className: "related-list-container-rscroll",
+          className: "related-list-container-scroll",
           onClick: function onClick() {
+            setCardAnimation('fadeInFromRight');
             updateView(page + 1);
           },
           disabled: page === Math.ceil(productIds.related.length / 4) - 1,
-          children: '>'
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("i", {
+            "class": "arrow right"
+          })
         })]
       })]
     })]
@@ -9960,6 +9974,33 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/src/css/App.css":
+/*!**********************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/src/css/App.css ***!
+  \**********************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/* body{\r\n  background-color: #929292;\r\n} */", "",{"version":3,"sources":["webpack://./client/src/css/App.css"],"names":[],"mappings":"AAAA;;GAEG","sourcesContent":["/* body{\r\n  background-color: #929292;\r\n} */"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Prodlists/AddOutfitCard.css":
 /*!******************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./client/src/css/Prodlists/AddOutfitCard.css ***!
@@ -10007,7 +10048,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  min-width:200px;\r\n  min-height: 361px;\r\n  border: 1px solid blue;\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(255, 0, 0)\r\n}\r\n\r\n.card-image-button.heart-off{\r\n  color: rgb(104, 84, 74)\r\n}\r\n\r\n.card-image-button.heart-off:hover{\r\n  color: rgb(236, 101, 175)\r\n}\r\n\r\n.card-image-button.remove-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.remove-on:hover{\r\n  color: rgb(253, 0, 0);\r\n  font-size: 31px;\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,eAAe;EACf,iBAAiB;EACjB,sBAAsB;AACxB;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE,qBAAqB;EACrB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,UAAU;EACV,WAAW;EACX,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,+BAA+B;AACjC;;AAEA;EACE,yBAAyB;AAC3B;;;AAGA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB","sourcesContent":[".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  min-width:200px;\r\n  min-height: 361px;\r\n  border: 1px solid blue;\r\n}\r\n\r\n.card-image-container{\r\n  position: relative;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(255, 0, 0)\r\n}\r\n\r\n.card-image-button.heart-off{\r\n  color: rgb(104, 84, 74)\r\n}\r\n\r\n.card-image-button.heart-off:hover{\r\n  color: rgb(236, 101, 175)\r\n}\r\n\r\n.card-image-button.remove-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.remove-on:hover{\r\n  color: rgb(253, 0, 0);\r\n  font-size: 31px;\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -20px;\r\n  right:-10px;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 0px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n\r\n.card-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  min-width:200px;\r\n  min-height: 361px;\r\n  border: 1px solid blue;\r\n}\r\n\r\n\r\n\r\n.card-image-container{\r\n  position: relative;\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(255, 0, 0)\r\n}\r\n\r\n.card-image-button.heart-off{\r\n  color: rgb(255, 255, 255);\r\n  -webkit-text-stroke: 2px rgb(255, 140, 140);\r\n}\r\n\r\n.card-image-button.heart-off:hover{\r\n  color: rgb(255, 140, 140)\r\n}\r\n\r\n.card-image-button.remove-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.remove-on:hover{\r\n  color: rgb(253, 0, 0);\r\n  font-size: 31px;\r\n}\r\n\r\n.card-info-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -5px;\r\n  right:0%;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 10px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n.card-description{\r\n  position: absolute;\r\n}\r\n\r\n\r\n\r\n.fadeInFromLeft{\r\n  animation-name: fadeInFromLeft;\r\n  animation-duration: .5s;\r\n  animation-fill-mode: both;\r\n}\r\n\r\n.fadeInFromRight{\r\n  animation-name: fadeInFromRight;\r\n  animation-duration: .5s;\r\n  animation-fill-mode: both;\r\n}\r\n\r\n\r\n@keyframes fadeInFromLeft {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translateX(-25px);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: translateX(0);\r\n  }\r\n}\r\n\r\n@keyframes fadeInFromRight {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translateX(25px);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: translateX(0);\r\n  }\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/Card.css"],"names":[],"mappings":"AAAA;EACE,iBAAiB;EACjB,kBAAkB;EAClB,eAAe;EACf,iBAAiB;EACjB,sBAAsB;AACxB;;;;AAIA;EACE,kBAAkB;EAClB,WAAW;EACX,YAAY;AACd;;AAEA;EACE,WAAW;EACX,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,OAAO;EACP,SAAS;EACT,kBAAkB;EAClB,eAAe;EACf,iBAAiB;;EAEjB,6BAA6B;EAC7B,WAAW;EACX,yBAAyB;;EAEzB,eAAe;AACjB;;AAEA;EACE;AACF;;AAEA;EACE,yBAAyB;EACzB,2CAA2C;AAC7C;;AAEA;EACE;AACF;;AAEA;EACE;AACF;AACA;EACE,qBAAqB;EACrB,eAAe;AACjB;;AAEA;EACE,kBAAkB;EAClB,uBAAuB;EACvB,gBAAgB;AAClB;;AAEA;EACE,kBAAkB;EAClB,iCAAiC;EACjC,SAAS;EACT,QAAQ;EACR,YAAY;EACZ,yBAAyB;EACzB,kBAAkB;EAClB,qBAAqB;EACrB,qBAAqB;EACrB,cAAc;EACd,eAAe;EACf,gCAAgC;AAClC;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;EACE,kBAAkB;AACpB;;;;AAIA;EACE,8BAA8B;EAC9B,uBAAuB;EACvB,yBAAyB;AAC3B;;AAEA;EACE,+BAA+B;EAC/B,uBAAuB;EACvB,yBAAyB;AAC3B;;;AAGA;EACE;IACE,UAAU;IACV,4BAA4B;EAC9B;EACA;IACE,UAAU;IACV,wBAAwB;EAC1B;AACF;;AAEA;EACE;IACE,UAAU;IACV,2BAA2B;EAC7B;EACA;IACE,UAAU;IACV,wBAAwB;EAC1B;AACF","sourcesContent":[".card{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  min-width:200px;\r\n  min-height: 361px;\r\n  border: 1px solid blue;\r\n}\r\n\r\n\r\n\r\n.card-image-container{\r\n  position: relative;\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image{\r\n  width:200px;\r\n  height:200px;\r\n}\r\n\r\n.card-image-button{\r\n  position: absolute;\r\n  top: 0%;\r\n  left: 83%;\r\n  text-align: center;\r\n  font-size: 30px;\r\n  font-weight: bold;\r\n\r\n  background-color: transparent;\r\n  border: 0px;\r\n  padding: 0px 10px 0px 0px;\r\n\r\n  cursor: pointer;\r\n}\r\n\r\n.card-image-button.heart-on{\r\n  color: rgb(255, 0, 0)\r\n}\r\n\r\n.card-image-button.heart-off{\r\n  color: rgb(255, 255, 255);\r\n  -webkit-text-stroke: 2px rgb(255, 140, 140);\r\n}\r\n\r\n.card-image-button.heart-off:hover{\r\n  color: rgb(255, 140, 140)\r\n}\r\n\r\n.card-image-button.remove-on{\r\n  color: rgb(175, 0, 0)\r\n}\r\n.card-image-button.remove-on:hover{\r\n  color: rgb(253, 0, 0);\r\n  font-size: 31px;\r\n}\r\n\r\n.card-info-container{\r\n  position: relative;\r\n  margin: 5px 0px 5px 5px;\r\n  text-align: left;\r\n}\r\n\r\n.card-button-compare{\r\n  position: absolute;\r\n  background-color: rgb(75, 75, 75);\r\n  top: -5px;\r\n  right:0%;\r\n  border: none;\r\n  padding: 5px 8px 5px 10px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  margin-left: 0;\r\n  cursor: pointer;\r\n  border-radius: 0px 0px 10px 10px;\r\n}\r\n\r\n.card-button-compare:hover{\r\n  background-color: #434343;\r\n}\r\n\r\n.card-description{\r\n  position: absolute;\r\n}\r\n\r\n\r\n\r\n.fadeInFromLeft{\r\n  animation-name: fadeInFromLeft;\r\n  animation-duration: .5s;\r\n  animation-fill-mode: both;\r\n}\r\n\r\n.fadeInFromRight{\r\n  animation-name: fadeInFromRight;\r\n  animation-duration: .5s;\r\n  animation-fill-mode: both;\r\n}\r\n\r\n\r\n@keyframes fadeInFromLeft {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translateX(-25px);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: translateX(0);\r\n  }\r\n}\r\n\r\n@keyframes fadeInFromRight {\r\n  0% {\r\n    opacity: 0;\r\n    transform: translateX(25px);\r\n  }\r\n  100% {\r\n    opacity: 1;\r\n    transform: translateX(0);\r\n  }\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10061,7 +10102,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n  width: 1000px;\n  height: 361px\n}\n\n.outfit-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/OutfitList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;EACnB,aAAa;EACb;AACF;;AAEA;EACE,oBAAoB;EACpB;AACF","sourcesContent":[".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n  width: 1000px;\n  height: 361px\n}\n\n.outfit-list-card-container{\n  display: inline-flex;\n  flex-direction: row\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n  min-width: 1000px;\n  height: 361px;\n  justify-content: space-between;\n}\n\n.outfit-list-container button{\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n.outfit-list-card-container{\n  min-width: 888px;\n  display: inline-flex;\n  flex-direction: row;\n  justify-content: flex-start;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/OutfitList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;EACnB,iBAAiB;EACjB,aAAa;EACb,8BAA8B;AAChC;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,gBAAgB;EAChB,oBAAoB;EACpB,mBAAmB;EACnB,2BAA2B;AAC7B","sourcesContent":[".outfit-list{\n  border: 1px solid red;\n  text-align: center;\n}\n\n.outfit-list-container{\n  border: 1px solid rgb(111, 55, 55);\n  display: inline-flex;\n  flex-direction: row;\n  min-width: 1000px;\n  height: 361px;\n  justify-content: space-between;\n}\n\n.outfit-list-container button{\n  margin-left: 10px;\n  margin-right: 10px;\n}\n\n.outfit-list-card-container{\n  min-width: 888px;\n  display: inline-flex;\n  flex-direction: row;\n  justify-content: flex-start;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -10088,9 +10129,64 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  min-width: 1000px;\r\n  height: 361px;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}\r\n\r\n.related-list-container-lscroll{\r\n\r\n}\r\n\r\n.related-list-container-rscroll{\r\n\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/RelatedList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;;AAEpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;EACnB,iBAAiB;EACjB,aAAa;EACb,kBAAkB;AACpB;;AAEA;EACE,iBAAiB;EACjB,kBAAkB;AACpB;;AAEA;EACE,oBAAoB;EACpB;AACF;;AAEA;;AAEA;;AAEA;;AAEA","sourcesContent":[".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  min-width: 1000px;\r\n  height: 361px;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container button{\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n}\r\n\r\n.related-list-card-container{\r\n  display: inline-flex;\r\n  flex-direction: row\r\n}\r\n\r\n.related-list-container-lscroll{\r\n\r\n}\r\n\r\n.related-list-container-rscroll{\r\n\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  min-width: 1000px;\r\n  height: 361px;\r\n  justify-content: space-between;\r\n}\r\n\r\n.related-list-container-scroll{\r\n  position: relative;\r\n  top: calc(50% - 15px);\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  width: 30px;\r\n  height: 30px;\r\n  border: 0;\r\n  background-color: transparent;\r\n  color:black;;\r\n  cursor: pointer;\r\n  border-radius: 5px;\r\n}\r\n\r\n.related-list-container-scroll:hover{\r\n  background-color: rgba(239, 239, 239, 0.5) ;\r\n}\r\n\r\n\r\n.related-list-container-scroll:disabled{\r\n  opacity: 0;\r\n  cursor:default;\r\n}\r\n\r\n.related-list-card-container{\r\n  min-width: 888px;\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  justify-content: flex-start;\r\n}\r\n\r\n\r\n.arrow {\r\n  border: solid black;\r\n  border-width: 0 3px 3px 0;\r\n  display: inline-block;\r\n  padding: 3px;\r\n}\r\n\r\n.right {\r\n  transform: rotate(-45deg);\r\n  -webkit-transform: rotate(-45deg);\r\n}\r\n\r\n.left {\r\n  transform: rotate(135deg);\r\n  -webkit-transform: rotate(135deg);\r\n}", "",{"version":3,"sources":["webpack://./client/src/css/Prodlists/RelatedList.css"],"names":[],"mappings":"AAAA;EACE,qBAAqB;EACrB,kBAAkB;AACpB;;AAEA;EACE,kCAAkC;EAClC,oBAAoB;EACpB,mBAAmB;EACnB,iBAAiB;EACjB,aAAa;EACb,8BAA8B;AAChC;;AAEA;EACE,kBAAkB;EAClB,qBAAqB;EACrB,iBAAiB;EACjB,kBAAkB;EAClB,WAAW;EACX,YAAY;EACZ,SAAS;EACT,6BAA6B;EAC7B,WAAW;EACX,eAAe;EACf,kBAAkB;AACpB;;AAEA;EACE,2CAA2C;AAC7C;;;AAGA;EACE,UAAU;EACV,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,oBAAoB;EACpB,mBAAmB;EACnB,2BAA2B;AAC7B;;;AAGA;EACE,mBAAmB;EACnB,yBAAyB;EACzB,qBAAqB;EACrB,YAAY;AACd;;AAEA;EACE,yBAAyB;EACzB,iCAAiC;AACnC;;AAEA;EACE,yBAAyB;EACzB,iCAAiC;AACnC","sourcesContent":[".related-list{\r\n  border: 1px solid red;\r\n  text-align: center;\r\n}\r\n\r\n.related-list-container{\r\n  border: 1px solid rgb(111, 55, 55);\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  min-width: 1000px;\r\n  height: 361px;\r\n  justify-content: space-between;\r\n}\r\n\r\n.related-list-container-scroll{\r\n  position: relative;\r\n  top: calc(50% - 15px);\r\n  margin-left: 10px;\r\n  margin-right: 10px;\r\n  width: 30px;\r\n  height: 30px;\r\n  border: 0;\r\n  background-color: transparent;\r\n  color:black;;\r\n  cursor: pointer;\r\n  border-radius: 5px;\r\n}\r\n\r\n.related-list-container-scroll:hover{\r\n  background-color: rgba(239, 239, 239, 0.5) ;\r\n}\r\n\r\n\r\n.related-list-container-scroll:disabled{\r\n  opacity: 0;\r\n  cursor:default;\r\n}\r\n\r\n.related-list-card-container{\r\n  min-width: 888px;\r\n  display: inline-flex;\r\n  flex-direction: row;\r\n  justify-content: flex-start;\r\n}\r\n\r\n\r\n.arrow {\r\n  border: solid black;\r\n  border-width: 0 3px 3px 0;\r\n  display: inline-block;\r\n  padding: 3px;\r\n}\r\n\r\n.right {\r\n  transform: rotate(-45deg);\r\n  -webkit-transform: rotate(-45deg);\r\n}\r\n\r\n.left {\r\n  transform: rotate(135deg);\r\n  -webkit-transform: rotate(135deg);\r\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./client/src/css/App.css":
+/*!********************************!*\
+  !*** ./client/src/css/App.css ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_App_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!./App.css */ "./node_modules/css-loader/dist/cjs.js!./client/src/css/App.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_App_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_App_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_App_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_App_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -14337,12 +14433,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _components_App_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App.jsx */ "./client/src/components/App.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_App_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/App.css */ "./client/src/css/App.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
-(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_App_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {}), document.getElementById("root"));
+
+(0,react_dom__WEBPACK_IMPORTED_MODULE_1__.render)( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_App_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  className: "app"
+}), document.getElementById('root'));
 })();
 
 /******/ })()

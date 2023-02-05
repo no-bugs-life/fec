@@ -11,7 +11,8 @@ const Card = ({
   currentProductId,
   setModalPosition,
   setModalToggle,
-  setCompareProductId
+  setCompareProductId,
+  cardAnimation
 }) => {
 
   const [product, setProduct] = useState({});
@@ -51,7 +52,7 @@ const Card = ({
   )
 
   return (
-    <div className='card'>
+    <div className={`card ${cardAnimation}`}>
       <div className='card-image-container'>
         <img
           className='card-image'
@@ -80,7 +81,7 @@ const Card = ({
         />
 
       </div>
-      <div className='card-container'>
+      <div className='card-info-container'>
         <button
           className='card-button-compare'
           onClick= {
@@ -97,10 +98,13 @@ const Card = ({
           🤷
         </button>
 
-        <p>{product.category}</p>
-        <p>{product.name}</p>
-        <p>{product.default_price}</p>
-        <p>⭐⭐⭐⭐⭐</p>
+        <div className='card-description'>
+          <p>{product.category}</p>
+          <p>{product.name}</p>
+          <p>{product.default_price}</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+
       </div>
     </div>
   )

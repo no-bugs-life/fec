@@ -6,8 +6,12 @@
   border: 1px solid blue;
 }
 
+
+
 .card-image-container{
   position: relative;
+  width:200px;
+  height:200px;
 }
 
 .card-image{
@@ -35,11 +39,12 @@
 }
 
 .card-image-button.heart-off{
-  color: rgb(104, 84, 74)
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 2px rgb(255, 140, 140);
 }
 
 .card-image-button.heart-off:hover{
-  color: rgb(236, 101, 175)
+  color: rgb(255, 140, 140)
 }
 
 .card-image-button.remove-on{
@@ -50,11 +55,17 @@
   font-size: 31px;
 }
 
+.card-info-container{
+  position: relative;
+  margin: 5px 0px 5px 5px;
+  text-align: left;
+}
+
 .card-button-compare{
   position: absolute;
   background-color: rgb(75, 75, 75);
-  top: -20px;
-  right:-10px;
+  top: -5px;
+  right:0%;
   border: none;
   padding: 5px 8px 5px 10px;
   text-align: center;
@@ -62,16 +73,50 @@
   display: inline-block;
   margin-left: 0;
   cursor: pointer;
-  border-radius: 0px 0px 0px 10px;
+  border-radius: 0px 0px 10px 10px;
 }
 
 .card-button-compare:hover{
   background-color: #434343;
 }
 
+.card-description{
+  position: absolute;
+}
 
-.card-container{
-  position: relative;
-  margin: 5px 0px 5px 5px;
-  text-align: left;
+
+
+.fadeInFromLeft{
+  animation-name: fadeInFromLeft;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.fadeInFromRight{
+  animation-name: fadeInFromRight;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

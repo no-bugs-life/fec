@@ -1,7 +1,6 @@
 
 import React, {useState, useEffect} from "react";
 // import "../css/Overview/styles.css";
-
 // import Description from "./Overview/Description.jsx";
 
 // import ReviewList from './Reviews/ReviewList.jsx'
@@ -31,7 +30,7 @@ const App = ()=> {
 
 
   return(
-    <div className="product-main">
+    <div className="product-main app">
       {/* Overview */}
       {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
 

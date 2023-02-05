@@ -7,11 +7,19 @@
   border: 1px solid rgb(111, 55, 55);
   display: inline-flex;
   flex-direction: row;
-  width: 1000px;
-  height: 361px
+  min-width: 1000px;
+  height: 361px;
+  justify-content: space-between;
+}
+
+.outfit-list-container button{
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .outfit-list-card-container{
+  min-width: 888px;
   display: inline-flex;
-  flex-direction: row
+  flex-direction: row;
+  justify-content: flex-start;
 }

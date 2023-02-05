@@ -22,7 +22,7 @@ const RelatedList = ({product}) => {
   const [modalToggle, setModalToggle] = useState(false);
   const [modalPosition, setModalPosition] = useState({x:0 , y:0});
   const [compareProductId, setCompareProductId] = useState(null)
-
+  const [cardAnimation, setCardAnimation] = useState('fadeInFromLeft')
   useEffect(
     () => {
       if(Object.keys(product).length){
@@ -71,19 +71,18 @@ const RelatedList = ({product}) => {
 
         <div className='related-list-container'>
           <button
-            className='related-list-container-lscroll'
+            className='related-list-container-scroll'
             onClick={
               ()=>{
+                setCardAnimation('fadeInFromLeft')
                 updateView(page - 1)
               }
             }
             disabled={page === 0}
           >
-            {'<'}
+            <i class="arrow left"></i>
           </button>
-          <div
-            className='related-list-card-container'
-          >
+          <div className='related-list-card-container'>
             {
               productIds.view.map((relatedProductId) => {
                 return (
@@ -110,21 +109,23 @@ const RelatedList = ({product}) => {
                     setModalPosition = {setModalPosition}
                     setModalToggle = {setModalToggle}
                     setCompareProductId = {setCompareProductId}
+                    cardAnimation = {cardAnimation}
                   />
                 )
               })
             }
           </div>
           <button
-            className='related-list-container-rscroll'
+            className='related-list-container-scroll'
             onClick={
               ()=>{
+                setCardAnimation('fadeInFromRight')
                 updateView(page + 1)
               }
             }
             disabled={page === Math.ceil(productIds.related.length/4)-1}
           >
-            {'>'}
+            <i class="arrow right"></i>
           </button>
         </div>
       </div>
