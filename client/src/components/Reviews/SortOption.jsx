@@ -15,9 +15,9 @@ const SortOption = ({handleSortChange}) => {
       <label>
         {'Sort by: '}
         <select value={option} onChange={handleSubmit}>
-          <option value='Helpful'>Helpful</option>
-          <option value='Newest'>Newest</option>
-          <option value='Relevant'>Relevant</option>
+          <option value='helpful'>Helpful</option>
+          <option value='newest'>Newest</option>
+          <option value='relevant'>Relevant</option>
         </select>
       </label>
     </form>

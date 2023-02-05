@@ -21,7 +21,8 @@ const App = ()=> {
     () => {
       axios.get('/api/products',{params:{count:30}})
         .then(res => {
-          setProduct(res.data[4]);
+          //console.log(res.data[0])
+          setProduct(res.data[0]);
         })
         .catch(err => console.log(err))
     },
@@ -35,7 +36,7 @@ const App = ()=> {
       {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
 
       {/* Review & Ratings */}
-      {/* <ReviewList product_id={40344}/> */}
+      <ReviewList product_id={40352} productName={product.name}/>
 
       {/* Questions */}
       {/* <div className="questions">
