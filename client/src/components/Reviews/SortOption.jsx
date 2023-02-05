@@ -13,7 +13,7 @@ const SortOption = ({handleSortChange}) => {
   return (
     <form>
       <label>
-        {'Sort by: '}
+        {'Sort on: '}
         <select value={option} onChange={handleSubmit}>
           <option value='helpful'>Helpful</option>
           <option value='newest'>Newest</option>

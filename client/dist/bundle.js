@@ -1226,7 +1226,7 @@ var QuestionComponent = function QuestionComponent(_ref) {
           product_id: 40348 //product.id
         }
       }).then(function (res) {
-        console.log('results', res.data);
+        //console.log('results', res.data);
         setQuestion(res.data);
       })["catch"](function (err) {
         return console.log(err);
@@ -1240,7 +1240,7 @@ var QuestionComponent = function QuestionComponent(_ref) {
           question_id: 40348 //question.id
         }
       }).then(function (res) {
-        console.log('answers', res.data);
+        //console.log('answers', res.data);
         setAnswer(res.data);
         setLoading(false);
       })["catch"](function (err) {
@@ -1607,7 +1607,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var RatingBreakdown = function RatingBreakdown(_ref) {
   var summaryData = _ref.summaryData,
-    recommendData = _ref.recommendData;
+    recommendData = _ref.recommendData,
+    handleFilter = _ref.handleFilter,
+    filters = _ref.filters;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
     _useState2 = _slicedToArray(_useState, 2),
     totalRates = _useState2[0],
@@ -1619,46 +1621,53 @@ var RatingBreakdown = function RatingBreakdown(_ref) {
     }
     setTotalRates(rateCount);
   }, []);
-  var handleFilter = function handleFilter(index) {
-    console.log(index);
+  var handleFilterRB = function handleFilterRB(index) {
+    handleFilter(index);
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
     children: Object.keys(summaryData) ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
         children: "Rating Breakdown"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+      }), filters.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+        children: ['Filters: ' + filters, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+          onClick: function onClick() {
+            return handleFilterRB(filters);
+          },
+          children: "Remove All Filters"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
+      }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["5 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['5'],
           totalRates: totalRates,
-          setFilter: handleFilter,
+          setFilter: handleFilterRB,
           rateIdx: 5
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["4 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['4'],
           totalRates: totalRates,
-          setFilter: handleFilter,
+          setFilter: handleFilterRB,
           rateIdx: 4
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["3 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['3'],
           totalRates: totalRates,
-          setFilter: handleFilter,
+          setFilter: handleFilterRB,
           rateIdx: 3
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["2 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['2'],
           totalRates: totalRates,
-          setFilter: handleFilter,
+          setFilter: handleFilterRB,
           rateIdx: 2
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
         children: ["1 Stars:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ProgressBar_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
           rateData: summaryData['1'],
           totalRates: totalRates,
-          setFilter: handleFilter,
+          setFilter: handleFilterRB,
           rateIdx: 1
         })]
       }), (parseInt(recommendData["true"]) / (parseInt(recommendData["false"]) + parseInt(recommendData["true"])) * 100).toFixed(2) + '% Recommended']
@@ -1698,14 +1707,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var RatingBreakdownSection = function RatingBreakdownSection(_ref) {
   var product_id = _ref.product_id,
-    ratingData = _ref.ratingData;
+    ratingData = _ref.ratingData,
+    handleFilter = _ref.handleFilter,
+    filters = _ref.filters;
+  var handleFilterRBS = function handleFilterRBS(index) {
+    handleFilter(index);
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: Object.keys(ratingData).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_RatingSummary_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
         summaryData: ratingData.ratings
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_RatingBreakdown_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
         summaryData: ratingData.ratings,
-        recommendData: ratingData.recommended
+        recommendData: ratingData.recommended,
+        handleFilter: handleFilterRBS,
+        filters: filters
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ProductBreakdown_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
         productData: ratingData.characteristics
       })]
@@ -1801,6 +1817,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingBreakdownSection/RatingBreakdownSection.jsx */ "./client/src/components/Reviews/RatingBreakdownSection/RatingBreakdownSection.jsx");
 /* harmony import */ var _WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./WriteReviewModal.jsx */ "./client/src/components/Reviews/WriteReviewModal.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1835,10 +1853,14 @@ var ReviewList = function ReviewList(_ref) {
     _useState8 = _slicedToArray(_useState7, 2),
     writeReview = _useState8[0],
     setWriteReview = _useState8[1];
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+    _useState10 = _slicedToArray(_useState9, 2),
+    filters = _useState10[0],
+    setFilters = _useState10[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     callReviewData('relevant');
     callProductData();
-  }, []);
+  }, [filters]);
   var callReviewData = function callReviewData(sortChoice) {
     if (product_id) {
       axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/', {
@@ -1848,9 +1870,29 @@ var ReviewList = function ReviewList(_ref) {
           "count": 20
         }
       }).then(function (res) {
-        //console.log(res.data);
-        setReviews(res.data.results);
-        setReviewsOnPage(res.data.results.slice(0, 2));
+        var newReviews = res.data.results;
+        if (filters.length) {
+          var newFilteredReviews = [];
+          var _iterator = _createForOfIteratorHelper(newReviews),
+            _step;
+          try {
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              var review = _step.value;
+              if (filters.includes(review.rating)) {
+                newFilteredReviews.push(review);
+              }
+            }
+          } catch (err) {
+            _iterator.e(err);
+          } finally {
+            _iterator.f();
+          }
+          setReviews(newFilteredReviews);
+          setReviewsOnPage(newFilteredReviews.slice(0, 2));
+        } else {
+          setReviews(newReviews);
+          setReviewsOnPage(newReviews.slice(0, 2));
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -1886,6 +1928,23 @@ var ReviewList = function ReviewList(_ref) {
     }
     setReviewsOnPage(newReviewsonPage);
   };
+  var handleFilterRL = function handleFilterRL(index) {
+    if (_typeof(index) === 'object') {
+      setFilters([]);
+    } else if (filters.includes(index)) {
+      var newFilters = filters.slice();
+      for (var i = 0; i < newFilters.length; i++) {
+        if (newFilters[i] === index) {
+          newFilters.splice(i, 1);
+        }
+      }
+      setFilters(newFilters);
+    } else {
+      var _newFilters = filters.slice();
+      _newFilters.push(index);
+      setFilters(_newFilters);
+    }
+  };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       handleSortChange: handleSortChange
@@ -1899,7 +1958,9 @@ var ReviewList = function ReviewList(_ref) {
         children: "More Reviews"
       }) : null]
     }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      ratingData: ratingData
+      ratingData: ratingData,
+      handleFilter: handleFilterRL,
+      filters: filters
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       onClick: function onClick() {
         return setWriteReview(true);
@@ -1961,13 +2022,21 @@ var ReviewTile = function ReviewTile(_ref) {
     _useState6 = _slicedToArray(_useState5, 2),
     helpfulness = _useState6[0],
     setHelpfulness = _useState6[1];
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    setHelpfulness(review.helpfulness);
+  }, [review]);
   var addHelpful = function addHelpful(e) {
     e.preventDefault();
-    axios__WEBPACK_IMPORTED_MODULE_4__["default"].put("http://localhost:3000/api/reviews/".concat(review.review_id, "/helpful"));
+    axios__WEBPACK_IMPORTED_MODULE_4__["default"].put("http://localhost:3000/api/reviews/".concat(review.review_id, "/helpful")).then(function (res) {
+      return null;
+    })["catch"](function (err) {
+      return console.log(err);
+    });
     var newHelp = helpfulness + 1;
     setHelpfulness(newHelp);
     setShowHelpful(false);
   };
+  console.log(review);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "reviewTile",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -2055,7 +2124,7 @@ var SortOption = function SortOption(_ref) {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
-      children: ['Sort by: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+      children: ['Sort on: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
         value: option,
         onChange: handleSubmit,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
@@ -2173,6 +2242,31 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
       "name": nickName,
       "email": email
     };
+    var newCharacteristics = {};
+    if (size) {
+      newCharacteristics["14"] = parseInt(size);
+    }
+    if (width) {
+      newCharacteristics["15"] = parseInt(width);
+    }
+    if (comfort) {
+      newCharacteristics["16"] = parseInt(comfort);
+    }
+    if (quality) {
+      newCharacteristics["17"] = parseInt(quality);
+    }
+    if (length) {
+      newCharacteristics["18"] = parseInt(length);
+    }
+    if (fit) {
+      newCharacteristics["19"] = parseInt(fit);
+    }
+    postObj.characteristics = newCharacteristics;
+    axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('http://localhost:3000/api/reviews/', postObj).then(function (res) {
+      return console.log(res);
+    })["catch"](function (err) {
+      return console.log(err);
+    });
   };
   var receivePhoto = function receivePhoto(e) {
     e.preventDefault();

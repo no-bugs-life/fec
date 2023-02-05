@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Stars from '../Stars/Stars.jsx';
 import axios from 'axios';
 import '../../css/Reviews/styles.css'
@@ -7,15 +7,22 @@ const ReviewTile = ({review}) => {
 
   const [showBody, setShowBody] = useState(true);
   const [showHelpful, setShowHelpful] = useState(true);
-  const [helpfulness, setHelpfulness] = useState(review.helpfulness)
+  const [helpfulness, setHelpfulness] = useState(review.helpfulness);
+
+  useEffect(() => {
+    setHelpfulness(review.helpfulness)
+  }, [review])
 
   const addHelpful = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`);
+    axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`)
+    .then((res) => null)
+    .catch((err) => console.log(err))
     let newHelp = helpfulness + 1;
     setHelpfulness(newHelp)
     setShowHelpful(false);
   }
+  console.log(review)
 
   return(
     <div className='reviewTile'>

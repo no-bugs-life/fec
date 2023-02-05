@@ -11,11 +11,12 @@ const ReviewList = ({product_id, productName}) => {
   const [reviewsOnPage, setReviewsOnPage] = useState([]);
   const [ratingData, setRatingData] = useState({});
   const [writeReview, setWriteReview] = useState(false);
+  const [filters, setFilters] = useState([]);
 
   useEffect(() => {
     callReviewData('relevant');
     callProductData();
-  }, []);
+  }, [filters]);
 
   const callReviewData = (sortChoice) => {
     if (product_id) {
@@ -25,9 +26,20 @@ const ReviewList = ({product_id, productName}) => {
           "sort": sortChoice,
           "count": 20}})
       .then((res) => {
-        //console.log(res.data);
-        setReviews(res.data.results);
-        setReviewsOnPage(res.data.results.slice(0, 2));
+        let newReviews = res.data.results;
+        if (filters.length) {
+          let newFilteredReviews = [];
+          for (let review of newReviews) {
+            if (filters.includes(review.rating)) {
+              newFilteredReviews.push(review);
+            }
+          }
+          setReviews(newFilteredReviews);
+          setReviewsOnPage(newFilteredReviews.slice(0, 2));
+        } else {
+          setReviews(newReviews);
+          setReviewsOnPage(newReviews.slice(0, 2));
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -66,6 +78,24 @@ const ReviewList = ({product_id, productName}) => {
     setReviewsOnPage(newReviewsonPage);
   }
 
+  const handleFilterRL = (index) => {
+    if (typeof index === 'object') {
+      setFilters([]);
+    } else if (filters.includes(index)) {
+      let newFilters = filters.slice();
+      for (let i = 0; i < newFilters.length; i++) {
+        if (newFilters[i] === index) {
+          newFilters.splice(i, 1);
+        }
+      }
+      setFilters(newFilters);
+    } else {
+      let newFilters = filters.slice();
+      newFilters.push(index);
+      setFilters(newFilters);
+    }
+  }
+
   return (
     <>
       <SortOption handleSortChange={handleSortChange} />
@@ -80,7 +110,7 @@ const ReviewList = ({product_id, productName}) => {
         </>
       : null
       }
-      <RatingBreakdownSection ratingData={ratingData}/>
+      <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
       <button onClick={() => setWriteReview(true)} >Write Review</button>
       {writeReview
       ? <WriteReviewModal show={writeReview} productName={productName} characteristics={ratingData.characteristics} product_id={product_id}/>

@@ -30,7 +30,29 @@ const WriteReviewModal = ({show, productName, characteristics, product_id}) => {
       "name": nickName,
       "email": email
     };
-
+    let newCharacteristics = {};
+    if (size) {
+      newCharacteristics["14"] = parseInt(size);
+    }
+    if (width) {
+      newCharacteristics["15"] = parseInt(width);
+    }
+    if (comfort) {
+      newCharacteristics["16"] = parseInt(comfort);
+    }
+    if (quality) {
+      newCharacteristics["17"] = parseInt(quality);
+    }
+    if (length) {
+      newCharacteristics["18"] = parseInt(length);
+    }
+    if (fit) {
+      newCharacteristics["19"] = parseInt(fit);
+    }
+    postObj.characteristics = newCharacteristics;
+    axios.post('http://localhost:3000/api/reviews/', postObj)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
   }
 
   const receivePhoto = (e) => {
