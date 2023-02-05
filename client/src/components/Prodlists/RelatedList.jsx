@@ -22,15 +22,16 @@ const RelatedList = ({product}) => {
   const [modalToggle, setModalToggle] = useState(false);
   const [modalPosition, setModalPosition] = useState({x:0 , y:0});
   const [compareProductId, setCompareProductId] = useState(null)
-
+  const [cardAnimation, setCardAnimation] = useState('fadeInFromLeft')
   useEffect(
     () => {
       if(Object.keys(product).length){
         axios.get(`api/products/${product.id}/related`)
         .then((result) => {
+          console.log(result.data)
           setProductsIds({
-            related: [...result.data],
-            view: [...result.data].splice(page*4, page*4 + 4)
+            related: [...new Set(result.data)],
+            view: [...new Set(result.data)].splice(page*4, page*4 + 4)
           });
         })
       }
@@ -52,7 +53,7 @@ const RelatedList = ({product}) => {
 
   return (
     <div>
-      <p>RELATED PRODUCTS</p>
+      <p>Related Products</p>
       <div className='related-list'>
 
         {
@@ -70,44 +71,61 @@ const RelatedList = ({product}) => {
 
         <div className='related-list-container'>
           <button
+            className='related-list-container-scroll'
             onClick={
               ()=>{
+                setCardAnimation('fadeInFromLeft')
                 updateView(page - 1)
               }
             }
             disabled={page === 0}
           >
-            {'<'}
+            <i class="arrow left"></i>
           </button>
-          <div
-            className='related-list-card-container'
-          >
+          <div className='related-list-card-container'>
             {
               productIds.view.map((relatedProductId) => {
                 return (
                   <Card
-                    key={'id_' + relatedProductId}
+                    key={'id_rel_' + relatedProductId}
                     currentProductId = {product.id}
                     productId = {relatedProductId}
-                    buttonType = 'star'
-                    buttonAction = {() => {}}
+                    buttonType = 'heart'
+                    buttonAction = {
+                      () => {
+                        let storage = JSON.parse(localStorage.getItem('user')).outfits
+                        let index = storage.indexOf(relatedProductId)
+                        if(index > -1){
+                          storage.splice(index, 1)
+                        }else{
+                          storage.unshift(relatedProductId)
+                        }
+
+                        localStorage.setItem('user', JSON.stringify({'outfits': storage}));
+                        window.dispatchEvent(new Event('storage'))
+
+                      }
+                    }
                     setModalPosition = {setModalPosition}
                     setModalToggle = {setModalToggle}
                     setCompareProductId = {setCompareProductId}
+                    cardAnimation = {cardAnimation}
                   />
                 )
               })
             }
           </div>
           <button
+            className='related-list-container-scroll'
             onClick={
               ()=>{
+                setCardAnimation('fadeInFromRight')
                 updateView(page + 1)
               }
             }
             disabled={page === Math.ceil(productIds.related.length/4)-1}
           >
-            {'>'}
+            <i class="arrow right"></i>
           </button>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/Card.css';
-//import rating stars
+//import rating hearts
 
 import axios from 'axios';
 
@@ -11,16 +11,19 @@ const Card = ({
   currentProductId,
   setModalPosition,
   setModalToggle,
-  setCompareProductId
+  setCompareProductId,
+  cardAnimation
 }) => {
 
   const [product, setProduct] = useState({});
   const [picture, setPicture] = useState('');
-  const [buttonToggle, setButtonToggle] = useState(buttonType === 'heart');
+  const [buttonToggle, setButtonToggle] = useState(
+    (buttonType === 'remove') ||
+    (JSON.parse(localStorage.getItem('user')).outfits.indexOf(productId) > -1)
+  );
 
-  const starOn = '★';
-  const starOff = '✰';
-  const heartOn = '❤';
+  const heart = '❤';
+  const remove = '✖';
 
   useEffect(
     () => {
@@ -34,12 +37,22 @@ const Card = ({
         setProduct(results[0].data);
         setPicture(results[1].data.results[0].photos[0].thumbnail_url)
       })
+
+      const toggleButtonOff = () => {
+        setButtonToggle(false)
+      }
+
+      window.addEventListener(`toggle_${productId}_off`, toggleButtonOff)
+
+      return () => {
+        window.removeEventListener(`toggle_${productId}_off`, toggleButtonOff)
+      }
     },
-    [productId]
+    []
   )
 
   return (
-    <div className='card'>
+    <div className={`card ${cardAnimation}`}>
       <div className='card-image-container'>
         <img
           className='card-image'
@@ -54,10 +67,10 @@ const Card = ({
               `card-image-button ${buttonType}-off`
           }
           value={
-            buttonType === 'star' ?
-              (buttonToggle ? starOn:starOff)
+            buttonType === 'heart' ?
+              heart
               :
-              heartOn
+              remove
           }
           onClick={
             ()=>{
@@ -68,7 +81,7 @@ const Card = ({
         />
 
       </div>
-      <div className='card-container'>
+      <div className='card-info-container'>
         <button
           className='card-button-compare'
           onClick= {
@@ -85,10 +98,13 @@ const Card = ({
           🤷
         </button>
 
-        <p>{product.category}</p>
-        <p>{product.name}</p>
-        <p>{product.default_price}</p>
-        <p>⭐⭐⭐⭐⭐</p>
+        <div className='card-description'>
+          <p>{product.category}</p>
+          <p>{product.name}</p>
+          <p>{product.default_price}</p>
+          <p>⭐⭐⭐⭐⭐</p>
+        </div>
+
       </div>
     </div>
   )
