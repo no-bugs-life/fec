@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Stars from '../Stars/Stars.jsx';
+import Image from './Image.jsx'
 import axios from 'axios';
 import '../../css/Reviews/styles.css'
 
@@ -22,12 +23,11 @@ const ReviewTile = ({review}) => {
     setHelpfulness(newHelp)
     setShowHelpful(false);
   }
-  console.log(review)
 
   return(
     <div className='reviewTile'>
       <Stars rating={review.rating} tag={review.review_id} size={'50px'}/>
-      <p>{review.date}</p>
+      <p>{Date(review.date).slice(4, 16)}</p>
       <p>{review.reviewer_name}</p>
       <b>{review.summary}</b>
       <p>{review.body.length <= 250
@@ -48,7 +48,7 @@ const ReviewTile = ({review}) => {
       : null}
       <br/>
       {review.photos.map((photo, idx) =>
-        <img src={photo.url} alt='image not available' key={idx} height={150} width={150}/>
+        <Image url={photo.url} key={idx} />
       )}
       {review.response
       ? review.response

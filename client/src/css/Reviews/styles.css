@@ -29,14 +29,23 @@
 
 .modal {
   position: fixed;
-  left: 0;
-  right: 0;
-  top: 15rem;
-  right: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1;
+}
+
+.modalPhoto {
+  z-index: 1;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 75%;
+  width: auto;
 }

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Stars from '../Stars/Stars.jsx'
 import axios from 'axios';
 
-const WriteReviewModal = ({show, productName, characteristics, product_id}) => {
+const WriteReviewModal = ({setWriteReview, productName, characteristics, product_id}) => {
 
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(null);
@@ -53,6 +53,7 @@ const WriteReviewModal = ({show, productName, characteristics, product_id}) => {
     axios.post('http://localhost:3000/api/reviews/', postObj)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
+    setWriteReview(false);
   }
 
   const receivePhoto = (e) => {

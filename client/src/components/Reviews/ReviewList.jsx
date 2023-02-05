@@ -113,7 +113,7 @@ const ReviewList = ({product_id, productName}) => {
       <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
       <button onClick={() => setWriteReview(true)} >Write Review</button>
       {writeReview
-      ? <WriteReviewModal show={writeReview} productName={productName} characteristics={ratingData.characteristics} product_id={product_id}/>
+      ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
     </>
   );
