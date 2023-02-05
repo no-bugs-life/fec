@@ -1,0 +1,43 @@
+.add-outfit-card{
+  margin-left: 10px;
+  margin-right: 10px;
+  width:200px;
+  height:359px;
+  border: 1px solid blue;
+  text-align: center;
+  cursor: pointer;
+}
+
+.add-outfit-card-container{
+  position: relative;
+  top:30%;
+  margin: 0;
+  text-align: center;
+}
+
+.add-outfit-card-text{
+  font-size: 12px;
+  color: grey
+}
+
+.add-outfit-card-symbol{
+  font-size: 40px;
+  font-weight: bold;
+  color: grey
+}
+
+.add-outfit-card:hover{
+  animation: pulse 1.5s linear infinite
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 2px 0 rgba(44, 52, 204, 0.4);
+  }
+  20% {
+      box-shadow: 0 0 10px 10px rgba(42, 83, 158, 0);
+  }
+  100% {
+      box-shadow: 0 0 2px 0 rgba(44, 71, 204, 0);
+  }
+}

@@ -1,15 +1,14 @@
 
 import React, {useState, useEffect} from "react";
-import "../css/Overview/styles.css";
+// import "../css/Overview/styles.css";
+// import Description from "./Overview/Description.jsx";
 
-import Description from "./Overview/Description.jsx";
-
-import ReviewList from './Reviews/ReviewList.jsx'
+// import ReviewList from './Reviews/ReviewList.jsx'
 
 import {RelatedList, OutfitList, ComparisonModal} from './Prodlists'
 
-import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
-import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
+// import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
+// import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
 
 import axios from "axios";
@@ -22,7 +21,7 @@ const App = ()=> {
     () => {
       axios.get('/api/products',{params:{count:30}})
         .then(res => {
-          setProduct(res.data[0]);
+          setProduct(res.data[4]);
         })
         .catch(err => console.log(err))
     },
@@ -31,17 +30,17 @@ const App = ()=> {
 
 
   return(
-    <div className="product-main">
+    <div className="product-main app">
       {/* Overview */}
-      {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
+      {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
 
       {/* Review & Ratings */}
-      <ReviewList product_id={40344}/>
+      {/* <ReviewList product_id={40344}/> */}
 
       {/* Questions */}
-      <div className="questions">
+      {/* <div className="questions">
         <QuestionMounted product={product} setProduct={setProduct}/>
-      </div>
+      </div> */}
 
       {/* Related Items & Comparison */}
       <RelatedList
