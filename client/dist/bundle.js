@@ -1867,12 +1867,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SortOption.jsx */ "./client/src/components/Reviews/SortOption.jsx");
 /* harmony import */ var _ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewTile.jsx */ "./client/src/components/Reviews/ReviewTile.jsx");
 /* harmony import */ var _RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingBreakdownSection/RatingBreakdownSection.jsx */ "./client/src/components/Reviews/RatingBreakdownSection/RatingBreakdownSection.jsx");
 /* harmony import */ var _WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./WriteReviewModal.jsx */ "./client/src/components/Reviews/WriteReviewModal.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _Search_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Search.jsx */ "./client/src/components/Reviews/Search.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -1881,6 +1882,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1913,35 +1915,57 @@ var ReviewList = function ReviewList(_ref) {
     _useState10 = _slicedToArray(_useState9, 2),
     filters = _useState10[0],
     setFilters = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState12 = _slicedToArray(_useState11, 2),
+    searchQuery = _useState12[0],
+    setSearchQuery = _useState12[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     callReviewData('relevant');
     callProductData();
-  }, [filters]);
+  }, [filters, searchQuery]);
   var callReviewData = function callReviewData(sortChoice) {
     if (product_id) {
-      axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/', {
+      axios__WEBPACK_IMPORTED_MODULE_7__["default"].get('http://localhost:3000/api/reviews/', {
         params: {
           "product_id": product_id,
           "sort": sortChoice,
           "count": 20
         }
       }).then(function (res) {
-        var newReviews = res.data.results;
-        if (filters.length) {
-          var newFilteredReviews = [];
-          var _iterator = _createForOfIteratorHelper(newReviews),
+        var newReviews = [];
+        if (searchQuery.length) {
+          var _iterator = _createForOfIteratorHelper(res.data.results),
             _step;
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
               var review = _step.value;
-              if (filters.includes(review.rating)) {
-                newFilteredReviews.push(review);
+              if (review.body.includes(searchQuery)) {
+                newReviews.push(review);
               }
             }
           } catch (err) {
             _iterator.e(err);
           } finally {
             _iterator.f();
+          }
+        } else {
+          newReviews = res.data.results;
+        }
+        if (filters.length) {
+          var newFilteredReviews = [];
+          var _iterator2 = _createForOfIteratorHelper(newReviews),
+            _step2;
+          try {
+            for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+              var _review = _step2.value;
+              if (filters.includes(_review.rating)) {
+                newFilteredReviews.push(_review);
+              }
+            }
+          } catch (err) {
+            _iterator2.e(err);
+          } finally {
+            _iterator2.f();
           }
           setReviews(newFilteredReviews);
           setReviewsOnPage(newFilteredReviews.slice(0, 2));
@@ -1956,7 +1980,7 @@ var ReviewList = function ReviewList(_ref) {
   };
   var callProductData = function callProductData() {
     if (product_id) {
-      axios__WEBPACK_IMPORTED_MODULE_6__["default"].get('http://localhost:3000/api/reviews/meta', {
+      axios__WEBPACK_IMPORTED_MODULE_7__["default"].get('http://localhost:3000/api/reviews/meta', {
         params: {
           "product_id": product_id
         }
@@ -2001,28 +2025,37 @@ var ReviewList = function ReviewList(_ref) {
       setFilters(_newFilters);
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  var getSearchQuery = function getSearchQuery(query) {
+    if (query.length >= 3) {
+      setSearchQuery(query);
+    } else {
+      setSearchQuery('');
+    }
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       handleSortChange: handleSortChange
-    }), Object.keys(reviews).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Search_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      getQuery: getSearchQuery
+    }), Object.keys(reviews).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
       children: [reviewsOnPage.map(function (review, idx) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
           review: review
         }, idx);
-      }), reviews.length >= 2 && reviews.length != reviewsOnPage.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+      }), reviews.length >= 2 && reviews.length != reviewsOnPage.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
         onClick: showMore,
         children: "More Reviews"
       }) : null]
-    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
       ratingData: ratingData,
       handleFilter: handleFilterRL,
       filters: filters
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
       onClick: function onClick() {
         return setWriteReview(true);
       },
       children: "Write Review"
-    }), writeReview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), writeReview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
       setWriteReview: setWriteReview,
       productName: productName,
       characteristics: ratingData.characteristics,
@@ -2101,7 +2134,7 @@ var ReviewTile = function ReviewTile(_ref) {
       tag: review.review_id,
       size: '50px'
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-      children: Date(review.date).slice(4, 16)
+      children: new Date(review.date).toLocaleDateString()
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
       children: review.reviewer_name
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
@@ -2139,6 +2172,37 @@ var ReviewTile = function ReviewTile(_ref) {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewTile);
+
+/***/ }),
+
+/***/ "./client/src/components/Reviews/Search.jsx":
+/*!**************************************************!*\
+  !*** ./client/src/components/Reviews/Search.jsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var Search = function Search(_ref) {
+  var getQuery = _ref.getQuery;
+  var makeSearch = function makeSearch(e) {
+    e.preventDefault();
+    getQuery(e.target.value);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+    type: "text",
+    onChange: makeSearch
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
 
 /***/ }),
 

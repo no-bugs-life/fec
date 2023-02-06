@@ -4,6 +4,7 @@ import SortOption from './SortOption.jsx';
 import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx';
 import WriteReviewModal from './WriteReviewModal.jsx';
+import Search from './Search.jsx';
 
 const ReviewList = ({product_id, productName}) => {
 
@@ -12,11 +13,12 @@ const ReviewList = ({product_id, productName}) => {
   const [ratingData, setRatingData] = useState({});
   const [writeReview, setWriteReview] = useState(false);
   const [filters, setFilters] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     callReviewData('relevant');
     callProductData();
-  }, [filters]);
+  }, [filters, searchQuery]);
 
   const callReviewData = (sortChoice) => {
     if (product_id) {
@@ -26,7 +28,16 @@ const ReviewList = ({product_id, productName}) => {
           "sort": sortChoice,
           "count": 20}})
       .then((res) => {
-        let newReviews = res.data.results;
+        let newReviews = []
+        if (searchQuery.length) {
+          for (let review of res.data.results) {
+            if (review.body.includes(searchQuery)) {
+              newReviews.push(review);
+            }
+          }
+        } else {
+          newReviews = res.data.results;
+        }
         if (filters.length) {
           let newFilteredReviews = [];
           for (let review of newReviews) {
@@ -96,9 +107,18 @@ const ReviewList = ({product_id, productName}) => {
     }
   }
 
+  const getSearchQuery = (query) => {
+    if (query.length >= 3) {
+      setSearchQuery(query);
+    } else {
+      setSearchQuery('')
+    }
+  }
+
   return (
     <>
       <SortOption handleSortChange={handleSortChange} />
+      <Search getQuery={getSearchQuery}/>
       {Object.keys(reviews).length
       ? <>
           {reviewsOnPage.map((review, idx) =>

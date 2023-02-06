@@ -27,7 +27,7 @@ const ReviewTile = ({review}) => {
   return(
     <div className='reviewTile'>
       <Stars rating={review.rating} tag={review.review_id} size={'50px'}/>
-      <p>{Date(review.date).slice(4, 16)}</p>
+      <p>{new Date(review.date).toLocaleDateString()}</p>
       <p>{review.reviewer_name}</p>
       <b>{review.summary}</b>
       <p>{review.body.length <= 250

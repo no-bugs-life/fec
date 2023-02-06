@@ -12,7 +12,8 @@ const Image = ({url}) => {
     <>
       <img className='modalPhoto' src={url} alt='image not available' onClick={() => setFullRes(!fullRes)}/>
     </>
-    : <img src={url} alt='image not available' height={150} width={150} onClick={() => setFullRes(!fullRes)}/>}
+    : <img src={url} alt='image not available' height={150} width={150} onClick={() => setFullRes(!fullRes)}/>
+    }
   </>
   );
 }
