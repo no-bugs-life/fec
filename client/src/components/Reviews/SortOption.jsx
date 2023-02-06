@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const SortOption = ({handleSortChange}) => {
 
-  let [option, setOption] = useState('Relevant')
+  let [option, setOption] = useState('relevant')
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -16,7 +16,7 @@ const ReviewList = ({product_id, productName}) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
-    callReviewData('relevant');
+    callReviewData();
     callProductData();
   }, [filters, searchQuery]);
 
@@ -25,13 +25,13 @@ const ReviewList = ({product_id, productName}) => {
       axios.get('http://localhost:3000/api/reviews/', {
         params: {
           "product_id": product_id,
-          "sort": sortChoice,
+          "sort": sortChoice || 'relevant',
           "count": 20}})
       .then((res) => {
         let newReviews = []
         if (searchQuery.length) {
           for (let review of res.data.results) {
-            if (review.body.includes(searchQuery)) {
+            if (review.body.includes(searchQuery) || review.summary.includes(searchQuery)) {
               newReviews.push(review);
             }
           }

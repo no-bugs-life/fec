@@ -1920,7 +1920,7 @@ var ReviewList = function ReviewList(_ref) {
     searchQuery = _useState12[0],
     setSearchQuery = _useState12[1];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    callReviewData('relevant');
+    callReviewData();
     callProductData();
   }, [filters, searchQuery]);
   var callReviewData = function callReviewData(sortChoice) {
@@ -1928,7 +1928,7 @@ var ReviewList = function ReviewList(_ref) {
       axios__WEBPACK_IMPORTED_MODULE_7__["default"].get('http://localhost:3000/api/reviews/', {
         params: {
           "product_id": product_id,
-          "sort": sortChoice,
+          "sort": sortChoice || 'relevant',
           "count": 20
         }
       }).then(function (res) {
@@ -1939,7 +1939,7 @@ var ReviewList = function ReviewList(_ref) {
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
               var review = _step.value;
-              if (review.body.includes(searchQuery)) {
+              if (review.body.includes(searchQuery) || review.summary.includes(searchQuery)) {
                 newReviews.push(review);
               }
             }
@@ -2231,7 +2231,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var SortOption = function SortOption(_ref) {
   var handleSortChange = _ref.handleSortChange;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('Relevant'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('relevant'),
     _useState2 = _slicedToArray(_useState, 2),
     option = _useState2[0],
     setOption = _useState2[1];
