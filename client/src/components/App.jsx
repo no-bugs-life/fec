@@ -1,14 +1,14 @@
 
 import React, {useState, useEffect} from "react";
-// import "../css/Overview/styles.css";
-// import Description from "./Overview/Description.jsx";
+import "../css/Overview/styles.css";
+import Description from "./Overview/Description.jsx";
 
 import ReviewList from './Reviews/ReviewList.jsx'
 
 import {RelatedList, OutfitList, ComparisonModal} from './Prodlists'
 
-// import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
-// import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
+import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
+import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
 
 import axios from "axios";
@@ -21,8 +21,8 @@ const App = ()=> {
     () => {
       axios.get('/api/products',{params:{count:30}})
         .then(res => {
-          //console.log(res.data[0])
-          setProduct(res.data[4]);
+          console.log(res.data)
+          setProduct(res.data[0]);
         })
         .catch(err => console.log(err))
     },
@@ -33,7 +33,7 @@ const App = ()=> {
   return(
     <div className="product-main app">
       {/* Overview */}
-      {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
+      {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
 
       {/* Review & Ratings */}
       <ReviewList product_id={40352} productName={product.name}/>
@@ -45,12 +45,12 @@ const App = ()=> {
       </div> */}
 
       {/* Related Items & Comparison */}
-      <RelatedList
+      {/* <RelatedList
         product={product}
       />
       <OutfitList
         product={product}
-      />
+      /> */}
 
     </div>
 

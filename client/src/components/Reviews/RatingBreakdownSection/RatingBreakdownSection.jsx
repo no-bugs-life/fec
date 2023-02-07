@@ -5,11 +5,22 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import axios from 'axios';
 
-const RatingBreakdownSection = ({product_id, ratingData, handleFilter, filters}) => {
+const RatingBreakdownSection = ({product_id}) => {
 
-  const handleFilterRBS = (index) => {
-    handleFilter(index);
-  }
+  const [ratingData, setRatingData] = useState({});
+
+  useEffect(() => {
+    if (product_id) {
+      axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": 40344}})
+        .then((res) => {
+          // console.log(res.data)
+          setRatingData(res.data)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+      }
+  }, [])
 
   return(
     <>

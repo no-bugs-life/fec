@@ -80,7 +80,7 @@ const RelatedList = ({product}) => {
             }
             disabled={page === 0}
           >
-            <i class="arrow left"></i>
+            <i class="related-list-arrow-left"></i>
           </button>
           <div className='related-list-card-container'>
             {
@@ -125,7 +125,7 @@ const RelatedList = ({product}) => {
             }
             disabled={page === Math.ceil(productIds.related.length/4)-1}
           >
-            <i class="arrow right"></i>
+            <i class="related-list-arrow-right"></i>
           </button>
         </div>
       </div>
