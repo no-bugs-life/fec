@@ -5,6 +5,7 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx';
 import WriteReviewModal from './WriteReviewModal.jsx';
 import Search from './Search.jsx';
+import '../../css/Reviews/listStyles.css'
 
 const ReviewList = ({product_id, productName}) => {
 
@@ -31,7 +32,7 @@ const ReviewList = ({product_id, productName}) => {
         let newReviews = []
         if (searchQuery.length) {
           for (let review of res.data.results) {
-            if (review.body.includes(searchQuery) || review.summary.includes(searchQuery)) {
+            if (review.body.toLowerCase().includes(searchQuery.toLowerCase()) || review.summary.toLowerCase().includes(searchQuery.toLowerCase())) {
               newReviews.push(review);
             }
           }
@@ -115,26 +116,36 @@ const ReviewList = ({product_id, productName}) => {
     }
   }
 
+  const openWriteReview = () => {
+    setWriteReview(true)
+    document.body.style.overflowY = 'hidden';
+  }
+
   return (
     <>
-      <SortOption handleSortChange={handleSortChange} />
-      <Search getQuery={getSearchQuery}/>
-      {Object.keys(reviews).length
-      ? <>
-          {reviewsOnPage.map((review, idx) =>
-            <ReviewTile review={review} key={idx} />
-          )}
-          {(reviews.length >= 2 && reviews.length != reviewsOnPage.length)
-          ? <button onClick={showMore}>More Reviews</button>
-          : null}
-        </>
-      : null
-      }
-      <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
-      <button onClick={() => setWriteReview(true)} >Write Review</button>
-      {writeReview
+      <div className='left'>
+        <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
+        <button onClick={openWriteReview} >Write Review</button>
+        {writeReview
       ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
+      </div>
+      <div className='right'>
+        <SortOption handleSortChange={handleSortChange} />
+        <Search getQuery={getSearchQuery}/>
+        {Object.keys(reviews).length
+        ? <>
+            {reviewsOnPage.map((review, idx) =>
+              <ReviewTile review={review} key={idx} />
+            )}
+            {(reviews.length >= 2 && reviews.length != reviewsOnPage.length)
+            ? <button onClick={showMore}>More Reviews</button>
+            : null}
+          </>
+        : null
+        }
+      </div>
+      <br/>
     </>
   );
 }

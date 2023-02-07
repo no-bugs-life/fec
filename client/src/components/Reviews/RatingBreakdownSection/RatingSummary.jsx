@@ -24,7 +24,7 @@ const RatingSummary = ({summaryData}) => {
       <h3>Rating Summary</h3>
       {rateAvg > 0
       ? <>
-          <Stars rating={rateAvg} tag={'ratingSummary'} size={'50px'} />
+          <Stars rating={rateAvg} tag={'ratingSummary'} size={'50px'} isRating={true}/>
           <p> {rateAvg.toFixed(1)} out of 5 stars based on {rateCountTotal} reviews</p>
         </>
       : null}

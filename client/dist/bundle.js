@@ -66,7 +66,7 @@ var App = function App() {
     }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Reviews_ReviewList_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
       product_id: 40352,
       productName: product.name
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       className: "questions",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Questions_QuestionMounted_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
         product: product,
@@ -1446,8 +1446,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _css_Reviews_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Reviews/styles.css */ "./client/src/css/Reviews/styles.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _css_Reviews_styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css/Reviews/styles.css */ "./client/src/css/Reviews/styles.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -1458,32 +1459,41 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Image = function Image(_ref) {
   var url = _ref.url;
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState2 = _slicedToArray(_useState, 2),
     fullRes = _useState2[0],
     setFullRes = _useState2[1];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: fullRes ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+  var openFullRes = function openFullRes() {
+    setFullRes(true);
+    document.body.style.overflowY = 'hidden';
+  };
+  var closeFullRes = function closeFullRes() {
+    setFullRes(false);
+    document.body.style.overflowY = 'visible';
+  };
+  if (fullRes) {
+    return /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_1__.createPortal( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "modalPhotoBackground"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
         className: "modalPhoto",
         src: url,
         alt: "image not available",
-        onClick: function onClick() {
-          return setFullRes(!fullRes);
-        }
-      })
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+        onClick: closeFullRes
+      })]
+    }), document.getElementById('portal'));
+  } else {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
       src: url,
       alt: "image not available",
-      height: 150,
-      width: 150,
-      onClick: function onClick() {
-        return setFullRes(!fullRes);
-      }
-    })
-  });
+      className: "regPhoto",
+      onClick: openFullRes
+    });
+  }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Image);
 
@@ -1843,7 +1853,8 @@ var RatingSummary = function RatingSummary(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
         rating: rateAvg,
         tag: 'ratingSummary',
-        size: '50px'
+        size: '50px',
+        isRating: true
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
         children: [" ", rateAvg.toFixed(1), " out of 5 stars based on ", rateCountTotal, " reviews"]
       })]
@@ -1867,13 +1878,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SortOption.jsx */ "./client/src/components/Reviews/SortOption.jsx");
 /* harmony import */ var _ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReviewTile.jsx */ "./client/src/components/Reviews/ReviewTile.jsx");
 /* harmony import */ var _RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RatingBreakdownSection/RatingBreakdownSection.jsx */ "./client/src/components/Reviews/RatingBreakdownSection/RatingBreakdownSection.jsx");
 /* harmony import */ var _WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./WriteReviewModal.jsx */ "./client/src/components/Reviews/WriteReviewModal.jsx");
 /* harmony import */ var _Search_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Search.jsx */ "./client/src/components/Reviews/Search.jsx");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_Reviews_listStyles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../css/Reviews/listStyles.css */ "./client/src/css/Reviews/listStyles.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
@@ -1882,6 +1894,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -1925,7 +1938,7 @@ var ReviewList = function ReviewList(_ref) {
   }, [filters, searchQuery]);
   var callReviewData = function callReviewData(sortChoice) {
     if (product_id) {
-      axios__WEBPACK_IMPORTED_MODULE_7__["default"].get('http://localhost:3000/api/reviews/', {
+      axios__WEBPACK_IMPORTED_MODULE_8__["default"].get('http://localhost:3000/api/reviews/', {
         params: {
           "product_id": product_id,
           "sort": sortChoice || 'relevant',
@@ -1939,7 +1952,7 @@ var ReviewList = function ReviewList(_ref) {
           try {
             for (_iterator.s(); !(_step = _iterator.n()).done;) {
               var review = _step.value;
-              if (review.body.includes(searchQuery) || review.summary.includes(searchQuery)) {
+              if (review.body.toLowerCase().includes(searchQuery.toLowerCase()) || review.summary.toLowerCase().includes(searchQuery.toLowerCase())) {
                 newReviews.push(review);
               }
             }
@@ -1980,7 +1993,7 @@ var ReviewList = function ReviewList(_ref) {
   };
   var callProductData = function callProductData() {
     if (product_id) {
-      axios__WEBPACK_IMPORTED_MODULE_7__["default"].get('http://localhost:3000/api/reviews/meta', {
+      axios__WEBPACK_IMPORTED_MODULE_8__["default"].get('http://localhost:3000/api/reviews/meta', {
         params: {
           "product_id": product_id
         }
@@ -2032,35 +2045,43 @@ var ReviewList = function ReviewList(_ref) {
       setSearchQuery('');
     }
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      handleSortChange: handleSortChange
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Search_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      getQuery: getSearchQuery
-    }), Object.keys(reviews).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-      children: [reviewsOnPage.map(function (review, idx) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          review: review
-        }, idx);
-      }), reviews.length >= 2 && reviews.length != reviewsOnPage.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-        onClick: showMore,
-        children: "More Reviews"
+  var openWriteReview = function openWriteReview() {
+    setWriteReview(true);
+    document.body.style.overflowY = 'hidden';
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      className: "left",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        ratingData: ratingData,
+        handleFilter: handleFilterRL,
+        filters: filters
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        onClick: openWriteReview,
+        children: "Write Review"
+      }), writeReview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        setWriteReview: setWriteReview,
+        productName: productName,
+        characteristics: ratingData.characteristics,
+        product_id: product_id
       }) : null]
-    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_RatingBreakdownSection_RatingBreakdownSection_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      ratingData: ratingData,
-      handleFilter: handleFilterRL,
-      filters: filters
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-      onClick: function onClick() {
-        return setWriteReview(true);
-      },
-      children: "Write Review"
-    }), writeReview ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_WriteReviewModal_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      setWriteReview: setWriteReview,
-      productName: productName,
-      characteristics: ratingData.characteristics,
-      product_id: product_id
-    }) : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+      className: "right",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SortOption_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        handleSortChange: handleSortChange
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Search_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        getQuery: getSearchQuery
+      }), Object.keys(reviews).length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+        children: [reviewsOnPage.map(function (review, idx) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_ReviewTile_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+            review: review
+          }, idx);
+        }), reviews.length >= 2 && reviews.length != reviewsOnPage.length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+          onClick: showMore,
+          children: "More Reviews"
+        }) : null]
+      }) : null]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {})]
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ReviewList);
@@ -2083,7 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Stars/Stars.jsx */ "./client/src/components/Stars/Stars.jsx");
 /* harmony import */ var _Image_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Image.jsx */ "./client/src/components/Reviews/Image.jsx");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var _css_Reviews_styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/Reviews/styles.css */ "./client/src/css/Reviews/styles.css");
+/* harmony import */ var _css_Reviews_tileStyles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/Reviews/tileStyles.css */ "./client/src/css/Reviews/tileStyles.css");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2132,10 +2153,13 @@ var ReviewTile = function ReviewTile(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
       rating: review.rating,
       tag: review.review_id,
-      size: '50px'
+      size: '50px',
+      isRating: true
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      className: "date",
       children: new Date(review.date).toLocaleDateString()
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+      className: "username",
       children: review.reviewer_name
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("b", {
       children: review.summary
@@ -2199,6 +2223,7 @@ var Search = function Search(_ref) {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
     type: "text",
+    placeholder: "Search...",
     onChange: makeSearch
   });
 };
@@ -2219,13 +2244,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _css_Reviews_listStyles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css/Reviews/listStyles.css */ "./client/src/css/Reviews/listStyles.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2240,18 +2267,19 @@ var SortOption = function SortOption(_ref) {
     setOption(e.target.value);
     handleSortChange(e.target.value);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
-      children: ['Sort on: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
+    className: "sort",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
+      children: ['Sort on: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
         value: option,
         onChange: handleSubmit,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "helpful",
           children: "Helpful"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "newest",
           children: "Newest"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "relevant",
           children: "Relevant"
         })]
@@ -2277,14 +2305,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Stars/Stars.jsx */ "./client/src/components/Stars/Stars.jsx");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _css_Reviews_styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../css/Reviews/styles.css */ "./client/src/css/Reviews/styles.css");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -2380,22 +2412,19 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
       newCharacteristics["19"] = parseInt(fit);
     }
     postObj.characteristics = newCharacteristics;
-    axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('http://localhost:3000/api/reviews/', postObj).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_5__["default"].post('http://localhost:3000/api/reviews/', postObj).then(function (res) {
       return console.log(res);
     })["catch"](function (err) {
       return console.log(err);
     });
     setWriteReview(false);
+    document.body.style.overflowY = 'visible';
   };
   var receivePhoto = function receivePhoto(e) {
     e.preventDefault();
     var selectedFile = document.getElementById('photosInput').files[0];
     getBase64(selectedFile);
-    // photosCopy.push(e.target.value);
-    // console.log(photosCopy);
-    //setPhotos(photosCopy);
   };
-
   var getBase64 = function getBase64(file) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
@@ -2410,7 +2439,7 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
   var sendToApi = function sendToApi(base64Img) {
     var form = new FormData();
     form.append("image", base64Img);
-    axios__WEBPACK_IMPORTED_MODULE_3__["default"].post('https://api.imgbb.com/1/upload?key=dd9bb00ace03cceb9b4d7d8f33bb5c8c', form).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_5__["default"].post('https://api.imgbb.com/1/upload?key=dd9bb00ace03cceb9b4d7d8f33bb5c8c', form).then(function (res) {
       var photosCopy = photos.slice();
       console.log(res);
       photosCopy.push(res.data.data.url);
@@ -2422,331 +2451,355 @@ var WriteReviewModal = function WriteReviewModal(_ref) {
   var setNewRating = function setNewRating(index) {
     setRating(index);
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    className: "modal",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-        children: "Write Your Review"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h5", {
-        children: ["About the ", productName]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
-        onSubmit: postReview,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ["Overall Rating*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            rating: rating,
-            tag: 'writeReview',
-            size: '50px',
-            setNewRating: setNewRating
-          }), rating === 1 ? 'Poor' : rating === 2 ? 'Fair' : rating === 3 ? 'Average' : rating === 4 ? 'Good' : rating === 5 ? 'Great' : null]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ['Do you recommend this product?* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "radio",
-            name: "recommendation",
-            value: "Yes",
-            onChange: function onChange() {
-              return setRecommend(true);
-            }
-          }), 'Yes ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "radio",
-            name: "recommendation",
-            value: "No",
-            onChange: function onChange() {
-              return setRecommend(false);
-            }
-          }), 'No']
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
-            children: "Characteristics*"
-          }), characteristics.Size ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [" ", 'Size: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "size",
-              value: 1,
-              onChange: function onChange(e) {
-                return setSize(e.target.value);
-              }
-            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "size",
-              value: 2,
-              onChange: function onChange(e) {
-                return setSize(e.target.value);
-              }
-            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "size",
-              value: 3,
-              onChange: function onChange(e) {
-                return setSize(e.target.value);
-              }
-            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "size",
-              value: 4,
-              onChange: function onChange(e) {
-                return setSize(e.target.value);
-              }
-            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "size",
-              value: 5,
-              onChange: function onChange(e) {
-                return setSize(e.target.value);
-              }
-            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-          }) : null, characteristics.Width ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [" ", 'Width: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "width",
-              value: 1,
-              onChange: function onChange(e) {
-                return setWidth(e.target.value);
-              }
-            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "width",
-              value: 2,
-              onChange: function onChange(e) {
-                return setWidth(e.target.value);
-              }
-            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "width",
-              value: 3,
-              onChange: function onChange(e) {
-                return setWidth(e.target.value);
-              }
-            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "width",
-              value: 4,
-              onChange: function onChange(e) {
-                return setWidth(e.target.value);
-              }
-            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "width",
-              value: 5,
-              onChange: function onChange(e) {
-                return setWidth(e.target.value);
-              }
-            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-          }) : null, characteristics.Comfort ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [" ", 'Comfort: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "comfort",
-              value: 1,
-              onChange: function onChange(e) {
-                return setComfort(e.target.value);
-              }
-            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "comfort",
-              value: 2,
-              onChange: function onChange(e) {
-                return setComfort(e.target.value);
-              }
-            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "comfort",
-              value: 3,
-              onChange: function onChange(e) {
-                return setComfort(e.target.value);
-              }
-            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "comfort",
-              value: 4,
-              onChange: function onChange(e) {
-                return setComfort(e.target.value);
-              }
-            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "comfort",
-              value: 5,
-              onChange: function onChange(e) {
-                return setComfort(e.target.value);
-              }
-            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-          }) : null, characteristics.Quality ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [" ", 'Quality: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "quality",
-              value: 1,
-              onChange: function onChange(e) {
-                return setQuality(e.target.value);
-              }
-            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "quality",
-              value: 2,
-              onChange: function onChange(e) {
-                return setQuality(e.target.value);
-              }
-            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "quality",
-              value: 3,
-              onChange: function onChange(e) {
-                return setQuality(e.target.value);
-              }
-            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "quality",
-              value: 4,
-              onChange: function onChange(e) {
-                return setQuality(e.target.value);
-              }
-            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "quality",
-              value: 5,
-              onChange: function onChange(e) {
-                return setQuality(e.target.value);
-              }
-            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-          }) : null, characteristics.Length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [" ", 'Length: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "length",
-              value: 1,
-              onChange: function onChange(e) {
-                return setLength(e.target.value);
-              }
-            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "length",
-              value: 2,
-              onChange: function onChange(e) {
-                return setLength(e.target.value);
-              }
-            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "length",
-              value: 3,
-              onChange: function onChange(e) {
-                return setLength(e.target.value);
-              }
-            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "length",
-              value: 4,
-              onChange: function onChange(e) {
-                return setLength(e.target.value);
-              }
-            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "length",
-              value: 5,
-              onChange: function onChange(e) {
-                return setLength(e.target.value);
-              }
-            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-          }) : null, characteristics.Fit ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-            children: [" ", 'Fit: ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "fit",
-              value: 1,
-              onChange: function onChange(e) {
-                return setFit(e.target.value);
-              }
-            }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "fit",
-              value: 2,
-              onChange: function onChange(e) {
-                return setFit(e.target.value);
-              }
-            }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "fit",
-              value: 3,
-              onChange: function onChange(e) {
-                return setFit(e.target.value);
-              }
-            }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "fit",
-              value: 4,
-              onChange: function onChange(e) {
-                return setFit(e.target.value);
-              }
-            }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-              type: "radio",
-              name: "fit",
-              value: 5,
-              onChange: function onChange(e) {
-                return setFit(e.target.value);
-              }
-            }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {})]
-          }) : null]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ['Review Summary ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "text",
-            maxLength: 60,
-            placeholder: "Example: Best purchase ever!",
-            onChange: function onChange(e) {
-              return setSummary(e.target.value);
-            }
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ['Review Body* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "text",
-            minLength: 50,
-            maxLength: 1000,
-            id: "reviewBody",
-            placeholder: "Why did you like the product or not?",
-            required: true,
-            onChange: function onChange(e) {
-              return setBody(e.target.value);
-            }
-          }), body.length <= 50 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-            children: ["Minimum required characters left: ", 50 - body.length]
-          }) : null]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ['Add Photos ', photos.length <= 5 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "file",
-            id: "photosInput",
-            accept: ".png, .jpg",
-            multiple: true,
-            onChange: receivePhoto
-          }) : null]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), photos.map(function (photo, idx) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-            src: photo,
-            alt: 'Photo Unavailable',
-            height: 100,
-            width: 100
-          }, idx);
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ['Nickname* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "text",
-            maxLength: 60,
-            placeholder: "Example: jackson11!",
-            required: true,
-            onChange: function onChange(e) {
-              return setNickName(e.target.value);
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), 'For privacy reasons, do not use your full name or email address']
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("label", {
-          children: ['Email* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-            type: "email",
-            maxLength: 60,
-            placeholder: "Example: jackson11@email.com",
-            required: true,
-            onChange: function onChange(e) {
-              return setEmail(e.target.value);
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), 'For authentication reasons, you will not be emailed']
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-          type: "submit",
-          value: "Submit"
+  var closeWriteReview = function closeWriteReview() {
+    setWriteReview(false);
+    document.body.style.overflowY = 'visible';
+  };
+  return /*#__PURE__*/react_dom__WEBPACK_IMPORTED_MODULE_2__.createPortal( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      className: "modalWriteReviewBackground"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "modalWriteReview",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+        className: "closeModalButton",
+        onClick: closeWriteReview,
+        children: "X"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+          children: "Write Your Review"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h5", {
+          children: ["About the ", productName]
         })]
-      })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+          onSubmit: postReview,
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ["Overall Rating*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Stars_Stars_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+              rating: rating,
+              tag: 'writeReview',
+              size: '50px',
+              setNewRating: setNewRating
+            }), rating === 1 ? 'Poor' : rating === 2 ? 'Fair' : rating === 3 ? 'Average' : rating === 4 ? 'Good' : rating === 5 ? 'Great' : null]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ['Do you recommend this product?* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "radio",
+              name: "recommendation",
+              value: "Yes",
+              onChange: function onChange() {
+                return setRecommend(true);
+              }
+            }), 'Yes ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "radio",
+              name: "recommendation",
+              value: "No",
+              onChange: function onChange() {
+                return setRecommend(false);
+              }
+            }), 'No']
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h5", {
+              children: "Characteristics*"
+            }), characteristics.Size ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [" ", 'Size: ', size === null ? 'none selected' : size === '1' ? 'A size too small' : size === '2' ? '1/2 a size too small' : size === '3' ? 'Perfect' : size === '4' ? '1/2 a size too big' : size === '5' ? 'A size too wide' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "size",
+                value: 1,
+                onChange: function onChange(e) {
+                  return setSize(e.target.value);
+                }
+              }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "size",
+                value: 2,
+                onChange: function onChange(e) {
+                  return setSize(e.target.value);
+                }
+              }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "size",
+                value: 3,
+                onChange: function onChange(e) {
+                  return setSize(e.target.value);
+                }
+              }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "size",
+                value: 4,
+                onChange: function onChange(e) {
+                  return setSize(e.target.value);
+                }
+              }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "size",
+                value: 5,
+                onChange: function onChange(e) {
+                  return setSize(e.target.value);
+                }
+              }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                children: "A size too small      A size too wide"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
+            }) : null, characteristics.Width ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [" ", 'Width: ', width === null ? 'none selected' : width === '1' ? 'Too narrow' : width === '2' ? 'Slightly narrow' : width === '3' ? 'Perfect' : width === '4' ? 'Slightly wide' : width === '5' ? 'Too wide' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "width",
+                value: 1,
+                onChange: function onChange(e) {
+                  return setWidth(e.target.value);
+                }
+              }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "width",
+                value: 2,
+                onChange: function onChange(e) {
+                  return setWidth(e.target.value);
+                }
+              }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "width",
+                value: 3,
+                onChange: function onChange(e) {
+                  return setWidth(e.target.value);
+                }
+              }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "width",
+                value: 4,
+                onChange: function onChange(e) {
+                  return setWidth(e.target.value);
+                }
+              }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "width",
+                value: 5,
+                onChange: function onChange(e) {
+                  return setWidth(e.target.value);
+                }
+              }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                children: "Too narrow      Too wide"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
+            }) : null, characteristics.Comfort ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [" ", 'Comfort: ', comfort === null ? 'none selected' : comfort === '1' ? 'Uncomfortable' : comfort === '2' ? 'Slightly uncomfortable' : comfort === '3' ? 'Ok' : comfort === '4' ? 'Comfortable' : comfort === '5' ? 'Perfect' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "comfort",
+                value: 1,
+                onChange: function onChange(e) {
+                  return setComfort(e.target.value);
+                }
+              }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "comfort",
+                value: 2,
+                onChange: function onChange(e) {
+                  return setComfort(e.target.value);
+                }
+              }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "comfort",
+                value: 3,
+                onChange: function onChange(e) {
+                  return setComfort(e.target.value);
+                }
+              }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "comfort",
+                value: 4,
+                onChange: function onChange(e) {
+                  return setComfort(e.target.value);
+                }
+              }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "comfort",
+                value: 5,
+                onChange: function onChange(e) {
+                  return setComfort(e.target.value);
+                }
+              }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                children: "Uncomfortable      Perfect"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
+            }) : null, characteristics.Quality ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [" ", 'Quality: ', quality === null ? 'none selected' : quality === '1' ? 'Poor' : quality === '2' ? 'Below average' : quality === '3' ? 'What I expected' : quality === '4' ? 'Pretty great' : quality === '5' ? 'Perfect' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "quality",
+                value: 1,
+                onChange: function onChange(e) {
+                  return setQuality(e.target.value);
+                }
+              }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "quality",
+                value: 2,
+                onChange: function onChange(e) {
+                  return setQuality(e.target.value);
+                }
+              }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "quality",
+                value: 3,
+                onChange: function onChange(e) {
+                  return setQuality(e.target.value);
+                }
+              }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "quality",
+                value: 4,
+                onChange: function onChange(e) {
+                  return setQuality(e.target.value);
+                }
+              }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "quality",
+                value: 5,
+                onChange: function onChange(e) {
+                  return setQuality(e.target.value);
+                }
+              }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                children: "Poor       Perfect"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
+            }) : null, characteristics.Length ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [" ", 'Length: ', length === null ? 'none selected' : length === '1' ? 'Runs short' : length === '2' ? 'Runs slightly short' : length === '3' ? 'Perfect' : length === '4' ? 'Runs slightly long' : length === '5' ? 'Runs long' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "length",
+                value: 1,
+                onChange: function onChange(e) {
+                  return setLength(e.target.value);
+                }
+              }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "length",
+                value: 2,
+                onChange: function onChange(e) {
+                  return setLength(e.target.value);
+                }
+              }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "length",
+                value: 3,
+                onChange: function onChange(e) {
+                  return setLength(e.target.value);
+                }
+              }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "length",
+                value: 4,
+                onChange: function onChange(e) {
+                  return setLength(e.target.value);
+                }
+              }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "length",
+                value: 5,
+                onChange: function onChange(e) {
+                  return setLength(e.target.value);
+                }
+              }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                children: "Runs short       Runs long"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
+            }) : null, characteristics.Fit ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+              children: [" ", 'Fit: ', fit === null ? 'none selected' : fit === '1' ? 'Runs tight' : fit === '2' ? 'Runs slightly tight' : fit === '3' ? 'Perfect' : fit === '4' ? 'Runs slightly long' : fit === '5' ? 'Runs long' : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "fit",
+                value: 1,
+                onChange: function onChange(e) {
+                  return setFit(e.target.value);
+                }
+              }), "1", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "fit",
+                value: 2,
+                onChange: function onChange(e) {
+                  return setFit(e.target.value);
+                }
+              }), "2", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "fit",
+                value: 3,
+                onChange: function onChange(e) {
+                  return setFit(e.target.value);
+                }
+              }), "3", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "fit",
+                value: 4,
+                onChange: function onChange(e) {
+                  return setFit(e.target.value);
+                }
+              }), "4", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                type: "radio",
+                name: "fit",
+                value: 5,
+                onChange: function onChange(e) {
+                  return setFit(e.target.value);
+                }
+              }), "5", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("small", {
+                children: "Runs tight       Runs long"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {})]
+            }) : null]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ['Review Summary ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "text",
+              maxLength: 60,
+              placeholder: "Example: Best purchase ever!",
+              onChange: function onChange(e) {
+                return setSummary(e.target.value);
+              }
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ['Review Body* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "text",
+              minLength: 50,
+              maxLength: 1000,
+              id: "reviewBody",
+              placeholder: "Why did you like the product or not?",
+              required: true,
+              onChange: function onChange(e) {
+                return setBody(e.target.value);
+              }
+            }), body.length <= 50 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              children: ["Minimum required characters left: ", 50 - body.length]
+            }) : null]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ['Add Photos ', photos.length <= 5 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "file",
+              id: "photosInput",
+              accept: ".png, .jpg",
+              multiple: true,
+              onChange: receivePhoto
+            }) : null]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), photos.map(function (photo, idx) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              src: photo,
+              alt: 'Photo Unavailable',
+              height: 100,
+              width: 100
+            }, idx);
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ['Nickname* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "text",
+              maxLength: 60,
+              placeholder: "Example: jackson11!",
+              required: true,
+              onChange: function onChange(e) {
+                return setNickName(e.target.value);
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), 'For privacy reasons, do not use your full name or email address']
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+            children: ['Email* ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+              type: "email",
+              maxLength: 60,
+              placeholder: "Example: jackson11@email.com",
+              required: true,
+              onChange: function onChange(e) {
+                return setEmail(e.target.value);
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), 'For authentication reasons, you will not be emailed']
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+            type: "submit",
+            value: "Submit"
+          })]
+        })
+      })]
     })]
-  });
+  }), document.getElementById('portal'));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WriteReviewModal);
 
@@ -2829,13 +2882,16 @@ var Stars = function Stars(_ref) {
   var rating = _ref.rating,
     tag = _ref.tag,
     size = _ref.size,
-    setNewRating = _ref.setNewRating;
+    setNewRating = _ref.setNewRating,
+    isRating = _ref.isRating;
   var starArr = [];
   var starTotal = rating * 100;
-  if (starTotal % 25 < 13) {
-    starTotal = starTotal - starTotal % 25;
-  } else {
-    starTotal = starTotal + (25 - starTotal % 25);
+  if (isRating) {
+    if (starTotal % 25 < 13) {
+      starTotal = starTotal - starTotal % 25;
+    } else {
+      starTotal = starTotal + (25 - starTotal % 25);
+    }
   }
   for (var i = 0; i < 5; i++) {
     if (starTotal >= 100) {
@@ -12294,6 +12350,33 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".related-list{\r\n  border: 1px solid 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/listStyles.css":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/listStyles.css ***!
+  \*************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".left {\n  float: left;\n  width: 33.33%;\n  position: sticky;\n  top: 0;\n  background-color: white;\n}\n\n.right {\n  float: left;\n  width: 66.67%;\n  position: static;\n}\n\n.sort {\n  float: right;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Reviews/listStyles.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,aAAa;EACb,gBAAgB;EAChB,MAAM;EACN,uBAAuB;AACzB;;AAEA;EACE,WAAW;EACX,aAAa;EACb,gBAAgB;AAClB;;AAEA;EACE,YAAY;AACd","sourcesContent":[".left {\n  float: left;\n  width: 33.33%;\n  position: sticky;\n  top: 0;\n  background-color: white;\n}\n\n.right {\n  float: left;\n  width: 66.67%;\n  position: static;\n}\n\n.sort {\n  float: right;\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/styles.css":
 /*!*********************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/styles.css ***!
@@ -12314,7 +12397,34 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".reviewTile {\n  border: 1px solid black;\n  border-radius: 2px;\n}\n\n.progressStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.progressFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.characteristicStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.characteristicFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.modal {\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  z-index: 1;\n}\n\n.modalPhoto {\n  z-index: 1;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  max-height: 75%;\n  width: auto;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Reviews/styles.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,kBAAkB;AACpB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,uBAAuB;EACvB,sBAAsB;AACxB;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,uBAAuB;EACvB,sBAAsB;AACxB;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,eAAe;EACf,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,uBAAuB;EACvB,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,UAAU;AACZ;;AAEA;EACE,UAAU;EACV,eAAe;EACf,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,eAAe;EACf,WAAW;AACb","sourcesContent":[".reviewTile {\n  border: 1px solid black;\n  border-radius: 2px;\n}\n\n.progressStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.progressFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.characteristicStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.characteristicFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.modal {\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  z-index: 1;\n}\n\n.modalPhoto {\n  z-index: 1;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  max-height: 75%;\n  width: auto;\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".progressStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.progressFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.characteristicStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.characteristicFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.modalWriteReview {\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  z-Index: 1000;\n}\n\n.modalWriteReviewBackground {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.7);\n  backdrop-filter: blur(10px);\n  z-index: 1000;\n}\n\n.modalPhoto {\n  z-index: 1000;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  max-height: 75%;\n  width: auto;\n}\n\n.modalPhotoBackground {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.7);\n  backdrop-filter: blur(10px);\n  z-index: 1000;\n}\n\n.regPhoto {\n  max-height: 10rem;\n  width: auto;\n}\n\n.closeModalButton {\n  position: absolute;\n  top: 0;\n  right: 0;\n}\n", "",{"version":3,"sources":["webpack://./client/src/css/Reviews/styles.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,YAAY;EACZ,uBAAuB;EACvB,sBAAsB;AACxB;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,uBAAuB;EACvB,sBAAsB;AACxB;;AAEA;EACE,YAAY;EACZ,uBAAuB;AACzB;;AAEA;EACE,eAAe;EACf,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,uBAAuB;EACvB,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB,uBAAuB;EACvB,aAAa;AACf;;AAEA;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,iCAAiC;EACjC,2BAA2B;EAC3B,aAAa;AACf;;AAEA;EACE,aAAa;EACb,eAAe;EACf,SAAS;EACT,QAAQ;EACR,gCAAgC;EAChC,eAAe;EACf,WAAW;AACb;;AAEA;EACE,eAAe;EACf,MAAM;EACN,OAAO;EACP,WAAW;EACX,YAAY;EACZ,iCAAiC;EACjC,2BAA2B;EAC3B,aAAa;AACf;;AAEA;EACE,iBAAiB;EACjB,WAAW;AACb;;AAEA;EACE,kBAAkB;EAClB,MAAM;EACN,QAAQ;AACV","sourcesContent":[".progressStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.progressFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.characteristicStyle {\n  height: 20px;\n  width: 300px;\n  border: 1px solid black;\n  background-color: gray;\n}\n\n.characteristicFillStyle {\n  height: 20px;\n  background-color: green;\n}\n\n.modalWriteReview {\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-color: white;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  z-Index: 1000;\n}\n\n.modalWriteReviewBackground {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.7);\n  backdrop-filter: blur(10px);\n  z-index: 1000;\n}\n\n.modalPhoto {\n  z-index: 1000;\n  position: fixed;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  max-height: 75%;\n  width: auto;\n}\n\n.modalPhotoBackground {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0,0,0,0.7);\n  backdrop-filter: blur(10px);\n  z-index: 1000;\n}\n\n.regPhoto {\n  max-height: 10rem;\n  width: auto;\n}\n\n.closeModalButton {\n  position: absolute;\n  top: 0;\n  right: 0;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/tileStyles.css":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/tileStyles.css ***!
+  \*************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".reviewTile {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 750px;\n}\n\n.date {\n  position: relative;\n  float: right;\n  top: 0;\n  right: 0;\n}\n\n.username {\n  position: relative;\n  top: 0px;\n  right: 0;\n}", "",{"version":3,"sources":["webpack://./client/src/css/Reviews/tileStyles.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,kBAAkB;EAClB,YAAY;AACd;;AAEA;EACE,kBAAkB;EAClB,YAAY;EACZ,MAAM;EACN,QAAQ;AACV;;AAEA;EACE,kBAAkB;EAClB,QAAQ;EACR,QAAQ;AACV","sourcesContent":[".reviewTile {\n  border: 1px solid black;\n  border-radius: 5px;\n  width: 750px;\n}\n\n.date {\n  position: relative;\n  float: right;\n  top: 0;\n  right: 0;\n}\n\n.username {\n  position: relative;\n  top: 0px;\n  right: 0;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12651,6 +12761,61 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./client/src/css/Reviews/listStyles.css":
+/*!***********************************************!*\
+  !*** ./client/src/css/Reviews/listStyles.css ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_listStyles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!./listStyles.css */ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/listStyles.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_listStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_listStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_listStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_listStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
 /***/ "./client/src/css/Reviews/styles.css":
 /*!*******************************************!*\
   !*** ./client/src/css/Reviews/styles.css ***!
@@ -12702,6 +12867,61 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_styles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./client/src/css/Reviews/tileStyles.css":
+/*!***********************************************!*\
+  !*** ./client/src/css/Reviews/tileStyles.css ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_tileStyles_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!./tileStyles.css */ "./node_modules/css-loader/dist/cjs.js!./client/src/css/Reviews/tileStyles.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_tileStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_tileStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_tileStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_tileStyles_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),

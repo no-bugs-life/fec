@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import '../../css/Reviews/listStyles.css';
 
 const SortOption = ({handleSortChange}) => {
 
@@ -11,7 +12,7 @@ const SortOption = ({handleSortChange}) => {
   }
 
   return (
-    <form>
+    <form className='sort'>
       <label>
         {'Sort on: '}
         <select value={option} onChange={handleSubmit}>

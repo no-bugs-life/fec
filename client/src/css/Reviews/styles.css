@@ -1,8 +1,3 @@
-.reviewTile {
-  border: 1px solid black;
-  border-radius: 2px;
-}
-
 .progressStyle {
   height: 20px;
   width: 300px;
@@ -27,7 +22,7 @@
   background-color: green;
 }
 
-.modal {
+.modalWriteReview {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -37,15 +32,48 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 1;
+  z-Index: 1000;
+}
+
+.modalWriteReviewBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
 
 .modalPhoto {
-  z-index: 1;
+  z-index: 1000;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   max-height: 75%;
   width: auto;
+}
+
+.modalPhotoBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.regPhoto {
+  max-height: 10rem;
+  width: auto;
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 0;
+  right: 0;
 }

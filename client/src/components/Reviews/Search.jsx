@@ -8,7 +8,7 @@ const Search = ({getQuery}) => {
   }
 
   return (
-    <input type='text' onChange={makeSearch}/>
+    <input type='text' placeholder='Search...' onChange={makeSearch}/>
   );
 }
 
