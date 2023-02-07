@@ -1,4 +1,4 @@
-.left {
+.left-reviews {
   float: left;
   width: 33.33%;
   position: sticky;
@@ -6,7 +6,7 @@
   background-color: white;
 }
 
-.right {
+.right-reviews {
   float: left;
   width: 66.67%;
   position: static;
