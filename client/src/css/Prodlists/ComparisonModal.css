@@ -1,10 +1,10 @@
 .comparison-modal{
   position: fixed;
-
   display:flex;
   align-items: center;
   justify-content: center;
   border: 1px solid chartreuse;
+  border-radius: 5px;
   z-index: 1;
 }
 
@@ -22,8 +22,36 @@
   margin:0;
 }
 
+.comparison-table{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.comparison-table-header-current{
+  text-align:left
+}
+.comparison-table-header-compare{
+  text-align:right
+}
+
+.comparison-table-content-current{
+  text-align:left
+}
+
+.comparison-table-content-feature{
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.comparison-table-content-compare{
+  text-align:right
+}
+
 .comparison-modal-exit{
   position: absolute;
+  background-color: transparent;
+  border: 0 none;
   top:0;
-  right:0
+  right:0;
+  cursor: pointer;
 }
