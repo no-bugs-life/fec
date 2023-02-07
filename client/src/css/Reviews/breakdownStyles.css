@@ -1,3 +1,9 @@
+.rating-breakdown-style {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 .progress-style {
   height: 20px;
   width: 300px;

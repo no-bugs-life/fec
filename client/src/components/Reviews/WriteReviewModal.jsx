@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Stars from '../Stars/Stars.jsx'
 import axios from 'axios';
 import ReactDom from 'react-dom';
-import '../../css/Reviews/styles.css'
+import '../../css/Reviews/modalStyles.css'
 
 const WriteReviewModal = ({setWriteReview, productName, characteristics, product_id, charIds}) => {
 
@@ -112,8 +112,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
       <div className='modalWriteReview'>
         <button className='closeModalButton' onClick={closeWriteReview}>X</button>
         <div>
-          <h3>Write Your Review</h3>
-          <h5>About the {productName}</h5>
+          <h2>Write Your Review</h2>
+          <h4>About the {productName}</h4>
         </div>
         <div>
           <form onSubmit={postReview}>
@@ -134,8 +134,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
               <input type='radio' name='recommendation' value='No' onChange={() => setRecommend(false)}/>{'No'}
             </label>
             <br/>
+            <h4>Characteristics*</h4>
             <label>
-              <h5>Characteristics*</h5>
               {characteristics.Size
               ? <> {'Size: '}
                 {size === null
@@ -162,6 +162,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 <br/>
               </>
               : null}
+            </label>
+            <label>
               {characteristics.Width
               ? <> {'Width: '}
                 {width === null
@@ -188,6 +190,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 <br/>
               </>
               : null}
+            </label>
+            <label>
               {characteristics.Comfort
               ? <> {'Comfort: '}
                 {comfort === null
@@ -214,6 +218,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 <br/>
               </>
               : null}
+            </label>
+            <label>
               {characteristics.Quality
               ? <> {'Quality: '}
                 {quality === null
@@ -240,6 +246,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 <br/>
               </>
               : null}
+            </label>
+            <label>
               {characteristics.Length
               ? <> {'Length: '}
                 {length === null
@@ -266,6 +274,8 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 <br/>
               </>
               : null}
+            </label>
+            <label>
               {characteristics.Fit
               ? <> {'Fit: '}
                 {fit === null

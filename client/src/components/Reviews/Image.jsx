@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import ReactDom from 'react-dom';
-import '../../css/Reviews/styles.css';
+import '../../css/Reviews/modalStyles.css';
 
 const Image = ({url}) => {
 

@@ -19,7 +19,7 @@ const RatingSummary = ({summaryData, isHead}) => {
 
   return(
     <div>
-      {isHead ? null : <h3>Rating Summary</h3>}
+      {isHead ? null : <h2>Rating Summary</h2>}
       {rateAvg > 0 && isHead
       ? <>
           <Stars rating={rateAvg} tag={'ratingSummary'}/>

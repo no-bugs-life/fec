@@ -5,11 +5,11 @@ const ProductBreakdown = ({productData}) => {
 
   return(
     <div>
-      <h3>Product Breakdown</h3>
+      <h2>Product Breakdown</h2>
       {productData.Size
       ? <>
           <label>
-            Size:
+            <b>Size:</b>
             <CharacteristicBar characteristicData={productData.Size} />
             <div className='characteristic-bar-label-style'>
               <div>Too Small</div>
@@ -24,7 +24,7 @@ const ProductBreakdown = ({productData}) => {
       {productData.Width
       ? <>
           <label>
-            Width:
+            <b>Width:</b>
             <CharacteristicBar characteristicData={productData.Width} />
             <div className='characteristic-bar-label-style'>
               <div>Too Narrow</div>
@@ -32,42 +32,39 @@ const ProductBreakdown = ({productData}) => {
               <div>Too Wide</div>
             </div>
           </label>
-          <br/>
         </>
       : null
       }
       {productData.Comfort
       ? <>
           <label>
-            Comfort:
+            <b>Comfort:</b>
             <CharacteristicBar characteristicData={productData.Comfort} />
             <div className='characteristic-bar-label-style'>
               <div>Uncomfortable</div>
               <div>Very Comfortable</div>
             </div>
           </label>
-          <br/>
         </>
       : null
       }
       {productData.Quality
       ? <>
           <label>
-            Quality:
+            <b>Quality:</b>
             <CharacteristicBar characteristicData={productData.Quality} />
             <div className='characteristic-bar-label-style'>
               <div>Low Quality</div>
               <div>High Quality</div>
             </div>
           </label>
-          <br/>
         </>
       : null
       }
       {productData.Length
       ? <>
           <label>
-            Length:
+            <b>Length:</b>
             <CharacteristicBar characteristicData={productData.Length} />
             <div className='characteristic-bar-label-style'>
               <div>Too Short</div>
@@ -75,14 +72,13 @@ const ProductBreakdown = ({productData}) => {
               <div>Too Long</div>
             </div>
           </label>
-          <br/>
         </>
       : null
       }
       {productData.Fit
       ? <>
           <label>
-            Fit:
+            <b>Fit:</b>
             <CharacteristicBar characteristicData={productData.Fit} />
             <div className='characteristic-bar-label-style'>
               <div>Too Tight</div>

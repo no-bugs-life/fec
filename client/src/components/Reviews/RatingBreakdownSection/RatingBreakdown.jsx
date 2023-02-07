@@ -21,7 +21,7 @@ const RatingBreakdown = ({summaryData, recommendData, handleFilter, filters}) =>
     <>
     {Object.keys(summaryData)
     ? <>
-        <h3>Rating Breakdown</h3>
+        <h2>Rating Breakdown</h2>
         {filters.length
         ? <>
             {'Filters: ' + filters}
