@@ -11,7 +11,11 @@ const ProductBreakdown = ({productData}) => {
           <label>
             Size:
             <CharacteristicBar characteristicData={productData.Size} />
-            {'Too Small      Perfect      Too Big'}
+            <div className='characteristic-bar-label-style'>
+              <div>Too Small</div>
+              <div>Perfect</div>
+              <div>Too Big</div>
+            </div>
           </label>
           <br/>
         </>
@@ -22,7 +26,11 @@ const ProductBreakdown = ({productData}) => {
           <label>
             Width:
             <CharacteristicBar characteristicData={productData.Width} />
-            {'Too Narrow      Perfect      Too Wide'}
+            <div className='characteristic-bar-label-style'>
+              <div>Too Narrow</div>
+              <div>Perfect</div>
+              <div>Too Wide</div>
+            </div>
           </label>
           <br/>
         </>
@@ -33,7 +41,10 @@ const ProductBreakdown = ({productData}) => {
           <label>
             Comfort:
             <CharacteristicBar characteristicData={productData.Comfort} />
-            {'Uncomfortable                Very Comforable'}
+            <div className='characteristic-bar-label-style'>
+              <div>Uncomfortable</div>
+              <div>Very Comfortable</div>
+            </div>
           </label>
           <br/>
         </>
@@ -44,7 +55,10 @@ const ProductBreakdown = ({productData}) => {
           <label>
             Quality:
             <CharacteristicBar characteristicData={productData.Quality} />
-            {'Low Quality                 High Quality'}
+            <div className='characteristic-bar-label-style'>
+              <div>Low Quality</div>
+              <div>High Quality</div>
+            </div>
           </label>
           <br/>
         </>
@@ -55,7 +69,11 @@ const ProductBreakdown = ({productData}) => {
           <label>
             Length:
             <CharacteristicBar characteristicData={productData.Length} />
-            {'Too Short      Perfect      Too Long'}
+            <div className='characteristic-bar-label-style'>
+              <div>Too Short</div>
+              <div>Perfect</div>
+              <div>Too Long</div>
+            </div>
           </label>
           <br/>
         </>
@@ -66,7 +84,11 @@ const ProductBreakdown = ({productData}) => {
           <label>
             Fit:
             <CharacteristicBar characteristicData={productData.Fit} />
-            {'Too Tight      Perfect      Too Baggy'}
+            <div className='characteristic-bar-label-style'>
+              <div>Too Tight</div>
+              <div>Perfect</div>
+              <div>Too Baggy</div>
+            </div>
           </label>
         </>
       : null

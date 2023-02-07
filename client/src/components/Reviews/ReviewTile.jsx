@@ -24,6 +24,16 @@ const ReviewTile = ({review}) => {
     setShowHelpful(false);
   }
 
+  const isValidUrl = urlString=> {
+    var urlPattern = new RegExp('^(https?:\\/\\/)?'+ // validate protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // validate domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // validate OR ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // validate port and path
+    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // validate query string
+    '(\\#[-a-z\\d_]*)?$','i'); // validate fragment locator
+    return !!urlPattern.test(urlString);
+  }
+
   return(
     <div className='reviewTile'>
       <Stars rating={review.rating} tag={review.review_id} size={'50px'} isRating={true}/>
@@ -47,8 +57,11 @@ const ReviewTile = ({review}) => {
       ? 'I recommend this product ✓'
       : null}
       <br/>
-      {review.photos.map((photo, idx) =>
-        <Image url={photo.url} key={idx} />
+      {review.photos.map((photo, idx) => {
+        if (isValidUrl(photo.url)) {
+          return <Image url={photo.url} key={idx} />
+        }
+      }
       )}
       {review.response
       ? review.response
@@ -60,7 +73,11 @@ const ReviewTile = ({review}) => {
         <button onClick={addHelpful}>Yes</button>
         <button onClick={() => setShowHelpful(false)}>No</button>
       </>
-      : null}
+      :
+      <>
+        <button onClick={addHelpful} disabled>Yes</button>
+        <button onClick={() => setShowHelpful(false)} disabled>No</button>
+      </>}
       <p>{helpfulness}</p>
     </div>
   );

@@ -295,12 +295,12 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
             </label>
             <label>
               {'Review Summary '}
-              <input type='text' maxLength={60} placeholder='Example: Best purchase ever!' onChange={(e) => setSummary(e.target.value)}/>
+              <input type='text' maxLength={60} placeholder='Example: Best purchase ever!' size={30} onChange={(e) => setSummary(e.target.value)}/>
             </label>
             <br/>
             <label>
               {'Review Body* '}
-              <input type='text' minLength={50} maxLength={1000} id='reviewBody' placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
+              <input type='text' className='write-modal-body' minLength={50} maxLength={1000} size={50} id='reviewBody' placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
               {body.length <= 50
               ? <p>Minimum required characters left: {50 - body.length}</p>
               : null}
@@ -319,14 +319,14 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
             <br/>
             <label>
               {'Nickname* '}
-              <input type='text' maxLength={60} placeholder='Example: jackson11!' required onChange={(e) => setNickName(e.target.value)}/>
+              <input type='text' maxLength={60} size={20} placeholder='Example: jackson11!' required onChange={(e) => setNickName(e.target.value)}/>
               <br/>
               {'For privacy reasons, do not use your full name or email address'}
             </label>
             <br/>
             <label>
               {'Email* '}
-              <input type='email' maxLength={60} placeholder='Example: jackson11@email.com' required onChange={(e) => setEmail(e.target.value)}/>
+              <input type='email' maxLength={60} size={30} placeholder='Example: jackson11@email.com' required onChange={(e) => setEmail(e.target.value)}/>
               <br/>
               {'For authentication reasons, you will not be emailed'}
             </label>

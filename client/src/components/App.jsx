@@ -36,21 +36,20 @@ const App = ()=> {
       {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
 
       {/* Review & Ratings */}
-      <ReviewList product_id={40352} productName={product.name}/>
-      <br/>
-      <br/>
+      <ReviewList product_id={40344} productName={product.name}/>
+
       {/* Questions */}
-      {/* <div className="questions">
+      <div className="questions">
         <QuestionMounted product={product} setProduct={setProduct}/>
-      </div> */}
+      </div>
 
       {/* Related Items & Comparison */}
-      {/* <RelatedList
+      <RelatedList
         product={product}
       />
       <OutfitList
         product={product}
-      /> */}
+      />
 
     </div>
 

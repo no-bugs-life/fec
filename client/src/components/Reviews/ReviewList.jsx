@@ -127,7 +127,7 @@ const ReviewList = ({product_id, productName}) => {
   }
 
   return (
-    <>
+    <div className='reviews-section'>
       <div className='left-reviews'>
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
         <button onClick={openWriteReview} >Write Review</button>
@@ -136,8 +136,10 @@ const ReviewList = ({product_id, productName}) => {
       : null}
       </div>
       <div className='right-reviews'>
-        <SortOption handleSortChange={handleSortChange} />
-        <Search getQuery={getSearchQuery}/>
+        <div className='right-reviews-header'>
+          <SortOption handleSortChange={handleSortChange} />
+          <Search getQuery={getSearchQuery}/>
+        </div>
         {Object.keys(reviews).length
         ? <>
             {reviewsOnPage.map((review, idx) =>
@@ -151,7 +153,7 @@ const ReviewList = ({product_id, productName}) => {
         }
       </div>
       <br/>
-    </>
+    </div>
   );
 }
 
