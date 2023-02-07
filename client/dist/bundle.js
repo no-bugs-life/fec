@@ -1061,10 +1061,11 @@ __webpack_require__.r(__webpack_exports__);
 var Size = function Size(_ref) {
   var currentInventory = _ref.currentInventory,
     onSizeClick = _ref.onSizeClick;
+  console.log(currentInventory);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ul", {
     className: "size-list",
     children: Object.keys(currentInventory).length && !Object.keys(currentInventory).includes('null') ? Object.keys(currentInventory).map(function (size, index) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+      return currentInventory[size].quantity ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
         className: "size-ind",
         id: index,
         onClick: onSizeClick,
@@ -1074,6 +1075,17 @@ var Size = function Size(_ref) {
           className: "size-btn",
           value: currentInventory[size].size,
           required: "required"
+        })
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+        className: "size-ind",
+        id: index,
+        onClick: onSizeClick,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+          type: "button",
+          name: "size",
+          className: "size-btn",
+          value: currentInventory[size].size,
+          disabled: true
         })
       });
     }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
