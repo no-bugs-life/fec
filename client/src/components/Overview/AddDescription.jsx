@@ -8,7 +8,7 @@ const AddDescription = ({description, slogan, features})=> {
     return (
         <div className="add-div">
             <span className="add-title">Description</span>
-            <button className="add-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
+            <button className="add-extend-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
             {isClicked && <div className = "add-extend">
                 <p className="add-slogan">{slogan}</p>
                 <p className="add-detail">{description}</p>
