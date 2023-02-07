@@ -15,6 +15,7 @@ const ReviewList = ({product_id, productName}) => {
   const [writeReview, setWriteReview] = useState(false);
   const [filters, setFilters] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [charIds, setCharIds] = useState([]);
 
   useEffect(() => {
     callReviewData();
@@ -63,8 +64,12 @@ const ReviewList = ({product_id, productName}) => {
     if (product_id) {
       axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": product_id}})
       .then((res) => {
-        //console.log(res.data)
         setRatingData(res.data);
+        let newCharacteristics = [];
+        for (let i = 0; i < Object.values(res.data.characteristics).length; i++) {
+          newCharacteristics.push(Object.values(res.data.characteristics)[i].id);
+        }
+        setCharIds(newCharacteristics);
       })
       .catch((err) => {
         console.log(err);
@@ -123,14 +128,14 @@ const ReviewList = ({product_id, productName}) => {
 
   return (
     <>
-      <div className='left'>
+      <div className='left-reviews'>
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
         <button onClick={openWriteReview} >Write Review</button>
         {writeReview
-      ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} characteristics={ratingData.characteristics} product_id={product_id}/>
+      ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} charIds={charIds} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
       </div>
-      <div className='right'>
+      <div className='right-reviews'>
         <SortOption handleSortChange={handleSortChange} />
         <Search getQuery={getSearchQuery}/>
         {Object.keys(reviews).length

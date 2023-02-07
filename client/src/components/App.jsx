@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 // import "../css/Overview/styles.css";
 // import Description from "./Overview/Description.jsx";
 
-// import ReviewList from './Reviews/ReviewList.jsx'
+import ReviewList from './Reviews/ReviewList.jsx'
 
 import {RelatedList, OutfitList, ComparisonModal} from './Prodlists'
 
