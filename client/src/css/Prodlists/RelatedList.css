@@ -43,20 +43,20 @@
   justify-content: flex-start;
 }
 
-
-.arrow {
+.related-list-arrow-right {
   border: solid black;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
-}
-
-.right {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
 
-.left {
+.related-list-arrow-left {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
