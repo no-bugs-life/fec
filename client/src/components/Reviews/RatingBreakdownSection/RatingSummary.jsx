@@ -32,7 +32,10 @@ const RatingSummary = ({summaryData, isHead}) => {
           <Stars rating={rateAvg} tag={'ratingSummary'} size={'50px'} isRating={true}/>
           <p> {rateAvg.toFixed(1)} out of 5 stars based on {rateCountTotal} reviews</p>
         </>
-      : null}
+      : <>
+      <Stars rating={0} tag={'ratingSummary'}/>
+      <span>No reviews yet</span>
+    </>}
     </div>
   );
 }

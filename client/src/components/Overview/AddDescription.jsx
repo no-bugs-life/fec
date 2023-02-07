@@ -1,26 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 const AddDescription = ({description, slogan, features})=> {
-    
-   
-     if (Object.keys(features).length !== 0) {
-        const myFeatures = Object.keys(features).map(key => {
-            return (
-                <>               
-                <li>{key}</li>
-                <li>{features[key]}</li>
-                </>
+    const [isClicked, setIsClicked] = useState(false);
+    const onExtendClick = (e) => {
+        setIsClicked(!isClicked);
+    }
 
-            )
-        })
-     }
     return (
-        <div className="additionalInfo">
-            <p>Description</p>
-            <h3>{slogan}</h3>
-            <p>{description}</p>
-            <ul>
-                
-            </ul>
+        <div className="add-div">
+            <span className="add-title">Description</span>
+            <button className="add-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
+            {isClicked && <div className = "add-extend">
+                <p className="add-slogan">{slogan}</p>
+                <p className="add-detail">{description}</p>
+                <ul>
+                    {features.map(feature => {
+                        return(
+                            <div className="add-features">
+                                <span className="add-feature">{feature.feature} :</span>
+                                <span className="add-value">{feature.value}</span>
+                            </div>
+                        )
+                    })}
+                </ul>
+            </div>}
         </div>
     )
 }
