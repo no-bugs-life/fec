@@ -15,6 +15,7 @@ const OutfitList = ({product}) => {
   const [modalToggle, setModalToggle] = useState(false);
   const [modalPosition, setModalPosition] = useState({x:0 , y:0});
   const [compareProductId, setCompareProductId] = useState(null);
+  const [cardAnimation, setCardAnimation] = useState('fadeInFromLeft')
 
   const updateView = (pageTo) => {
     if(pageTo <= 0){
@@ -58,26 +59,25 @@ const OutfitList = ({product}) => {
 
   return (
     <div>
-      <p>Your Outfit</p>
-
-      {
-        modalToggle ?
-          <ComparisonModal
-            setModalToggle={setModalToggle}
-            modalPosition={modalPosition}
-            compareProductId={compareProductId}
-            currentProductId={product.id}
-          />
-          :
-          null
-      }
-
+      <p className='outfit-list-title'>Your Outfit</p>
       <div className='outfit-list'>
+        {
+          modalToggle ?
+            <ComparisonModal
+              setModalToggle={setModalToggle}
+              modalPosition={modalPosition}
+              compareProductId={compareProductId}
+              currentProductId={product.id}
+            />
+            :
+            null
+        }
         <div className='outfit-list-container'>
           <button
             className='outfit-list-container-scroll'
             onClick={
               ()=>{
+                setCardAnimation('fadeInFromLeft')
                 updateView(page - 1)
               }
             }
@@ -129,6 +129,7 @@ const OutfitList = ({product}) => {
                     setModalPosition={setModalPosition}
                     setModalToggle={setModalToggle}
                     setCompareProductId={setCompareProductId}
+                    cardAnimation={cardAnimation}
                   />
                 )
               })
@@ -138,12 +139,13 @@ const OutfitList = ({product}) => {
             className='outfit-list-container-scroll'
             onClick={
               ()=>{
+                setCardAnimation('fadeInFromRight')
                 updateView(page + 1);
               }
             }
             disabled={productIds.view.includes(productIds.outfits[productIds.outfits.length-1]) || productIds.view.length === 0}
           >
-            <i class="outfit-list-arrow-left"></i>
+            <i class="outfit-list-arrow-right"></i>
           </button>
         </div>
       </div>

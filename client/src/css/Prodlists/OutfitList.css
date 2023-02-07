@@ -1,3 +1,8 @@
+.outfit-list-title{
+  margin-left: 10%;
+  margin-bottom: 20px;
+}
+
 .outfit-list{
   /* border: 1px solid red; */
   text-align: center;
@@ -10,6 +15,7 @@
   min-width: 1000px;
   height: 361px;
   justify-content: space-between;
+  margin-bottom: 30px;
 }
 
 .outfit-list-card-container{

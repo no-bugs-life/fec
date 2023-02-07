@@ -53,7 +53,7 @@ const RelatedList = ({product}) => {
 
   return (
     <div>
-      <p>Related Products</p>
+      <p className='related-list-title'>Related Products</p>
       <div className='related-list'>
 
         {
