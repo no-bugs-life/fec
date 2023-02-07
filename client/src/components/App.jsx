@@ -37,7 +37,8 @@ const App = ()=> {
 
       {/* Review & Ratings */}
       <ReviewList product_id={40352} productName={product.name}/>
-
+      <br/>
+      <br/>
       {/* Questions */}
       {/* <div className="questions">
         <QuestionMounted product={product} setProduct={setProduct}/>

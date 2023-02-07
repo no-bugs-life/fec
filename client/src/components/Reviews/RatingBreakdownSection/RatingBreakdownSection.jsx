@@ -27,11 +27,10 @@ const RatingBreakdownSection = ({product_id}) => {
       {Object.keys(ratingData).length
       ? <>
           <RatingSummary summaryData={ratingData.ratings} />
-          <RatingBreakdown summaryData={ratingData.ratings} recommendData={ratingData.recommended} />
+          <RatingBreakdown summaryData={ratingData.ratings} recommendData={ratingData.recommended} handleFilter={handleFilterRBS} filters={filters}/>
           <ProductBreakdown productData={ratingData.characteristics} />
         </>
       : null}
-
     </>
   );
 }

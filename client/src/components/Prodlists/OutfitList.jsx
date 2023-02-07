@@ -20,10 +20,12 @@ const OutfitList = ({product}) => {
     if(pageTo <= 0){
       pageTo = 0
     }
+    const inc = productIds.outfits.indexOf(product.id) > -1 ? 4: 3;
+    console.log(page)
     setPage(pageTo);
     setProductsIds({
       outfits: [...productIds.outfits],
-      view: [...productIds.outfits].splice(pageTo*4, pageTo*4 + 4)
+      view: [...productIds.outfits].splice(pageTo*inc, pageTo*inc + inc)
     })
   }
 
@@ -34,9 +36,11 @@ const OutfitList = ({product}) => {
       }
 
       const updateProductIds = () => {
+        console.log(page)
+        const inc = JSON.parse(localStorage.getItem('user')).outfits.indexOf(product.id) > -1 ? 4: 3
         setProductsIds({
           outfits: JSON.parse(localStorage.getItem('user')).outfits,
-          view: JSON.parse(localStorage.getItem('user')).outfits.splice(page*4, page*4 + 4)
+          view: JSON.parse(localStorage.getItem('user')).outfits.splice(page*inc, page*inc + inc)
         })
       }
 
@@ -49,7 +53,7 @@ const OutfitList = ({product}) => {
       }
 
     },
-    []
+    [product]
   )
 
   return (
@@ -71,6 +75,7 @@ const OutfitList = ({product}) => {
       <div className='outfit-list'>
         <div className='outfit-list-container'>
           <button
+            className='outfit-list-container-scroll'
             onClick={
               ()=>{
                 updateView(page - 1)
@@ -78,7 +83,7 @@ const OutfitList = ({product}) => {
             }
             disabled={page === 0}
           >
-            {'<'}
+            <i class="outfit-list-arrow-left"></i>
           </button>
           <div className='outfit-list-card-container'>
             {
@@ -91,7 +96,7 @@ const OutfitList = ({product}) => {
                       let storage = JSON.parse(localStorage.getItem('user')).outfits
                       if(storage.indexOf(product.id) === -1){
                         storage.unshift(product.id)
-                        console.log('adding to outfit')
+                        //console.log('adding to outfit')
                         localStorage.setItem('user', JSON.stringify({'outfits': storage}));
                         window.dispatchEvent(new Event('storage'))
                       }
@@ -109,7 +114,6 @@ const OutfitList = ({product}) => {
                       () => {
                         let storage = JSON.parse(localStorage.getItem('user')).outfits
                         let index = storage.indexOf(cachedProductId)
-                        console.log(storage,index)
 
                         if(index > -1){
                           storage.splice(index, 1)
@@ -131,14 +135,15 @@ const OutfitList = ({product}) => {
             }
           </div>
           <button
+            className='outfit-list-container-scroll'
             onClick={
               ()=>{
-                updateView(page + 1)
+                updateView(page + 1);
               }
             }
-            disabled={page >= Math.ceil(productIds.outfits.length/4)-1}
+            disabled={productIds.view.includes(productIds.outfits[productIds.outfits.length-1]) || productIds.view.length === 0}
           >
-            {'>'}
+            <i class="outfit-list-arrow-left"></i>
           </button>
         </div>
       </div>

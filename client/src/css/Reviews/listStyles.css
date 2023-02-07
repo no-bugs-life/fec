@@ -1,0 +1,17 @@
+.left {
+  float: left;
+  width: 33.33%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+.right {
+  float: left;
+  width: 66.67%;
+  position: static;
+}
+
+.sort {
+  float: right;
+}
