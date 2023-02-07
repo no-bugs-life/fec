@@ -1,7 +1,6 @@
 .left-reviews {
   float: left;
   width: 33.33%;
-  position: sticky;
   top: 0;
   background-color: white;
 }

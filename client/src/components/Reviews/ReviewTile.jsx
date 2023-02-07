@@ -11,6 +11,7 @@ const ReviewTile = ({review}) => {
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
 
   useEffect(() => {
+    console.log('reviewTile')
     setHelpfulness(review.helpfulness)
   }, [review])
 
