@@ -1,0 +1,79 @@
+.progressStyle {
+  height: 20px;
+  width: 300px;
+  border: 1px solid black;
+  background-color: gray;
+}
+
+.progressFillStyle {
+  height: 20px;
+  background-color: green;
+}
+
+.characteristicStyle {
+  height: 20px;
+  width: 300px;
+  border: 1px solid black;
+  background-color: gray;
+}
+
+.characteristicFillStyle {
+  height: 20px;
+  background-color: green;
+}
+
+.modalWriteReview {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-Index: 1000;
+}
+
+.modalWriteReviewBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.modalPhoto {
+  z-index: 1000;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 75%;
+  width: auto;
+}
+
+.modalPhotoBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.regPhoto {
+  max-height: 10rem;
+  width: auto;
+}
+
+.closeModalButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

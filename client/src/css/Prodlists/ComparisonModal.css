@@ -1,0 +1,29 @@
+.comparison-modal{
+  position: fixed;
+
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid chartreuse;
+  z-index: 1;
+}
+
+.comparison-modal-content{
+  width: 500px;
+  background-color: white;
+}
+
+.comparison-modal-header{
+  padding:10px;
+  position: relative;
+}
+
+.comparison-modal-title{
+  margin:0;
+}
+
+.comparison-modal-exit{
+  position: absolute;
+  top:0;
+  right:0
+}

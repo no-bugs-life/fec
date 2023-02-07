@@ -1,0 +1,18 @@
+.reviewTile {
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 750px;
+}
+
+.date {
+  position: relative;
+  float: right;
+  top: 0;
+  right: 0;
+}
+
+.username {
+  position: relative;
+  top: 0px;
+  right: 0;
+}
