@@ -79,16 +79,15 @@ html {
   color: red;
 }
 
-.overview .description .img .portal {
+.description-portal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1000;
-
 }
-.overview .description .img .portal img {
+.description-portal img {
   display: block;
   height: 100vh;
   width: 40vw;
@@ -99,7 +98,7 @@ html {
   z-index: 2;
   transform: translateX(-50%);
 }
-.description-img .portal .modal-btn {
+.modal-btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -107,7 +106,7 @@ html {
   padding: 0.8rem;
   opacity: 60%;
 }
-.description-img .portal .modal-bg{
+.modal-bg{
   position: absolute;
   z-index: 1;
   background-color: black;
@@ -324,7 +323,6 @@ button .sm #next{
   display: inline-block;
   background-color: black;
   padding: 0.01rem;
-
 }
 .half{
   width: 40vw;
