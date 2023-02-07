@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import Star from './Star.jsx'
 
-const Stars = ({rating, tag, size, setNewRating, colorVal}) => {
+const Stars = ({rating, tag, size, setNewRating, colorVal, isRating}) => {
 
   let starArr = [];
   let starTotal = rating * 100;
 
-  if (starTotal % 25 < 13) {
-    starTotal = starTotal - (starTotal % 25);
-  } else {
-    starTotal = starTotal + (25 - starTotal % 25);
+  if (isRating) {
+    if (starTotal % 25 < 13) {
+      starTotal = starTotal - (starTotal % 25);
+    } else {
+      starTotal = starTotal + (25 - starTotal % 25);
+    }
   }
 
   for (let i = 0; i < 5; i++) {

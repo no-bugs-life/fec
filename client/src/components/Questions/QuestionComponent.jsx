@@ -22,7 +22,7 @@ const QuestionComponent = ({product, setProduct}) => {
         }
       })
       .then((res) => {
-        console.log('results', res.data);
+        //console.log('results', res.data);
         setQuestion(res.data);
       })
       .catch(err => console.log(err))
@@ -37,7 +37,7 @@ const QuestionComponent = ({product, setProduct}) => {
         }
       })
       .then((res) => {
-        console.log('answers', res.data);
+        //console.log('answers', res.data);
         setAnswer(res.data);
         setLoading(false);
       })

@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import '../../css/Reviews/listStyles.css';
 
 const SortOption = ({handleSortChange}) => {
 
-  let [option, setOption] = useState('Relevant')
+  let [option, setOption] = useState('relevant')
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -11,9 +12,9 @@ const SortOption = ({handleSortChange}) => {
   }
 
   return (
-    <form>
+    <form className='sort'>
       <label>
-        {'Sort by: '}
+        {'Sort on: '}
         <select value={option} onChange={handleSubmit}>
           <option value='helpful'>Helpful</option>
           <option value='newest'>Newest</option>
