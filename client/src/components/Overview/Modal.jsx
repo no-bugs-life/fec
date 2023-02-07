@@ -13,23 +13,23 @@ const Modal = ({open, setIsOpen, defaultPhoto, photos, onBtnClick}) => {
 
             {photos.length <= 1 ?
                 <>
-                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
-                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+                <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+                <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
                 </>
                 : defaultPhoto === photos[0] ?
                 <>
-                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
-                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+                <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+                <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
                 </>
                 : defaultPhoto === photos[photos.length - 1] ?
                 <>
-                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
-                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+                <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
+                <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
                 </>
                 :
                 <>
-                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
-                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+                <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
+                <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
                 </>
       }
             <span className="modal-bg"></span>

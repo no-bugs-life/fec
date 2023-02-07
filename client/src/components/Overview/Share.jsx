@@ -7,7 +7,7 @@ const Share =()=> {
     return (
       <div className="share">
           <span className="share-title">Share</span>
-          <button className="add-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
+          <button className="add-extend-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
           {isClicked && <div className = "add-extend">
             <>
             <p className="share-desc">Share the link to: </p>

@@ -72,23 +72,23 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
     <>
     <div className="primary-img">
       {photos.length <= 1 ?  <>
-      <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
-      <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
       </>
       : defaultPhoto === photos[0] ?
       <>
-      <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
-      <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
       </>
       : defaultPhoto === photos[photos.length - 1] ?
       <>
-      <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
       </>
       :
       <>
-      <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
       </>
       }
       <img src={defaultPhoto.url} onClick={onModalClick}></img>
@@ -97,26 +97,26 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
     <div className="photo-carousel">
       {photos.length <= 1 ?
       <>
-      <button class="carousel carousel-btn-prev-sm" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
-      <button class="carousel carousel-btn-next-sm" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev-sm" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next-sm" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
       </>
       : defaultPhoto === photos[0] ?
       <>
-      <button class="carousel carousel-btn-prev-sm" id ="prev" onClick={onBtnClick} disabled>{'<'}</button>
-      <button class="carousel carousel-btn-next-sm " id ="next" onClick={onBtnClick}>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev-sm" id ="prev" onClick={onBtnClick} disabled>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next-sm " id ="next" onClick={onBtnClick}>{'>'}</button>
       </>
       : defaultPhoto === photos[photos.length - 1] ?
       <>
-      <button class="carousel carousel-btn-prev-sm" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button class="carousel carousel-btn-next-sm" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev-sm" id= "prev" onClick={onBtnClick}>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next-sm" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
       </>
       :
       <>
-      <button class="carousel carousel-btn-prev-sm" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button class="carousel carousel-btn-next-sm" id ="next" onClick={onBtnClick}>{'>'}</button>
+      <button class="description-carousel description-carousel-btn-prev-sm" id= "prev" onClick={onBtnClick}>{'<'}</button>
+      <button class="description-carousel description-carousel-btn-next-sm" id ="next" onClick={onBtnClick}>{'>'}</button>
       </>}
-    <ul className="img-list">
-      {currentList.map((photo, index) => {
+        <ul className="img-list">
+        {currentList.map((photo, index) => {
           return(
             photo === defaultPhoto ?
             <li className="img-ind selected" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick}></img></li>
@@ -125,7 +125,7 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
 
         )
       })}
-    </ul>
+      </ul>
     </div>
     </>
   )
