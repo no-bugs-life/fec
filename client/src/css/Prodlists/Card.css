@@ -1,17 +1,23 @@
 .card{
   margin-left: 10px;
   margin-right: 10px;
-  width:200px;
-  border: 1px solid blue
+  min-width:200px;
+  min-height: 361px;
+  /* border: 1px solid blue; */
 }
+
+
 
 .card-image-container{
   position: relative;
+  width:200px;
+  height:200px;
 }
 
 .card-image{
   width:200px;
   height:200px;
+  box-shadow: 2px 2px 2px rgb(122, 122, 122);
 }
 
 .card-image-button{
@@ -29,26 +35,38 @@
   cursor: pointer;
 }
 
-.card-image-button.star-on{
-  color: rgb(216, 166, 0)
-}
-
-.card-image-button.star-off{
-  color: rgb(214, 182, 102)
-}
-
 .card-image-button.heart-on{
+  color: rgb(255, 0, 0)
+}
+
+.card-image-button.heart-off{
+  color: rgb(255, 255, 255);
+  -webkit-text-stroke: 2px rgb(255, 140, 140);
+}
+
+.card-image-button.heart-off:hover{
+  color: rgb(255, 140, 140)
+}
+
+.card-image-button.remove-on{
   color: rgb(175, 0, 0)
 }
-.card-image-button.heart-on:hover{
-  color: rgb(113, 101, 101)
+.card-image-button.remove-on:hover{
+  color: rgb(253, 0, 0);
+  font-size: 31px;
+}
+
+.card-info-container{
+  position: relative;
+  margin: 5px 0px 5px 5px;
+  text-align: left;
 }
 
 .card-button-compare{
   position: absolute;
   background-color: rgb(75, 75, 75);
-  top: -20px;
-  right:-10px;
+  top: -3px;
+  right:0%;
   border: none;
   padding: 5px 8px 5px 10px;
   text-align: center;
@@ -56,16 +74,98 @@
   display: inline-block;
   margin-left: 0;
   cursor: pointer;
-  border-radius: 0px 0px 0px 10px;
+  border-radius: 0px 10px 10px 10px;
+  box-shadow: 2px 2px 2px rgb(122, 122, 122);
+  animation-name: popInFromTop;
+  animation-duration: .5s;
+  animation-fill-mode: both;
 }
 
 .card-button-compare:hover{
   background-color: #434343;
 }
 
+.card-description-container{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
 
-.card-container{
-  position: relative;
-  margin: 5px 0px 5px 5px;
-  text-align: left;
+.card-description-category{
+  font-size: 12px;
+  color:rgb(97, 97, 97);
+  margin: 8px 0 10px 0
+}
+
+.card-description-name{
+  font-size: 16px;
+  margin: 0 0 6px 0;
+}
+
+.card-description-price{
+  font-size: 16px;
+  font-weight:bold;
+  margin: 0 0 8px 0;
+}
+
+.card-rating-stars{
+  color:rgb(253, 0, 0)
+}
+
+.card-rating-stats{
+  margin: 0;
+  font-size: 12px;
+  color:rgb(113, 113, 113)
+}
+
+.card-rating-stats-num{
+  color:rgb(55, 55, 55)
+}
+
+.card-rating-stats-count{
+  color:rgb(55, 55, 55)
+}
+
+.fadeInFromLeft{
+  animation-name: fadeInFromLeft;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+.fadeInFromRight{
+  animation-name: fadeInFromRight;
+  animation-duration: .5s;
+  animation-fill-mode: both;
+}
+
+
+@keyframes fadeInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes popInFromTop {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
