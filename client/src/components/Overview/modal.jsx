@@ -1,6 +1,6 @@
 import React from 'react';
 import { createPortal } from "react-dom";
-const Modal = ({open, setIsOpen, src, onBtnClick}) => {
+const Modal = ({open, setIsOpen, defaultPhoto, photos, onBtnClick}) => {
     const onCloseClick = (e) => {
         setIsOpen(!open);
         document.body.style.overflowY = "visible";
@@ -8,10 +8,30 @@ const Modal = ({open, setIsOpen, src, onBtnClick}) => {
     return (
         open && createPortal(
         <div className='portal'>
-            <img src={src}></img>
+            <img src={defaultPhoto.url}></img>
             <button className="modal-btn" onClick={onCloseClick}>X</button>
-            <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+
+            {photos.length <= 1 ?
+                <>
+                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+                </>
+                : defaultPhoto === photos[0] ?
+                <>
+                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
+                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+                </>
+                : defaultPhoto === photos[photos.length - 1] ?
+                <>
+                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
+                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+                </>
+                :
+                <>
+                <button class="carousel carousel-btn-prev" id= "prev" onClick={onBtnClick}>{'<'}</button>
+                <button class="carousel carousel-btn-next" id ="next" onClick={onBtnClick}>{'>'}</button>
+                </>
+      }
             <span className="modal-bg"></span>
         </div>
         , document.getElementById('portal')

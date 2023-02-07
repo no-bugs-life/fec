@@ -2,7 +2,7 @@ const products = require("../models/products.js");
 
 module.exports = {
 
-    readAll : (req, res)=> { 
+    readAll : (req, res)=> {
         products.listProducts(req.query)
         .then((result)=> {
             res.status(200).send(result.data);
