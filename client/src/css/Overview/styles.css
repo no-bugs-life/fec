@@ -415,8 +415,19 @@ button .sm #next{
 }
 .share-link{
   display: inline-block;
-  margin-right: 0.4rem;
+  margin-right: 0.6rem;
 }
-.fa-facebook{
-  width: 20%;
+.icons{
+  display: flex;
+  justify-content:flex-start;
+  margin-top: 1vh;
+}
+.rating-link{
+  text-decoration: none;
+  color: black;
+}
+.rating-link:hover{
+  color: blueviolet;
+  text-decoration: underline;
+  cursor: pointer;
 }

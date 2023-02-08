@@ -97,20 +97,12 @@ const Description = ({product}) => {
   useEffect(() => {
     Promise.all([ axios.get(`http://127.0.0.1:3000/api/products/${product.id}`),  axios.get(`http://127.0.0.1:3000/api/products/${product.id}/styles`), axios.get('http://127.0.0.1:3000/api/reviews/meta', {params: {"product_id": product.id}})])
     .then((results) => {
-      console.log(results)
       setIsLoading(!isLoading);
       setCurrentProduct(results[0].data);
       setCurrentStyle(results[1].data.results);
       setCurrentPick(results[1].data.results[0]);
-      //working on setting default photo for images if no img is given
-      // if (results[1].data.results[0].photos[0].url && results[1].data.results[0].photos[0].thumbnail_url) {
-        // console.log(results[1].data.results[0].photos[0])
-        setCurrentPhotos(results[1].data.results[0].photos);
-        setDefaultPhoto(results[1].data.results[0].photos[0]);
-      // } else {
-      //   setCurrentPhotos([{thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"}])
-      //   setDefaultPhoto({thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"})
-      // }
+      setCurrentPhotos(results[1].data.results[0].photos);
+      setDefaultPhoto(results[1].data.results[0].photos[0]);
       setCurrentName(results[1].data.results[0].name);
       setCurrentInventory(results[1].data.results[0].skus);
       setCurrentSize(Object.keys(results[1].data.results[0].skus)[0]);

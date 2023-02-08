@@ -12,8 +12,6 @@ import axios from 'axios';
 // import RelatedList from '../RelatedList.jsx';
 axios.defaults.baseURL = 'http://localhost:3000';
 
-jest.mock('axios');
-
 // axios.get.mockImplementation((url) => {
 //   switch (url) {
 //     case '/users.json':
@@ -24,6 +22,25 @@ jest.mock('axios');
 //       return Promise.reject(new Error('not found'))
 //   }
 // })
+jest.mock('axios', () => {
+  return {
+    get: jest.fn(() => Promise.resolve({ data: {} }))
+  };
+});
+
+const axios = require('axios');
+
+const mockUseEffect = (callback) => {
+  const mockPromise = Promise.all([
+    axios.get(`http://127.0.0.1:3000/api/products/${product.id}`),
+    axios.get(`http://127.0.0.1:3000/api/products/${product.id}/styles`),
+    axios.get('http://127.0.0.1:3000/api/reviews/meta', { params: { "product_id": product.id } })
+  ]).then((results) => {
+    callback(results);
+  });
+
+  return mockPromise;
+};
 
 
 describe('RelatedList component', () => {
@@ -62,31 +79,7 @@ describe('RelatedList component', () => {
   updated_at
   :
   "2021-08-13T14:38:44.509Z"}
-  let myObj2 =
-    {
-      product_id
-      :
-      "40344",
-      results
-      :
-      [
-      {style_id: 240500, name: 'Forest Green & Black', original_price: '140.00', sale_price: null, photos:[{thumbnail_url
-        :
-        "https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
-        url
-        :
-        "https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"}],
-       skus: [
-        {quantity: 16, size: 'S'},
-        {quantity: 10, size: 'L'}
-      ] },
-      {style_id: 240501, name: 'Desert Brown & Tan', original_price: '140.00', sale_price: null,photos:[{thumbnail_url:
-        "https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80",
-        url
-        :
-        "https://images.unsplash.com/photo-1533779183510-8f55a55f15c1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"}]
-      },
-      ]}
+
 
   beforeEach(() => {
     product = {

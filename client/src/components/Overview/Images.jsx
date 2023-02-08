@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import Modal from "./Modal.jsx"
 const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentList})=>{
   const [isOpen, setIsOpen] = useState(false);
-  console.log(photos)
+
 
   const onModalClick = (e) => {
     setIsOpen(true)
