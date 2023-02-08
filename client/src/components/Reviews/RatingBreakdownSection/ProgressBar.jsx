@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../css/Reviews/breakdownStyles.css'
 
 const ProgressBar = ({rateData, totalRates, setFilter, rateIdx}) => {
 
@@ -8,12 +9,13 @@ const ProgressBar = ({rateData, totalRates, setFilter, rateIdx}) => {
   }
 
   return(
-    <>
-    <div className='progressStyle' onClick={handleClick}>
-      <div className='progressFillStyle' style={{width: `${rateData * 100 / totalRates}%`}} />
+    <div className='progress-bar-style'>
+      <p className='progress-bar-star-value'>{rateIdx + ' Stars:'}</p>
+      <div className='progress-style' onClick={handleClick}>
+        <div className='progress-fill-style' style={{width: `${rateData * 100 / totalRates}%`}} />
+      </div>
+      <p>{rateData}</p>
     </div>
-    <p>{rateData}</p>
-    </>
   );
 }
 

@@ -26,13 +26,15 @@ const AnswerComponent = ({id, body, answerer_name, helpfulness, date, handleHelp
     <div className="answer">
     <h4>A: {body}</h4>
     {answerer_name === 'Seller' ?
-    <small>by <b>{answerer_name}</b>, {dateFormat(`${date}`, "mmmm dS, yyyy")} | </small> :
-    <small>by {answerer_name}, {dateFormat(`${date}`, "mmmm dS, yyyy")} | </small>
+    <small>by <b>{answerer_name}</b>, {dateFormat(`${date}`, "mmmm dS, yyyy")}</small> :
+    <small>by {answerer_name}, {dateFormat(`${date}`, "mmmm dS, yyyy")}</small>
     }
-    {showAnswerHelpful ? <small> Helpful Rating: {helpfulness} <button id="answerHelpful" onClick ={(e) => {handleAnswerHelpful(e); setShowAnswerHelpful(false)}}>Helpful?</button> | </small> :
+    <div className="answer-helpful-report">
+    {showAnswerHelpful ? <small> Helpful Rating: {helpfulness} <button id="answerHelpful" onClick ={(e) => {handleAnswerHelpful(e); setShowAnswerHelpful(false)}}>Helpful?</button> </small> :
     <small> Helpful Rating: {helpfulness + 1} </small>}
     {showAnswerReport ? <small> <button id="answerReport" onClick ={(e) => {handleAnswerReport(e); setShowAnswerReport(false)}}>Report</button></small> :
     <small><button id="answerReport">Reported</button></small>}
+    </div>
     </div>
 )};
 

@@ -21,7 +21,7 @@ const RatingBreakdown = ({summaryData, recommendData, handleFilter, filters}) =>
     <>
     {Object.keys(summaryData)
     ? <>
-        <h3>Rating Breakdown</h3>
+        <h2>Rating Breakdown</h2>
         {filters.length
         ? <>
             {'Filters: ' + filters}
@@ -31,23 +31,18 @@ const RatingBreakdown = ({summaryData, recommendData, handleFilter, filters}) =>
         </>
         : null}
         <label>
-          5 Stars:
           <ProgressBar rateData={summaryData['5']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={5}/>
         </label>
         <label>
-          4 Stars:
           <ProgressBar rateData={summaryData['4']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={4}/>
         </label>
         <label>
-          3 Stars:
           <ProgressBar rateData={summaryData['3']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={3}/>
         </label>
         <label>
-          2 Stars:
           <ProgressBar rateData={summaryData['2']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={2}/>
         </label>
         <label>
-          1 Stars:
           <ProgressBar rateData={summaryData['1']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={1}/>
         </label>
         {(parseInt(recommendData.true) / (parseInt(recommendData.false) + parseInt(recommendData.true)) * 100).toFixed(2) + '% Recommended'}

@@ -1,0 +1,59 @@
+.rating-breakdown-style {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.progress-style {
+  height: 20px;
+  width: 70%;
+  border: 1px solid black;
+  background-color: gray;
+  margin-right: 1%;
+}
+
+.progress-bar-star-value {
+  margin-right: 1%;
+}
+
+.progress-bar-style:hover {
+  background-color: gold;
+  transform: scale(1.01);
+}
+
+.progress-bar-style:hover .progress-style {
+  background-color: gold;
+  transform: scale(1.01);
+}
+
+.progress-fill-style {
+  height: 20px;
+  background-color: green;
+}
+
+.progress-bar-style {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1%;
+}
+
+.characteristic-style {
+  height: 20px;
+  width: 75%;
+  border: 1px solid black;
+  background-color: gray;
+}
+
+.characteristic-fill-style {
+  height: 20px;
+  background-color: green;
+}
+
+.characteristic-bar-label-style {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
