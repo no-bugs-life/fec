@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 const Search = ({search, setSearch}) => {
 
   return (
-    <div>
+    <div className="Search">
       <form>
       <input
       type='text'

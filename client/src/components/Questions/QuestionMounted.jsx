@@ -4,6 +4,7 @@ import AddQuestion from './AddQuestion.jsx';
 import Search from './Search.jsx';
 import App from '../App.jsx';
 import axios from 'axios';
+import '../../css/Questions/styles.css';
 
 const QuestionMounted = ({product, setProduct}) => {
   const [question, setQuestion] = useState({});
@@ -20,6 +21,7 @@ const QuestionMounted = ({product, setProduct}) => {
     if (Object.keys(product).length !== 0) {
       axios.get('http://localhost:3000/api/qa/questions', {
         params: {
+          count: 100,
           product_id: product.id
         }
       })
@@ -35,18 +37,20 @@ const QuestionMounted = ({product, setProduct}) => {
     if (Object.keys(question).length !== 0) {
       if (question.results.length > 1) {
         for (let i = 0; i < question.results.length; i++) {
-          axios.get(`http://localhost:3000/api/qa/questions/${question.results[i].question_id}/answers`, {
-            params: {
-              question_id: question.id
-            }
-          })
-          .then((res) => {
-            console.log('answers', res.data);
-            setAnswers({...answers, [res.data.question]: res.data.results});
-            setLoading(false);
-          })
-          .catch(err => console.log(err))
-        }
+          if (Object.keys(question.results[i].answers).length > 0) {
+            axios.get(`http://localhost:3000/api/qa/questions/${question.results[i].question_id}/answers`, {
+              params: {
+                question_id: question.id
+              }
+            })
+            .then((res) => {
+              console.log('answers', res.data);
+              setAnswers({...answers, [res.data.question]: res.data.results});
+              setLoading(false);
+            })
+            .catch(err => console.log(err))
+          }
+          }
       } else {
         axios.get(`http://localhost:3000/api/qa/questions/${question.results[0].question_id}/answers`, {
           params: {
@@ -68,9 +72,11 @@ const QuestionMounted = ({product, setProduct}) => {
   }
 
   return (
-    <div>
+    <div className="questions">
       <h1>Questions & Answers</h1>
+      <div className="question-search">
       <Search search={search} setSearch={setSearch}/>
+      </div>
       {question.results.slice(0, listLength)
       .filter((oneQuestion) => {
         if (search.length < 3) {
@@ -90,9 +96,11 @@ const QuestionMounted = ({product, setProduct}) => {
         setAnswers={setAnswers}
         productName={product.name}/>
       ))}
-      {more ? <button id="more" onClick={() => {setMore(false); setListLength(question.results.length)}}>More Answered Questions</button>: null}
-      <button id="add-question" onClick={() => setShowAddQuestion(true)}>Add a Question</button>
-      <AddQuestion onClose={() => setShowAddQuestion(false)} showAddQuestion={showAddQuestion} productName={product.name}/>
+      <div className="questions-buttons">
+      {more ? <button id="more-questions" onClick={() => {setMore(false); setListLength(question.results.length)}}>More Answered Questions</button>: null}
+      <button id="add-question" onClick={() => setShowAddQuestion(true)}> Add a Question</button>
+      <AddQuestion onClose={() => setShowAddQuestion(false)} showAddQuestion={showAddQuestion} productName={product.name} id={product.id}/>
+      </div>
     </div>
   )};
 
