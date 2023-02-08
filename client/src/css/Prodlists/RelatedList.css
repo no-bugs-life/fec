@@ -65,3 +65,24 @@
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
+
+
+
+@media screen and (min-width: 375px) {
+  .related-list-container{
+    /* border: 1px solid rgb(111, 55, 55); */
+    /* display: inline-flex;
+    flex-direction: row;
+    min-width: 375px;
+    height: 361px;
+    justify-content: space-between; */
+  }
+  .related-list-card-container{
+    /* min-width: 341px;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap */
+  }
+}

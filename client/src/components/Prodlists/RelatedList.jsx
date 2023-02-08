@@ -5,13 +5,6 @@ import axios from 'axios';
 import ComparisonModal from './ComparisonModal.jsx';
 import Card from './Card.jsx';
 
-// product will be obj from api
-// add saved property
-
-//  action will be obj with 2 properties
-//  imageref and function for action, add and delete
-//  {product, action}
-
 const RelatedList = ({product}) => {
 
   const [productIds, setProductsIds] = useState({
@@ -28,7 +21,7 @@ const RelatedList = ({product}) => {
       if(Object.keys(product).length){
         axios.get(`api/products/${product.id}/related`)
         .then((result) => {
-          console.log(result.data)
+          //console.log(result.data)
           setProductsIds({
             related: [...new Set(result.data)],
             view: [...new Set(result.data)].splice(page*4, page*4 + 4)
@@ -116,6 +109,7 @@ const RelatedList = ({product}) => {
             }
           </div>
           <button
+            data-testid='arrow-right'
             className='related-list-container-scroll'
             onClick={
               ()=>{

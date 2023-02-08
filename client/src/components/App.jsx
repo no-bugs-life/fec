@@ -33,10 +33,13 @@ const App = ()=> {
   return(
     <div className="product-main app">
       {/* Overview */}
-      {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
+      {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
 
       {/* Review & Ratings */}
-      <ReviewList product_id={40344} productName={product.name}/>
+
+      {/* <ReviewList product_id={40352} productName={product.name}/>
+      <br/>
+      <br/> */}
 
       {/* Questions */}
       <div className="questions">
