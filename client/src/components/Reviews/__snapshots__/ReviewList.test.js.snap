@@ -1,71 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Opens write a review modal when button is clicked 1`] = `
-[
-  <form>
-    <label>
-      Sort by: 
-      <select
-        onChange={[Function]}
-        value="Relevant"
-      >
-        <option
-          value="Helpful"
-        >
-          Helpful
-        </option>
-        <option
-          value="Newest"
-        >
-          Newest
-        </option>
-        <option
-          value="Relevant"
-        >
-          Relevant
-        </option>
-      </select>
-    </label>
-  </form>,
-  <button
-    onClick={[Function]}
-  >
-    Write Review
-  </button>,
-]
-`;
-
 exports[`renders properly 1`] = `
-[
-  <form>
-    <label>
-      Sort by: 
-      <select
-        onChange={[Function]}
-        value="Relevant"
-      >
-        <option
-          value="Helpful"
-        >
-          Helpful
-        </option>
-        <option
-          value="Newest"
-        >
-          Newest
-        </option>
-        <option
-          value="Relevant"
-        >
-          Relevant
-        </option>
-      </select>
-    </label>
-  </form>,
-  <button
-    onClick={[Function]}
+<div
+  className="reviews-section"
+>
+  <div
+    className="left-reviews"
   >
-    Write Review
-  </button>,
-]
+    <button
+      onClick={[Function]}
+    >
+      Write Review
+    </button>
+  </div>
+  <div
+    className="right-reviews"
+  >
+    <div
+      className="right-reviews-header"
+    >
+      <form
+        className="sort"
+      >
+        <label>
+          Sort on: 
+          <select
+            onChange={[Function]}
+            value="relevant"
+          >
+            <option
+              value="helpful"
+            >
+              Helpful
+            </option>
+            <option
+              value="newest"
+            >
+              Newest
+            </option>
+            <option
+              value="relevant"
+            >
+              Relevant
+            </option>
+          </select>
+        </label>
+      </form>
+      <input
+        onChange={[Function]}
+        placeholder="Search..."
+        type="text"
+      />
+    </div>
+  </div>
+  <br />
+</div>
 `;

@@ -10,7 +10,7 @@ const ProgressBar = ({rateData, totalRates, setFilter, rateIdx}) => {
 
   return(
     <div className='progress-bar-style'>
-      <p>{rateIdx} Stars:</p>
+      <p className='progress-bar-star-value'>{rateIdx + ' Stars:'}</p>
       <div className='progress-style' onClick={handleClick}>
         <div className='progress-fill-style' style={{width: `${rateData * 100 / totalRates}%`}} />
       </div>

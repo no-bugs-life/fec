@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Stars from '../Stars/Stars.jsx'
 import axios from 'axios';
 import ReactDom from 'react-dom';
@@ -19,6 +19,11 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
   const [photos, setPhotos] = useState([]);
   const [nickName, setNickName] = useState('');
   const [email, setEmail] = useState('');
+  const [domReady, setDomReady] = useState(false);
+
+  useEffect(() => {
+    setDomReady(true);
+  }, [])
 
   const postReview = (e) => {
     e.preventDefault();
@@ -58,11 +63,15 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
       newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(fit);
     }
     postObj.characteristics = newCharacteristics;
-    axios.post('http://localhost:3000/api/reviews/', postObj)
-    .then((res) => null)
-    .catch((err) => console.log(err));
-    setWriteReview(false);
-    document.body.style.overflowY = 'visible';
+    if (rating === 0) {
+      alert('Please add a rating for the product')
+    } else {
+      axios.post('http://localhost:3000/api/reviews', postObj)
+      .then((res) => null)
+      .catch((err) => console.log(err));
+      setWriteReview(false);
+      document.body.style.overflowY = 'visible';
+    }
   }
 
   const receivePhoto = (e) => {
@@ -106,12 +115,13 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
     document.body.style.overflowY = 'visible';
   }
 
-  return ReactDom.createPortal(
-    <>
-      <div className='modalWriteReviewBackground'/>
-      <div className='modalWriteReview'>
-        <button className='closeModalButton' onClick={closeWriteReview}>X</button>
-        <div>
+  return domReady
+    ? ReactDom.createPortal(
+    <div>
+      <div className='write-review-background'/>
+      <div className='write-review'>
+        <button className='close-modal-btn' onClick={closeWriteReview}>X</button>
+        <div className='write-review-header'>
           <h2>Write Your Review</h2>
           <h4>About the {productName}</h4>
         </div>
@@ -119,18 +129,18 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
           <form onSubmit={postReview}>
             <label>
               Overall Rating*
-              <Stars rating={rating} tag={'writeReview'} size={'50px'} setNewRating={setNewRating}/>
-              {rating === 1 ? 'Poor'
-              : rating === 2 ? 'Fair'
-              : rating === 3 ? 'Average'
-              : rating === 4 ? 'Good'
-              : rating === 5 ? 'Great'
+              <Stars rating={rating} tag={'writeReview'} size={'30px'} setNewRating={setNewRating}/>
+              {rating === 1 ? ' Poor'
+              : rating === 2 ? ' Fair'
+              : rating === 3 ? ' Average'
+              : rating === 4 ? ' Good'
+              : rating === 5 ? ' Great'
               : null}
             </label>
             <br/>
             <label>
               {'Do you recommend this product?* '}
-              <input type='radio' name='recommendation' value='Yes' onChange={() => setRecommend(true)}/>{'Yes '}
+              <input type='radio' name='recommendation' value='Yes' onChange={() => setRecommend(true)} required/>{'Yes '}
               <input type='radio' name='recommendation' value='No' onChange={() => setRecommend(false)}/>{'No'}
             </label>
             <br/>
@@ -152,14 +162,16 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 ? 'A size too wide'
                 : null}
                 <br/>
-                <input type='radio' name='size' value={1} onChange={(e) => setSize(e.target.value)}/>1
-                <input type='radio' name='size' value={2} onChange={(e) => setSize(e.target.value)}/>2
-                <input type='radio' name='size' value={3} onChange={(e) => setSize(e.target.value)}/>3
-                <input type='radio' name='size' value={4} onChange={(e) => setSize(e.target.value)}/>4
-                <input type='radio' name='size' value={5} onChange={(e) => setSize(e.target.value)}/>5
+                <input type='radio' name='size' value={1} className='char-btn' onChange={(e) => setSize(e.target.value)} required/>1
+                <input type='radio' name='size' value={2} className='char-btn' onChange={(e) => setSize(e.target.value)}/>2
+                <input type='radio' name='size' value={3} className='char-btn' onChange={(e) => setSize(e.target.value)}/>3
+                <input type='radio' name='size' value={4} className='char-btn' onChange={(e) => setSize(e.target.value)}/>4
+                <input type='radio' name='size' value={5} className='char-btn' onChange={(e) => setSize(e.target.value)}/>5
                 <br/>
-                <small>A size too small      A size too wide</small>
-                <br/>
+                <div className='char-btn-labels'>
+                  <small>A size too small</small>
+                  <small>A size too wide</small>
+                </div>
               </>
               : null}
             </label>
@@ -180,14 +192,16 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 ? 'Too wide'
                 : null}
                 <br/>
-                <input type='radio' name='width' value={1} onChange={(e) => setWidth(e.target.value)}/>1
-                <input type='radio' name='width' value={2} onChange={(e) => setWidth(e.target.value)}/>2
-                <input type='radio' name='width' value={3} onChange={(e) => setWidth(e.target.value)}/>3
-                <input type='radio' name='width' value={4} onChange={(e) => setWidth(e.target.value)}/>4
-                <input type='radio' name='width' value={5} onChange={(e) => setWidth(e.target.value)}/>5
+                <input type='radio' name='width' value={1} className='char-btn' onChange={(e) => setWidth(e.target.value)} required/>1
+                <input type='radio' name='width' value={2} className='char-btn' onChange={(e) => setWidth(e.target.value)}/>2
+                <input type='radio' name='width' value={3} className='char-btn' onChange={(e) => setWidth(e.target.value)}/>3
+                <input type='radio' name='width' value={4} className='char-btn' onChange={(e) => setWidth(e.target.value)}/>4
+                <input type='radio' name='width' value={5} className='char-btn' onChange={(e) => setWidth(e.target.value)}/>5
                 <br/>
-                <small>Too narrow      Too wide</small>
-                <br/>
+                <div className='char-btn-labels'>
+                  <small>Too narrow</small>
+                  <small>Too wide</small>
+                </div>
               </>
               : null}
             </label>
@@ -208,14 +222,16 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 ? 'Perfect'
                 : null}
                 <br/>
-                <input type='radio' name='comfort' value={1} onChange={(e) => setComfort(e.target.value)}/>1
-                <input type='radio' name='comfort' value={2} onChange={(e) => setComfort(e.target.value)}/>2
-                <input type='radio' name='comfort' value={3} onChange={(e) => setComfort(e.target.value)}/>3
-                <input type='radio' name='comfort' value={4} onChange={(e) => setComfort(e.target.value)}/>4
-                <input type='radio' name='comfort' value={5} onChange={(e) => setComfort(e.target.value)}/>5
+                <input type='radio' name='comfort' value={1} className='char-btn' id='comfort1' onChange={(e) => setComfort(e.target.value)} required/>1
+                <input type='radio' name='comfort' value={2} className='char-btn' onChange={(e) => setComfort(e.target.value)}/>2
+                <input type='radio' name='comfort' value={3} className='char-btn' onChange={(e) => setComfort(e.target.value)}/>3
+                <input type='radio' name='comfort' value={4} className='char-btn' onChange={(e) => setComfort(e.target.value)}/>4
+                <input type='radio' name='comfort' value={5} className='char-btn' onChange={(e) => setComfort(e.target.value)}/>5
                 <br/>
-                <small>Uncomfortable      Perfect</small>
-                <br/>
+                <div className='char-btn-labels'>
+                  <small>Uncomfortable</small>
+                  <small>Perfect</small>
+                </div>
               </>
               : null}
             </label>
@@ -236,14 +252,16 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 ? 'Perfect'
                 : null}
                 <br/>
-                <input type='radio' name='quality' value={1} onChange={(e) => setQuality(e.target.value)}/>1
-                <input type='radio' name='quality' value={2} onChange={(e) => setQuality(e.target.value)}/>2
-                <input type='radio' name='quality' value={3} onChange={(e) => setQuality(e.target.value)}/>3
-                <input type='radio' name='quality' value={4} onChange={(e) => setQuality(e.target.value)}/>4
-                <input type='radio' name='quality' value={5} onChange={(e) => setQuality(e.target.value)}/>5
+                <input type='radio' name='quality' value={1} className='char-btn' onChange={(e) => setQuality(e.target.value)} required/>1
+                <input type='radio' name='quality' value={2} className='char-btn' onChange={(e) => setQuality(e.target.value)}/>2
+                <input type='radio' name='quality' value={3} className='char-btn' onChange={(e) => setQuality(e.target.value)}/>3
+                <input type='radio' name='quality' value={4} className='char-btn' onChange={(e) => setQuality(e.target.value)}/>4
+                <input type='radio' name='quality' value={5} className='char-btn' onChange={(e) => setQuality(e.target.value)}/>5
                 <br/>
-                <small>Poor       Perfect</small>
-                <br/>
+                <div className='char-btn-labels'>
+                  <small>Poor</small>
+                  <small>Perfect</small>
+                </div>
               </>
               : null}
             </label>
@@ -264,14 +282,16 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 ? 'Runs long'
                 : null}
                 <br/>
-                <input type='radio' name='length' value={1} onChange={(e) => setLength(e.target.value)}/>1
-                <input type='radio' name='length' value={2} onChange={(e) => setLength(e.target.value)}/>2
-                <input type='radio' name='length' value={3} onChange={(e) => setLength(e.target.value)}/>3
-                <input type='radio' name='length' value={4} onChange={(e) => setLength(e.target.value)}/>4
-                <input type='radio' name='length' value={5} onChange={(e) => setLength(e.target.value)}/>5
+                <input type='radio' name='length' value={1} className='char-btn' onChange={(e) => setLength(e.target.value)} required/>1
+                <input type='radio' name='length' value={2} className='char-btn' onChange={(e) => setLength(e.target.value)}/>2
+                <input type='radio' name='length' value={3} className='char-btn' onChange={(e) => setLength(e.target.value)}/>3
+                <input type='radio' name='length' value={4} className='char-btn' onChange={(e) => setLength(e.target.value)}/>4
+                <input type='radio' name='length' value={5} className='char-btn' onChange={(e) => setLength(e.target.value)}/>5
                 <br/>
-                <small>Runs short       Runs long</small>
-                <br/>
+                <div className='char-btn-labels'>
+                  <small>Runs short</small>
+                  <small>Runs long</small>
+                </div>
               </>
               : null}
             </label>
@@ -292,14 +312,16 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
                 ? 'Runs long'
                 : null}
                 <br/>
-                <input type='radio' name='fit' value={1} onChange={(e) => setFit(e.target.value)}/>1
-                <input type='radio' name='fit' value={2} onChange={(e) => setFit(e.target.value)}/>2
-                <input type='radio' name='fit' value={3} onChange={(e) => setFit(e.target.value)}/>3
-                <input type='radio' name='fit' value={4} onChange={(e) => setFit(e.target.value)}/>4
-                <input type='radio' name='fit' value={5} onChange={(e) => setFit(e.target.value)}/>5
+                <input type='radio' name='fit' value={1} className='char-btn' onChange={(e) => setFit(e.target.value)} required/>1
+                <input type='radio' name='fit' value={2} className='char-btn' onChange={(e) => setFit(e.target.value)}/>2
+                <input type='radio' name='fit' value={3} className='char-btn' onChange={(e) => setFit(e.target.value)}/>3
+                <input type='radio' name='fit' value={4} className='char-btn' onChange={(e) => setFit(e.target.value)}/>4
+                <input type='radio' name='fit' value={5} className='char-btn' onChange={(e) => setFit(e.target.value)}/>5
                 <br/>
-                <small>Runs tight       Runs long</small>
-                <br/>
+                <div className='char-btn-labels'>
+                  <small>Runs tight</small>
+                  <small>Runs long</small>
+                </div>
               </>
               : null}
             </label>
@@ -308,13 +330,13 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
               <input type='text' maxLength={60} placeholder='Example: Best purchase ever!' size={30} onChange={(e) => setSummary(e.target.value)}/>
             </label>
             <br/>
-            <label>
-              {'Review Body* '}
-              <input type='text' className='write-modal-body' minLength={50} maxLength={1000} size={50} id='reviewBody' placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
-              {body.length <= 50
-              ? <p>Minimum required characters left: {50 - body.length}</p>
+            <div className='write-modal-body'>
+              <label for='reviewBody'>{'Review Body* '}</label>
+              <textarea minLength={50} maxLength={1000} rows='3' cols='40' id='reviewBody' placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
+            </div>
+            {body.length <= 50
+              ? <small className='min-char'>Minimum required characters left: {50 - body.length}</small>
               : null}
-            </label>
             <br/>
             <label>
               {'Add Photos '}
@@ -324,30 +346,31 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
             </label>
             <br/>
             {photos.map((photo, idx) =>
-              <img src={photo} alt={'Photo Unavailable'}  height={100} width={100} key={idx}/>
+              <img src={photo} alt={'Photo Unavailable'} className='write-review-photo' key={idx}/>
             )}
             <br/>
             <label>
               {'Nickname* '}
               <input type='text' maxLength={60} size={20} placeholder='Example: jackson11!' required onChange={(e) => setNickName(e.target.value)}/>
               <br/>
-              {'For privacy reasons, do not use your full name or email address'}
+              <small>For privacy reasons, do not use your full name or email address</small>
             </label>
             <br/>
             <label>
               {'Email* '}
               <input type='email' maxLength={60} size={30} placeholder='Example: jackson11@email.com' required onChange={(e) => setEmail(e.target.value)}/>
               <br/>
-              {'For authentication reasons, you will not be emailed'}
+              <small>For authentication reasons, you will not be emailed</small>
             </label>
             <br/>
             <input type='submit' value='Submit'/>
           </form>
         </div>
       </div>
-    </>,
+    </div>,
     document.getElementById('portal')
-  );
+  )
+  : null
 }
 
 export default WriteReviewModal;

@@ -4,11 +4,17 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
+
 .progress-style {
   height: 20px;
-  width: 300px;
+  width: 70%;
   border: 1px solid black;
   background-color: gray;
+  margin-right: 1%;
+}
+
+.progress-bar-star-value {
+  margin-right: 1%;
 }
 
 .progress-bar-style:hover {
@@ -28,13 +34,14 @@
 
 .progress-bar-style {
   display: flex;
-  justify-content: space-evenly;
-  margin: 5px;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1%;
 }
 
 .characteristic-style {
   height: 20px;
-  width: 300px;
+  width: 75%;
   border: 1px solid black;
   background-color: gray;
 }
@@ -45,7 +52,7 @@
 }
 
 .characteristic-bar-label-style {
-  width: 300px;
+  width: 75%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

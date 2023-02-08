@@ -19,14 +19,14 @@ const Image = ({url}) => {
   if (fullRes) {
     return ReactDom.createPortal(
       <>
-        <div className='modalPhotoBackground'/>
-        <img className='modalPhoto' src={url} alt='image not available' onClick={closeFullRes}/>
+        <div className='modal-photo-background'/>
+        <img className='modal-photo' src={url} alt='image not available' onClick={closeFullRes}/>
       </>,
       document.getElementById('portal')
     )
   } else {
     return (
-      <img src={url} alt='image not available' className='regPhoto' onClick={openFullRes}/>
+      <img className='reg-photo' src={url} alt='image not available' onClick={openFullRes}/>
     )
   }
 }

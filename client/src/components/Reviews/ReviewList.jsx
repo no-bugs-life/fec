@@ -140,17 +140,19 @@ const ReviewList = ({product_id, productName}) => {
           <SortOption handleSortChange={handleSortChange} />
           <Search getQuery={getSearchQuery}/>
         </div>
-        {Object.keys(reviews).length
-        ? <>
-            {reviewsOnPage.map((review, idx) =>
-              <ReviewTile review={review} key={idx} />
-            )}
-            {(reviews.length >= 2 && reviews.length != reviewsOnPage.length)
-            ? <button onClick={showMore}>More Reviews</button>
-            : null}
-          </>
-        : null
-        }
+        <div className='right-reviews-cards'>
+          {Object.keys(reviews).length
+          ? <>
+              {reviewsOnPage.map((review, idx) =>
+                <ReviewTile review={review} key={idx} />
+              )}
+            </>
+          : null
+          }
+        </div>
+        {(reviews.length >= 2 && reviews.length != reviewsOnPage.length)
+          ? <button onClick={showMore}>More Reviews</button>
+          : null}
       </div>
       <br/>
     </div>
