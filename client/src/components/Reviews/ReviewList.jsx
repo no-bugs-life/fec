@@ -127,7 +127,7 @@ const ReviewList = ({product_id, productName}) => {
   }
 
   return (
-    <>
+    <div className='reviews-section'>
       <div className='left-reviews'>
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
         <button onClick={openWriteReview} >Write Review</button>
@@ -136,22 +136,26 @@ const ReviewList = ({product_id, productName}) => {
       : null}
       </div>
       <div className='right-reviews'>
-        <SortOption handleSortChange={handleSortChange} />
-        <Search getQuery={getSearchQuery}/>
-        {Object.keys(reviews).length
-        ? <>
-            {reviewsOnPage.map((review, idx) =>
-              <ReviewTile review={review} key={idx} />
-            )}
-            {(reviews.length >= 2 && reviews.length != reviewsOnPage.length)
-            ? <button onClick={showMore}>More Reviews</button>
-            : null}
-          </>
-        : null
-        }
+        <div className='right-reviews-header'>
+          <SortOption handleSortChange={handleSortChange} />
+          <Search getQuery={getSearchQuery}/>
+        </div>
+        <div className='right-reviews-cards'>
+          {Object.keys(reviews).length
+          ? <>
+              {reviewsOnPage.map((review, idx) =>
+                <ReviewTile review={review} key={idx} />
+              )}
+            </>
+          : null
+          }
+        </div>
+        {(reviews.length >= 2 && reviews.length !== reviewsOnPage.length)
+          ? <button onClick={showMore}>More Reviews</button>
+          : null}
       </div>
       <br/>
-    </>
+    </div>
   );
 }
 

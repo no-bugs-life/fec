@@ -1,18 +1,33 @@
-.reviewTile {
+.review-tile {
   border: 1px solid black;
   border-radius: 5px;
-  width: 750px;
+  width: 99%;
+  background-color: gray;
+}
+
+.review-tile-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 1%;
+  margin-top: 1%;
+}
+
+.review-tile-footer {
+  margin-left: 1%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.review-tile-stars {
+  margin-left: 1%;
+  margin-top: 1%;
 }
 
 .date {
   position: relative;
   float: right;
   top: 0;
-  right: 0;
-}
-
-.username {
-  position: relative;
-  top: 0px;
-  right: 0;
+  right: 1%;
+  margin-top: 1%;
 }

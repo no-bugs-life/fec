@@ -7,35 +7,33 @@ const RatingSummary = ({summaryData, isHead}) => {
   let [rateCountTotal, setRateCountTotal] = useState(0)
 
   useEffect(() => {
-    // if (summaryData) {
-      let rateSum = 0;
-      let rateCount = 0;
-      for (let i = 0; i < 5; i++) {
-        rateSum += (parseInt(Object.keys(summaryData)[i]) * parseInt(Object.values(summaryData)[i]));
-        rateCount += parseInt(Object.values(summaryData)[i]);
-      }
-      setRateAvg(rateSum / rateCount);
-      setRateCountTotal(rateCount);
-    // }
+    let rateSum = 0;
+    let rateCount = 0;
+    for (let i = 0; i < 5; i++) {
+      rateSum += (parseInt(Object.keys(summaryData)[i]) * parseInt(Object.values(summaryData)[i]));
+      rateCount += parseInt(Object.values(summaryData)[i]);
+    }
+    setRateAvg(rateSum / rateCount);
+    setRateCountTotal(rateCount);
   }, [rateAvg])
 
   return(
     <div>
-      {isHead ? null : <h3>Rating Summary</h3>}
+      {isHead ? null : <h2>Rating Summary</h2>}
       {rateAvg > 0 && isHead
       ? <>
           <Stars rating={rateAvg} tag={'ratingSummary'}/>
           <span>{rateAvg.toFixed(1)}{`(${rateCountTotal})`}</span>
         </>
       : rateAvg > 0
-      ? <>
-          <Stars rating={rateAvg} tag={'ratingSummary'} size={'50px'} isRating={true}/>
+      ? <div>
+          <Stars rating={rateAvg} tag={'ratingSummarySection'} size={'50px'} isRating={true}/>
           <p> {rateAvg.toFixed(1)} out of 5 stars based on {rateCountTotal} reviews</p>
-        </>
-      : <>
+        </div>
+      : <div>
       <Stars rating={0} tag={'ratingSummary'}/>
       <span>No reviews yet</span>
-    </>}
+    </div>}
     </div>
   );
 }

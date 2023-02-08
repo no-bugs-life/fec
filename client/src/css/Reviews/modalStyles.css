@@ -1,41 +1,19 @@
-.progressStyle {
-  height: 20px;
-  width: 300px;
-  border: 1px solid black;
-  background-color: gray;
-}
-
-.progressFillStyle {
-  height: 20px;
-  background-color: green;
-}
-
-.characteristicStyle {
-  height: 20px;
-  width: 300px;
-  border: 1px solid black;
-  background-color: gray;
-}
-
-.characteristicFillStyle {
-  height: 20px;
-  background-color: green;
-}
-
-.modalWriteReview {
+.write-review {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #929292;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-Index: 1000;
+  padding: 1em;
+  border-radius: 1em;
 }
 
-.modalWriteReviewBackground {
+.write-review-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -46,7 +24,7 @@
   z-index: 1000;
 }
 
-.modalPhoto {
+.modal-photo {
   z-index: 1000;
   position: fixed;
   left: 50%;
@@ -56,7 +34,7 @@
   width: auto;
 }
 
-.modalPhotoBackground {
+.modal-photo-background {
   position: fixed;
   top: 0;
   left: 0;
@@ -67,13 +45,47 @@
   z-index: 1000;
 }
 
-.regPhoto {
+.reg-photo {
   max-height: 10rem;
   width: auto;
 }
 
-.closeModalButton {
+.write-review-photo {
+  max-height: 5rem;
+  max-width: 112px;
+}
+
+.close-modal-btn {
   position: absolute;
+  border-radius: 5px;
+  height: 2em;
+  width: 2em;
   top: 0;
   right: 0;
+}
+
+.write-modal-body {
+  display: flex;
+  align-items: start;
+}
+
+.write-review-header {
+  text-align: center;
+}
+
+.char-btn {
+  margin-left: 20px;
+  margin-right: 2px;
+}
+
+.char-btn-labels {
+  width: 215px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.min-char {
+  margin-left: 95px;
 }
