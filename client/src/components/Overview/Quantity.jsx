@@ -10,7 +10,7 @@ const Quantity = ({currentSize, currentInventory, onQuantityClick}) => {
     return(
         <>
         <label htmlFor="size">Qty: </label>
-        <select id="size" name="size" className="size-drop" required={true} onChange={onQuantityClick}>
+        <select id="size" name="size" className="size-drop" required={true} onChange={onQuantityClick} >
             {newArray.slice(0, 11).map((el, index) => {
                 return (
                 index === 0 ? <option key="default" value="default" required={true}></option>
