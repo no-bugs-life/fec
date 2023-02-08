@@ -72,8 +72,12 @@ const Description = ({product}) => {
   }
 
   const onQuantityClick = (e)=>{
-    if (e.target.value !== "default" && e.target.value) {
+    if (e.target.value !== "default" && e.target.value === userSelection.quantity) {
       setIsQuantitySelected(true);
+    }
+    else if (e.target.value !== "default" && e.target.value) {
+      setIsQuantitySelected(true);
+      setCheckoutUpdate(false);
       setUserSelection({...userSelection, quantity: parseInt(e.target.value)})
     } else if (e.target.value === "default") {
       setCheckoutUpdate(false);
@@ -97,15 +101,14 @@ const Description = ({product}) => {
       setCurrentStyle(results[1].data.results);
       setCurrentPick(results[1].data.results[0]);
       //working on setting default photo for images if no img is given
-      if (results[1].data.results[0].photos[0].url && results[1].data.results[0].photos[0].thumbnail_url) {
+      // if (results[1].data.results[0].photos[0].url && results[1].data.results[0].photos[0].thumbnail_url) {
         // console.log(results[1].data.results[0].photos[0])
         setCurrentPhotos(results[1].data.results[0].photos);
         setDefaultPhoto(results[1].data.results[0].photos[0]);
-      } else {
-        setCurrentPhotos([{thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"}])
-        setDefaultPhoto({thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"})
-      }
-
+      // } else {
+      //   setCurrentPhotos([{thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"}])
+      //   setDefaultPhoto({thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"})
+      // }
       setCurrentName(results[1].data.results[0].name);
       setCurrentInventory(results[1].data.results[0].skus);
       setCurrentSize(Object.keys(results[1].data.results[0].skus)[0]);
@@ -119,12 +122,12 @@ const Description = ({product}) => {
 
 
   return (
-    <>
+    <div className="overview">
     <div className = "description">
-      <div className = "category">
+      <div className = "description-category">
         <p>{currentProduct.category}</p>
       </div>
-      <div className = "img">
+      <div className = "description-img">
         {currentPhotos.length > 0 ? <Images photos = {currentPhotos} defaultPhoto={defaultPhoto} setDefaultPhoto={setDefaultPhoto} currentList={currentList} setCurrentList={setCurrentList}
         /> : null}
       </div>
@@ -134,42 +137,42 @@ const Description = ({product}) => {
         <div className="price">
          {currentPick ? <Price currentPick={currentPick}/> : null}
         </div>
-        <div className="ratings">
+        <div className="item-description-ratings">
          {Object.keys(ratingData).length > 0 && <RatingSummary summaryData={ratingData.ratings} isHead={isHead}/>}
         </div>
         <span className="line-break"></span>
         </div>
-        <div className="item-styles">
+        <div className="item-description-styles">
           <p className="style-title">Style: <span className="style-title-current">{currentName && currentName}</span></p>
           {currentStyle ? <Styles currentStyle={currentStyle} setCurrentStyle={setCurrentStyle} setCurrentPhotos={setCurrentPhotos} onClick={onClick}/> : null}
         </div>
-        <div className="size">
-          <span className="size-title">Size:</span>
+        <div className="item-description-size">
+          <span className="item-description-size-title">Size:</span>
           {Object.keys(currentInventory).length > 0 ? <Size currentInventory = {currentInventory} onSizeClick={onSizeClick}/> : null}
           {isCheckoutClicked && !isSizeSelected && <p className="size-alert">Please select size</p>}
         </div>
-        <div className="quantity">
+        <div className="item-description-quantity">
           {currentSize.length > 0 && Object.keys(currentInventory).length > 0 ? <Quantity currentSize={currentSize} currentInventory={currentInventory} onQuantityClick={onQuantityClick}/> : null}
           {!isQuantitySelected && isCheckoutClicked && <p className="size-alert">Please select quantity</p>}
         </div>
-        <div className="checkout">
+        <div className="item-description-checkout">
           {<Checkout checkoutUpdate={checkoutUpdate} onCheckoutClick={onCheckoutClick} userSelection={userSelection}/>}
         </div>
       </div>
     </div>
     <br></br>
     <div className="additional-info">
-      <div className="add-description">
+      <div className="add-description-overview">
           {Object.keys(currentProduct).length > 0 ? <AddDescription description={currentProduct.description}
           slogan={currentProduct.slogan}
           features={currentProduct.features}
           /> : null}
       </div>
-      <div className="share-bar">
+      <div className="share-bar-overview">
           <Share/>
       </div>
     </div>
-    </>
+    </div>
   )
 
 }

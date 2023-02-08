@@ -26,45 +26,41 @@ const QuestionMounted = ({product, setProduct}) => {
         }
       })
       .then((res) => {
-        console.log('results', res.data);
+        console.log('questions data', res.data);
         setQuestion(res.data);
+        return res.data
+      })
+      .then((data) => {
+        const allPromises= [];
+        if (Object.keys(data).length !== 0) {
+          if (data.results.length > 1) {
+            for (let i = 0; i < data.results.length; i++) {
+              if (Object.keys(data.results[i].answers).length > 0) {
+                allPromises.push(
+                  axios.get(`http://localhost:3000/api/qa/questions/${data.results[i].question_id}/answers`, {
+                    params: {
+                      question_id: data.id
+                    }
+                  })
+                )
+              }
+            }
+            let allAnswers = {};
+            Promise.all(allPromises)
+              .then((res) => {
+                for(let i in res){
+                  allAnswers[res[i].data.question] = res[i].data.results
+                }
+                setAnswers(allAnswers);
+                setLoading(false);
+              })
+              .catch(err => console.log(err))
+          }
+        }
       })
       .catch(err => console.log(err))
     }
   }, [product]);
-
-  useEffect(() => {
-    if (Object.keys(question).length !== 0) {
-      if (question.results.length > 1) {
-        for (let i = 0; i < question.results.length; i++) {
-          if (Object.keys(question.results[i].answers).length > 0) {
-            axios.get(`http://localhost:3000/api/qa/questions/${question.results[i].question_id}/answers`, {
-              params: {
-                question_id: question.id
-              }
-            })
-            .then((res) => {
-              console.log('answers', res.data);
-              setAnswers({...answers, [res.data.question]: res.data.results});
-              setLoading(false);
-            })
-            .catch(err => console.log(err))
-          }
-          }
-      } else {
-        axios.get(`http://localhost:3000/api/qa/questions/${question.results[0].question_id}/answers`, {
-          params: {
-            question_id: question.id
-          }
-        })
-        .then((res) => {
-          console.log('answers', res.data);
-          setAnswers({...answers, [res.data.question]: res.data.results});
-          setLoading(false);
-        })
-        .catch(err => console.log(err))
-      }
-    }}, [question]);
 
 
   if (isLoading) {
@@ -87,14 +83,14 @@ const QuestionMounted = ({product, setProduct}) => {
       .map((oneQuestion, index) =>
       (
         <QuestionComponent key={index}
-        id={oneQuestion.question_id}
-        body={oneQuestion.question_body}
-        asker_name={oneQuestion.asker_name}
-        helpfulness={oneQuestion.question_helpfulness}
-        date={oneQuestion.question_date}
-        answers={answers[oneQuestion.question_id] ? answers[oneQuestion.question_id] : []}
-        setAnswers={setAnswers}
-        productName={product.name}/>
+          id={oneQuestion.question_id}
+          body={oneQuestion.question_body}
+          asker_name={oneQuestion.asker_name}
+          helpfulness={oneQuestion.question_helpfulness}
+          date={oneQuestion.question_date}
+          answers={answers[oneQuestion.question_id] ? answers[oneQuestion.question_id] : []}
+          setAnswers={setAnswers}
+          productName={product.name}/>
       ))}
       <div className="questions-buttons">
       {more ? <button id="more-questions" onClick={() => {setMore(false); setListLength(question.results.length)}}>More Answered Questions</button>: null}

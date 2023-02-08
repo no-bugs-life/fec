@@ -12,7 +12,7 @@ html {
   margin: 0 auto;
 
 }
-.description {
+.overview .description {
 
   display: grid;
   width: 80vw;
@@ -25,7 +25,7 @@ html {
                         "img img desc desc"
 
 }
-.category{
+.overview .description .description-category{
   grid-area: head;
   text-align: center;
   margin-bottom: 2.6rem;
@@ -34,7 +34,7 @@ html {
   justify-content: center;
   align-items: center;
 }
-.img{
+.overview .description .description-img{
   grid-area: img;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@ html {
   width: 100%;
   /* height: 90vh; */
 }
-.item-description{
+.overview .description .item-description{
   grid-area: desc;
   z-index: 1;
   padding: 0;
@@ -54,41 +54,40 @@ html {
   justify-content: space-between;
 }
 
-.item-description-heading{
+.overview .description .item-description .item-description-heading{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   margin-bottom: 2vh;
 }
-.title{
+.item-description-heading .title{
   margin-top: 0.4rem;
   font-size: 1.3rem;
   font-weight: 300;
   margin-bottom: 1.8vh;
 }
-.price{
+.overview .description .item-description .price{
   display: flex;
   font-size: 1.1rem;
   margin-bottom: 1.8vh;
 }
-.original-price{
+.item-description .price .original-price{
   margin-right: 0.4rem;
 
 }
-.sale-price {
+.item-description .price .sale-price {
   color: red;
 }
 
-.portal {
+.description-portal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1000;
-
 }
-.portal img {
+.description-portal img {
   display: block;
   height: 100vh;
   width: 40vw;
@@ -117,20 +116,20 @@ html {
   bottom: 0;
 
 }
-.primary-img{
+.description-img .primary-img{
   width: 100%;
   margin: 0 auto;
   position: relative;
   padding: 0;
   /* height: 90%; */
 }
-.primary-img img {
+.description-img .primary-img img {
   display: block;
   width:100%;
   height: 80vh;
   object-fit:fill;
 }
-.img-list{
+.description-img .img-list{
   display: flex;
   list-style: none;
   justify-content: flex-start;
@@ -139,23 +138,23 @@ html {
   width: 100%;
   height: 20vh;
 }
-.img-ind {
+.description-img .img-list .img-ind {
 /* width: 90%; */
 width: 25%;
 height: 80%;
 
 }
-.img-ind img {
+.img-list .img-ind img {
   width: 100%;
   height: 100%;
   border-radius: 10%;
 }
-.photo-carousel{
+.description-img .photo-carousel{
   position: relative;
   width: 100%;
   margin: 0 auto;
 }
-.carousel{
+.description-carousel{
 
   background:mintcream;
   border-radius: .25rem;
@@ -165,28 +164,28 @@ height: 80%;
   position: absolute;
   z-index: 2;
 }
-.carousel-btn-prev {
+.description-carousel-btn-prev {
   position: absolute;
   top: 50%;
   left: 0;
   padding: 2rem 1rem 2rem 0;
   transform: translateY(-50%);
 }
-.carousel-btn-prev-sm {
+.description-carousel-btn-prev-sm {
   position: absolute;
   top: 50%;
   left: -0.3rem;
   padding: 0.6rem 0.2rem;
   transform: translateY(-50%);
 }
-.carousel-btn-next {
+.description-carousel-btn-next {
   position: absolute;
   top: 50%;
   right: 0;
   padding: 2rem 0 2rem 1rem;
   transform: translateY(-50%);
 }
-.carousel-btn-next-sm {
+.description-carousel-btn-next-sm {
   position: absolute;
   top: 50%;
   right: -0.3rem;
@@ -195,13 +194,13 @@ height: 80%;
 
 }
 
-.selected {
+.img-list .selected {
   border: 1px solid black;
   border-radius: 10%;
 }
 
 
-.style-selector{
+.description-style-selector{
   display: flex;
   flex-wrap: wrap;
   padding: 0;
@@ -209,42 +208,42 @@ height: 80%;
   column-gap: 5px;
   margin-bottom: 1.6vh;
 }
-.style{
+.description-style{
   padding: 0;
   width: fit-content;
   height: fit-content;
 }
-.style img{
+.description-style img{
   width: 2.4rem;
   height: 2.4rem;
   border-radius: 50%;
   border: 1px solid gray;
   opacity: 80%;
 }
-.style-title{
+.item-description-styles .style-title{
   display: flex;
   font-size: 1.3rem;
   margin-bottom: 0.6rem;
 }
-.style-title-current{
+.item-description-styles .style-title .style-title-current{
   margin-left: 0.4rem;
   font-weight: 100;
 }
-.style img:hover {
+.description-style img:hover {
   cursor: pointer;
   opacity: 90%;
 }
-.size{
+.item-description-size{
   padding: 0;
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
-.size-title{
+.item-description-size-title{
   margin-top: 0.4rem;
   font-size: 1.4rem;
   font-weight: 300;
 }
-.size-list{
+.item-description-size-list{
   list-style: none;
   display: flex;
   flex-wrap: wrap;
@@ -254,12 +253,12 @@ height: 80%;
   padding: 0;
   width: 90%;
 }
-.size-ind{
+.item-description-size-ind{
   width: 4rem;
   height: 2rem;
   border-radius: 10%;
 }
-.size-btn {
+.item-description-size-btn {
   width: 100%;
   height: 100%;
   font-size: 1rem;
@@ -268,7 +267,7 @@ height: 80%;
   opacity: 80%;
   padding: 0.2rem
 }
-.size-btn:hover{
+.item-description-size-btn:hover{
   background-color:#E0DBDB;
   cursor: pointer;
 }
@@ -299,44 +298,42 @@ button .sm #next{
   margin-top: 1.4vh;
 }
 
-.ratings{
+.item-description-ratings{
   font-size: 1rem;
   margin-top: 0.2rem;
   margin-bottom: 1.8vh;
 }
-.ratings div {
+.item-description-ratings div {
   display: flex;
   align-items: center;
 }
-.ratings div span {
+.item-description-ratings div span {
   margin-left: 0.4rem;
 }
-.ratings div div {
+.item-description-ratings div div {
   display: flex;
   justify-content: flex-start;
 }
-.ratings svg{
+.item-description-ratings svg{
   height: 0.9rem;
   width: 0.9rem;
-  color: aqua;
 }
 .line-break{
   width: 100%;
   display: inline-block;
   background-color: black;
   padding: 0.01rem;
-
 }
 .half{
   width: 40vw;
   text-align: right;
 }
-.item-styles{
+.item-description-styles{
   margin-top: 0.4rem;
   font-size: 0.8rem;
   font-weight: 300;
 }
-.quantity{
+.item-description-quantity{
   font-size: 1.4rem;
   display: flex;
   flex-direction: column;
@@ -346,7 +343,7 @@ button .sm #next{
   margin-top: 0.4rem;
   font-size: 1rem;
 }
-.checkout{
+.item-description-checkout{
   height: 2.5rem;
   width: 90%;
   margin-bottom: 1vh;
@@ -360,12 +357,12 @@ button .sm #next{
   margin: 0 auto;
   font-size: 1.2rem;
 }
-.add-description{
+.add-description-overview{
   margin-left: 40vw;
   font-size: 1rem;
   margin-bottom: 1.5vh;
 }
-.share-bar{
+.share-bar-overview{
   margin-left: 40vw;
   font-size: 1rem;
 }
@@ -375,7 +372,7 @@ button .sm #next{
 .add-title{
 
 }
-.add-btn{
+.add-extend-btn{
 
 }
 .add-extend{
@@ -398,7 +395,7 @@ button .sm #next{
 .add-value{
   font-size: 0.7rem;
 }
-.share{
+.additional-info .share-bar-overview .share{
   margin-left: 2rem;
   font-size: 1rem;
 }

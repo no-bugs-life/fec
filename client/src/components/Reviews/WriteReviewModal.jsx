@@ -4,7 +4,7 @@ import axios from 'axios';
 import ReactDom from 'react-dom';
 import '../../css/Reviews/styles.css'
 
-const WriteReviewModal = ({setWriteReview, productName, characteristics, product_id}) => {
+const WriteReviewModal = ({setWriteReview, productName, characteristics, product_id, charIds}) => {
 
   const [rating, setRating] = useState(0);
   const [recommend, setRecommend] = useState(null);
@@ -33,27 +33,33 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
       "email": email
     };
     let newCharacteristics = {};
+    let charIdIdx = 0;
     if (size) {
-      newCharacteristics["14"] = parseInt(size);
+      newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(size);
+      charIdIdx++;
     }
     if (width) {
-      newCharacteristics["15"] = parseInt(width);
+      newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(width);
+      charIdIdx++;
     }
     if (comfort) {
-      newCharacteristics["16"] = parseInt(comfort);
+      newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(comfort);
+      charIdIdx++;
     }
     if (quality) {
-      newCharacteristics["17"] = parseInt(quality);
+      newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(quality);
+      charIdIdx++;
     }
     if (length) {
-      newCharacteristics["18"] = parseInt(length);
+      newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(length);
+      charIdIdx++;
     }
     if (fit) {
-      newCharacteristics["19"] = parseInt(fit);
+      newCharacteristics[charIds[charIdIdx.toString()]] = parseInt(fit);
     }
     postObj.characteristics = newCharacteristics;
     axios.post('http://localhost:3000/api/reviews/', postObj)
-    .then((res) => console.log(res))
+    .then((res) => null)
     .catch((err) => console.log(err));
     setWriteReview(false);
     document.body.style.overflowY = 'visible';

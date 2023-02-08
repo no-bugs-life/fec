@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import '../../css/Prodlists/ComparisonModal.css';
+import LoadingBlocks from '../Common/LoadingBlocks.jsx'
 
 import axios from 'axios';
 
@@ -80,28 +81,35 @@ const ComparisonModal = ({
         </div>
 
         <div className='comparison-modal-body'>
-            <table className='comparison-table'>
-              <thead className='comparison-table-header'>
-                <tr>
-                  <th className='comparison-table-header-current'>{currentProduct.name}</th>
-                  <th></th>
-                  <th className='comparison-table-header-compare'>{comparisonProduct.name}</th>
-                </tr>
-              </thead>
-              <tbody className='comparison-table-body'>
-                {
-                  Object.keys(featureComparisons).map((feature) => {
-                    return (
-                      <tr key={'featureComparison_' + feature}>
-                        <td className='comparison-table-header-current'>{featureComparisons[feature].currentValue}</td>
-                        <td className='comparison-table-header-feature'>{feature}</td>
-                        <td className='comparison-table-header-compare'>{featureComparisons[feature].comparisonValue}</td>
-                      </tr>
-                    )
-                  })
-                }
-              </tbody>
-            </table>
+            {
+              Object.keys(comparisonProduct).length > 0 ?
+              <>
+                <table className='comparison-table'>
+                  <thead className='comparison-table-header'>
+                    <tr>
+                      <th className='comparison-table-header-current'>{currentProduct.name}</th>
+                      <th></th>
+                      <th className='comparison-table-header-compare'>{comparisonProduct.name}</th>
+                    </tr>
+                  </thead>
+                  <tbody className='comparison-table-body'>
+                    {
+                      Object.keys(featureComparisons).map((feature) => {
+                        return (
+                          <tr key={'featureComparison_' + feature}>
+                            <td className='comparison-table-content-current'>{featureComparisons[feature].currentValue}</td>
+                            <td className='comparison-table-content-feature'>{feature}</td>
+                            <td className='comparison-table-content-compare'>{featureComparisons[feature].comparisonValue}</td>
+                          </tr>
+                        )
+                      })
+                    }
+                  </tbody>
+                </table>
+              </>
+              :
+              <LoadingBlocks size={100}/>
+            }
         </div>
 
       </div>

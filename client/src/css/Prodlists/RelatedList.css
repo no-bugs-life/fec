@@ -1,3 +1,8 @@
+.related-list-title{
+  margin-left: 10%;
+  margin-bottom: 20px;
+}
+
 .related-list{
   /* border: 1px solid red; */
   text-align: center;

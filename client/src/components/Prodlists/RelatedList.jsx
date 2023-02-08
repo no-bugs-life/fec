@@ -53,7 +53,7 @@ const RelatedList = ({product}) => {
 
   return (
     <div>
-      <p>Related Products</p>
+      <p className='related-list-title'>Related Products</p>
       <div className='related-list'>
 
         {
@@ -80,7 +80,7 @@ const RelatedList = ({product}) => {
             }
             disabled={page === 0}
           >
-            <i class="related-list-arrow-left"></i>
+            <i className="related-list-arrow-left"></i>
           </button>
           <div className='related-list-card-container'>
             {
@@ -125,7 +125,7 @@ const RelatedList = ({product}) => {
             }
             disabled={page === Math.ceil(productIds.related.length/4)-1}
           >
-            <i class="related-list-arrow-right"></i>
+            <i className="related-list-arrow-right"></i>
           </button>
         </div>
       </div>

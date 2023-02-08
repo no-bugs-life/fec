@@ -8,14 +8,14 @@ const AddDescription = ({description, slogan, features})=> {
     return (
         <div className="add-div">
             <span className="add-title">Description</span>
-            <button className="add-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
+            <button className="add-extend-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
             {isClicked && <div className = "add-extend">
                 <p className="add-slogan">{slogan}</p>
                 <p className="add-detail">{description}</p>
                 <ul>
-                    {features.map(feature => {
+                    {features.map((feature,index) => {
                         return(
-                            <div className="add-features">
+                            <div className="add-features" key={index}>
                                 <span className="add-feature">{feature.feature} :</span>
                                 <span className="add-value">{feature.value}</span>
                             </div>
