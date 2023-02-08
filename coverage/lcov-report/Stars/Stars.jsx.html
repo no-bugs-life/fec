@@ -15,12 +15,17 @@
         }
     </style>
 </head>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> Default Images fix
 <body>
 <div class='wrapper'>
     <div class='pad1'>
         <h1><a href="../index.html">All files</a> / <a href="index.html">Stars</a> Stars.jsx</h1>
         <div class='clearfix'>
+<<<<<<< HEAD
 
             <div class='fl pad1y space-right2'>
                 <span class="strong">94.44% </span>
@@ -50,6 +55,37 @@
             </div>
 
 
+=======
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">5.55% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>1/18</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/8</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">5.88% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>1/17</span>
+            </div>
+        
+            
+>>>>>>> Default Images fix
         </div>
         <p class="quiet">
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
@@ -61,7 +97,11 @@
             </div>
         </template>
     </div>
+<<<<<<< HEAD
     <div class='status-line high'></div>
+=======
+    <div class='status-line low'></div>
+>>>>>>> Default Images fix
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -114,6 +154,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<<<<<<< HEAD
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,6 +184,37 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">90x</span>
+=======
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+>>>>>>> Default Images fix
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,6 +230,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState} from 'react';
 import Star from './Star.jsx'
 &nbsp;
+<<<<<<< HEAD
 const Stars = ({rating, tag, size, setNewRating, colorVal, isRating}) =&gt; {
 &nbsp;
   let starArr = [];
@@ -189,6 +262,39 @@ const Stars = ({rating, tag, size, setNewRating, colorVal, isRating}) =&gt; {
     &lt;&gt;
       {starArr.map((starVal, idx) =&gt;
         &lt;Star
+=======
+const Stars = <span class="fstat-no" title="function not covered" >({</span>rating, tag, size, setNewRating, colorVal, isRating}) =&gt; {
+&nbsp;
+  let starArr = <span class="cstat-no" title="statement not covered" >[];</span>
+  let starTotal = <span class="cstat-no" title="statement not covered" >rating * 100;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (isRating) {</span>
+<span class="cstat-no" title="statement not covered" >    if (starTotal % 25 &lt; 13) {</span>
+<span class="cstat-no" title="statement not covered" >      starTotal = starTotal - (starTotal % 25);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      starTotal = starTotal + (25 - starTotal % 25);</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; 5; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    if (starTotal &gt;= 100) {</span>
+<span class="cstat-no" title="statement not covered" >      starArr[i] = '100%';</span>
+<span class="cstat-no" title="statement not covered" >      starTotal -= 100;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      starArr[i] = starTotal + '%';</span>
+<span class="cstat-no" title="statement not covered" >      starTotal = 0;</span>
+    }
+  }
+&nbsp;
+  const sendRating = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>ndex) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >    setNewRating ? setNewRating(parseInt(index) + 1) : null;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return (</span>
+    &lt;&gt;
+      {starArr.map(<span class="fstat-no" title="function not covered" >(s</span>tarVal, idx) =&gt;
+<span class="cstat-no" title="statement not covered" >        &lt;Star</span>
+>>>>>>> Default Images fix
           key={idx}
           starFill={starVal}
           idx={tag + ' StarIndex: ' + idx}
@@ -208,7 +314,11 @@ export default Stars;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+<<<<<<< HEAD
                 at 2023-02-08T06:58:44.973Z
+=======
+                at 2023-02-08T08:53:13.238Z
+>>>>>>> Default Images fix
             </div>
         <script src="../prettify.js"></script>
         <script>
@@ -220,3 +330,7 @@ export default Stars;</pre></td></tr></table></pre>
         <script src="../block-navigation.js"></script>
     </body>
 </html>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> Default Images fix

@@ -13,7 +13,7 @@ import axios from "axios";
 
 
 const Description = ({product}) => {
-
+  const [isLoading, setIsLoading] = useState(true);
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentStyle, setCurrentStyle] = useState([]);
   const [currentPhotos, setCurrentPhotos] = useState([]);
@@ -97,6 +97,8 @@ const Description = ({product}) => {
   useEffect(() => {
     Promise.all([ axios.get(`http://127.0.0.1:3000/api/products/${product.id}`),  axios.get(`http://127.0.0.1:3000/api/products/${product.id}/styles`), axios.get('http://127.0.0.1:3000/api/reviews/meta', {params: {"product_id": product.id}})])
     .then((results) => {
+      console.log(results)
+      setIsLoading(!isLoading);
       setCurrentProduct(results[0].data);
       setCurrentStyle(results[1].data.results);
       setCurrentPick(results[1].data.results[0]);
@@ -122,10 +124,14 @@ const Description = ({product}) => {
 
 
   return (
+    isLoading ? <>
+    Loading
+    </>
+    :
     <div className="overview">
     <div className = "description">
-      <div className = "description-category">
-        <p>{currentProduct.category}</p>
+      <div className = "description-category" >
+        <p data-testid="category">{currentProduct.category}</p>
       </div>
       <div className = "description-img">
         {currentPhotos.length > 0 ? <Images photos = {currentPhotos} defaultPhoto={defaultPhoto} setDefaultPhoto={setDefaultPhoto} currentList={currentList} setCurrentList={setCurrentList}
@@ -151,7 +157,7 @@ const Description = ({product}) => {
           {Object.keys(currentInventory).length > 0 ? <Size currentInventory = {currentInventory} onSizeClick={onSizeClick}/> : null}
           {isCheckoutClicked && !isSizeSelected && <p className="size-alert">Please select size</p>}
         </div>
-        <div className="item-description-quantity">
+        <div className="item-description-quantity" data-testid="quantity">
           {currentSize.length > 0 && Object.keys(currentInventory).length > 0 ? <Quantity currentSize={currentSize} currentInventory={currentInventory} onQuantityClick={onQuantityClick}/> : null}
           {!isQuantitySelected && isCheckoutClicked && <p className="size-alert">Please select quantity</p>}
         </div>

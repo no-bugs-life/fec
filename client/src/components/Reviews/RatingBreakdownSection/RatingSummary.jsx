@@ -23,7 +23,7 @@ const RatingSummary = ({summaryData, isHead}) => {
       {rateAvg > 0 && isHead
       ? <>
           <Stars rating={rateAvg} tag={'ratingSummary'}/>
-          <span>{rateAvg.toFixed(1)}{`(${rateCountTotal})`}</span>
+          <span>{rateAvg.toFixed(1)}<a href="#review">{`(${rateCountTotal})`}</a></span>
         </>
       : rateAvg > 0
       ? <div>

@@ -32,6 +32,9 @@ const App = ()=> {
 
   return(
     <div className="product-main app">
+      <div className="top">
+        <span className="logo">Logo</span>
+      </div>
       {/* Overview */}
       {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
 
@@ -47,12 +50,12 @@ const App = ()=> {
       </div>
 
       {/* Related Items & Comparison */}
-      <RelatedList
+      {/* <RelatedList
         product={product}
       />
       <OutfitList
         product={product}
-      />
+      /> */}
 
     </div>
 

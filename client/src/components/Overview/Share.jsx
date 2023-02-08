@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Icons from "../Common/Icons.jsx"
 const Share =()=> {
   const [isClicked, setIsClicked] = useState(false);
     const onExtendClick = () => {
@@ -11,9 +12,7 @@ const Share =()=> {
           {isClicked && <div className = "add-extend">
             <>
             <p className="share-desc">Share the link to: </p>
-            <span className="share-link"><a href="" target="_blank">Facebook</a></span>
-            <span className="share-link"><a href="" target="_blank">Instagram</a></span>
-            <span className="share-link"><a href="" target="_blank">Twitter</a></span>
+            <Icons width={"10px"} height={"30px"}/>
             </>
           </div>}
 

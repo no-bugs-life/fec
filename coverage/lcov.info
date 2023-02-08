@@ -1,5 +1,6 @@
 TN:
 <<<<<<< HEAD
+<<<<<<< HEAD
 SF:client/src/components/App.jsx
 FN:16,(anonymous_0)
 FN:21,(anonymous_1)
@@ -67,6 +68,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
+=======
+>>>>>>> Default Images fix
 SF:client/src/components/Overview/AddDescription.jsx
 FN:2,(anonymous_0)
 FN:4,(anonymous_1)
@@ -118,7 +121,11 @@ FN:74,(anonymous_6)
 FN:89,(anonymous_7)
 FN:97,(anonymous_8)
 FN:99,(anonymous_9)
+<<<<<<< HEAD
 FN:120,(anonymous_10)
+=======
+FN:122,(anonymous_10)
+>>>>>>> Default Images fix
 FNF:11
 FNH:0
 FNDA:0,(anonymous_0)
@@ -133,6 +140,10 @@ FNDA:0,(anonymous_8)
 FNDA:0,(anonymous_9)
 FNDA:0,(anonymous_10)
 DA:15,1
+<<<<<<< HEAD
+=======
+DA:16,0
+>>>>>>> Default Images fix
 DA:17,0
 DA:18,0
 DA:19,0
@@ -201,17 +212,32 @@ DA:98,0
 DA:100,0
 DA:101,0
 DA:102,0
+<<<<<<< HEAD
 DA:106,0
 DA:107,0
 DA:112,0
 DA:113,0
+=======
+DA:103,0
+DA:104,0
+DA:108,0
+DA:109,0
+>>>>>>> Default Images fix
 DA:114,0
 DA:115,0
 DA:116,0
 DA:117,0
+<<<<<<< HEAD
 DA:120,0
 DA:124,0
 LF:79
+=======
+DA:118,0
+DA:119,0
+DA:122,0
+DA:126,0
+LF:82
+>>>>>>> Default Images fix
 LH:1
 BRDA:35,0,0,0
 BRDA:35,0,1,0
@@ -243,6 +269,7 @@ BRDA:91,13,0,0
 BRDA:91,13,1,0
 BRDA:94,14,0,0
 BRDA:94,14,1,0
+<<<<<<< HEAD
 BRDA:116,15,0,0
 BRDA:116,15,1,0
 BRDA:131,16,0,0
@@ -270,6 +297,37 @@ BRDA:156,25,2,0
 BRDA:166,26,0,0
 BRDA:166,26,1,0
 BRF:56
+=======
+BRDA:118,15,0,0
+BRDA:118,15,1,0
+BRDA:127,16,0,0
+BRDA:127,16,1,0
+BRDA:137,17,0,0
+BRDA:137,17,1,0
+BRDA:144,18,0,0
+BRDA:144,18,1,0
+BRDA:147,19,0,0
+BRDA:147,19,1,0
+BRDA:152,20,0,0
+BRDA:152,20,1,0
+BRDA:153,21,0,0
+BRDA:153,21,1,0
+BRDA:157,22,0,0
+BRDA:157,22,1,0
+BRDA:158,23,0,0
+BRDA:158,23,1,0
+BRDA:158,23,2,0
+BRDA:161,24,0,0
+BRDA:161,24,1,0
+BRDA:161,25,0,0
+BRDA:161,25,1,0
+BRDA:162,26,0,0
+BRDA:162,26,1,0
+BRDA:162,26,2,0
+BRDA:172,27,0,0
+BRDA:172,27,1,0
+BRF:58
+>>>>>>> Default Images fix
 BRH:0
 end_of_record
 TN:
@@ -278,9 +336,15 @@ FN:3,(anonymous_0)
 FN:6,(anonymous_1)
 FN:11,(anonymous_2)
 FN:14,(anonymous_3)
+<<<<<<< HEAD
 FN:48,(anonymous_4)
 FN:50,(anonymous_5)
 FN:119,(anonymous_6)
+=======
+FN:38,(anonymous_4)
+FN:40,(anonymous_5)
+FN:107,(anonymous_6)
+>>>>>>> Default Images fix
 FNF:7
 FNH:0
 FNDA:0,(anonymous_0)
@@ -303,6 +367,7 @@ DA:15,0
 DA:16,0
 DA:19,0
 DA:20,0
+<<<<<<< HEAD
 DA:28,0
 DA:29,0
 DA:34,0
@@ -311,10 +376,28 @@ DA:36,0
 DA:37,0
 DA:38,0
 DA:39,0
+=======
+DA:22,0
+DA:23,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:32,0
+DA:33,0
+DA:35,0
+DA:36,0
+DA:38,0
+DA:39,0
+DA:40,0
+>>>>>>> Default Images fix
 DA:41,0
 DA:42,0
 DA:45,0
 DA:46,0
+<<<<<<< HEAD
 DA:48,0
 DA:49,0
 DA:50,0
@@ -333,11 +416,24 @@ DA:66,0
 DA:70,0
 DA:120,0
 LF:42
+=======
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:52,0
+DA:53,0
+DA:55,0
+DA:58,0
+DA:108,0
+LF:41
+>>>>>>> Default Images fix
 LH:1
 BRDA:15,0,0,0
 BRDA:15,0,1,0
 BRDA:19,1,0,0
 BRDA:19,1,1,0
+<<<<<<< HEAD
 BRDA:28,2,0,0
 BRDA:28,2,1,0
 BRDA:37,3,0,0
@@ -362,6 +458,32 @@ BRDA:108,12,0,0
 BRDA:108,12,1,0
 BRDA:121,13,0,0
 BRDA:121,13,1,0
+=======
+BRDA:22,2,0,0
+BRDA:22,2,1,0
+BRDA:28,3,0,0
+BRDA:28,3,1,0
+BRDA:41,4,0,0
+BRDA:41,4,1,0
+BRDA:48,5,0,0
+BRDA:48,5,1,0
+BRDA:62,6,0,0
+BRDA:62,6,1,0
+BRDA:66,7,0,0
+BRDA:66,7,1,0
+BRDA:71,8,0,0
+BRDA:71,8,1,0
+BRDA:84,9,0,0
+BRDA:84,9,1,0
+BRDA:86,10,0,0
+BRDA:86,10,1,0
+BRDA:91,11,0,0
+BRDA:91,11,1,0
+BRDA:96,12,0,0
+BRDA:96,12,1,0
+BRDA:109,13,0,0
+BRDA:109,13,1,0
+>>>>>>> Default Images fix
 BRF:28
 BRH:0
 end_of_record
@@ -496,13 +618,20 @@ BRF:2
 BRH:0
 end_of_record
 TN:
+<<<<<<< HEAD
 SF:client/src/components/Prodlists/AddOutfitCard.jsx
 FN:5,(anonymous_0)
 FN:12,(anonymous_1)
+=======
+SF:client/src/components/Reviews/RatingBreakdownSection/RatingSummary.jsx
+FN:4,(anonymous_0)
+FN:9,(anonymous_1)
+>>>>>>> Default Images fix
 FNF:2
 FNH:0
 FNDA:0,(anonymous_0)
 FNDA:0,(anonymous_1)
+<<<<<<< HEAD
 DA:5,1
 DA:7,0
 DA:13,0
@@ -645,10 +774,62 @@ FN:108,(anonymous_7)
 FN:114,(anonymous_8)
 FN:141,(anonymous_9)
 FNF:10
+=======
+DA:4,1
+DA:6,0
+DA:7,0
+DA:9,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:17,0
+DA:18,0
+DA:22,0
+LF:12
+LH:1
+BRDA:24,0,0,0
+BRDA:24,0,1,0
+BRDA:25,1,0,0
+BRDA:25,1,1,0
+BRDA:25,2,0,0
+BRDA:25,2,1,0
+BRDA:30,3,0,0
+BRDA:30,3,1,0
+BRF:8
+BRH:0
+end_of_record
+TN:
+SF:client/src/components/Stars/Star.jsx
+FN:3,(anonymous_0)
+FN:5,(anonymous_1)
+FNF:2
+FNH:0
+FNDA:0,(anonymous_0)
+FNDA:0,(anonymous_1)
+DA:3,1
+DA:5,0
+DA:6,0
+DA:7,0
+DA:10,0
+LF:5
+LH:1
+BRF:0
+BRH:0
+end_of_record
+TN:
+SF:client/src/components/Stars/Stars.jsx
+FN:4,(anonymous_0)
+FN:27,(anonymous_1)
+FN:33,(anonymous_2)
+FNF:3
+>>>>>>> Default Images fix
 FNH:0
 FNDA:0,(anonymous_0)
 FNDA:0,(anonymous_1)
 FNDA:0,(anonymous_2)
+<<<<<<< HEAD
 FNDA:0,(anonymous_3)
 FNDA:0,(anonymous_4)
 FNDA:0,(anonymous_5)
@@ -2613,3 +2794,35 @@ BRF:8
 BRH:6
 >>>>>>> d36df7ad86cf3c8e0a9f023cc2fde3c73ec0bbc6
 end_of_record
+=======
+DA:4,1
+DA:6,0
+DA:7,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:13,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:27,0
+DA:28,0
+DA:31,0
+DA:34,0
+LF:17
+LH:1
+BRDA:9,0,0,0
+BRDA:9,0,1,0
+BRDA:10,1,0,0
+BRDA:10,1,1,0
+BRDA:18,2,0,0
+BRDA:18,2,1,0
+BRDA:28,3,0,0
+BRDA:28,3,1,0
+BRF:8
+BRH:0
+end_of_record
+>>>>>>> Default Images fix

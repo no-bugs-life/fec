@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Reviews/SortOption.jsx</title>
+    <title>Code coverage report for Overview/Share.jsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">Reviews</a> SortOption.jsx</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">Overview</a> Share.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">20% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/7</span>
+                <span class='fraction'>1/5</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -85,45 +85,13 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-=======
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
->>>>>>> d36df7ad86cf3c8e0a9f023cc2fde3c73ec0bbc6
-=======
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
->>>>>>> Default Images fix
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<span class="cline-any cline-yes">1x</span>
-=======
-<span class="cline-any cline-yes">10x</span>
->>>>>>> d36df7ad86cf3c8e0a9f023cc2fde3c73ec0bbc6
-=======
-<span class="cline-any cline-yes">1x</span>
->>>>>>> Default Images fix
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,49 +105,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState} from 'react';
-import '../../css/Reviews/listStyles.css';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState} from "react";
+const Share =<span class="fstat-no" title="function not covered" >()</span>=&gt; {
+  const [isClicked, setIsClicked] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
+    const onExtendClick = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        setIsClicked(!isClicked);</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return (</span>
+      &lt;div className="share"&gt;
+          &lt;span className="share-title"&gt;Share&lt;/span&gt;
+          &lt;button className="add-extend-btn" onClick={onExtendClick}&gt;{isClicked ? "-" : "+"}&lt;/button&gt;
+          {isClicked &amp;&amp; &lt;div className = "add-extend"&gt;
+            &lt;&gt;
+            &lt;p className="share-desc"&gt;Share the link to: &lt;/p&gt;
+            &lt;span className="share-link"&gt;&lt;a href="" target="_blank"&gt;Facebook&lt;/a&gt;&lt;/span&gt;
+            &lt;span className="share-link"&gt;&lt;a href="" target="_blank"&gt;Instagram&lt;/a&gt;&lt;/span&gt;
+            &lt;span className="share-link"&gt;&lt;a href="" target="_blank"&gt;Twitter&lt;/a&gt;&lt;/span&gt;
+            &lt;/&gt;
+          &lt;/div&gt;}
 &nbsp;
-const SortOption = ({handleSortChange}) =&gt; {
-&nbsp;
-  let [option, setOption] = useState('relevant')
-&nbsp;
-  const handleSubmit = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
-<span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
-<span class="cstat-no" title="statement not covered" >    setOption(e.target.value);</span>
-<span class="cstat-no" title="statement not covered" >    handleSortChange(e.target.value);</span>
-  }
-&nbsp;
-  return (
-    &lt;form className='sort'&gt;
-      &lt;label&gt;
-        {'Sort on: '}
-        &lt;select value={option} onChange={handleSubmit}&gt;
-          &lt;option value='helpful'&gt;Helpful&lt;/option&gt;
-          &lt;option value='newest'&gt;Newest&lt;/option&gt;
-          &lt;option value='relevant'&gt;Relevant&lt;/option&gt;
-        &lt;/select&gt;
-      &lt;/label&gt;
-    &lt;/form&gt;
-  );
+      &lt;/div&gt;
+  )
 }
-&nbsp;
-export default SortOption;</pre></td></tr></table></pre>
+export default Share;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                at 2023-02-08T05:09:29.711Z
-=======
-                at 2023-02-08T06:58:44.973Z
->>>>>>> d36df7ad86cf3c8e0a9f023cc2fde3c73ec0bbc6
-=======
-                at 2023-02-08T05:15:11.425Z
->>>>>>> Default Images fix
+                at 2023-02-08T08:53:13.238Z
             </div>
         <script src="../prettify.js"></script>
         <script>

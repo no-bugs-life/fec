@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders properly 1`] = `
+[
+  <div
+    className="left-reviews"
+    id="review"
+  >
+    <button
+      onClick={[Function]}
+    >
+      Write Review
+    </button>
+  </div>,
+  <div
+    className="right-reviews"
+  >
+    <form
+      className="sort"
+    >
+      <label>
+        Sort on: 
+        <select
+          onChange={[Function]}
+          value="relevant"
+        >
+          <option
+            value="helpful"
+          >
+            Helpful
+          </option>
+          <option
+            value="newest"
+          >
+            Newest
+          </option>
+          <option
+            value="relevant"
+          >
+            Relevant
+          </option>
+        </select>
+      </label>
+    </form>
+    <input
+      onChange={[Function]}
+      placeholder="Search..."
+      type="text"
+    />
+  </div>,
+  <br />,
+]
+`;

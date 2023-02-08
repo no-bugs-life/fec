@@ -15,7 +15,7 @@ const Size = ({currentInventory, onSizeClick}) => {
                 <input type="button" name="size" className="item-description-size-btn" value={currentInventory[size].size} disabled></input>
                 </li>
             ))
-        : <li className="item-description-size-ind" key="default" id= "oneSize" onClick={onSizeClick}>
+            : <li className="item-description-size-ind" key="default" id= "oneSize" onClick={onSizeClick}>
         <input type="button" id= "onesize" name="size" className="item-description-size-btn" value="One Size" required="required"></input>
         </li>}
     </ul>)
