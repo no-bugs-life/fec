@@ -109,6 +109,7 @@ const RelatedList = ({product}) => {
             }
           </div>
           <button
+            data-testid='arrow-right'
             className='related-list-container-scroll'
             onClick={
               ()=>{
