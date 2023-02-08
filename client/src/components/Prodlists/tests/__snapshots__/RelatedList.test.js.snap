@@ -19,7 +19,7 @@ exports[`renders properly 1`] = `
         onClick={[Function]}
       >
         <i
-          class="related-list-arrow-left"
+          className="related-list-arrow-left"
         />
       </button>
       <div
@@ -31,7 +31,7 @@ exports[`renders properly 1`] = `
         onClick={[Function]}
       >
         <i
-          class="related-list-arrow-right"
+          className="related-list-arrow-right"
         />
       </button>
     </div>

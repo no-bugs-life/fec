@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.55% </span>
+                <span class="strong">77.77% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/18</span>
+                <span class='fraction'>14/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">37.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>3/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5.88% </span>
+                <span class="strong">76.47% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/17</span>
+                <span class='fraction'>13/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -114,35 +114,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -158,12 +158,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {useState} from 'react';
 import Star from './Star.jsx'
 &nbsp;
-const Stars = <span class="fstat-no" title="function not covered" >({</span>rating, tag, size, setNewRating, colorVal, isRating}) =&gt; {
+const Stars = ({rating, tag, size, setNewRating, colorVal, isRating}) =&gt; {
 &nbsp;
-  let starArr = <span class="cstat-no" title="statement not covered" >[];</span>
-  let starTotal = <span class="cstat-no" title="statement not covered" >rating * 100;</span>
+  let starArr = [];
+  let starTotal = rating * 100;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (isRating) {</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (isRating) {
 <span class="cstat-no" title="statement not covered" >    if (starTotal % 25 &lt; 13) {</span>
 <span class="cstat-no" title="statement not covered" >      starTotal = starTotal - (starTotal % 25);</span>
     } else {
@@ -171,24 +171,24 @@ const Stars = <span class="fstat-no" title="function not covered" >({</span>rati
     }
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; 5; i++) {</span>
-<span class="cstat-no" title="statement not covered" >    if (starTotal &gt;= 100) {</span>
-<span class="cstat-no" title="statement not covered" >      starArr[i] = '100%';</span>
-<span class="cstat-no" title="statement not covered" >      starTotal -= 100;</span>
+  for (let i = 0; i &lt; 5; i++) {
+    if (starTotal &gt;= 100) {
+      starArr[i] = '100%';
+      starTotal -= 100;
     } else {
-<span class="cstat-no" title="statement not covered" >      starArr[i] = starTotal + '%';</span>
-<span class="cstat-no" title="statement not covered" >      starTotal = 0;</span>
+      starArr[i] = starTotal + '%';
+      starTotal = 0;
     }
   }
 &nbsp;
-  const sendRating = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(i</span>ndex) =&gt; {</span>
+  const sendRating = <span class="fstat-no" title="function not covered" >(i</span>ndex) =&gt; {
 <span class="cstat-no" title="statement not covered" >    setNewRating ? setNewRating(parseInt(index) + 1) : null;</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;&gt;
-      {starArr.map(<span class="fstat-no" title="function not covered" >(s</span>tarVal, idx) =&gt;
-<span class="cstat-no" title="statement not covered" >        &lt;Star</span>
+      {starArr.map((starVal, idx) =&gt;
+        &lt;Star
           key={idx}
           starFill={starVal}
           idx={tag + ' StarIndex: ' + idx}
@@ -208,7 +208,7 @@ export default Stars;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-08T00:14:39.988Z
+                at 2023-02-08T07:07:37.056Z
             </div>
         <script src="../prettify.js"></script>
         <script>

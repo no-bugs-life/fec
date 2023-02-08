@@ -4,4 +4,8 @@ module.exports = {
       '<rootDir>/__mocks__/fileMock.js',
     '\\.(css|less)$': 'identity-obj-proxy',
   },
+  testEnvironment: "jsdom",
+  setupFilesAfterEnv: [
+    "<rootDir>/jest.setup.ts"
+  ],
 };

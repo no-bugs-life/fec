@@ -38,6 +38,7 @@ const Card = ({
         ]
       )
       .then((results) => {
+        //console.log(results)
         setProduct(results[0].data);
         setPicture(results[1].data.results[0].photos[0].thumbnail_url);
 
@@ -74,7 +75,7 @@ const Card = ({
 
 
   return (
-    <div className={`card ${cardAnimation}`}>
+    <div data-testid={productId} className={`card ${cardAnimation}`}>
       <div className='card-image-container'>
         {
           picture !== '' ?
