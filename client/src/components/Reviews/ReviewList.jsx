@@ -150,7 +150,7 @@ const ReviewList = ({product_id, productName}) => {
           : null
           }
         </div>
-        {(reviews.length >= 2 && reviews.length != reviewsOnPage.length)
+        {(reviews.length >= 2 && reviews.length !== reviewsOnPage.length)
           ? <button onClick={showMore}>More Reviews</button>
           : null}
       </div>
