@@ -33,6 +33,7 @@ const AddAnswer = ({showAddAnswer, onClose, productName, body, id}) => {
     return null
   }
   const answerReview = (e) => {
+    console.log(answerPhotos)
     e.preventDefault();
     let postObj = {
       "body": answerBody,
@@ -69,7 +70,7 @@ const AddAnswer = ({showAddAnswer, onClose, productName, body, id}) => {
     form.append("image", base64Img);
     axios.post('https://api.imgbb.com/1/upload?key=dd9bb00ace03cceb9b4d7d8f33bb5c8c', form)
     .then((res) => {
-      let photosCopy = photos.slice();
+      let photosCopy = answerPhotos.slice();
       console.log(res);
       photosCopy.push(res.data.data.url);
       setAnswerPhotos(photosCopy);

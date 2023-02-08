@@ -2,7 +2,11 @@
   text-align: center;
   border: 2px double;
   border-radius: 25px;
+  -webkit-box-shadow: 5px 5px 25px 5px #000000;
+  box-shadow: 5px 5px 25px 5px #000000;
   padding: 10%;
+  height: 500px;
+  overflow: scroll;
 }
 
 .question-search {
@@ -141,4 +145,3 @@
   position:relative;
   right:0;
 }
-

@@ -11,7 +11,7 @@ const QuestionMounted = ({product, setProduct}) => {
   const [isLoading, setLoading] = useState(true);
   const [answers, setAnswers] = useState({});
   const [listLength, setListLength] = useState(4)
-  const [more, setMore] = useState(true);
+  const [more, setMore] = useState();
   const [search, setSearch] = useState('');
   const [showAddQuestion, setShowAddQuestion] = useState(false);
   const [showQuestionHelpful, setShowQuestionHelpful] = useState(true);
@@ -28,6 +28,7 @@ const QuestionMounted = ({product, setProduct}) => {
       .then((res) => {
         console.log('questions data', res.data);
         setQuestion(res.data);
+        setMore(res.data.results.length)
         return res.data
       })
       .then((data) => {
@@ -62,7 +63,6 @@ const QuestionMounted = ({product, setProduct}) => {
     }
   }, [product]);
 
-
   if (isLoading) {
     return <div className="question">Loading...</div>;
   }
@@ -70,16 +70,19 @@ const QuestionMounted = ({product, setProduct}) => {
   return (
     <div className="questions">
       <h1>Questions & Answers</h1>
+      <br></br>
       <div className="question-search">
       <Search search={search} setSearch={setSearch}/>
       </div>
-      {question.results.slice(0, listLength)
+      <br></br>
+      {question.results
       .filter((oneQuestion) => {
         if (search.length < 3) {
           return oneQuestion
         } else if (oneQuestion.question_body.toLowerCase().includes(search.toLowerCase())) {
           return oneQuestion
         }})
+      .slice(0, listLength)
       .map((oneQuestion, index) =>
       (
         <QuestionComponent key={index}
@@ -93,7 +96,7 @@ const QuestionMounted = ({product, setProduct}) => {
           productName={product.name}/>
       ))}
       <div className="questions-buttons">
-      {more ? <button id="more-questions" onClick={() => {setMore(false); setListLength(question.results.length)}}>More Answered Questions</button>: null}
+      {more > 0 ? <button id="more-questions" onClick={() => {setListLength(listLength + 2)}}>More Answered Questions</button>: null}
       <button id="add-question" onClick={() => setShowAddQuestion(true)}> Add a Question</button>
       <AddQuestion onClose={() => setShowAddQuestion(false)} showAddQuestion={showAddQuestion} productName={product.name} id={product.id}/>
       </div>
