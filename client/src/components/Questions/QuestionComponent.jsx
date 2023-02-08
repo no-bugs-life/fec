@@ -31,11 +31,13 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
 
     <div className="question">
     <h2>Q: {body}</h2>
-    <small>by {asker_name}, {dateFormat(`${date}`, "mmmm dS, yyyy")} | </small>
-    {showQuestionHelpful ? <small> Helpful Rating: {helpfulness} <button id="questionHelpful" onClick ={(e) => {handleQuestionHelpful(e); setShowQuestionHelpful(false)}}>Helpful?</button> | </small> :
+    <small>by {asker_name}, {dateFormat(`${date}`, "mmmm dS, yyyy")}</small>
+    <div className="question-helpful-report">
+    {showQuestionHelpful ? <small> Helpful Rating: {helpfulness} <button id="questionHelpful" onClick ={(e) => {handleQuestionHelpful(e); setShowQuestionHelpful(false)}}>Helpful?</button></small> :
     <small> Helpful Rating: {helpfulness + 1} </small>}
     {showQuestionReport ? <small> <button id="questionReport" onClick ={(e) => {handleQuestionReport(e); setShowQuestionReport(false)}}>Report</button></small> :
     <small><button id="questionReport">Reported</button></small>}
+    </div>
     {(answers.length > 0) ?
     answers.slice(0, answerLength).map((oneAnswer, index) => (
         <AnswerComponent key={index}
@@ -50,9 +52,9 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
         setAnswers = {setAnswers}/>))
         : <h4>Not Answered Yet!</h4>
     }
-    {loadMore ? <small><button id="load" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers</button></small> : null}
+    {loadMore ? <small><button id="load-more-answers" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers</button></small> : null}
     <button id="add-answer" onClick={() => setShowAddAnswer(true)}>Add an Answer</button>
-    <AddAnswer onClose={() => setShowAddAnswer(false)} showAddAnswer={showAddAnswer} productName={productName} body={body}/>
+    <AddAnswer onClose={() => setShowAddAnswer(false)} showAddAnswer={showAddAnswer} productName={productName} body={body} id={id}/>
     </div>
 )};
 

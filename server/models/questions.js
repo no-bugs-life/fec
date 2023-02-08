@@ -38,7 +38,7 @@ module.exports = {
    * @param {Object} answer
    * @returns
    */
-  addAnswer: (question_id,answer) => {
+  addAnswer: (question_id, answer) => {
     return axios.post(`/qa/questions/${question_id}/answers`, answer)
   },
 
