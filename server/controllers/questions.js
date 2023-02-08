@@ -54,6 +54,7 @@ module.exports = {
   },
 
   postAnswers: (req, res) => {
+    console.log(req.params.question_id, req.body)
     questions.addAnswer(req.params.question_id, req.body)
     .then(() => {
       res.status(201).send();

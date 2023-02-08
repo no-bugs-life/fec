@@ -40,9 +40,9 @@ const App = ()=> {
       <br/>
       <br/>
       {/* Questions */}
-      {/* <div className="questions">
+      <div className="questions">
         <QuestionMounted product={product} setProduct={setProduct}/>
-      </div> */}
+      </div>
 
       {/* Related Items & Comparison */}
       <RelatedList
