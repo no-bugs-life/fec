@@ -7,7 +7,7 @@ const Modal = ({open, setIsOpen, defaultPhoto, photos, onBtnClick}) => {
     }
     return (
         open && createPortal(
-        <div className='portal'>
+        <div className='description-portal'>
             <img src={defaultPhoto.url}></img>
             <button className="modal-btn" onClick={onCloseClick}>X</button>
 

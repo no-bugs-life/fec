@@ -72,8 +72,12 @@ const Description = ({product}) => {
   }
 
   const onQuantityClick = (e)=>{
-    if (e.target.value !== "default" && e.target.value) {
+    if (e.target.value !== "default" && e.target.value === userSelection.quantity) {
       setIsQuantitySelected(true);
+    }
+    else if (e.target.value !== "default" && e.target.value) {
+      setIsQuantitySelected(true);
+      setCheckoutUpdate(false);
       setUserSelection({...userSelection, quantity: parseInt(e.target.value)})
     } else if (e.target.value === "default") {
       setCheckoutUpdate(false);
@@ -97,15 +101,14 @@ const Description = ({product}) => {
       setCurrentStyle(results[1].data.results);
       setCurrentPick(results[1].data.results[0]);
       //working on setting default photo for images if no img is given
-      if (results[1].data.results[0].photos[0].url && results[1].data.results[0].photos[0].thumbnail_url) {
+      // if (results[1].data.results[0].photos[0].url && results[1].data.results[0].photos[0].thumbnail_url) {
         // console.log(results[1].data.results[0].photos[0])
         setCurrentPhotos(results[1].data.results[0].photos);
         setDefaultPhoto(results[1].data.results[0].photos[0]);
-      } else {
-        setCurrentPhotos([{thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"}])
-        setDefaultPhoto({thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"})
-      }
-
+      // } else {
+      //   setCurrentPhotos([{thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"}])
+      //   setDefaultPhoto({thumbnail_url: "https://pngimg.com/uploads/apple/apple_PNG12489.png",url:"https://pngimg.com/uploads/apple/apple_PNG12489.png"})
+      // }
       setCurrentName(results[1].data.results[0].name);
       setCurrentInventory(results[1].data.results[0].skus);
       setCurrentSize(Object.keys(results[1].data.results[0].skus)[0]);
