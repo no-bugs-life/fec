@@ -12,7 +12,7 @@ const Share =()=> {
           {isClicked && <div className = "add-extend">
             <>
             <p className="share-desc">Share the link to: </p>
-            <Icons width={"10px"} height={"30px"}/>
+            <Icons width={"1rem"} height={"1rem"}/>
             </>
           </div>}
 
