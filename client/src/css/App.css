@@ -1,13 +1,27 @@
 :root{
   --primaryfont: "Source Serif Pro", serif;
   --secondaryfont: "Source Serif 4", monospace;
-  --primarycolor: #F1F1F1;
-  --secondarycolor: #BFBFBF;
+  --primarycolor: #CFDBD5;
+  --secondarycolor: #242423;
+  --darkaccentcolor: #242423;
+  --lightaccent: #E8EDDF;
+  --highlightaccent: #F5CB5C;
 }
 
 
+html {
+  box-sizing: border-box;
+}
+*{
+  margin:0;
+  padding:0;
+}
 body{
-  background-color: #929292;
+  background-color: var(--primarycolor);
+  font-family: var(--primaryfont);
+  font-weight: 400;
+  color: var(--secondarycolor);
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {

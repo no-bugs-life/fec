@@ -104,17 +104,11 @@
 .write-reviews-button:hover{
   background-color: grey;
 }
-.write-reviews-button:hover > .write-reviews-button-icon{
-  transform: scale(1.05);
-}
 
 .write-reviews-button-text{
   font-size: 16px;
   margin: 0 10px;
   height:auto;
-}
-.write-reviews-button-icon{
-  padding: 0 10px;
 }
 
 .product-breakdown-container{
@@ -130,5 +124,4 @@
 
 .left-reviews-skull-motif{
   margin-left: 22px;
-  margin-top: 22px;
 }

@@ -69,37 +69,65 @@ const QuestionMounted = ({product, setProduct}) => {
 
   return (
     <div className="questions">
-      <h1>Questions & Answers</h1>
-      <br></br>
-      <div className="question-search">
-      <Search search={search} setSearch={setSearch}/>
+      <div className='questions-header'>
+        <p>Questions & Answers</p>
+        <Search search={search} setSearch={setSearch}/>
       </div>
-      <br></br>
-      <br></br>
-      {question.results
-      .filter((oneQuestion) => {
-        if (search.length < 3) {
-          return oneQuestion
-        } else if (oneQuestion.question_body.toLowerCase().includes(search.toLowerCase())) {
-          return oneQuestion
-        }})
-      .slice(0, listLength)
-      .map((oneQuestion, index) =>
-      (
-        <QuestionComponent key={index}
-          id={oneQuestion.question_id}
-          body={oneQuestion.question_body}
-          asker_name={oneQuestion.asker_name}
-          helpfulness={oneQuestion.question_helpfulness}
-          date={oneQuestion.question_date}
-          answers={answers[oneQuestion.question_id] ? answers[oneQuestion.question_id] : []}
-          setAnswers={setAnswers}
-          productName={product.name}/>
-      ))}
+      <div className='questions-list-container'>
+        {question.results
+        .filter((oneQuestion) => {
+          if (search.length < 3) {
+            return oneQuestion
+          } else if (oneQuestion.question_body.toLowerCase().includes(search.toLowerCase())) {
+            return oneQuestion
+          }})
+        .slice(0, listLength)
+        .map((oneQuestion, index) =>
+        (
+          <QuestionComponent key={index}
+            id={oneQuestion.question_id}
+            body={oneQuestion.question_body}
+            asker_name={oneQuestion.asker_name}
+            helpfulness={oneQuestion.question_helpfulness}
+            date={oneQuestion.question_date}
+            answers={answers[oneQuestion.question_id] ? answers[oneQuestion.question_id] : []}
+            setAnswers={setAnswers}
+            productName={product.name}/>
+        ))}
+      </div>
+
       <div className="questions-buttons">
-      {more > 0 ? <button id="more-questions" onClick={() => {setListLength(listLength + 2)}}>More Answered Questions</button>: null}
-      <button id="add-question" onClick={() => setShowAddQuestion(true)}> Add a Question</button>
-      <AddQuestion onClose={() => setShowAddQuestion(false)} showAddQuestion={showAddQuestion} productName={product.name} id={product.id}/>
+      {
+        more > 0 ?
+          <button
+            id="more-questions"
+            onClick={
+              () => {
+                setListLength(listLength + 2)
+              }
+            }
+          >
+            More Answered Questions
+          </button>
+          :
+          null
+      }
+      <button
+        id="add-question"
+        onClick={
+          () => setShowAddQuestion(true)
+        }
+      >
+        Add a Question
+      </button>
+      <AddQuestion
+        onClose={
+          () => setShowAddQuestion(false)
+        }
+        showAddQuestion={showAddQuestion}
+        productName={product.name}
+        id={product.id}
+      />
       </div>
     </div>
   )};
