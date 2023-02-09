@@ -30,16 +30,18 @@ const Stars = ({rating, tag, size, setNewRating, colorVal, isRating}) => {
 
   return (
     <>
-      {starArr.map((starVal, idx) =>
-        <Star
-          key={idx}
-          starFill={starVal}
-          idx={tag + ' StarIndex: ' + idx}
-          size={size}
-          sendRating={sendRating}
-          colorVal={colorVal}
-        />
-      )}
+      <div style={{display: "flex", flexDirection: "row"}}>
+        {starArr.map((starVal, idx) =>
+          <Star
+            key={idx}
+            starFill={starVal}
+            idx={tag + ' StarIndex: ' + idx}
+            size={size}
+            sendRating={sendRating}
+            colorVal={colorVal}
+          />
+        )}
+      </div>
     </>
   );
 }
