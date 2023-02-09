@@ -17,7 +17,6 @@ const Skull = () => {
     () => {
       const updateMousePosition = e => {
         setMousePosition({ x: e.clientX/(e.view.innerWidth/2), y: e.clientY/(e.view.innerHeight/2) });
-        // console.log({ x: e.clientX/(e.view.innerWidth/2), y: e.clientY/(e.view.innerHeight/2) })
       };
 
       window.addEventListener('mousemove', updateMousePosition);

@@ -1,0 +1,21 @@
+.loading-screen{
+  position: relative;
+  width:100vw;
+  height:100vh;
+  background: rgb(0, 0, 0, 0.2);
+}
+
+.loading-screen-content{
+  position:absolute;
+  top: 45%;
+  left: 45%;
+}
+
+
+@media (max-width: 375px) {
+  .loading-screen-content{
+    position:absolute;
+    top: 40%;
+    left: 35%;
+  }
+}

@@ -40,7 +40,7 @@
 }
 
 .card-image-button.heart-off{
-  color: rgb(255, 255, 255);
+  color: var(--primarycolor);
   -webkit-text-stroke: 2px rgb(255, 140, 140);
 }
 
@@ -115,11 +115,11 @@
 .card-rating-stats{
   margin: 0;
   font-size: 12px;
-  color:rgb(113, 113, 113)
+  color: var(--secondarycolor)
 }
 
 .card-rating-stats-num{
-  color:rgb(55, 55, 55)
+  color: var(--secondarycolor)
 }
 
 .card-rating-stats-count{
