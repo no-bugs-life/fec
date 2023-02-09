@@ -5,6 +5,7 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx';
 import WriteReviewModal from './WriteReviewModal.jsx';
 import Search from './Search.jsx';
+import Skull from '../Common/Skull.jsx'
 import '../../css/Reviews/listStyles.css'
 
 const ReviewList = ({product_id, productName}) => {

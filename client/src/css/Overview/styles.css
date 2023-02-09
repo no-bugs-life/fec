@@ -12,11 +12,13 @@ body{
   font-weight: 300;
   color: var(--primarycolor);
 }
+
 .top{
   width: 100vw;
   padding: 1rem;
   background-color: #000000;
 }
+
 .top .logo{
   font-size: 1.8rem;
   color: var(--secondarycolor)

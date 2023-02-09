@@ -44,7 +44,7 @@ const App = ()=> {
 
       {/* Questions */}
 
-        <QuestionMounted product={product} setProduct={setProduct}/>
+      <QuestionMounted product={product} setProduct={setProduct}/>
 
 
       {/* Related Items & Comparison */}
