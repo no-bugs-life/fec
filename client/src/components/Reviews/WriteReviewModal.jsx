@@ -66,7 +66,7 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
     if (rating === 0) {
       alert('Please add a rating for the product')
     } else {
-      axios.post('http://localhost:3000/api/reviews', postObj)
+      axios.post('/api/reviews', postObj)
       .then((res) => null)
       .catch((err) => console.log(err));
       setWriteReview(false);

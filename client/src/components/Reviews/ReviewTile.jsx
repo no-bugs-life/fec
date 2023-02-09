@@ -16,7 +16,7 @@ const ReviewTile = ({review}) => {
 
   const addHelpful = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`)
+    axios.put(`/api/reviews/${review.review_id}/helpful`)
     .then((res) => null)
     .catch((err) => console.log(err))
     let newHelp = helpfulness + 1;

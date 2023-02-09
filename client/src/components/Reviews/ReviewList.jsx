@@ -25,7 +25,7 @@ const ReviewList = ({product_id, productName}) => {
 
   const callReviewData = (sortChoice) => {
     if (product_id) {
-      axios.get('http://localhost:3000/api/reviews/', {
+      axios.get('/api/reviews/', {
         params: {
           "product_id": product_id,
           "sort": sortChoice || 'relevant',
@@ -63,7 +63,7 @@ const ReviewList = ({product_id, productName}) => {
 
   const callProductData = () => {
     if (product_id) {
-      axios.get('http://localhost:3000/api/reviews/meta', {params: {"product_id": product_id}})
+      axios.get('/api/reviews/meta', {params: {"product_id": product_id}})
       .then((res) => {
         setRatingData(res.data);
         let newCharacteristics = [];
