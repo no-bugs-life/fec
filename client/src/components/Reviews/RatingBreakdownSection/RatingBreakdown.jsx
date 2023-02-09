@@ -21,31 +21,36 @@ const RatingBreakdown = ({summaryData, recommendData, handleFilter, filters}) =>
     <>
     {Object.keys(summaryData)
     ? <>
-        <h2>Rating Breakdown</h2>
-        {filters.length
-        ? <>
-            {'Filters: ' + filters}
-            <br/>
-            <button onClick={() => handleFilterRB(filters)}>Remove All Filters</button>
-            <br/>
-        </>
-        : null}
-        <label>
-          <ProgressBar rateData={summaryData['5']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={5}/>
-        </label>
-        <label>
-          <ProgressBar rateData={summaryData['4']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={4}/>
-        </label>
-        <label>
-          <ProgressBar rateData={summaryData['3']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={3}/>
-        </label>
-        <label>
-          <ProgressBar rateData={summaryData['2']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={2}/>
-        </label>
-        <label>
-          <ProgressBar rateData={summaryData['1']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={1}/>
-        </label>
-        {(parseInt(recommendData.true) / (parseInt(recommendData.false) + parseInt(recommendData.true)) * 100).toFixed(2) + '% Recommended'}
+        <p className='rating-breakdown-header'>
+          <b>{(parseInt(recommendData.true) / (parseInt(recommendData.false) + parseInt(recommendData.true)) * 100).toFixed(2)}% </b> of reviews reccommend this product
+        </p>
+        {
+          filters.length
+            ? <>
+                {'Filters: ' + filters}
+                <br/>
+                <button onClick={() => handleFilterRB(filters)}>Remove All Filters</button>
+                <br/>
+            </>
+            : null
+        }
+        <div className='rating-breakdown-container'>
+          <label>
+            <ProgressBar rateData={summaryData['5']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={5}/>
+          </label>
+          <label>
+            <ProgressBar rateData={summaryData['4']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={4}/>
+          </label>
+          <label>
+            <ProgressBar rateData={summaryData['3']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={3}/>
+          </label>
+          <label>
+            <ProgressBar rateData={summaryData['2']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={2}/>
+          </label>
+          <label>
+            <ProgressBar rateData={summaryData['1']} totalRates={totalRates} setFilter={handleFilterRB} rateIdx={1}/>
+          </label>
+        </div>
       </>
     : null
     }
