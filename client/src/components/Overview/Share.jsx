@@ -6,17 +6,15 @@ const Share =()=> {
         setIsClicked(!isClicked);
     }
     return (
-      <div className="share">
-          <span className="share-title">Share</span>
-          <button className="add-extend-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button>
-          {isClicked && <div className = "add-extend">
-            <>
-            <p className="share-desc">Share the link to: </p>
-            <Icons width={"1rem"} height={"1rem"}/>
-            </>
-          </div>}
+      <>
+          {/* <span className="share-title">Share</span> */}
+          {/* <button className="add-extend-btn" onClick={onExtendClick}>{isClicked ? "-" : "+"}</button> */}
+          <div className = "add-extend">
+            {/* <p className="share-desc">Share the link to: </p> */}
+            <Icons width={"2rem"} height={"2rem"}/>
+          </div>
 
-      </div>
+      </>
   )
 }
 export default Share;

@@ -35,3 +35,6 @@
 .right-reviews-cards {
   overflow: scroll;
 }
+.review-overall{
+  display: flex;
+}
