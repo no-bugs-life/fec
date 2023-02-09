@@ -36,7 +36,7 @@ const App = ()=> {
         <span className="logo">Logo</span>
       </div>
       {/* Overview */}
-      {/* {Object.keys(product).length > 0 ? <Description product ={product}/> : null} */}
+      {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
 
       {/* Review & Ratings */}
 
@@ -47,12 +47,12 @@ const App = ()=> {
 
 
       {/* Related Items & Comparison */}
-      {/* <RelatedList
+      <RelatedList
         product={product}
       />
       <OutfitList
         product={product}
-      /> */}
+      />
 
     </div>
 
