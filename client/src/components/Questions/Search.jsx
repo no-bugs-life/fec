@@ -6,6 +6,7 @@ const Search = ({search, setSearch}) => {
     <div className="Search">
       <form>
       <input
+      className="question-search"
       type='text'
       value={search}
       placeholder='Search...'

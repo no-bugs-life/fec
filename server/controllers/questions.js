@@ -42,7 +42,6 @@ module.exports = {
   },
 
   getAnswers: (req, res) => {
-
     questions.listAnswers(req.params.question_id, req.body)
     .then((result) => {
       res.status(200).send(result.data);
@@ -54,7 +53,6 @@ module.exports = {
   },
 
   postAnswers: (req, res) => {
-    console.log(req.params.question_id, req.body)
     questions.addAnswer(req.params.question_id, req.body)
     .then(() => {
       res.status(201).send();
