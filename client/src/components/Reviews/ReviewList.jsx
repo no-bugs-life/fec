@@ -127,7 +127,7 @@ const ReviewList = ({product_id, productName}) => {
   }
 
   return (
-    <div className='reviews-section'>
+    <div className= 'reviews-section'>
       <div className='left-reviews' id="review">
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
         <button onClick={openWriteReview} >Write Review</button>

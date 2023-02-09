@@ -95,7 +95,7 @@ const Description = ({product}) => {
   }
 
   useEffect(() => {
-    Promise.all([ axios.get(`http://127.0.0.1:3000/api/products/${product.id}`),  axios.get(`http://127.0.0.1:3000/api/products/${product.id}/styles`), axios.get('http://127.0.0.1:3000/api/reviews/meta', {params: {"product_id": product.id}})])
+    Promise.all([ axios.get(`api/products/${product.id}`),  axios.get(`api/products/${product.id}/styles`), axios.get('api/reviews/meta', {params: {"product_id": product.id}})])
     .then((results) => {
       setIsLoading(!isLoading);
       setCurrentProduct(results[0].data);
