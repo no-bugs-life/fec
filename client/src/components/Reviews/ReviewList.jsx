@@ -131,10 +131,18 @@ const ReviewList = ({product_id, productName}) => {
     <div className= 'reviews-section'>
       <div className='left-reviews' id="review">
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
-        <button onClick={openWriteReview} >Write Review</button>
+        <button
+          className='.write-reviews-button'
+          onClick={openWriteReview}
+        >
+          Write Review
+        </button>
         {writeReview
       ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} charIds={charIds} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
+        <div className ='left-reviews-skull-motif'>
+          <Skull />
+        </div>
       </div>
       <div className='right-reviews'>
         <div className='right-reviews-header'>
