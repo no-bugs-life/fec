@@ -1,8 +1,24 @@
 .reviews-section {
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 1209.590px;
   margin: auto;
+}
+
+@media only screen and (max-width: 375px) {
+  .review-section {
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-reviews {
+    width: 100%;
+  }
+
+  .right-reviews {
+    width: 100%
+  }
 }
 
 .left-reviews {
@@ -21,7 +37,7 @@
   flex-direction: column;
   width: 66.67%;
   height: 750px;
-
+  margin-bottom: 10px;
 }
 
 .right-reviews-header{
@@ -35,6 +51,8 @@
 .right-reviews-cards {
   overflow: scroll;
 }
-.review-overall{
+
+.review-photos {
   display: flex;
+  flex-direction: row;
 }
