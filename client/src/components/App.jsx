@@ -46,6 +46,7 @@ const App = ()=> {
       <QuestionMounted product={product} setProduct={setProduct}/>
 
 
+
       {/* Related Items & Comparison */}
       <RelatedList
         product={product}

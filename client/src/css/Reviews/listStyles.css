@@ -16,28 +16,10 @@
     width: 100%;
   }
 
-
-.left-reviews {
-  width: 300px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: transparent;
-  height: 750px;
-  margin-right: 2%;
-  /* border:1px solid blue */
+  .right-reviews {
+    width: 100%
+  }
 }
-
-.right-reviews {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 700px;
-  height: 750px;
-  /* border:1px solid red */
-}
-
-
 
 .right-reviews-header{
   position: relative;
