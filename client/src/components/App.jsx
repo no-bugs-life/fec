@@ -39,9 +39,8 @@ const App = ()=> {
       {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
 
       {/* Review & Ratings */}
+
       <ReviewList product_id={40352} productName={product.name}/>
-      <br/>
-      <br/>
 
       {/* Questions */}
         <QuestionMounted product={product} setProduct={setProduct}/>

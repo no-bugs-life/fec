@@ -11,7 +11,6 @@ const ReviewTile = ({review}) => {
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
 
   useEffect(() => {
-    console.log('reviewTile')
     setHelpfulness(review.helpfulness)
   }, [review])
 
@@ -61,12 +60,15 @@ const ReviewTile = ({review}) => {
         ? 'I recommend this product ✓'
         : null}
         <br/>
-        {review.photos.map((photo, idx) => {
-          if (isValidUrl(photo.url)) {
-            return <Image url={photo.url} key={idx} />
+        <div className='review-photos'>
+          {review.photos.map((photo, idx) => {
+            if (isValidUrl(photo.url)) {
+              return <Image url={photo.url} key={idx} />
+            }
           }
-        }
-        )}
+          )}
+
+        </div>
         {review.response
         ? review.response
         : null}
