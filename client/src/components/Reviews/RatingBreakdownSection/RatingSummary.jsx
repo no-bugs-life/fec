@@ -19,16 +19,21 @@ const RatingSummary = ({summaryData, isHead}) => {
 
   return(
     <div>
-      {isHead ? null : <h2>Rating Summary</h2>}
+      {isHead ? null : null}
       {rateAvg > 0 && isHead
       ? <>
           <Stars rating={rateAvg} tag={'ratingSummary'}/>
           <span>{rateAvg.toFixed(1)}<a href="#review" className="rating-link">{`(${rateCountTotal})`}</a></span>
         </>
       : rateAvg > 0
-      ? <div>
-          <Stars rating={rateAvg} tag={'ratingSummarySection'} size={'50px'} isRating={true}/>
-          <p> {rateAvg.toFixed(1)} out of 5 stars based on {rateCountTotal} reviews</p>
+      ? <div className='ratings-summary-header'>
+          <p className='ratings-summary-header-avg'><b>{rateAvg.toFixed(1)}</b></p>
+          <div className='ratings-summary-header-flavor'>
+            <Stars rating={rateAvg} tag={'ratingSummarySection'} size={'30px'} isRating={true}/>
+            <p>out of 5 stars based on <b>{rateCountTotal}</b> reviews</p>
+          </div>
+
+
         </div>
       : <div>
       <Stars rating={0} tag={'ratingSummary'}/>

@@ -5,6 +5,7 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx';
 import WriteReviewModal from './WriteReviewModal.jsx';
 import Search from './Search.jsx';
+import Skull from '../Common/Skull.jsx'
 import '../../css/Reviews/listStyles.css'
 
 const ReviewList = ({product_id, productName}) => {
@@ -127,35 +128,60 @@ const ReviewList = ({product_id, productName}) => {
   }
 
   return (
-    <div className= 'reviews-section'>
-      <div className='left-reviews' id="review">
-        <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
-        <button onClick={openWriteReview} >Write Review</button>
-        {writeReview
-      ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} charIds={charIds} characteristics={ratingData.characteristics} product_id={product_id}/>
-      : null}
-      </div>
-      <div className='right-reviews'>
-        <div className='right-reviews-header'>
-          <SortOption handleSortChange={handleSortChange} />
-          <Search getQuery={getSearchQuery}/>
-        </div>
-        <div className='right-reviews-cards'>
-          {Object.keys(reviews).length
-          ? <>
-              {reviewsOnPage.map((review, idx) =>
-                <ReviewTile review={review} key={idx} />
-              )}
-            </>
-          : null
+    <>
+      <p>Rating & Review</p>
+      <div className= 'reviews-section'>
+        <div className='left-reviews' id="review">
+          <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
+          <button
+            className='write-reviews-button'
+            onClick={openWriteReview}
+          >
+            <svg className='write-reviews-button-icon' width="30px" height="30px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(0)"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" stroke="black" strokeWidth="0.048"> <path d="M12.2424 20H17.5758M4.48485 16.5L15.8242 5.25607C16.5395 4.54674 17.6798 4.5061 18.4438 5.16268V5.16268C19.2877 5.8879 19.3462 7.17421 18.5716 7.97301L7.39394 19.5L4 20L4.48485 16.5Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"></path> </g><g id="SVGRepo_iconCarrier"> <path d="M12.2424 20H17.5758M4.48485 16.5L15.8242 5.25607C16.5395 4.54674 17.6798 4.5061 18.4438 5.16268V5.16268C19.2877 5.8879 19.3462 7.17421 18.5716 7.97301L7.39394 19.5L4 20L4.48485 16.5Z" stroke="black" strokeLinecap="round" strokeLinejoin="round"></path> </g></svg>
+            <p className='write-reviews-button-text'>Write a Review</p>
+          </button>
+          {
+            writeReview ?
+              <WriteReviewModal
+                setWriteReview={setWriteReview}
+                productName={productName}
+                charIds={charIds}
+                characteristics={ratingData.characteristics}
+                product_id={product_id}
+              />
+              :
+              null
           }
+          <div className='left-reviews-skull-motif'>
+            <Skull />
+          </div>
         </div>
-        {(reviews.length >= 2 && reviews.length !== reviewsOnPage.length)
-          ? <button onClick={showMore}>More Reviews</button>
-          : null}
+        <div className='right-reviews'>
+          <div className='right-reviews-header'>
+            <SortOption handleSortChange={handleSortChange} />
+            <Search getQuery={getSearchQuery}/>
+          </div>
+          <div className='right-reviews-cards'>
+            {Object.keys(reviews).length
+            ? <>
+                {reviewsOnPage.map((review, idx) =>
+                  <ReviewTile review={review} key={idx} />
+                )}
+              </>
+            : null
+            }
+          </div>
+            <button
+              className='load-more-questions-button'
+              onClick={showMore}
+              disabled={(reviews.length >= 2 && reviews.length === reviewsOnPage.length)}
+            >
+              <span></span>
+            </button>
+        </div>
+        <br/>
       </div>
-      <br/>
-    </div>
+    </>
   );
 }
 
