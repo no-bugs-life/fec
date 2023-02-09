@@ -76,7 +76,7 @@
   margin-right: 0.4rem;
 }
 .item-description .price .sale-price {
-  color: var(--primarycolor);
+  color: red;
 }
 
 .description-portal {
@@ -103,10 +103,10 @@
   top: 0;
   right: 0;
   z-index: 2;
-  padding: 2rem;
+  padding: 1rem;
   opacity: 60%;
   font-size: 1rem;
-  background-color: var(--secondarycolor);
+  background-color: var(--primarycolor);
 }
 .modal-bg{
   position: absolute;
@@ -143,6 +143,9 @@
   width: 100%;
   height: 20vh;
 }
+.img-list:hover{
+  cursor: pointer;
+}
 .description-img .img-list .img-ind {
 /* width: 90%; */
 width: 25%;
@@ -160,15 +163,16 @@ height: 80%;
   margin: 0 auto;
 }
 .description-carousel{
-
-  background:var(--secondarycolor);
+  background-color: whitesmoke;
+  opacity: 0.7;
   border-radius: .2rem;
-  font-size: 0.8rem;
+  font-size: 2rem;
   padding: .2rem;
-  opacity: 60%;
+  color: var(--secondarycolor);
   position: absolute;
   z-index: 2;
 }
+
 .description-carousel-btn-prev {
   position: absolute;
   top: 50%;
@@ -176,12 +180,22 @@ height: 80%;
   padding: 2rem 1rem 2rem 0;
   transform: translateY(-50%);
 }
+.description-carousel-btn-prev:disabled{
+  opacity: 0.7;
+  color: var(--primarycolor);
+}
 .description-carousel-btn-prev-sm {
   position: absolute;
   top: 50%;
-  left: -0.3rem;
+  left: -0.6rem;
   padding: 0.6rem 0.2rem;
   transform: translateY(-50%);
+  opacity: 0;
+}
+
+.description-carousel-btn-prev-sm:hover{
+  cursor: pointer;
+  opacity: 0.7;
 }
 .description-carousel-btn-next {
   position: absolute;
@@ -190,13 +204,21 @@ height: 80%;
   padding: 2rem 0 2rem 1rem;
   transform: translateY(-50%);
 }
+.description-carousel-btn-next:disabled{
+  opacity: 0.7;
+  color: var(--primarycolor);
+}
 .description-carousel-btn-next-sm {
   position: absolute;
   top: 50%;
-  right: -0.3rem;
+  right: -0.6rem;
   padding: 0.6rem 0.2rem;
   transform: translateY(-50%);
-
+  opacity: 0;
+}
+.description-carousel-btn-next-sm:hover{
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .img-list .selected {
@@ -284,18 +306,17 @@ height: 80%;
   background-color: var(--primarycolor);
 }
 .item-description-size-btn:hover{
-  background-color:var(--secondarycolor);
+  background-color: hsla(60, 1%, 14%, 0.5);
   cursor: pointer;
 }
 #toggle-on{
   opacity: 100%;
-  border: 1px solid var(--primarycolor);
-
+  border: 1.5px solid var(--secondarycolor);
 }
 #toggle-on-size{
   border: 1px solid var(--primarycolor);
   border-radius: .2rem;
-  background-color: var(--secondarycolor);
+  background-color: hsla(60, 1%, 14%, 0.5);
   height: 100%;
   width: 100%;
   font-size: 0.65em;
@@ -384,8 +405,9 @@ button .sm #next{
 .size-alert{
   margin-top: 0.4rem;
   font-size: 1.2rem;
-  font-weight: 300;
+  font-weight: 400;
   font-family: var(--primaryfont);
+  color: var(--secondarycolor);
 }
 .item-description-checkout{
   height: 1.5em;
@@ -398,23 +420,23 @@ button .sm #next{
   height: 100%;
   width: 100%;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 300;
   color: #000000;
   background-color: var(--primarycolor);
   font-family: var(--primaryfont);
-  border: 1px solid var(--primarycolor)
+  border: 1px solid var(--secondarycolor)
 }
 #checkout:hover {
-  background-color: var(--secondarycolor);
+  background-color: hsla(60, 1%, 14%, 0.5);
 }
 #checkout-click{
   height: 100%;
   width: 100%;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 300;
   color: #000000;
-  background-color: var(--secondarycolor);
-  border: 1px solid var(--primarycolor);
+  background-color: hsla(60, 1%, 14%, 0.4);
+  border: 1px solid var(--secondarycolor);
   border-radius: .2rem;
   font-family: var(--primaryfont);
 }
@@ -459,6 +481,9 @@ button .sm #next{
   font-size: 1.2rem;
   margin-bottom: 0.6rem;
   color: var(--secondarycolor);
+  font-weight: 300;
+  color: #000000;
+  font-family: var(--primaryfont);
 }
 .add-features{
   font-size: 1.2rem;
