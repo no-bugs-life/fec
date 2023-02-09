@@ -75,6 +75,7 @@ const QuestionMounted = ({product, setProduct}) => {
       <Search search={search} setSearch={setSearch}/>
       </div>
       <br></br>
+      <br></br>
       {question.results
       .filter((oneQuestion) => {
         if (search.length < 3) {
