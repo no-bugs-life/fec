@@ -11,7 +11,6 @@
     display: flex;
     flex-direction: column;
   }
-
   .left-reviews {
     width: 100%;
   }
@@ -19,6 +18,25 @@
   .right-reviews {
     width: 100%
   }
+}
+
+.left-reviews {
+  width: 33.33%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  height: 750px;
+  margin-right: 2%;
+}
+
+.right-reviews {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 66.67%;
+  height: 750px;
+  margin-bottom: 10px;
 }
 
 .right-reviews-header{
@@ -47,3 +65,4 @@
   background: transparent;
   width: 0;
 }
+

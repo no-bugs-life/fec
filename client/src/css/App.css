@@ -1,3 +1,11 @@
+:root{
+  --primaryfont: "Source Serif Pro", serif;
+  --secondaryfont: "Source Serif 4", monospace;
+  --primarycolor: #F1F1F1;
+  --secondarycolor: #BFBFBF;
+}
+
+
 body{
   background-color: #929292;
 }
@@ -20,3 +28,4 @@ body{
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+

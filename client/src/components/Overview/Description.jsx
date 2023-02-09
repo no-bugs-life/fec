@@ -57,7 +57,7 @@ const Description = ({product}) => {
       Array.from(e.currentTarget.parentElement.children).forEach(child => child.children[0].removeAttribute("id"));
       e.target.setAttribute('id', 'toggle-on-size');
       setIsSizeSelected(true)
-      setCheckoutUpdate(true);
+      isQuantitySelected && setCheckoutUpdate(true);
       setUserSelection({...userSelection, size: currentInventory[Object.keys(currentInventory)[e.currentTarget.id]].size})
 
     }else if (e.target.tagName === "INPUT") {
@@ -90,6 +90,7 @@ const Description = ({product}) => {
     setIsCheckoutClicked(true);
     if (isSizeSelected && isQuantitySelected) {
       setCheckoutUpdate(true);
+      e.target.setAttribute("id" , "checkout-click")
     }
     setUserSelection({...userSelection, name: currentProduct.name, price: currentPick.sale_price || currentPick.original_price, product: currentProduct});
   }
@@ -123,7 +124,7 @@ const Description = ({product}) => {
     <div className="overview">
     <div className = "description">
       <div className = "description-category" >
-        <p data-testid="category">{currentProduct.category}</p>
+        <p data-testid="category">Category/{currentProduct.category}</p>
       </div>
       <div className = "description-img">
         {currentPhotos.length > 0 ? <Images photos = {currentPhotos} defaultPhoto={defaultPhoto} setDefaultPhoto={setDefaultPhoto} currentList={currentList} setCurrentList={setCurrentList}
@@ -156,20 +157,22 @@ const Description = ({product}) => {
         <div className="item-description-checkout">
           {<Checkout checkoutUpdate={checkoutUpdate} onCheckoutClick={onCheckoutClick} userSelection={userSelection}/>}
         </div>
+        <div className="additional-info">
+      <div className="share-bar-overview">
+          <Share/>
       </div>
-    </div>
-    <br></br>
-    <div className="additional-info">
+      <span className="line-break"></span>
       <div className="add-description-overview">
           {Object.keys(currentProduct).length > 0 ? <AddDescription description={currentProduct.description}
           slogan={currentProduct.slogan}
           features={currentProduct.features}
           /> : null}
       </div>
-      <div className="share-bar-overview">
-          <Share/>
+    </div>
       </div>
     </div>
+    <br></br>
+
     </div>
   )
 
