@@ -6,7 +6,7 @@
 }
 
 .left-reviews {
-  width: 300px;
+  width: 400px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 700px;
+  width: 750px;
   height: 750px;
   margin-bottom: 10px;
 }
@@ -52,6 +52,26 @@
 .right-reviews-cards::-webkit-scrollbar {
   background: transparent;
   width: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  .reviews-section {
+    max-width: 768px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-reviews {
+    width: 95%;
+  }
+  .right-reviews {
+    max-width: 768px;
+    width: 95%;
+  }
+  .right-reviews-header {
+    width: 97.4736%;
+  }
 }
 
 @media only screen and (max-width: 375px) {

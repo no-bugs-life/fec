@@ -1,9 +1,9 @@
 .review-tile {
   border: 1px solid black;
   border-radius: 5px;
-  width: 98%;
+  width: 99%;
   background-color: var(--primarycolor);
-  margin-bottom: 10px;
+  margin-bottom: 3px;
   scroll-snap-align: start;
   display:flex;
   flex-direction: column;
@@ -64,29 +64,29 @@
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 150px;
+  height: auto;
   /* max-width: 672.28px */
 }
 
-.load-more-reviews-button {
+.load-more-reviews-btn {
   border: 1px solid black;
   background: transparent;
   font-size: 16px;
   height: 32px;
 }
 
-.load-more-reviews-button:hover {
+.load-more-reviews-btn:hover {
   background: grey;
 }
 
-.load-more-reviews-button:disabled:after {
+.load-more-reviews-btn:disabled:after {
   content: 'No More Reviews';
 }
 
-.load-more-reviews-button span {
+.load-more-reviews-btn span {
   display: none;
 }
-.load-more-reviews-button:after {
+.load-more-reviews-btn:after {
   content: 'Load More Reviews';
 }
 
