@@ -13,6 +13,8 @@ import {RelatedList, OutfitList, ComparisonModal} from './Prodlists'
 import QuestionComponent from '../components/Questions/QuestionComponent.jsx';
 import QuestionMounted from '../components/Questions/QuestionMounted.jsx';
 
+import Skull from './Common/Skull.jsx';
+
 import axios from "axios";
 
 
@@ -46,7 +48,10 @@ const App = ()=> {
         Object.keys(product).length > 0 ?
           <>
             <div className="top">
-              <span className="logo">Logo</span>
+              <div className='top-skull'>
+                <Skull color="#E8EDDF"/>
+              </div>
+              <span className="logo">Cold Topic</span>
             </div>
 
             {/* Overview */}
@@ -56,12 +61,12 @@ const App = ()=> {
             {/* Questions */}
             <QuestionMounted product={product} setProduct={setProduct}/>
             {/* Related Items & Comparison */}
-            {/* <RelatedList
+            <RelatedList
               product={product}
             />
             <OutfitList
               product={product}
-            /> */}
+            />
           </>
           :
           <LoadingScreen />
