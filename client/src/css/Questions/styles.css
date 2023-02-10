@@ -1,5 +1,5 @@
 .questions {
-  width: calc(1000px + 2%);
+  /* width: calc(1000px + 2%); */
   display:flex;
   flex-direction: column;
   margin:auto;

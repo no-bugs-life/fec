@@ -1,5 +1,5 @@
 import React from "react";
-const Checkout = ({checkoutUpdate, onCheckoutClick, userSelection}) => {
+const Checkout = ({checkoutUpdate, onCheckoutClick}) => {
     return (
         <>
             {checkoutUpdate

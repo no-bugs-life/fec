@@ -100,6 +100,7 @@ const Description = ({product}) => {
     .then((results) => {
       setIsLoading(!isLoading);
       setCurrentProduct(results[0].data);
+      console.log(results[0].data)
       setCurrentStyle(results[1].data.results);
       setCurrentPick(results[1].data.results[0]);
       setCurrentPhotos(results[1].data.results[0].photos);

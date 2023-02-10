@@ -16,7 +16,7 @@ const ReviewTile = ({review}) => {
 
   const addHelpful = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/reviews/${review.review_id}/helpful`)
+    axios.put(`/api/reviews/${review.review_id}/helpful`)
     .then((res) => null)
     .catch((err) => console.log(err))
     let newHelp = helpfulness + 1;
@@ -68,28 +68,33 @@ const ReviewTile = ({review}) => {
           }
         </p>
         {review.recommend
-        ? 'I recommend this product ✔️'
+        ? <>
+          {'I recommend this product ✔️'}
+          <br/>
+        </>
         : null}
-        <br/>
-        <div className='review-tile-photos-container'>
-          {review.photos.map((photo, idx) => {
-            if (isValidUrl(photo.url)) {
-              return <Image url={photo.url} key={idx} />
-            }
-          }
-          )}
-          {review.response
-          ? review.response
-          : null}
-        </div>
+        {review.photos.length
+        ? <>
+            <div className='review-tile-photos-container'>
+              {review.photos.map((photo, idx) => {
+                if (isValidUrl(photo.url)) {
+                  return <Image url={photo.url} key={idx} />
+                }
+              })}
+            </div>
+          </>
+        : null}
       </div>
+      {review.response
+        ? review.response
+        : null}
       <div className='review-tile-footer'>
         <p>Was this review helpful?</p>
         {showHelpful
         ?
         <>
-          <button onClick={addHelpful}>Yes</button>
-          <button onClick={() => setShowHelpful(false)}>No</button>
+          <button class='change-helpful-btn' onClick={addHelpful}>Yes</button>
+          <button class='change-helpful-btn' onClick={() => setShowHelpful(false)}>No</button>
         </>
         : <small>Thank you for your feedback</small>}
         <p>{helpfulness}</p>

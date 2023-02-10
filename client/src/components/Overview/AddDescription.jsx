@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 const AddDescription = ({description, slogan, features})=> {
-    const [isClicked, setIsClicked] = useState(false);
-    const onExtendClick = (e) => {
-        setIsClicked(!isClicked);
-    }
-
+    // const [isClicked, setIsClicked] = useState(false);
+    // const onExtendClick = (e) => {
+    //     setIsClicked(!isClicked);
+    // }
     return (
         <>
             {/* <span className="add-title">Description</span> */}
@@ -17,8 +16,8 @@ const AddDescription = ({description, slogan, features})=> {
                     {features.map((feature,index) => {
                         return(
                             <div className="add-features" key={index}>
-                                <span className="add-feature">{feature.feature} :</span>
-                                <span className="add-value">{feature.value}</span>
+                                <span className="add-feature" role="feature">{feature.feature} :</span>
+                                <span className="add-value" role="value">{feature.value}</span>
                             </div>
                         )
                     })}

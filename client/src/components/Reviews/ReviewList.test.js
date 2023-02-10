@@ -8,17 +8,17 @@ it('renders properly', () => {
     <ReviewList />
   );
 
-//   let test = component.toJSON();
-//   expect(test).toMatchSnapshot();
-// });
+  let test = component.toJSON();
+  expect(test).toMatchSnapshot();
+});
 
 it('does not search when less than 3 characters are typed in the search bar', async () => {
   render(<ReviewList product_id={40344} productName={'funny hat'}/>);
-  return waitFor(() => expect(screen.queryByText('Rating Summary')).toBeInTheDocument())
+  return waitFor(() => expect(screen.queryByText('Write Review')).toBeInTheDocument())
     .then(() => {
       const inputNode = screen.getByPlaceholderText('Search...')
       fireEvent.keyDown(inputNode, {Key: 'A', code: 'KeyA'})
-      console.log(inputNode.getValue())
+      console.log(inputNode)
     })
     .catch((err) => {
       console.log('error', err);
@@ -27,7 +27,7 @@ it('does not search when less than 3 characters are typed in the search bar', as
 
 it('adds filter to page when progress bar is clicked', () => {
   render(<ReviewList product_id={40344} productName={'funny hat'}/>);
-  return waitFor(() => expect(screen.queryByText('Rating Summary')).toBeInTheDocument())
+  return waitFor(() => expect(screen.queryByText('Write Review')).toBeInTheDocument())
     .then(() => {
 
     })
@@ -39,7 +39,7 @@ it('adds filter to page when progress bar is clicked', () => {
 it('opens write a review modal on button click', () => {
   render(<ReviewList product_id={40352} productName={'funny hat'}/>);
   // const button = getByText('Write Review')
-  return waitFor(() => expect(screen.queryByText('Rating Summary')).toBeInTheDocument())
+  return waitFor(() => expect(screen.queryByText('Write Review')).toBeInTheDocument())
     .then(()=> {
       fireEvent.click(screen.getByText('Write Review'));
     })

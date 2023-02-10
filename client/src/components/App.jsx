@@ -26,8 +26,9 @@ const App = ()=> {
         () => {
           axios.get('/api/products',{params:{count:30}})
             .then(res => {
-              console.log(res.data[0])
-              setProduct(res.data[0]);
+              // console.log(res.data[0])
+              setProduct(res.data[2]);
+
             })
             .catch(err => console.log(err))
         }
@@ -47,30 +48,24 @@ const App = ()=> {
             <div className="top">
               <span className="logo">Logo</span>
             </div>
+
             {/* Overview */}
-            {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
+            <Description product ={product}/>
             {/* Review & Ratings */}
-
             <ReviewList product_id={40352} productName={product.name}/>
-
             {/* Questions */}
-
             <QuestionMounted product={product} setProduct={setProduct}/>
-
-
             {/* Related Items & Comparison */}
-            <RelatedList
+            {/* <RelatedList
               product={product}
             />
             <OutfitList
               product={product}
-            />
+            /> */}
           </>
           :
           <LoadingScreen />
       }
-
-
     </div>
 
 

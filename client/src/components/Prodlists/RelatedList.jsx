@@ -21,7 +21,6 @@ const RelatedList = ({product}) => {
       if(Object.keys(product).length){
         axios.get(`api/products/${product.id}/related`)
         .then((result) => {
-          //console.log(result.data)
           setProductsIds({
             related: [...new Set(result.data)],
             view: [...new Set(result.data)].splice(page*4, page*4 + 4)

@@ -22,7 +22,6 @@ const OutfitList = ({product}) => {
       pageTo = 0
     }
     const inc = productIds.outfits.indexOf(product.id) > -1 ? 4: 3;
-    console.log(page)
     setPage(pageTo);
     setProductsIds({
       outfits: [...productIds.outfits],
@@ -37,7 +36,6 @@ const OutfitList = ({product}) => {
       }
 
       const updateProductIds = () => {
-        console.log(page)
         const inc = JSON.parse(localStorage.getItem('user')).outfits.indexOf(product.id) > -1 ? 4: 3
         setProductsIds({
           outfits: JSON.parse(localStorage.getItem('user')).outfits,
