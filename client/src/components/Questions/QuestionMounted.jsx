@@ -95,7 +95,7 @@ const QuestionMounted = ({product, setProduct}) => {
             productName={product.name}/>
         ))}
       </div>
-
+      <br></br>
       <div className="questions-buttons">
       {
         more > 0 ?

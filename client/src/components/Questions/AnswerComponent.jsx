@@ -17,7 +17,7 @@ const AnswerComponent = ({id, body, answerer_name, helpfulness, date, handleHelp
 
   const handleAnswerReport = (e) => {
     e.preventDefault();
-    axios.put(`/api/answer/${id}/report`)
+    axios.put(`api/qa/answers/${id}/report`)
     .then(res => null)
     .catch(err => console.log(err));
   };
