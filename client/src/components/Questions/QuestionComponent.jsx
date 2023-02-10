@@ -90,7 +90,7 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
             : <h4 className='not-answered'><br></br>Not Answered Yet!</h4>
           }
           </div>
-        {loadMore ? <small><button id="load-more-answers" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers </button> </small> : null}
+        {loadMore ? <small><button id="load-more-answers" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers </button> </small> : <small><button id="load-more-answers" onClick={() => {setLoadMore(true); setAnswerLength(2)}}>Collapse Answers </button> </small>}
         <small><button id="add-answer" onClick={() => setShowAddAnswer(true)}>Add an Answer</button>
         <AddAnswer onClose={() => setShowAddAnswer(false)} showAddAnswer={showAddAnswer} productName={productName} body={body} id={id}/></small>
         <br></br>
