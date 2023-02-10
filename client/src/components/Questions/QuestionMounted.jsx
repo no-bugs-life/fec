@@ -19,7 +19,7 @@ const QuestionMounted = ({product, setProduct}) => {
 
   useEffect(() => {
     if (Object.keys(product).length !== 0) {
-      axios.get('http://localhost:3000/api/qa/questions', {
+      axios.get('/api/qa/questions', {
         params: {
           count: 100,
           product_id: product.id
@@ -38,7 +38,7 @@ const QuestionMounted = ({product, setProduct}) => {
             for (let i = 0; i < data.results.length; i++) {
               if (Object.keys(data.results[i].answers).length > 0) {
                 allPromises.push(
-                  axios.get(`http://localhost:3000/api/qa/questions/${data.results[i].question_id}/answers`, {
+                  axios.get(`/api/qa/questions/${data.results[i].question_id}/answers`, {
                     params: {
                       question_id: data.id
                     }
@@ -95,7 +95,7 @@ const QuestionMounted = ({product, setProduct}) => {
             productName={product.name}/>
         ))}
       </div>
-
+      <br></br>
       <div className="questions-buttons">
       {
         more > 0 ?

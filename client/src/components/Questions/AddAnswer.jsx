@@ -41,7 +41,7 @@ const AddAnswer = ({showAddAnswer, onClose, productName, body, id}) => {
       "email": answerEmail,
       "photos": answerPhotos
     };
-    axios.post(`http://localhost:3000/api/qa/questions/${id}/answers`, postObj)
+    axios.post(`/api/qa/questions/${id}/answers`, postObj)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
     document.body.style.overflowY = 'visible';

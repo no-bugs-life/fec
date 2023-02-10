@@ -10,14 +10,14 @@ const AnswerComponent = ({id, body, answerer_name, helpfulness, date, handleHelp
 
   const handleAnswerHelpful = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/qa/answers/${id}/helpful`)
+    axios.put(`/api/qa/answers/${id}/helpful`)
     .then(res => null)
     .catch(err => console.log(err));
   };
 
   const handleAnswerReport = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/answer/${id}/report`)
+    axios.put(`api/qa/answers/${id}/report`)
     .then(res => null)
     .catch(err => console.log(err));
   };
