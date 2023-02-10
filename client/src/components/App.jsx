@@ -59,12 +59,12 @@ const App = ()=> {
 
 
             {/* Related Items & Comparison */}
-            <RelatedList
+            {/* <RelatedList
               product={product}
             />
             <OutfitList
               product={product}
-            />
+            /> */}
           </>
           :
           <LoadingScreen />
