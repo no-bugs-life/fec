@@ -89,3 +89,16 @@
 .load-more-reviews-button:after {
   content: 'Load More Reviews';
 }
+
+.change-helpful-btn {
+  border: 1px solid black;
+  background: transparent;
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  /* height: 32px; */
+}
+
+.change-helpful-btn:hover {
+  background: grey;
+}

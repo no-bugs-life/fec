@@ -5,22 +5,6 @@
   justify-content: center
 }
 
-@media only screen and (max-width: 375px) {
-  .review-section {
-    width: 375px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .left-reviews {
-    width: 100%;
-  }
-
-  .right-reviews {
-    width: 100%
-  }
-}
-
 .left-reviews {
   width: 300px;
   position: relative;
@@ -70,3 +54,22 @@
   width: 0;
 }
 
+@media only screen and (max-width: 375px) {
+  .reviews-section {
+    max-width: 375px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .left-reviews {
+    width: 95%;
+  }
+  .right-reviews {
+    max-width: 375px;
+    width: 95%;
+  }
+  .right-reviews-header {
+    width: 97.4736%;
+  }
+}

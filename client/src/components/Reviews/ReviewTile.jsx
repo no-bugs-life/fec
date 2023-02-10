@@ -68,9 +68,11 @@ const ReviewTile = ({review}) => {
           }
         </p>
         {review.recommend
-        ? 'I recommend this product ✔️'
+        ? <>
+          {'I recommend this product ✔️'}
+          <br/>
+        </>
         : null}
-        <br/>
         {review.photos.length
         ? <>
             <div className='review-tile-photos-container'>
@@ -91,8 +93,8 @@ const ReviewTile = ({review}) => {
         {showHelpful
         ?
         <>
-          <button onClick={addHelpful}>Yes</button>
-          <button onClick={() => setShowHelpful(false)}>No</button>
+          <button class='change-helpful-btn' onClick={addHelpful}>Yes</button>
+          <button class='change-helpful-btn' onClick={() => setShowHelpful(false)}>No</button>
         </>
         : <small>Thank you for your feedback</small>}
         <p>{helpfulness}</p>

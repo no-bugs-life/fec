@@ -123,7 +123,9 @@
 
 .left-reviews-skull-motif{
   margin-left: 22px;
-  position: static;
+  position: relative;
+  transform: scale(.8);
+  transform: translate(75px, -10px);
 }
 
 .remove-filters-btn {
