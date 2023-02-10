@@ -56,12 +56,12 @@ const App = ()=> {
             {/* Questions */}
             <QuestionMounted product={product} setProduct={setProduct}/>
             {/* Related Items & Comparison */}
-            {/* <RelatedList
+            <RelatedList
               product={product}
             />
             <OutfitList
               product={product}
-            /> */}
+            />
           </>
           :
           <LoadingScreen />
