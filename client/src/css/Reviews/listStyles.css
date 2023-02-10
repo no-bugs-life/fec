@@ -6,7 +6,7 @@
 }
 
 .left-reviews {
-  width: 300px;
+  width: 400px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 700px;
+  width: 750px;
   height: 750px;
   margin-bottom: 10px;
 }
