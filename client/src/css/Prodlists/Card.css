@@ -169,3 +169,60 @@
     transform: translateY(0);
   }
 }
+
+
+
+@media screen and (max-width: 375px) {
+  .card{
+    margin-left: 10px;
+    margin-right: 10px;
+    min-width:120px;
+    min-height: 240px;
+    /* border: 1px solid blue; */
+  }
+  .card-image-container{
+    position: relative;
+    width:120px;
+    height:120px;
+  }
+
+  .card-image{
+    width:120px;
+    height:120px;
+    box-shadow: 2px 2px 2px rgb(122, 122, 122);
+  }
+
+  .card-image-button{
+    position: absolute;
+    top: 0%;
+    left: 83%;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+
+    background-color: transparent;
+    border: 0px;
+    padding: 0px 10px 0px 0px;
+
+    cursor: pointer;
+  }
+
+  .card-button-compare{
+    position: absolute;
+    background-color: rgb(75, 75, 75);
+    top: -3px;
+    right:0%;
+    border: none;
+    padding: 5px 8px 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 0;
+    cursor: pointer;
+    border-radius: 0px 10px 10px 10px;
+    box-shadow: 2px 2px 2px rgb(122, 122, 122);
+    animation-name: popInFromTop;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+  }
+}

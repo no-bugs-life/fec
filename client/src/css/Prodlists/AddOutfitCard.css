@@ -3,7 +3,7 @@
   margin-right: 10px;
   width:200px;
   height:359px;
-  border: 2px dashed rgb(0, 0, 0);
+  border: 1px dashed rgb(0, 0, 0);
   text-align: center;
   cursor: pointer;
 }
@@ -40,4 +40,15 @@
   100% {
       box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0);
   }
+}
+
+@media screen and (max-width: 375px) {
+  .add-outfit-card{
+    margin-left: 9px;
+    margin-right: 9px;
+    width:120px;
+    height:240px;
+    /* border: 1px solid blue; */
+  }
+
 }

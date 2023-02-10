@@ -73,3 +73,21 @@
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
+@media screen and (max-width: 375px) {
+  .outfit-list-container{
+    /* border: 1px solid rgb(111, 55, 55); */
+    min-width: 360px;
+    height: 540px;
+    width: 360px;
+    justify-content: space-between;
+  }
+  .outfit-list-card-container{
+    min-width: 280px;
+    width: 280px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}

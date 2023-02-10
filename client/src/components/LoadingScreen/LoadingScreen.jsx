@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import SkullFlaming from '../Common/SkullFlaming.jsx'
 import '../../css/LoadingScreen/LoadingScreen.css';
 const LoadingScreen = ()=> {
