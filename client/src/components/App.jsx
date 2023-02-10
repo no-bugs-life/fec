@@ -52,7 +52,7 @@ const App = ()=> {
             {/* Overview */}
             <Description product ={product}/>
             {/* Review & Ratings */}
-            <ReviewList product_id={40352} productName={product.name}/>
+            <ReviewList product_id={40349} productName={product.name}/>
             {/* Questions */}
             <QuestionMounted product={product} setProduct={setProduct}/>
             {/* Related Items & Comparison */}
