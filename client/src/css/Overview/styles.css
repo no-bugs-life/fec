@@ -128,7 +128,6 @@
 .description-img .primary-img img {
   display: block;
   width:100%;
-  height: 80vh;
   object-fit:fill;
 }
 .description-img .primary-img img:hover{
@@ -523,4 +522,23 @@ button .sm #next{
   color: blueviolet;
   text-decoration: underline;
   cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .description-img .primary-img img{
+    height: 80vh;
+  }
+}
+@media screen and (max-width: 767px) {
+  .overview .description{
+    display: flex;
+    flex-direction: column;
+    width: 96vw;
+  }
+  .overview .description .description-img {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .description-img .img-list {
+
+  }
 }
