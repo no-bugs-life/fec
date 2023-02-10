@@ -78,7 +78,8 @@
 }
 
 .characteristic-fill-style {
-  font-size: 20px;
+  font-size: 28px;
+  transform: translate(0, -4px);
 }
 
 .characteristic-bar-label-style {
@@ -86,16 +87,17 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 5px;
 }
 
 .write-reviews-button{
   background: transparent;
-  border: none;
   display:flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   border: 1px solid black;
+  height: 30px;
 }
 
 .write-reviews-button:hover{
@@ -121,4 +123,14 @@
 
 .left-reviews-skull-motif{
   margin-left: 22px;
+  position: static;
+}
+
+.remove-filters-btn {
+  background: transparent;
+  border: 1px solid black;
+}
+
+.remove-filters-btn:hover{
+  background-color: grey;
 }

@@ -49,6 +49,7 @@
   max-height: 150px;
   height: 100%;
   width: auto;
+  max-width: 20%;
   cursor: zoom-in;
 }
 

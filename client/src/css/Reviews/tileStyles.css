@@ -64,6 +64,8 @@
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 150px;
+  /* max-width: 672.28px */
 }
 
 .load-more-reviews-button {
