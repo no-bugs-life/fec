@@ -96,3 +96,13 @@
 .min-char {
   margin-left: 95px;
 }
+
+@media only screen and (max-width: 375px) {
+  .reg-photo {
+    max-width: 75px;
+  }
+
+  .write-review {
+    max-width: 90%
+  }
+}
