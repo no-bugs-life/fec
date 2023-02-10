@@ -26,7 +26,7 @@ const Image = ({url}) => {
     )
   } else {
     return (
-      <img className='reg-photo' src={url} alt='image not available' onClick={openFullRes}/>
+      <img className='reg-photo' height='200px' width='300px' src={url} alt='image not available' onClick={openFullRes}/>
     )
   }
 }

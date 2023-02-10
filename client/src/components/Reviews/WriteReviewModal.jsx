@@ -331,8 +331,10 @@ const WriteReviewModal = ({setWriteReview, productName, characteristics, product
             </label>
             <br/>
             <div className='write-modal-body'>
-              <label for='reviewBody'>{'Review Body* '}</label>
-              <textarea minLength={50} maxLength={1000} rows='3' cols='40' id='reviewBody' placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
+              <label>
+              {'Review Body* '}
+              </label>
+              <textarea minLength={50} maxLength={1000} rows='3' cols='40'placeholder='Why did you like the product or not?' required onChange={(e) => setBody(e.target.value)}/>
             </div>
             {body.length <= 50
               ? <small className='min-char'>Minimum required characters left: {50 - body.length}</small>

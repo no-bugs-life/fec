@@ -3,7 +3,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: #929292;
+  background-color: var(--primarycolor);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,8 +46,11 @@
 }
 
 .reg-photo {
-  max-height: 10rem;
+  max-height: 150px;
+  height: 100%;
   width: auto;
+  max-width: 20%;
+  cursor: zoom-in;
 }
 
 .write-review-photo {
@@ -67,6 +70,10 @@
 .write-modal-body {
   display: flex;
   align-items: start;
+}
+
+.write-modal-body label {
+  margin-right: 3px;
 }
 
 .write-review-header {

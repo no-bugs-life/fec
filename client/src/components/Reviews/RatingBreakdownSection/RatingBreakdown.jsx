@@ -29,7 +29,7 @@ const RatingBreakdown = ({summaryData, recommendData, handleFilter, filters}) =>
             ? <>
                 {'Filters: ' + filters}
                 <br/>
-                <button onClick={() => handleFilterRB(filters)}>Remove All Filters</button>
+                <button className='remove-filters-btn' onClick={() => handleFilterRB(filters)}>Remove All Filters</button>
                 <br/>
             </>
             : null
