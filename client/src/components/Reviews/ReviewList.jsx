@@ -132,7 +132,7 @@ const ReviewList = ({product_id, productName}) => {
       <div className='left-reviews' id="review">
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
         <button
-          className='.write-reviews-button'
+          className='write-reviews-button'
           onClick={openWriteReview}
         >
           Write Review
@@ -146,8 +146,8 @@ const ReviewList = ({product_id, productName}) => {
       </div>
       <div className='right-reviews'>
         <div className='right-reviews-header'>
+        <Search getQuery={getSearchQuery}/>
           <SortOption handleSortChange={handleSortChange} />
-          <Search getQuery={getSearchQuery}/>
         </div>
         <div className='right-reviews-cards'>
           {Object.keys(reviews).length
@@ -159,9 +159,11 @@ const ReviewList = ({product_id, productName}) => {
           : null
           }
         </div>
-        {(reviews.length >= 2 && reviews.length !== reviewsOnPage.length)
-          ? <button onClick={showMore}>More Reviews</button>
-          : null}
+        <button className='load-more-reviews-button' onClick={showMore} disabled={reviews.length >= 2 && reviews.length === reviewsOnPage.length}>
+          <span>
+
+          </span>
+        </button>
       </div>
       <br/>
     </div>
