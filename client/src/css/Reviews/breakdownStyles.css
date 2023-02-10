@@ -5,12 +5,45 @@
   justify-content: space-evenly;
 }
 
+.ratings-summary-header{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.ratings-summary-header-avg{
+
+  font-size: 50px;
+  margin-right: 5px
+}
+
+.ratings-summary-header-flavor{
+  margin-top: 3px;
+  display:flex;
+  flex-direction: column;
+}
+
+
+.rating-breakdown-header{
+  margin-bottom: 10px;
+}
+
+.rating-breakdown-container{
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
 .progress-style {
   height: 20px;
-  width: 70%;
-  border: 1px solid black;
-  background-color: gray;
+  width: 80%;
+  /* border: 1px solid black; */
+  background-color: transparent;
   margin-right: 1%;
+  display:flex;
+  flex-direction: row;
 }
 
 .progress-bar-star-value {
@@ -22,14 +55,15 @@
   transform: scale(1.01);
 }
 
-.progress-bar-style:hover .progress-style {
-  background-color: gold;
-  transform: scale(1.01);
-}
+
 
 .progress-fill-style {
   height: 20px;
-  background-color: green;
+  background-color: rgb(0, 0, 0);
+}
+
+.progress-fill-count{
+  margin-left: 5px
 }
 
 .progress-bar-style {
@@ -41,19 +75,53 @@
 
 .characteristic-style {
   height: 20px;
-  width: 75%;
-  border: 1px solid black;
+  width: 100%;
+  /* border: 1px solid black; */
   background-color: gray;
 }
 
 .characteristic-fill-style {
-  height: 20px;
-  background-color: green;
+  font-size: 20px;
 }
 
 .characteristic-bar-label-style {
-  width: 75%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.write-reviews-button{
+  background: transparent;
+  border: none;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.write-reviews-button:hover{
+  background-color: grey;
+}
+
+.write-reviews-button-text{
+  font-size: 16px;
+  margin: 0 10px;
+  height:auto;
+}
+
+.product-breakdown-container{
+  border-bottom: 1px solid black;
+}
+
+.product-breakdown-container label {
+  display:flex;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  margin-bottom: 15px;
+}
+
+.left-reviews-skull-motif{
+  margin-left: 22px;
 }

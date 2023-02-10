@@ -5,6 +5,7 @@ import ReviewTile from './ReviewTile.jsx';
 import RatingBreakdownSection from './RatingBreakdownSection/RatingBreakdownSection.jsx';
 import WriteReviewModal from './WriteReviewModal.jsx';
 import Search from './Search.jsx';
+import Skull from '../Common/Skull.jsx'
 import '../../css/Reviews/listStyles.css'
 
 const ReviewList = ({product_id, productName}) => {
@@ -127,13 +128,21 @@ const ReviewList = ({product_id, productName}) => {
   }
 
   return (
-    <div className='reviews-section'>
+    <div className= 'reviews-section'>
       <div className='left-reviews' id="review">
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
-        <button onClick={openWriteReview} >Write Review</button>
+        <button
+          className='.write-reviews-button'
+          onClick={openWriteReview}
+        >
+          Write Review
+        </button>
         {writeReview
       ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} charIds={charIds} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
+        <div className ='left-reviews-skull-motif'>
+          <Skull />
+        </div>
       </div>
       <div className='right-reviews'>
         <div className='right-reviews-header'>

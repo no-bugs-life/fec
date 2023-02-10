@@ -11,7 +11,6 @@ const ReviewTile = ({review}) => {
   const [helpfulness, setHelpfulness] = useState(review.helpfulness);
 
   useEffect(() => {
-    console.log('reviewTile')
     setHelpfulness(review.helpfulness)
   }, [review])
 
@@ -38,12 +37,23 @@ const ReviewTile = ({review}) => {
   return(
     <div className='review-tile'>
       <div className='review-tile-header'>
-        <Stars className='review-tile-stars' rating={review.rating} tag={review.review_id} size={'50px'} isRating={true}/>
-        <p className='date'>{new Date(review.date).toLocaleDateString()}</p>
+        <div className='review-tile-user'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="30px" height="30px"><g><path fill='black' d="M19.75,15.67a6,6,0,1,0-7.51,0A11,11,0,0,0,5,26v1H27V26A11,11,0,0,0,19.75,15.67ZM12,11a4,4,0,1,1,4,4A4,4,0,0,1,12,11ZM7.06,25a9,9,0,0,1,17.89,0Z"/></g></svg>
+          <p>{review.reviewer_name}</p>
+        </div>
+        <p className='review-tile-date'>{new Date(review.date).toLocaleDateString()}</p>
       </div>
       <div className='review-tile-body'>
-        <p>{'Posted by: ' + review.reviewer_name}</p>
-        <h3>{review.summary}</h3>
+        <div className='review-tile-title'>
+          <Stars
+            className='review-tile-stars'
+            rating={review.rating}
+            tag={review.review_id} size={'20px'}
+            isRating={true}
+          />
+          <h3>{review.summary}</h3>
+        </div>
+
         <p>{review.body.length <= 250
             ? review.body
             : <>
@@ -58,18 +68,20 @@ const ReviewTile = ({review}) => {
           }
         </p>
         {review.recommend
-        ? 'I recommend this product ✓'
+        ? 'I recommend this product ✔️'
         : null}
         <br/>
-        {review.photos.map((photo, idx) => {
-          if (isValidUrl(photo.url)) {
-            return <Image url={photo.url} key={idx} />
+        <div className='review-tile-photos-container'>
+          {review.photos.map((photo, idx) => {
+            if (isValidUrl(photo.url)) {
+              return <Image url={photo.url} key={idx} />
+            }
           }
-        }
-        )}
-        {review.response
-        ? review.response
-        : null}
+          )}
+          {review.response
+          ? review.response
+          : null}
+        </div>
       </div>
       <div className='review-tile-footer'>
         <p>Was this review helpful?</p>

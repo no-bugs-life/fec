@@ -1,12 +1,27 @@
 .reviews-section {
   display: flex;
-  align-items: center;
-  width: 80%;
+  width: auto;
   margin: auto;
+  justify-content: center
+}
+
+@media only screen and (max-width: 375px) {
+  .review-section {
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+  }
+  .left-reviews {
+    width: 100%;
+  }
+
+  .right-reviews {
+    width: 100%
+  }
 }
 
 .left-reviews {
-  width: 33.33%;
+  width: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -19,19 +34,35 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 66.67%;
+  width: 700px;
   height: 750px;
-
+  margin-bottom: 10px;
 }
 
 .right-reviews-header{
   position: relative;
-  width: 99%;
+  width: 100%;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
+  border:1px solid black;
+  height: 32px;
+  align-items: center
 }
 
 .right-reviews-cards {
-  overflow: scroll;
+  overflow-y:scroll; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  scroll-snap-type: y mandatory;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  height: 700px;
+  background-color:rgb(63, 63, 63)
 }
+
+.right-reviews-cards::-webkit-scrollbar {
+  background: transparent;
+  width: 0;
+}
+

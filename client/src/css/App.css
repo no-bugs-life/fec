@@ -1,3 +1,45 @@
-body{
-  background-color: #929292
+:root{
+  --primaryfont: "Source Serif Pro", serif;
+  --secondaryfont: "Source Serif 4", monospace;
+  --primarycolor: #CFDBD5;
+  --secondarycolor: #242423;
+  --darkaccentcolor: #242423;
+  --lightaccentcolor: #E8EDDF;
+  --highlightaccentcolor: #F5CB5C;
 }
+
+
+html {
+  box-sizing: border-box;
+}
+*{
+  margin:0;
+  padding:0;
+}
+body{
+  background-color: var(--primarycolor);
+  font-family: var(--primaryfont);
+  font-weight: 400;
+  color: var(--secondarycolor);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
