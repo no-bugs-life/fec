@@ -6,7 +6,7 @@
 }
 
 @media only screen and (max-width: 375px) {
-  .review-section {
+  .reviews-section {
     width: 375px;
     display: flex;
     flex-direction: column;
@@ -17,7 +17,8 @@
   }
 
   .right-reviews {
-    width: 100%
+    max-width: 375px;
+    width: 100%;
   }
 }
 
