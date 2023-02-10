@@ -27,8 +27,8 @@ const App = ()=> {
           axios.get('/api/products',{params:{count:30}})
             .then(res => {
               // console.log(res.data[0])
+              window.dispatchEvent(new Event('loadDone'))
               setProduct(res.data[2]);
-
             })
             .catch(err => console.log(err))
         }

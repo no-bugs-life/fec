@@ -11,6 +11,10 @@
   left: 45%;
 }
 
+.done{
+  animation: fadeOut 3s;
+}
+
 
 @media (max-width: 375px) {
   .loading-screen-content{
@@ -18,4 +22,9 @@
     top: 40%;
     left: 35%;
   }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0.1; }
 }
