@@ -93,8 +93,8 @@ const ReviewTile = ({review}) => {
         {showHelpful
         ?
         <>
-          <button class='change-helpful-btn' onClick={addHelpful}>Yes</button>
-          <button class='change-helpful-btn' onClick={() => setShowHelpful(false)}>No</button>
+          <button className='change-helpful-btn' onClick={addHelpful}>Yes</button>
+          <button className='change-helpful-btn' onClick={() => setShowHelpful(false)}>No</button>
         </>
         : <small>Thank you for your feedback</small>}
         <p>{helpfulness}</p>
