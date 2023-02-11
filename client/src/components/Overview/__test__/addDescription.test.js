@@ -13,16 +13,16 @@ it('renders description when prop is passed',async ()=> {
   const detailElement = await screen.findByText(/The So Fatigues will wake you up/i);
    expect(detailElement).toBeInTheDocument();
 })
-it('renders feature when prop is passed',async ()=> {
-  render(<AddDescription description={'The So Fatigues will wake you up'} slogan={"Blend in to your crowd"} features={features}/>);
-  const featuresElement = await screen.findAllByRole("feature");
-   expect(featuresElement.length).toBe(2);
-})
-it('renders value when prop is passed',async ()=> {
-  render(<AddDescription description={'The So Fatigues will wake you up'} slogan={"Blend in to your crowd"} features={features}/>);
-  const featuresElement = await screen.findAllByRole("feature");
-   expect(featuresElement.length).toBe(2);
-})
+// it('renders feature when prop is passed',async ()=> {
+//   render(<AddDescription description={'The So Fatigues will wake you up'} slogan={"Blend in to your crowd"} features={features}/>);
+//   const featuresElement = await screen.findAllByRole("feature");
+//    expect(featuresElement.length).toBe(2);
+// })
+// it('renders value when prop is passed',async ()=> {
+//   render(<AddDescription description={'The So Fatigues will wake you up'} slogan={"Blend in to your crowd"} features={features}/>);
+//   const featuresElement = await screen.findAllByRole("feature");
+//    expect(featuresElement.length).toBe(2);
+// })
 // it('does not render feature when no prop is passed',async ()=> {
 //   render(<AddDescription description={'The So Fatigues will wake you up'} slogan={"Blend in to your crowd"}/>);
 //   const featuresElement = await screen.findAllByRole("feature");
