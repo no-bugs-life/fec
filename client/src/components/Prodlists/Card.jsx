@@ -83,6 +83,7 @@ const Card = ({
             <img
               className='card-image'
               src={picture}
+              alt={`Card Image of ${product.name}`}
             />
             <input
               type='button'
@@ -104,6 +105,7 @@ const Card = ({
                   buttonAction()
                 }
               }
+              aria-label={`${buttonType} Button on Card`}
             />
           </>
           :
@@ -129,6 +131,7 @@ const Card = ({
                   setModalToggle(true);
                 }
               }
+              aria-label={`Compare Products Button on Card`}
             >
               🤷
             </button>
