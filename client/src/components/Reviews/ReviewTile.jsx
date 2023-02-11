@@ -73,7 +73,7 @@ const ReviewTile = ({review}) => {
           <br/>
         </>
         : null}
-        {review.photos.length
+        {review.photos.length && isValidUrl(review.photos[0].url)
         ? <>
             <div className='review-tile-photos-container'>
               {review.photos.map((photo, idx) => {
