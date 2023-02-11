@@ -28,10 +28,16 @@ const AnswerComponent = ({id, body, answerer_name, helpfulness, date, handleHelp
     <div className="answer-details">
     <h3 className="answer-title">A: {body}</h3>
     <div className="answer-helpful-report">
-    {showAnswerHelpful ? <small> Helpful Rating: {helpfulness} <button id="answerHelpful" onClick ={(e) => {handleAnswerHelpful(e); setShowAnswerHelpful(false)}}>Helpful?</button> </small> :
+    {showAnswerHelpful ? <small> Helpful Rating: {helpfulness} <button
+    // id="answerHelpful"
+    onClick ={(e) => {handleAnswerHelpful(e); setShowAnswerHelpful(false)}}>Helpful?</button> </small> :
     <small> Helpful Rating: {helpfulness + 1} </small>}
-    {showAnswerReport ? <small> <button id="answerReport" onClick ={(e) => {handleAnswerReport(e); setShowAnswerReport(false)}}>Report</button></small> :
-    <small><button id="answerReport">Reported</button></small>}
+    {showAnswerReport ? <small> <button
+    // id="answerReport"
+    onClick ={(e) => {handleAnswerReport(e); setShowAnswerReport(false)}}>Report</button></small> :
+    <small><button
+    // id="answerReport"
+    >Reported</button></small>}
     </div>
     </div>
     {answerer_name === 'Seller' ?

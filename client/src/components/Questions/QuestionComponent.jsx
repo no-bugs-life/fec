@@ -37,7 +37,7 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
               <small>
                 {`Helpful Rating: ${helpfulness} `}
                 <button
-                  id="questionHelpful"
+                  // id="questionHelpful"
                   onClick ={
                     (e) => {
                       handleQuestionHelpful(e);
@@ -54,7 +54,7 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
           {
             showQuestionReport ?
               <small> <button
-                  id="questionReport"
+                  // id="questionReport"
                   onClick ={
                     (e) => {
                       handleQuestionReport(e);
@@ -87,14 +87,19 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
             setAnswerLength={setAnswerLength}
             answers = {answers}
             setAnswers = {setAnswers}/>))
-            : <h4 className='not-answered'><br></br>Not Answered Yet!</h4>
+            : <p className='not-answered'><br></br>Not Answered Yet!</p>
           }
           </div>
-        {loadMore ? <small><button id="load-more-answers" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers </button> </small> : <small><button id="load-more-answers" onClick={() => {setLoadMore(true); setAnswerLength(2)}}>Collapse Answers </button> </small>}
-        <small><button id="add-answer" onClick={() => setShowAddAnswer(true)}>Add an Answer</button>
+        {loadMore ? <small><button
+        // id="load-more-answers"
+        onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers </button> </small> : <small><button id="load-more-answers" onClick={() => {setLoadMore(true); setAnswerLength(2)}}>Collapse Answers </button> </small>}
+        <small><button
+        // id="add-answer"
+        onClick={() => setShowAddAnswer(true)}>Add an Answer</button>
         <AddAnswer onClose={() => setShowAddAnswer(false)} showAddAnswer={showAddAnswer} productName={productName} body={body} id={id}/></small>
         <br></br>
     </div>
 )};
 
 export default QuestionComponent;
+
