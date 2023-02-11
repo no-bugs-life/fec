@@ -82,7 +82,7 @@ const OutfitList = ({product}) => {
             disabled={page === 0}
             aria-label={`Scroll Left on Outfit List`}
           >
-            <i class="outfit-list-arrow-left"></i>
+            <i className="outfit-list-arrow-left"></i>
           </button>
           <div className='outfit-list-card-container'>
             {
@@ -145,7 +145,7 @@ const OutfitList = ({product}) => {
             disabled={productIds.view.includes(productIds.outfits[productIds.outfits.length-1]) || productIds.view.length === 0}
             aria-label={`Scroll Left on Outfit List`}
           >
-            <i class="outfit-list-arrow-right"></i>
+            <i className="outfit-list-arrow-right"></i>
           </button>
         </div>
       </div>
