@@ -125,7 +125,8 @@ const Description = ({product}) => {
     <div className="overview">
     <div className = "description">
       <div className = "description-category" >
-        <p data-testid="category">Category/{currentProduct.category}</p>
+        <div className="block"></div>
+        <p className="desc-category" data-testid="category">Category/{currentProduct.category}</p>
       </div>
       <div className = "description-img">
         {currentPhotos.length > 0 ? <Images photos = {currentPhotos} defaultPhoto={defaultPhoto} setDefaultPhoto={setDefaultPhoto} currentList={currentList} setCurrentList={setCurrentList}

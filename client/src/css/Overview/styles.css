@@ -1,11 +1,25 @@
 .top{
   width: 100vw;
+  height: 70px;
   background-color: var(--darkaccentcolor);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.top .logo{
+.top-skull{
+  position: relative;
+  transform: scale(0.5);
+  top: -35px;
+  left: 10px;
+}
+
+.logo{
+  margin: 90px;
+  position:relative;
   font-size: 1.8rem;
-  color: var(--lightaccent)
+  color: var(--lightaccentcolor);
+
 }
 .product-main{
   width: 100%;
@@ -14,7 +28,7 @@
 }
 .overview .description {
   display: grid;
-  width: 80vw;
+  width: 90%;
   margin: 0 auto;
   grid-template-columns:  1fr 1fr 1fr 1fr;
   grid-template-rows: 5vh 1fr 1fr 1fr;
@@ -30,10 +44,15 @@
   margin-bottom: 2.6rem;
   display: flex;
   height: 100%;
-  justify-content: center;
   align-items: center;
-
 }
+.block{
+  width: 50%;
+}
+.desc-category{
+  margin-left: 2rem;
+}
+
 .overview .description .description-img{
   grid-area: img;
   display: flex;
@@ -129,6 +148,7 @@
   display: block;
   width:100%;
   object-fit:fill;
+  height: 80vh;
 }
 .description-img .primary-img img:hover{
   cursor: zoom-in;
@@ -196,6 +216,10 @@ height: 80%;
   cursor: pointer;
   opacity: 0.7;
 }
+.description-carousel-btn-prev-sm:disabled{
+  opacity: 0.7;
+  color: var(--primarycolor);
+}
 .description-carousel-btn-next {
   position: absolute;
   top: 50%;
@@ -218,6 +242,10 @@ height: 80%;
 .description-carousel-btn-next-sm:hover{
   cursor: pointer;
   opacity: 0.7;
+}
+.description-carousel-btn-next-sm:disabled{
+  opacity: 0.7;
+  color: var(--primarycolor);
 }
 
 .img-list .selected {
@@ -372,7 +400,7 @@ button .sm #next{
 .line-break{
   width: 100%;
   display: inline-block;
-  background-color: var(--primarycolor);
+  background-color: var(--secondarycolor);
   padding: 0.01rem;
 }
 .half{
@@ -448,7 +476,7 @@ button .sm #next{
 
 }
 .add-description-overview{
-
+  width: 90%;
   font-size: 1rem;
   margin-top: 0.2vh;
 }
@@ -523,9 +551,9 @@ button .sm #next{
   text-decoration: underline;
   cursor: pointer;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .description-img .primary-img img{
-    height: 80vh;
+    height: 60vh;
   }
 }
 @media screen and (max-width: 767px) {
@@ -537,6 +565,9 @@ button .sm #next{
   .overview .description .description-img {
     width: 90%;
     margin: 0 auto;
+  }
+  .overview .description .description-category{
+    margin: 1.2rem 0;
   }
   .description-img .img-list {
 

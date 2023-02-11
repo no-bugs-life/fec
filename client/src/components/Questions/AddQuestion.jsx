@@ -8,7 +8,7 @@ const QUESTION_STYLES = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#929292',
+  backgroundColor: '#CFDBD5',
   padding:'50px',
   zIndex: 1000
 }

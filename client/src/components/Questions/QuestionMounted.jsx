@@ -70,7 +70,7 @@ const QuestionMounted = ({product, setProduct}) => {
   return (
     <div className="questions">
       <div className='questions-header'>
-        <p>Questions & Answers</p>
+        {/* <p>Questions & Answers</p> */}
         <Search search={search} setSearch={setSearch}/>
       </div>
       <div className='questions-list-container'>

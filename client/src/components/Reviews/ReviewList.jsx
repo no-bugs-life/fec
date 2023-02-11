@@ -141,7 +141,7 @@ const ReviewList = ({product_id, productName}) => {
       ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} charIds={charIds} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
         <div className ='left-reviews-skull-motif'>
-          <Skull />
+          <Skull color='#242423'/>
         </div>
       </div>
       <div className='right-reviews'>
