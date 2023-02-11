@@ -17,10 +17,10 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
         newId = index;
       }
     });
-    if (e.target.id === "next") {
+    if (e.target.id === "next" || e.target.id === "next-sm") {
       newId++;
     }
-    if (e.target.id === "prev") {
+    if (e.target.id === "prev"|| e.target.id === "prev-sm") {
       newId--;
     }
     const newNum = photos.length - newId;
@@ -82,34 +82,35 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
        {defaultPhoto.url === null ?
       <img src= "https://pngimg.com/uploads/apple/apple_PNG12489.png" alt="Main img showing the selected style's picture"></img>
     :
-      <img fetchpriority="high" src={defaultPhoto.url} onClick={onModalClick}></img>}
+      <img fetchpriority="high" src={defaultPhoto.url} onClick={onModalClick} alt="Main img showing the selected style's picture"></img>}
     </div>
     {photos.length && <Modal open={isOpen} defaultPhoto={defaultPhoto} photos={photos} setIsOpen={setIsOpen} onBtnClick={onBtnClick}/>}
     <div className="photo-carousel">
       {photos.length <= 1 ?
       <>
-      <button className="description-carousel description-carousel-btn-prev-sm" id= "prev" onClick={onBtnClick} disabled>{'<'}</button>
-      <button className="description-carousel description-carousel-btn-next-sm" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+      <button className="description-carousel description-carousel-btn-prev-sm" id= "prev-sm" onClick={onBtnClick} disabled>{'<'}</button>
+      <button className="description-carousel description-carousel-btn-next-sm" id ="next-sm" onClick={onBtnClick} disabled>{'>'}</button>
       </>
       : defaultPhoto === photos[0] ?
       <>
-      <button className="description-carousel description-carousel-btn-prev-sm" id ="prev" onClick={onBtnClick} disabled>{'<'}</button>
-      <button className="description-carousel description-carousel-btn-next-sm " id ="next" onClick={onBtnClick}>{'>'}</button>
+      <button className="description-carousel description-carousel-btn-prev-sm" id ="prev-sm" onClick={onBtnClick} disabled>{'<'}</button>
+      <button className="description-carousel description-carousel-btn-next-sm " id ="next-sm" onClick={onBtnClick}>{'>'}</button>
       </>
       : defaultPhoto === photos[photos.length - 1] ?
       <>
-      <button className="description-carousel description-carousel-btn-prev-sm" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button className="description-carousel description-carousel-btn-next-sm" id ="next" onClick={onBtnClick} disabled>{'>'}</button>
+      <button className="description-carousel description-carousel-btn-prev-sm" id= "prev-sm" onClick={onBtnClick}>{'<'}</button>
+      <button className="description-carousel description-carousel-btn-next-sm" id ="next-sm" onClick={onBtnClick} disabled>{'>'}</button>
       </>
       :
       <>
-      <button className="description-carousel description-carousel-btn-prev-sm" id= "prev" onClick={onBtnClick}>{'<'}</button>
-      <button className="description-carousel description-carousel-btn-next-sm" id ="next" onClick={onBtnClick}>{'>'}</button>
+      <button className="description-carousel description-carousel-btn-prev-sm" id= "prev-sm" onClick={onBtnClick}>{'<'}</button>
+      <button className="description-carousel description-carousel-btn-next-sm" id ="next-sm" onClick={onBtnClick}>{'>'}</button>
       </>}
         <ul className="img-list">
         {currentList.map((photo, index) => {
           return(
-            photo.url === null ?<li className="img-ind selected"><img src="https://pngimg.com/uploads/apple/apple_PNG12489.png" alt="Image of default stock photo"></img></li>
+            photo.url === null ?
+            <li className="img-ind selected"><img src="https://pngimg.com/uploads/apple/apple_PNG12489.png" alt="Image of default stock photo"></img></li>
             :photo === defaultPhoto ?
             <li className="img-ind selected" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick} alt="Image of currently selected image in image list"></img></li>
             : <li className="img-ind" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick} alt="Image of product of the currently selected style"></img></li>

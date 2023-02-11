@@ -4,6 +4,6 @@ import Share from '../share.jsx';
 
 it('renders three social media icons',async ()=> {
   render(<Share/>);
-  const loadingElement = await screen.findAllByRole("span");
+  const loadingElement = await screen.findAllByRole("link");
    expect(loadingElement.length).toBe(3);
 })

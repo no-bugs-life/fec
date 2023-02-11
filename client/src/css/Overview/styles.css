@@ -353,10 +353,10 @@ height: 80%;
 }
 
 
-button .sm #prev{
+button .sm #prev-sm{
   padding: 0;
 }
-button .sm #next{
+button .sm #next-sm{
   padding: 0;
 }
 /* .toggle-on{

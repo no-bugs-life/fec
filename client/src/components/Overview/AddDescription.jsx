@@ -15,10 +15,11 @@ const AddDescription = ({description, slogan, features})=> {
                 <ul>
                     {features.map((feature,index) => {
                         return(
-                            <div className="add-features" key={index}>
-                                <span className="add-feature" role="feature">{feature.feature} :</span>
-                                <span className="add-value" role="value">{feature.value}</span>
+                            <li key={index}><div className="add-features" key={index}>
+                                <span className="add-feature">{feature.feature} :</span>
+                                <span className="add-value">{feature.value}</span>
                             </div>
+                            </li>
                         )
                     })}
                 </ul>
