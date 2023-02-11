@@ -40,9 +40,7 @@ const App = ()=> {
 
 
   return(
-
     <div className="product-main app">
-
       <Suspense fallback= {<div><LoadingScreen /></div>}>
         {
           Object.keys(product).length > 0 ?
@@ -67,11 +65,7 @@ const App = ()=> {
           null
         }
       </Suspense>
-
-
     </div>
-
-
   )
 }
 
