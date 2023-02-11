@@ -75,6 +75,7 @@ const ComparisonModal = ({
                 setModalToggle(false)
               }
             }
+            aria-label={`Exit Comparison Modal`}
           >
             ❌
           </button>

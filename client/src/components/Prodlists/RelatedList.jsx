@@ -71,6 +71,7 @@ const RelatedList = ({product}) => {
               }
             }
             disabled={page === 0}
+            aria-label={`Scroll Left on Related List`}
           >
             <i className="related-list-arrow-left"></i>
           </button>
@@ -117,6 +118,7 @@ const RelatedList = ({product}) => {
               }
             }
             disabled={page === Math.ceil(productIds.related.length/4)-1}
+            aria-label={`Scroll Right on Related List`}
           >
             <i className="related-list-arrow-right"></i>
           </button>

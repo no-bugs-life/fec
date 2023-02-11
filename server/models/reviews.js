@@ -6,9 +6,7 @@ axios.defaults.baseURL = process.env.API_SERVER
 
 module.exports = {
   getReviews: (options) => {
-
-    // console.log(options);
-    return axios.get(`/reviews`, { params: options});
+    return axios.get(`/reviews`, { params: options})
   },
   getReviewMeta: (options) => {
     return axios.get(`/reviews/meta`, { params: options});

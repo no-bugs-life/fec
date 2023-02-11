@@ -93,7 +93,7 @@
 
 .card-description-category{
   font-size: 12px;
-  color:rgb(97, 97, 97);
+  color:var(--secondarycolor);
   margin: 8px 0 10px 0
 }
 
