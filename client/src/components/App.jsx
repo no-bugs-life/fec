@@ -48,23 +48,23 @@ const App = ()=> {
               <span className="logo">Logo</span>
             </div>
             {/* Overview */}
-            {Object.keys(product).length > 0 ? <Description product ={product}/> : null}
+            <Description product ={product}/>
             {/* Review & Ratings */}
 
             <ReviewList product_id={40352} productName={product.name}/>
 
             {/* Questions */}
 
-            <QuestionMounted product={product} setProduct={setProduct}/>
+             <QuestionMounted product={product} setProduct={setProduct}/>
 
 
             {/* Related Items & Comparison */}
-            {/* <RelatedList
+            <RelatedList
               product={product}
             />
             <OutfitList
               product={product}
-            /> */}
+      />
           </>
           :
           <LoadingScreen />

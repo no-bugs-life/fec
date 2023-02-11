@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require('cors');
 const morgan = require('morgan')
 const router = require('./routes.js');
+const compression = require('compression');
 
 const app = express();
 
@@ -11,6 +12,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "../client/dist")));
 app.use(express.json())
 // app.use(express.urlencoded())
+app.use(compression());
 app.use(cors());
 app.use(morgan('dev'));
 
