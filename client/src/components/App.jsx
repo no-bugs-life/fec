@@ -54,7 +54,7 @@ const App = ()=> {
 
               <Description product ={product}/>
 
-              <ReviewList product_id={40352} productName={product.name}/>
+              <ReviewList product_id={40344} productName={product.name}/>
 
               <QuestionMounted product={product} setProduct={setProduct}/>
 
