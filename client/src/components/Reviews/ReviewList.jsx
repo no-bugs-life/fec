@@ -159,7 +159,7 @@ const ReviewList = ({product_id, productName}) => {
           : null
           }
         </div>
-        <button className='load-more-reviews-btn' onClick={showMore} disabled={reviews.length >= 2 && reviews.length === reviewsOnPage.length}>
+        <button className='load-more-reviews-btn' aria-label='load-more-reviews' onClick={showMore} disabled={reviews.length >= 2 && reviews.length === reviewsOnPage.length}>
           <span>
 
           </span>
