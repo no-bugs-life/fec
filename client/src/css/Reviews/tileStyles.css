@@ -1,9 +1,9 @@
 .review-tile {
   border: 1px solid black;
   border-radius: 5px;
-  width: 98%;
-  background-color: gray;
-  margin-bottom: 10px;
+  width: 99%;
+  background-color: var(--primarycolor);
+  margin-bottom: 3px;
   scroll-snap-align: start;
   display:flex;
   flex-direction: column;
@@ -36,6 +36,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   margin-left: 1%;
+  margin-right: 1%;
 }
 
 .review-tile-title{
@@ -59,32 +60,45 @@
   margin-top: 1%;
 }
 
-
-
-.review-tile-photos-container{
+.review-tile-photos-container {
   display:flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: auto;
+  /* max-width: 672.28px */
 }
 
-.load-more-questions-button{
+.load-more-reviews-btn {
   border: 1px solid black;
   background: transparent;
   font-size: 16px;
   height: 32px;
 }
 
-.load-more-questions-button:hover{
+.load-more-reviews-btn:hover {
   background: grey;
 }
 
-.load-more-questions-button:disabled:after{
-  content: 'No More Questions';
+.load-more-reviews-btn:disabled:after {
+  content: 'No More Reviews';
 }
 
-.load-more-questions-button span {
+.load-more-reviews-btn span {
   display: none;
 }
-.load-more-questions-button:after {
-  content: 'Load More Questions';
+.load-more-reviews-btn:after {
+  content: 'Load More Reviews';
+}
+
+.change-helpful-btn {
+  border: 1px solid black;
+  background: transparent;
+  margin-right: 5px;
+  padding: 3px;
+  border-radius: 3px;
+  /* height: 32px; */
+}
+
+.change-helpful-btn:hover {
+  background: grey;
 }

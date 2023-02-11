@@ -7,7 +7,7 @@ const ANSWER_STYLES = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  backgroundColor: '#929292',
+  backgroundColor: '#CFDBD5',
   padding:'50px',
   zIndex: 1000
 }
@@ -41,7 +41,7 @@ const AddAnswer = ({showAddAnswer, onClose, productName, body, id}) => {
       "email": answerEmail,
       "photos": answerPhotos
     };
-    axios.post(`http://localhost:3000/api/qa/questions/${id}/answers`, postObj)
+    axios.post(`/api/qa/questions/${id}/answers`, postObj)
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
     document.body.style.overflowY = 'visible';

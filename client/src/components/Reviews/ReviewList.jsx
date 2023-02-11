@@ -132,7 +132,7 @@ const ReviewList = ({product_id, productName}) => {
       <div className='left-reviews' id="review">
         <RatingBreakdownSection ratingData={ratingData} handleFilter={handleFilterRL} filters={filters}/>
         <button
-          className='.write-reviews-button'
+          className='write-reviews-button'
           onClick={openWriteReview}
         >
           Write Review
@@ -141,13 +141,13 @@ const ReviewList = ({product_id, productName}) => {
       ? <WriteReviewModal setWriteReview={setWriteReview} productName={productName} charIds={charIds} characteristics={ratingData.characteristics} product_id={product_id}/>
       : null}
         <div className ='left-reviews-skull-motif'>
-          <Skull />
+          <Skull color='#242423'/>
         </div>
       </div>
       <div className='right-reviews'>
         <div className='right-reviews-header'>
+        <Search getQuery={getSearchQuery}/>
           <SortOption handleSortChange={handleSortChange} />
-          <Search getQuery={getSearchQuery}/>
         </div>
         <div className='right-reviews-cards'>
           {Object.keys(reviews).length
@@ -159,9 +159,11 @@ const ReviewList = ({product_id, productName}) => {
           : null
           }
         </div>
-        {(reviews.length >= 2 && reviews.length !== reviewsOnPage.length)
-          ? <button onClick={showMore}>More Reviews</button>
-          : null}
+        <button className='load-more-reviews-btn' aria-label='load-more-reviews' onClick={showMore} disabled={reviews.length >= 2 && reviews.length === reviewsOnPage.length}>
+          <span>
+
+          </span>
+        </button>
       </div>
       <br/>
     </div>

@@ -3,7 +3,16 @@
   display:flex;
   flex-direction: column;
   margin:auto;
+  width: 1050px;
   justify-content: center
+}
+
+.question {
+  border: .0625rem solid #fff;
+  border-top: none;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 3px;
 }
 
 .questions-header p{
@@ -12,126 +21,26 @@
 }
 
 .questions-header input{
-  background-color: var(--lightaccentcolor);
-
-  width: 100%
+  /* background-color: var(--lightaccentcolor); */
+  border: thin;
+  border-radius: 3px;
+  padding: 5px;
+  margin: 3px;
+  padding-right: 10px;
+  width: 98.25%
 }
 
 .questions-list-container{
-  height: 700px;
+  max-height: 425px;
   display:flex;
   flex-direction: column;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
-/* #more-questions {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-top: 1.5rem;
-  margin-right: 10px;
-}
-
-#add-question {
-  text-align: left;
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-top: 1.5rem;
-}
-
-#answerHelpful {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-right: 3px;
-}
-
-#answerReport {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-}
-
-#questionHelpful {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-right: 3px;
-}
-
-#questionReport {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-}
-
-#add-answer {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  text-align:left;
-}
-
-#close-answer, #close-question {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-top: 1.5rem;
-}
-
-#load-more-answers {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-right: 10px;
-}
-
-#submit-answer, #submit-question {
-  background-color: transparent;
-  text-decoration: underline;
-  border: 0;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 100;
-  line-height: 1;
-  margin-top: 1.5rem;
-  margin-right: 10px;
-}
-
-.questions-buttons {
-  padding:5px 2px;
-  text-align:right;
-  top:0;
-  position:relative;
-  right:0;
+.answers-container{
+  display: flex;
+  flex-direction: column;
 }
 
 .question-details {
@@ -144,34 +53,31 @@
   justify-content: space-between;
 }
 
-.question-title {
-  text-align: left;
-  position:relative;
+.questions-buttons {
+  display:flex;
+  justify-content: right;
 }
 
-.answer-title {
-  text-align: left;
-  position:relative;
+#load-more-answers, #add-answer  {
+  margin-top: 10px;
+  font: var(--primaryfont);
 }
 
-.question-helpful-report {
-  padding:5px 2px;
-  text-align: right;
-  position:relative;
-  margin-right:10px;
+.question-title, .answer-title {
+  font: var(--primaryfont);
+  font-weight: bolder;
+  max-width: 750px;
 }
 
-.answer-helpful-report {
-  padding:5px 2px;
-  text-align: right;
-  position:relative;
-  margin-right:10px;
+#answerReport, #answerHelpful, #questionHelpful, #questionReport, .not-answered, .answer-container {
+  font: var(--primaryfont);
 }
 
-.question-search {
-  padding: 1px;
-  outline: 0;
-  width: 200px;
-  float: left;
-  padding-right: 100%;
-} */
+@media only screen and (max-width: 414px) {
+  .questions {
+    max-width: 375px;
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }}

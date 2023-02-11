@@ -15,20 +15,19 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
 
   const handleQuestionHelpful = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/qa/questions/${id}/helpful`)
+    axios.put(`/api/qa/questions/${id}/helpful`)
     .then(res => null)
     .catch(err => console.log(err));
   };
 
   const handleQuestionReport = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:3000/api/qa/questions/${id}/report`)
+    axios.put(`/api/qa/questions/${id}/report`)
     .then(res => null)
     .catch(err => console.log(err));
   };
 
   return (
-
     <div className="question">
       <div className="question-details">
         <h2 className="question-title">Q: {body}</h2>
@@ -36,7 +35,7 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
           {
             showQuestionHelpful ?
               <small>
-                Helpful Rating: {helpfulness}
+                {`Helpful Rating: ${helpfulness} `}
                 <button
                   id="questionHelpful"
                   onClick ={
@@ -50,12 +49,11 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
                 </button>
               </small>
               :
-              <small> Helpful Rating: {helpfulness + 1} </small>
+              <small>{`Helpful Rating: ${helpfulness + 1} `}</small>
           }
           {
             showQuestionReport ?
-              <small>
-                <button
+              <small> <button
                   id="questionReport"
                   onClick ={
                     (e) => {
@@ -68,8 +66,7 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
                 </button>
               </small>
               :
-              <small>
-                <button id="questionReport">
+              <small> <button id="questionReport">
                   Reported
                 </button>
               </small>
@@ -77,6 +74,7 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
         </div>
       </div>
       <small className='asker-name-date'>by {asker_name}, {dateFormat(`${date}`, "mmmm dS, yyyy")}</small>
+        <div className='answers-container'>
         {(answers.length > 0) ?
         answers.slice(0, answerLength).map((oneAnswer, index) => (
             <AnswerComponent key={index}
@@ -89,11 +87,13 @@ const QuestionComponent = ({id, body, helpfulness, asker_name, date, answers, se
             setAnswerLength={setAnswerLength}
             answers = {answers}
             setAnswers = {setAnswers}/>))
-            : <h4>Not Answered Yet!</h4>
-        }
-        {loadMore ? <small><button id="load-more-answers" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers</button></small> : null}
-        <button id="add-answer" onClick={() => setShowAddAnswer(true)}>Add an Answer</button>
-        <AddAnswer onClose={() => setShowAddAnswer(false)} showAddAnswer={showAddAnswer} productName={productName} body={body} id={id}/>
+            : <h4 className='not-answered'><br></br>Not Answered Yet!</h4>
+          }
+          </div>
+        {loadMore ? <small><button id="load-more-answers" onClick={() => {setLoadMore(false); setAnswerLength(answers.length)}}>Load More Answers </button> </small> : <small><button id="load-more-answers" onClick={() => {setLoadMore(true); setAnswerLength(2)}}>Collapse Answers </button> </small>}
+        <small><button id="add-answer" onClick={() => setShowAddAnswer(true)}>Add an Answer</button>
+        <AddAnswer onClose={() => setShowAddAnswer(false)} showAddAnswer={showAddAnswer} productName={productName} body={body} id={id}/></small>
+        <br></br>
     </div>
 )};
 

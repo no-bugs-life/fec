@@ -1,11 +1,25 @@
 .top{
   width: 100vw;
+  height: 70px;
   background-color: var(--darkaccentcolor);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.top .logo{
+.top-skull{
+  position: relative;
+  transform: scale(0.5);
+  top: -35px;
+  left: 10px;
+}
+
+.logo{
+  margin: 90px;
+  position:relative;
   font-size: 1.8rem;
-  color: var(--lightaccent)
+  color: var(--lightaccentcolor);
+
 }
 .product-main{
   width: 100%;
