@@ -80,9 +80,9 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
       </>
       }
        {defaultPhoto.url === null ?
-      <img src= "https://pngimg.com/uploads/apple/apple_PNG12489.png"></img>
+      <img src= "https://pngimg.com/uploads/apple/apple_PNG12489.png" alt="Main img showing the selected style's picture"></img>
     :
-      <img src={defaultPhoto.url} onClick={onModalClick}></img>}
+      <img fetchpriority="high" src={defaultPhoto.url} onClick={onModalClick}></img>}
     </div>
     {photos.length && <Modal open={isOpen} defaultPhoto={defaultPhoto} photos={photos} setIsOpen={setIsOpen} onBtnClick={onBtnClick}/>}
     <div className="photo-carousel">
@@ -109,10 +109,10 @@ const Images = ({photos, defaultPhoto, setDefaultPhoto, currentList, setCurrentL
         <ul className="img-list">
         {currentList.map((photo, index) => {
           return(
-            photo.url === null ?<li className="img-ind selected"><img src="https://pngimg.com/uploads/apple/apple_PNG12489.png" alt="Image"></img></li>
+            photo.url === null ?<li className="img-ind selected"><img src="https://pngimg.com/uploads/apple/apple_PNG12489.png" alt="Image of default stock photo"></img></li>
             :photo === defaultPhoto ?
-            <li className="img-ind selected" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick} alt="Image"></img></li>
-            : <li className="img-ind" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick} alt="Image"></img></li>
+            <li className="img-ind selected" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick} alt="Image of currently selected image in image list"></img></li>
+            : <li className="img-ind" id={index} key={index}><img id={index} src={photo.thumbnail_url} onClick={onImageClick} alt="Image of product of the currently selected style"></img></li>
 
 
         )

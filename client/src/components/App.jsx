@@ -42,6 +42,7 @@ const App = ()=> {
   return(
 
     <div className="product-main app">
+
       <Suspense fallback= {<div><LoadingScreen /></div>}>
         <div className="top">
           <div className='top-skull'>
@@ -64,6 +65,7 @@ const App = ()=> {
           product={product}
         />
       </Suspense>
+
 
     </div>
 
