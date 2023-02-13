@@ -46,8 +46,9 @@ in a new terminal:
 
 
 ## OVERVIEW
-  <div align="left">
+  <div display="flex">
     <img src='https://lh5.googleusercontent.com/KLmhlTc22F-PC_nXNw-_ggjFz4dN3uvlYtoJkKl6OKa0wGKvf9XliNf5rtnGYY-RuLw=w2400' height="340px" width="600px"/>
+    <img src='https://lh6.googleusercontent.com/sB32Mcx8LxE-bswlPq4vOWG2097Uw_sJmA9aU8fkSuzp_DxMJKy3R-UKLiPpS-fcTR8=w2400' height="340px" width="200px"/>
   </div>
 
 ### Features
@@ -59,8 +60,9 @@ in a new terminal:
 - Dynamic rendering of size and quantity based on availability of the item in selected size and quantity
 
 ## RATING & REVIEWS
-  <div align="center">
-    <img src='https://github.com/get-icon/geticon/raw/master/icons/react.svg' height="21px" width="21px"/>
+  <div display="flex">
+    <img src='https://lh4.googleusercontent.com/fQi_3nu4EUXJcDtPfsNR5tvERGVzMMitm8xqB1ExIWZ-0ZmRTzknQ90KdGspZlj514A=w2400' height="340px" width="600px"/>
+    <img src='https://lh5.googleusercontent.com/rIsBaBc2NczpC-hjzgjHs5p1GPCVc1L6xr6nFPYiH8VrVBTQe3AKGN2gGh6E7qCxuJ0=w2400' height="340px" width="200px"/>
   </div>
 
 ### Features
@@ -70,8 +72,9 @@ in a new terminal:
 
 
 ## QUESTIONS & ANSWERS
-  <div align="center">
-    <img src='https://github.com/get-icon/geticon/raw/master/icons/react.svg' height="21px" width="21px"/>
+  <div display="flex">
+    <img src='https://lh5.googleusercontent.com/KLmhlTc22F-PC_nXNw-_ggjFz4dN3uvlYtoJkKl6OKa0wGKvf9XliNf5rtnGYY-RuLw=w2400' height="340px" width="600px"/>
+    <img src='https://lh5.googleusercontent.com/BYSp5bfJPD3k-kly5RSjEbNhXqsy5_O5ta76OjfiHW83H7Ibg8imSE29h2CtUF2nq70=w2400' height="340px" width="200px"/>
   </div>
 
 
@@ -82,8 +85,9 @@ in a new terminal:
 - Add Questions/Answer through a form in modal
 
 ## RELATED ITEMS
-  <div align="center">
-    <img src='https://github.com/get-icon/geticon/raw/master/icons/react.svg' height="21px" width="21px"/>
+  <div display="flex">
+    <img src='https://lh6.googleusercontent.com/x6RJH5_Hxxp13uV7qKxTw5XiGb9K3FKMJVEaD4y0b1VqZb0LgnjgGTMrVcksce5ZwAs=w2400' height="220px" width="600px"/>
+    <img src='https://lh6.googleusercontent.com/cPJVMPxoDQT_zLnjvsZm12odIkVrWMW6zzgrd8huGfD8JH87E0TzXoZjemSRXjoqUS4=w2400' height="340px" width="200px"/>
   </div>
 
 ### Features
